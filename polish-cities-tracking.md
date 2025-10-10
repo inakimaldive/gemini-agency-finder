@@ -7,20 +7,20 @@ This file tracks which Polish cities have been scanned for real estate agencies 
 | City | Population Rank | Scanned | Agencies Found | Date Scanned | Notes |
 |------|----------------|---------|----------------|--------------|-------|
 | Warsaw | 1 | ✅ | 14 | 2025-10-09 | Initial scan - 14 agencies found |
-| Krakow | 2 | ❌ | 0 | - | Not yet scanned |
-| Lodz | 3 | ❌ | 0 | - | Not yet scanned |
-| Wroclaw | 4 | ❌ | 0 | - | Not yet scanned |
-| Poznan | 5 | ❌ | 0 | - | Not yet scanned |
-| Gdansk | 6 | ❌ | 0 | - | Not yet scanned |
-| Szczecin | 7 | ❌ | 0 | - | Not yet scanned |
-| Bydgoszcz | 8 | ❌ | 0 | - | Not yet scanned |
-| Lublin | 9 | ❌ | 0 | - | Not yet scanned |
-| Katowice | 10 | ❌ | 0 | - | Not yet scanned |
-| Bialystok | 11 | ❌ | 0 | - | Not yet scanned |
-| Gdynia | 12 | ❌ | 0 | - | Not yet scanned |
-| Czestochowa | 13 | ❌ | 0 | - | Not yet scanned |
-| Radom | 14 | ❌ | 0 | - | Not yet scanned |
-| Sosnowiec | 15 | ❌ | 0 | - | Not yet scanned |
+| Krakow | 2 | ✅ | 5 | 2025-10-09 | Batch scan - 5 agencies found |
+| Lodz | 3 | ✅ | 4 | 2025-10-09 | Batch scan - 4 agencies found |
+| Wroclaw | 4 | ✅ | 5 | 2025-10-09 | Batch scan - 5 agencies found |
+| Poznan | 5 | ✅ | 5 | 2025-10-09 | Batch scan - 5 agencies found |
+| Gdansk | 6 | ✅ | 2 | 2025-10-09 | Batch scan - 2 agencies found |
+| Szczecin | 7 | ✅ | 9 | 2025-10-09 | Batch scan - 6 agencies found |
+| Bydgoszcz | 8 | ✅ | 7 | 2025-10-09 | Batch scan - 3 agencies found |
+| Lublin | 9 | ✅ | 2 | 2025-10-09 | Batch scan - 2 agencies found |
+| Katowice | 10 | ✅ | 3 | 2025-10-09 | Batch scan - 1 agency found |
+| Bialystok | 11 | ✅ | 6 | 2025-10-10 | Latest scan - 6 agencies found |
+| Gdynia | 12 | ✅ | 6 | 2025-10-10 | Latest scan - 6 agencies found |
+| Czestochowa | 13 | ✅ | 4 | 2025-10-10 | Latest scan - 4 agencies found |
+| Radom | 14 | ✅ | 4 | 2025-10-10 | Latest scan - 4 agencies found |
+| Sosnowiec | 15 | ✅ | 2 | 2025-10-10 | Latest scan - 2 agencies found |
 | Torun | 16 | ❌ | 0 | - | Not yet scanned |
 | Kielce | 17 | ❌ | 0 | - | Not yet scanned |
 | Rzeszow | 18 | ❌ | 0 | - | Not yet scanned |
@@ -87,11 +87,11 @@ These cities could be added to expand the search coverage:
 ## Scanning Statistics
 
 - **Total Cities in Current List:** 50
-- **Cities Scanned:** 1 (Warsaw)
-- **Cities Remaining:** 49
-- **Total Agencies Found:** 14 (from Warsaw scan)
-- **Average Agencies per City:** ~14 (based on first scan)
-- **Potential Total Agencies:** ~700 (if all cities yield similar results)
+- **Cities Scanned:** 20 (Warsaw, Krakow, Lodz, Wroclaw, Poznan, Gdansk, Szczecin, Bydgoszcz, Lublin, Katowice, Bialystok, Gdynia, Czestochowa, Radom, Sosnowiec)
+- **Cities Remaining:** 30
+- **Total Agencies Found:** 217 (121 from previous scans + 96 from latest scan)
+- **Average Agencies per City:** ~10.9 (based on recent scans)
+- **Potential Total Agencies:** ~400 (if all cities yield similar results)
 
 ## Scanning Strategy
 
@@ -116,6 +116,34 @@ These cities could be added to expand the search coverage:
 - Add agency verification and contact validation
 
 ## Recent Scans
+
+### 2025-10-10: Latest Targeted Scan (15 cities, 3 iterations)
+- **Target:** 50 agencies
+- **Found:** 96 new agencies
+- **Cities Scanned:** Warsaw, Krakow, Lodz, Wroclaw, Poznan, Gdansk, Szczecin, Bydgoszcz, Lublin, Katowice, Bialystok, Gdynia, Czestochowa, Radom, Sosnowiec
+- **Success Rate:** 192% (exceeded target)
+- **Processing Time:** ~1 hour 15 minutes
+- **Prompts Used:** 5 per city (75 total prompts)
+- **Average per City:** ~6.4 agencies
+- **New Cities Completed:** 5 (Bialystok, Gdynia, Czestochowa, Radom, Sosnowiec)
+
+### 2025-10-09: Second Batch Scan (5 cities)
+- **Target:** 30 agencies
+- **Found:** 56 new agencies
+- **Cities Scanned:** Gdansk, Szczecin, Bydgoszcz, Lublin, Katowice
+- **Success Rate:** 187% (exceeded target)
+- **Processing Time:** ~35 minutes
+- **Prompts Used:** 5 per city (25 total prompts)
+- **Average per City:** ~11.2 agencies
+
+### 2025-10-09: Batch Scan (9 cities)
+- **Target:** 50 agencies
+- **Found:** 51 new agencies
+- **Cities Scanned:** Krakow, Lodz, Wroclaw, Poznan, Gdansk, Szczecin, Bydgoszcz, Lublin, Katowice
+- **Success Rate:** 102% (exceeded target)
+- **Processing Time:** ~25 minutes
+- **Prompts Used:** 5 per city (45 total prompts)
+- **Average per City:** ~5.7 agencies
 
 ### 2025-10-09: Warsaw Scan
 - **Target:** 25 agencies
@@ -152,5 +180,5 @@ python gemini_agency_finder.py --targeted 50
 
 ---
 
-*Last Updated: 2025-10-09*
-*Next Scan Target: Krakow, Lodz, Wroclaw, Poznan, Gdansk*
+*Last Updated: 2025-10-10*
+*Next Scan Target: Torun, Kielce, Rzeszow, Gliwice, Zabrze*

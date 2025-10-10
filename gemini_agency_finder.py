@@ -1794,6 +1794,160 @@ class GeminiAgencyFinder:
         except Exception as e:
             logging.error(f"Error updating city tracking: {e}")
 
+    def fill_missing_data_web_search(self, max_agencies=None):
+        """Use Gemini AI to search for missing contact information for gemini_discovered agencies"""
+        print("🔍 Starting web search to fill missing data for gemini_discovered agencies...")
+        logging.info("Starting web search to fill missing data for gemini_discovered agencies")
+
+        try:
+            conn = sqlite3.connect(self.db_path)
+            cursor = conn.cursor()
+
+            # Get agencies with missing data
+            cursor.execute('''
+                SELECT id, name, website, phone, address, description
+                FROM agencies
+                WHERE type = 'gemini_discovered'
+                AND (website IS NULL OR website = '' OR phone IS NULL OR phone = '' OR address IS NULL OR address = '')
+                ORDER BY id
+            ''')
+
+            agencies_to_update = cursor.fetchall()
+            conn.close()
+
+            if not agencies_to_update:
+                print("✅ No agencies found with missing data")
+                return 0
+
+            if max_agencies:
+                agencies_to_update = agencies_to_update[:max_agencies]
+
+            print(f"📋 Found {len(agencies_to_update)} agencies with missing data")
+            logging.info(f"Found {len(agencies_to_update)} agencies with missing data")
+
+            updated_count = 0
+
+            for agency_id, name, website, phone, address, description in agencies_to_update:
+                print(f"\n🔎 Searching for: {name}")
+
+                # Determine what data is missing
+                missing_fields = []
+                if not website or website.strip() == '':
+                    missing_fields.append('website')
+                if not phone or phone.strip() == '':
+                    missing_fields.append('phone number')
+                if not address or address.strip() == '':
+                    missing_fields.append('address')
+
+                if not missing_fields:
+                    continue
+
+                missing_text = ', '.join(missing_fields)
+
+                # Create search prompt
+                prompt = f"""Search the web for the real estate agency "{name}" in Marbella, Spain.
+Find their {missing_text}. Provide the information in this exact format:
+Website: [URL or "Not found"]
+Phone: [phone number or "Not found"]
+Address: [full address or "Not found"]
+
+Only include factual information from reliable sources."""
+
+                print(f"   🤖 Searching for: {missing_text}")
+                logging.info(f"Searching for missing data for agency: {name}")
+
+                response = self.run_gemini_prompt(prompt)
+                if response:
+                    # Parse the response
+                    updates = self.parse_web_search_response(response)
+
+                    if updates:
+                        # Update database
+                        if self.update_agency_data(agency_id, updates):
+                            updated_count += 1
+                            print(f"   ✅ Updated: {', '.join([f'{k}: {v}' for k, v in updates.items() if v and v != 'Not found'])}")
+                            logging.info(f"Updated agency {name} with: {updates}")
+                        else:
+                            print("   ❌ Failed to update database")
+                    else:
+                        print("   ⚠️ No useful information found")
+                else:
+                    print("   ❌ No response from AI")
+
+                # Rate limiting
+                time.sleep(2)
+
+            print(f"\n🎉 Completed! Updated {updated_count} agencies with missing data")
+            logging.info(f"Web search data filling complete. Updated {updated_count} agencies")
+            return updated_count
+
+        except Exception as e:
+            print(f"💥 Error during web search: {e}")
+            logging.error(f"Error during web search data filling: {e}")
+            return 0
+
+    def parse_web_search_response(self, response):
+        """Parse Gemini response for web search results"""
+        updates = {}
+
+        lines = response.split('\n')
+        for line in lines:
+            line = line.strip()
+            if line.startswith('Website:'):
+                website = line.replace('Website:', '').strip()
+                if website and website != 'Not found' and 'http' in website:
+                    updates['website'] = website
+            elif line.startswith('Phone:'):
+                phone = line.replace('Phone:', '').strip()
+                if phone and phone != 'Not found':
+                    updates['phone'] = phone
+            elif line.startswith('Address:'):
+                address = line.replace('Address:', '').strip()
+                if address and address != 'Not found':
+                    updates['address'] = address
+
+        return updates
+
+    def update_agency_data(self, agency_id, updates):
+        """Update agency data in database"""
+        try:
+            conn = sqlite3.connect(self.db_path)
+            cursor = conn.cursor()
+
+            # Build update query dynamically
+            set_parts = []
+            values = []
+            for field, value in updates.items():
+                if value and value != 'Not found':
+                    set_parts.append(f"{field} = ?")
+                    values.append(value)
+
+            if set_parts:
+                query = f"UPDATE agencies SET {', '.join(set_parts)} WHERE id = ?"
+                values.append(agency_id)
+
+                cursor.execute(query, values)
+                conn.commit()
+
+                # Update additional_info to note the data enrichment
+                cursor.execute('''
+                    UPDATE agencies
+                    SET additional_info = additional_info || ? || ?
+                    WHERE id = ?
+                ''', (
+                    f" | Data enriched via web search on {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}",
+                    f" (added: {', '.join(updates.keys())})",
+                    agency_id
+                ))
+                conn.commit()
+
+            conn.close()
+            return True
+
+        except Exception as e:
+            logging.error(f"Error updating agency data: {e}")
+            return False
+
 def main():
     finder = GeminiAgencyFinder()
     # Use more prompts now that we have targeted Polish town searches
@@ -1852,6 +2006,28 @@ if __name__ == '__main__':
         print(f"🎉 COMPLETED: Successfully added {saved_count} new agencies to the database!")
         print("📊 Check gemini_agency_finder.log for detailed operation logs")
         print("📋 Tracking file updated automatically")
+
+    elif len(sys.argv) > 1 and sys.argv[1] == '--fill-missing':
+        # Fill missing data using web search
+        max_agencies = None
+        if len(sys.argv) > 2:
+            try:
+                max_agencies = int(sys.argv[2])
+            except ValueError:
+                print("Invalid number, processing all agencies with missing data")
+
+        print("🔍 Filling missing data for gemini_discovered agencies...")
+        if max_agencies:
+            print(f"🎯 Max agencies to process: {max_agencies}")
+        else:
+            print("🎯 Processing all agencies with missing data")
+        print("=" * 60)
+
+        updated_count = finder.fill_missing_data_web_search(max_agencies=max_agencies)
+
+        print("=" * 60)
+        print(f"🎉 COMPLETED: Successfully updated {updated_count} agencies with missing data!")
+        print("📊 Check gemini_agency_finder.log for detailed operation logs")
 
     else:
         main()
