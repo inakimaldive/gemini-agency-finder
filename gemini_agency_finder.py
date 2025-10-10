@@ -1520,12 +1520,24 @@ class GeminiAgencyFinder:
         """Run targeted searches for specific Polish towns with context-aware prompting until target reached"""
         print(f"🚀 Starting targeted Polish town agency discovery...")
         print(f"🎯 Target: {target_agencies} new agencies")
-        print(f"🏙️ Cities available: {len(self.get_polish_towns())}")
         print("=" * 60)
 
         logging.info(f"Starting targeted Polish town agency discovery... Target: {target_agencies} new agencies")
 
-        polish_towns = self.get_polish_towns()
+        # Get unscanned cities
+        scanned_cities = self.get_scanned_cities()
+        all_polish_towns = self.get_polish_towns()
+        unscanned_cities = [city for city in all_polish_towns if city not in scanned_cities]
+
+        print(f"🏙️ Cities available: {len(all_polish_towns)}")
+        print(f"✅ Cities already scanned: {len(scanned_cities)}")
+        print(f"🎯 Cities to scan: {len(unscanned_cities)}")
+
+        if not unscanned_cities:
+            print("⚠️ All cities have been scanned! Restarting from the beginning...")
+            logging.warning("All cities have been scanned, restarting from beginning")
+            unscanned_cities = all_polish_towns.copy()
+
         keywords = self.get_polish_keywords()
 
         all_agencies = []
@@ -1541,13 +1553,13 @@ class GeminiAgencyFinder:
             # Refresh existing agencies context for each iteration
             existing_agencies_by_city = self.get_existing_agencies_by_city() if use_context else {}
 
-            # Process towns in batches
-            towns_batch = polish_towns[processed_towns:processed_towns + 5]  # Process 5 towns per iteration
+            # Process towns in batches from unscanned cities
+            towns_batch = unscanned_cities[processed_towns:processed_towns + 5]  # Process 5 towns per iteration
             if not towns_batch:
-                print("🔄 Restarting from beginning of city list...")
-                logging.info("No more towns to process, restarting from beginning...")
+                print("🔄 All unscanned cities processed, restarting from beginning...")
+                logging.info("All unscanned cities processed, restarting from beginning...")
                 processed_towns = 0
-                towns_batch = polish_towns[:5]
+                towns_batch = unscanned_cities[:5] if unscanned_cities else all_polish_towns[:5]
 
             print(f"🏘️ Processing cities: {', '.join(towns_batch)}")
 
@@ -1720,33 +1732,42 @@ class GeminiAgencyFinder:
         return saved_count
 
     def get_scanned_cities(self):
-        """Get list of cities that have been scanned based on database records"""
+        """Get list of cities that have been scanned based on tracking file"""
         try:
-            conn = sqlite3.connect(self.db_path)
-            cursor = conn.cursor()
-
-            # Get cities from additional_info that contain scan dates
-            cursor.execute('''
-                SELECT additional_info
-                FROM agencies
-                WHERE type = 'gemini_discovered' AND additional_info LIKE '%Discovered via Gemini AI%'
-                ORDER BY rowid DESC
-            ''')
-
             scanned_cities = set()
-            for row in cursor.fetchall():
-                additional_info = row[0]
-                # Try to extract city from additional_info or just mark as scanned
-                # For now, we'll use a simple approach - cities are considered scanned if we have agencies from them
-                # This is a simplified approach; in production you'd want better tracking
 
-            conn.close()
+            # Read the tracking file to get scanned cities
+            with open('polish-cities-tracking.md', 'r', encoding='utf-8') as f:
+                content = f.read()
 
-            # For now, return empty set - we'll implement proper tracking later
+            # Parse the table rows to find cities marked as scanned (✅)
+            lines = content.split('\n')
+            in_table = False
+
+            for line in lines:
+                line = line.strip()
+                if line.startswith('| City |') and 'Scanned |' in line:
+                    in_table = True
+                    continue
+                elif line.startswith('|------') and in_table:
+                    continue
+                elif line.startswith('| ') and in_table and ' | ' in line:
+                    # Parse table row
+                    parts = line.split('|')
+                    if len(parts) >= 6:
+                        city = parts[1].strip()
+                        scanned_status = parts[3].strip()
+                        if scanned_status == '✅':
+                            scanned_cities.add(city)
+                elif line.startswith('## ') and in_table:
+                    # End of table
+                    break
+
+            logging.info(f"Found {len(scanned_cities)} scanned cities from tracking file")
             return scanned_cities
 
         except Exception as e:
-            logging.error(f"Error getting scanned cities: {e}")
+            logging.error(f"Error getting scanned cities from tracking file: {e}")
             return set()
 
     def update_city_tracking(self, city_name, agencies_found):
