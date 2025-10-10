@@ -36,7 +36,7 @@ This file tracks which Polish cities have been scanned for real estate agencies 
 | Tychy | 28 | ✅ | 3 | 2025-10-10 | Latest scan - 3 agencies found |
 | Gorzow Wielkopolski | 29 | ✅ | 5 | 2025-10-10 | Latest scan - 5 agencies found |
 | Dabrowa Gornicza | 30 | ✅ | 2 | 2025-10-10 | Latest scan - 2 agencies found |
-| Plock | 31 | ❌ | 0 | - | Not yet scanned |
+| Plock | 31 | ✅ | 7 | 2025-10-10 | Scanned - 7 agencies found |
 | Elblag | 32 | ❌ | 0 | - | Not yet scanned |
 | Walbrzych | 33 | ❌ | 0 | - | Not yet scanned |
 | Tarnow | 34 | ❌ | 0 | - | Not yet scanned |
@@ -190,5 +190,5 @@ python gemini_agency_finder.py --targeted 50
 
 ---
 
-*Last Updated: 2025-10-10*
+**Last Updated: 2025-10-10**
 *Next Scan Target: Torun, Kielce, Rzeszow, Gliwice, Zabrze*

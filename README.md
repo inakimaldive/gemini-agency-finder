@@ -8,11 +8,12 @@ A static web interface for exploring the Gemini Agency Finder database of real e
 
 ## 📊 Database Overview
 
-This interface displays **288 real estate agencies** across four categories:
-- **Marbella Based** (149): Agencies with physical locations in Marbella, Spain
-- **Spain & Poland** (75): Agencies serving both Spanish and Polish markets
-- **Polish Agencies** (54): Polish agencies specializing in Costa del Sol properties
-- **AI Discovered** (10): Agencies discovered via Google Gemini AI search with insufficient classification data
+This interface displays **321 real estate agencies** across multiple categories:
+- **Marbella Based** (182): Agencies with physical locations in Marbella, Spain
+- **Polish Agencies** (74): Polish agencies specializing in Costa del Sol properties
+- **Dual Market** (9): Agencies serving both Spanish and Polish markets
+- **AI Discovered** (28): Agencies discovered via Google Gemini AI search
+- **Other** (28): Agencies with incomplete classification data
 
 ## ✨ Features
 
@@ -42,8 +43,12 @@ This interface displays **288 real estate agencies** across four categories:
 
 ## 🛠️ Technical Stack
 
+- **Backend**: Python 3.x with Google Gen AI library
+- **AI Integration**: Google Gemini 2.5 Flash API (via google-genai library)
+- **Database**: SQLite3 for agency data storage
 - **Frontend**: HTML5, CSS3, JavaScript (ES6+)
 - **Libraries**:
+  - [Google Gen AI](https://github.com/googleapis/python-genai) - Gemini API client
   - [Bootstrap 5](https://getbootstrap.com/) - Responsive UI framework
   - [DataTables](https://datatables.net/) - Interactive table functionality
   - [Chart.js](https://www.chartjs.org/) - Data visualization
@@ -51,15 +56,94 @@ This interface displays **288 real estate agencies** across four categories:
 - **Data Format**: JSON (exported from SQLite database)
 - **Hosting**: GitHub Pages (static hosting)
 
+## 🤖 AI Integration Methods
+
+The Gemini Agency Finder supports two methods for integrating with Google Gemini AI:
+
+### Current Method: Google Gen AI Library (Recommended)
+
+**Status**: ✅ **Active** - This is the current default method
+
+**Advantages**:
+- Direct API integration (no subprocess calls)
+- Better error handling and rate limiting
+- Structured JSON prompts for cleaner data
+- More reliable parsing of responses
+- Faster processing with shorter responses
+
+**Usage**:
+```python
+from google import genai
+
+client = genai.Client(api_key="your-api-key")
+response = client.models.generate_content(
+    model='gemini-2.5-flash',
+    contents=prompt
+)
+```
+
+**Configuration**:
+- API Key: Set via `GOOGLE_API_KEY` environment variable or hardcoded
+- Model: `gemini-2.5-flash`
+- Response Format: Structured JSON arrays
+
+### Legacy Method: Gemini CLI (Deprecated)
+
+**Status**: ⚠️ **Deprecated** - Kept for reference, not recommended for new usage
+
+**Previous Implementation**:
+```bash
+# Old CLI approach (no longer used)
+echo "prompt" | gemini-cli --model gemini-2.5-flash
+```
+
+**Issues with CLI approach**:
+- Verbose responses with explanatory text (3000+ characters)
+- Unreliable parsing of mixed content
+- Subprocess overhead and complexity
+- Less structured data extraction
+
+**Migration Notes**:
+- All functionality moved to library-based approach
+- CLI method preserved in git history if needed
+- JSON prompt engineering significantly improved data quality
+
+### Prompt Engineering Evolution
+
+**Before (CLI era)**:
+```
+Find real estate agencies in Plock, Poland that specialize in Costa del Sol properties.
+Include their websites and contact information.
+```
+*Result*: 3000+ character responses with headers, explanations, and mixed content
+
+**After (Library era)**:
+```json
+Find real estate agencies in Plock, Poland that specialize in Costa del Sol properties.
+Return ONLY a JSON array with this exact format:
+[{"name": "Agency Name", "website": "https://example.com", "phone": "+48 XXX XXX XXX", "address": "Address in Plock"}]
+If no agencies are found, return an empty array []. Do not include explanations or additional text.
+```
+*Result*: 200-900 character clean JSON responses with structured data
+
 ## 📁 Project Structure
 
 ```
 gemini-agency-finder/
-├── index.html          # Main web interface
-├── agencies.json       # Agency data (JSON format)
-├── README.md           # This documentation
-├── .gitignore         # Git ignore rules
-└── assets/            # Static assets (if needed)
+├── index.html              # Main web interface
+├── agencies.json           # Agency data (JSON format)
+├── agencies.db             # SQLite database
+├── gemini_agency_finder.py # Main agency discovery script
+├── update_data.sh          # Data export script
+├── polish-cities-tracking.md # City scanning progress
+├── README.md               # This documentation
+├── .gitignore             # Git ignore rules
+└── tools/                 # Data cleanup and maintenance tools
+    ├── clean_names.py     # Remove numbering prefixes from names
+    ├── fix_websites.py    # Extract URLs from descriptions
+    ├── remove_duplicates.py # Identify and remove duplicates
+    ├── update_types.py    # Classify agency types
+    └── move_undefined.py  # Archive empty agency records
 ```
 
 ## 🚀 Quick Start
@@ -174,19 +258,49 @@ The agency data includes the following fields:
 
 ## 🔄 Data Updates
 
-To update the database with fresh data:
+### Agency Discovery
+To find new agencies:
 
 1. Run the agency discovery script:
    ```bash
    python gemini_agency_finder.py --targeted 50
    ```
 
-2. Export updated data to JSON:
+### Data Cleanup and Maintenance
+After discovering new agencies, clean and organize the data:
+
+1. **Clean agency names** (remove numbering prefixes):
+   ```bash
+   python tools/clean_names.py
+   ```
+
+2. **Extract missing websites** from descriptions:
+   ```bash
+   python tools/fix_websites.py
+   ```
+
+3. **Classify agency types** (Marbella, Polish, etc.):
+   ```bash
+   python tools/update_types.py
+   ```
+
+4. **Remove duplicates** (keep most complete entries):
+   ```bash
+   python tools/remove_duplicates.py
+   ```
+
+5. **Archive empty records** (optional):
+   ```bash
+   python tools/move_undefined.py
+   ```
+
+### Export and Deploy
+1. Export updated data to JSON:
    ```bash
    sqlite3 agencies.db -json "SELECT * FROM agencies ORDER BY name;" > agencies.json
    ```
 
-3. Commit and push changes:
+2. Commit and push changes:
    ```bash
    git add agencies.json
    git commit -m "Update agency database - $(date +%Y-%m-%d)"
@@ -240,4 +354,4 @@ For questions or issues:
 This database is maintained by the Gemini Agency Finder project, which uses AI-powered search to discover real estate agencies working with Costa del Sol properties. The data includes agencies physically located in Marbella, Polish agencies specializing in Spanish properties, and agencies discovered through automated AI searches.
 
 **Last Updated**: October 10, 2025
-**Total Agencies**: 288
+**Total Agencies**: 321

@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-Gemini Agency Finder - Uses Gemini CLI to discover new real estate agencies in Marbella
+Gemini Agency Finder - Uses Google Gen AI library to discover new real estate agencies in Marbella
 """
 
 import subprocess
@@ -11,6 +11,9 @@ import time
 import os
 from datetime import datetime
 import logging
+
+# Google Gen AI imports
+from google import genai
 
 # Configure logging
 logging.basicConfig(
@@ -23,8 +26,10 @@ logging.basicConfig(
 )
 
 class GeminiAgencyFinder:
-    def __init__(self, db_path='agencies.db'):
+    def __init__(self, db_path='agencies.db', api_key=None):
         self.db_path = db_path
+        self.api_key = api_key or os.getenv('GOOGLE_API_KEY') or 'AIzaSyB7iUl70z8jjHuaQbOPWMhN0lEpC9GwM0Q'
+        self.client = genai.Client(api_key=self.api_key)
         self.existing_domains = self.get_existing_domains()
         self.existing_names = self.get_existing_names()
 
@@ -66,44 +71,41 @@ class GeminiAgencyFinder:
             return set()
 
     def run_gemini_prompt(self, prompt, use_web_search=False):
-        """Run a prompt through Gemini CLI in non-interactive mode"""
+        """Run a prompt through Google Gen AI library"""
         try:
-            cmd = ['gemini', '-m', 'gemini-2.5-flash', '-p', prompt]
-
             print(f"🤖 Querying Gemini AI... ({len(prompt)} chars)")
             logging.info(f"Running Gemini prompt: {prompt[:100]}...")
 
-            # Set environment to disable IDE connection
-            env = os.environ.copy()
-            env['GEMINI_DISABLE_IDE'] = '1'
+            # Configure tools for web search if requested
+            config = None
+            if use_web_search:
+                from google.genai import types
+                config = types.GenerateContentConfig(
+                    tools=[{"google_search": {}}]
+                )
 
-            result = subprocess.run(
-                cmd,
-                capture_output=True,
-                text=True,
-                timeout=120,  # 2 minute timeout
-                env=env
+            # Generate content using the library
+            response = self.client.models.generate_content(
+                model='gemini-2.5-flash',
+                contents=prompt,
+                config=config
             )
 
-            if result.returncode == 0:
-                response_length = len(result.stdout.strip())
+            if response and response.text:
+                response_length = len(response.text.strip())
                 print(f"✅ Gemini response received ({response_length} chars)")
-                return result.stdout.strip()
+                return response.text.strip()
             else:
-                print(f"❌ Gemini command failed: {result.stderr[:100]}...")
-                logging.error(f"Gemini command failed: {result.stderr}")
+                print("❌ No response from Gemini API")
+                logging.error("No response from Gemini API")
                 return None
 
-        except subprocess.TimeoutExpired:
-            print("⏰ Gemini command timed out after 2 minutes")
-            logging.error("Gemini command timed out")
-            return None
         except Exception as e:
             print(f"💥 Error running Gemini: {str(e)[:100]}...")
             logging.error(f"Error running Gemini: {e}")
             return None
 
-    def parse_agency_data(self, gemini_output):
+    def parse_agency_data(self, gemini_output, polish_city=None):
         """Parse Gemini output to extract agency information"""
         agencies = []
 
@@ -115,11 +117,26 @@ class GeminiAgencyFinder:
                 data = json.loads(json_match.group(1))
                 for item in data:
                     if isinstance(item, dict) and 'name' in item:
-                        agency = self.normalize_agency_data(item)
+                        agency = self.normalize_agency_data(item, polish_city)
                         if self.is_valid_agency_name(agency['name']):
                             agencies.append(agency)
                 return agencies
-        except:
+
+            # Try to parse the entire response as JSON (for clean JSON responses)
+            try:
+                data = json.loads(gemini_output.strip())
+                if isinstance(data, list):
+                    for item in data:
+                        if isinstance(item, dict) and 'name' in item:
+                            agency = self.normalize_agency_data(item, polish_city)
+                            if self.is_valid_agency_name(agency['name']):
+                                agencies.append(agency)
+                    return agencies
+            except:
+                pass
+
+        except Exception as e:
+            logging.debug(f"JSON parsing failed: {e}")
             pass
 
         # Fallback: Parse text-based output
@@ -130,19 +147,28 @@ class GeminiAgencyFinder:
             line = line.strip()
             if not line:
                 if current_agency.get('name') and self.is_valid_agency_name(current_agency['name']):
-                    agencies.append(self.normalize_agency_data(current_agency))
+                    agencies.append(self.normalize_agency_data(current_agency, polish_city))
                     current_agency = {}
                 continue
 
             # Look for agency name patterns
             if re.match(r'^\d+\.?\s*', line) or line.startswith('**') or line.startswith('- '):
                 if current_agency.get('name') and self.is_valid_agency_name(current_agency['name']):
-                    agencies.append(self.normalize_agency_data(current_agency))
+                    agencies.append(self.normalize_agency_data(current_agency, polish_city))
 
                 # Extract agency name
                 name = re.sub(r'^\d+\.?\s*', '', line)
                 name = re.sub(r'^\*\*|\*\*$', '', name)
                 name = re.sub(r'^- ', '', name).strip()
+
+                # Skip obvious headers/descriptions that start with numbers
+                if re.match(r'^\d+\.', line) and any(keyword in name.lower() for keyword in [
+                    'agencies', 'biura', 'companies', 'firms', 'recommendation', 'wskazówka',
+                    'option', 'alternative', 'general', 'local', 'specialized', 'search',
+                    'contact', 'check', 'start', 'use', 'look for', 'find', 'examples'
+                ]):
+                    current_agency = {}
+                    continue
 
                 if self.is_valid_agency_name(name):
                     current_agency = {'name': name}
@@ -165,7 +191,7 @@ class GeminiAgencyFinder:
 
         # Add the last agency if exists and is valid
         if current_agency.get('name') and self.is_valid_agency_name(current_agency['name']):
-            agencies.append(self.normalize_agency_data(current_agency))
+            agencies.append(self.normalize_agency_data(current_agency, polish_city))
 
         return agencies
 
@@ -1251,7 +1277,7 @@ class GeminiAgencyFinder:
 
         return True
 
-    def normalize_agency_data(self, agency_data):
+    def normalize_agency_data(self, agency_data, polish_city=None):
         """Normalize agency data to match database schema"""
         normalized = {
             'name': agency_data.get('name', '').strip(),
@@ -1260,7 +1286,8 @@ class GeminiAgencyFinder:
             'phone': agency_data.get('phone', '').strip(),
             'address': agency_data.get('address', '').strip(),
             'description': agency_data.get('description', '').strip(),
-            'additional_info': f"Discovered via Gemini AI on {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}"
+            'additional_info': f"Discovered via Gemini AI on {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}",
+            'polish_city': polish_city or agency_data.get('polish_city', '').strip()
         }
 
         # Clean up website URL
@@ -1323,8 +1350,8 @@ class GeminiAgencyFinder:
 
         return False
 
-    def save_agencies(self, agencies):
-        """Save new agencies to database"""
+    def save_agencies(self, agencies, run_cleanup=False):
+        """Save new agencies to database and optionally run cleanup tools"""
         if not agencies:
             return 0
 
@@ -1336,8 +1363,8 @@ class GeminiAgencyFinder:
             for agency in agencies:
                 if not self.is_duplicate(agency):
                     cursor.execute('''
-                        INSERT INTO agencies (name, type, website, phone, address, description, additional_info)
-                        VALUES (?, ?, ?, ?, ?, ?, ?)
+                        INSERT INTO agencies (name, type, website, phone, address, description, additional_info, polish_city)
+                        VALUES (?, ?, ?, ?, ?, ?, ?, ?)
                     ''', (
                         agency['name'],
                         agency['type'],
@@ -1345,18 +1372,69 @@ class GeminiAgencyFinder:
                         agency['phone'],
                         agency['address'],
                         agency['description'],
-                        agency['additional_info']
+                        agency['additional_info'],
+                        agency.get('polish_city', '')
                     ))
                     saved_count += 1
-                    logging.info(f"Added new agency: {agency['name']}")
+                    logging.info(f"Added new agency: {agency['name']} from {agency.get('polish_city', 'unknown city')}")
 
             conn.commit()
             conn.close()
+
+            # Run cleanup tools optionally if agencies were saved and explicitly requested
+            if saved_count > 0 and run_cleanup:
+                print(f"🧹 Running cleanup tools on {saved_count} new agencies...")
+                self.run_cleanup_tools()
+                print("✅ Cleanup tools completed")
+
             return saved_count
 
         except Exception as e:
             logging.error(f"Error saving agencies: {e}")
             return 0
+
+    def run_cleanup_tools(self):
+        """Run all cleanup tools automatically"""
+        try:
+            # Run name cleaning
+            print("   🔧 Running name cleaning...")
+            result = subprocess.run([sys.executable, 'tools/clean_names.py'],
+                                  capture_output=True, text=True, cwd=os.getcwd())
+            if result.returncode == 0:
+                print("   ✅ Name cleaning completed")
+            else:
+                print(f"   ⚠️ Name cleaning had issues: {result.stderr[:100]}")
+
+            # Run website fixing
+            print("   🔧 Running website extraction...")
+            result = subprocess.run([sys.executable, 'tools/fix_websites.py'],
+                                  capture_output=True, text=True, cwd=os.getcwd())
+            if result.returncode == 0:
+                print("   ✅ Website extraction completed")
+            else:
+                print(f"   ⚠️ Website extraction had issues: {result.stderr[:100]}")
+
+            # Run duplicate removal
+            print("   🔧 Running duplicate removal...")
+            result = subprocess.run([sys.executable, 'tools/remove_duplicates.py'],
+                                  capture_output=True, text=True, cwd=os.getcwd())
+            if result.returncode == 0:
+                print("   ✅ Duplicate removal completed")
+            else:
+                print(f"   ⚠️ Duplicate removal had issues: {result.stderr[:100]}")
+
+            # Run type classification
+            print("   🔧 Running type classification...")
+            result = subprocess.run([sys.executable, 'tools/update_types.py'],
+                                  capture_output=True, text=True, cwd=os.getcwd())
+            if result.returncode == 0:
+                print("   ✅ Type classification completed")
+            else:
+                print(f"   ⚠️ Type classification had issues: {result.stderr[:100]}")
+
+        except Exception as e:
+            print(f"   💥 Error running cleanup tools: {e}")
+            logging.error(f"Error running cleanup tools: {e}")
 
     def get_polish_towns(self):
         """Get list of major Polish towns/cities for targeted searches, prioritized by population"""
@@ -1575,13 +1653,42 @@ class GeminiAgencyFinder:
                     print(f"   📋 Excluding {len(existing_agencies)} known agencies")
                     logging.info(f"   📋 Excluding {len(existing_agencies)} known agencies from {town}")
 
-                # Create targeted prompts with Polish keywords and context awareness
+                # Create targeted prompts with structured JSON output
                 prompts = [
-                    f"Znajdź biura nieruchomości w {town}, Polska które specjalizują się w nieruchomościach Costa del Sol.{exclude_text}Podaj ich strony internetowe i dane kontaktowe.",
-                    f"Find real estate agencies in {town}, Poland that specialize in Costa del Sol properties.{exclude_text}Include their websites and contact information.",
-                    f"Search for property agencies in {town}, Poland that offer 'nieruchomości Costa del Sol' for sale.{exclude_text}List their contact details.",
-                    f"Find Polish real estate companies in {town} that help clients buy property in Marbella, Spain using keywords like '{keywords['combinations'][0]}'.{exclude_text}",
-                    f"Look for 'biuro nieruchomości' in {town}, Poland that advertise 'Marbella nieruchomości' services.{exclude_text}Include phone numbers and websites."
+                    f"""Find real estate agencies in {town}, Poland that specialize in Costa del Sol or international properties.{exclude_text}
+
+Return ONLY a JSON array with this exact format:
+[{{"name": "Agency Name", "website": "https://example.com", "phone": "+48 XXX XXX XXX", "address": "Address in {town}"}}]
+
+If no agencies are found, return an empty array []. Do not include explanations or additional text.""",
+
+                    f"""Search for property agencies in {town}, Poland that help with international property purchases including Spain/Costa del Sol.{exclude_text}
+
+Return ONLY a JSON array with this exact format:
+[{{"name": "Agency Name", "website": "https://example.com", "phone": "+48 XXX XXX XXX", "address": "Address in {town}"}}]
+
+If no agencies are found, return an empty array []. Do not include explanations or additional text.""",
+
+                    f"""Find Polish real estate companies in {town} that offer services for buying property abroad, especially in Spain.{exclude_text}
+
+Return ONLY a JSON array with this exact format:
+[{{"name": "Agency Name", "website": "https://example.com", "phone": "+48 XXX XXX XXX", "address": "Address in {town}"}}]
+
+If no agencies are found, return an empty array []. Do not include explanations or additional text.""",
+
+                    f"""Search for 'biuro nieruchomości' in {town}, Poland that might handle international property transactions.{exclude_text}
+
+Return ONLY a JSON array with this exact format:
+[{{"name": "Agency Name", "website": "https://example.com", "phone": "+48 XXX XXX XXX", "address": "Address in {town}"}}]
+
+If no agencies are found, return an empty array []. Do not include explanations or additional text.""",
+
+                    f"""Find any real estate agencies in {town}, Poland that could assist with foreign property purchases.{exclude_text}
+
+Return ONLY a JSON array with this exact format:
+[{{"name": "Agency Name", "website": "https://example.com", "phone": "+48 XXX XXX XXX", "address": "Address in {town}"}}]
+
+If no agencies are found, return an empty array []. Do not include explanations or additional text."""
                 ]
 
                 town_agencies = []
@@ -1591,7 +1698,7 @@ class GeminiAgencyFinder:
                         logging.info(f"   🤖 Prompt {i}/5: {prompt[:80]}...")
                         response = self.run_gemini_prompt(prompt)
                         if response:
-                            agencies = self.parse_agency_data(response)
+                            agencies = self.parse_agency_data(response, town)
                             print(f"   📄 Found {len(agencies)} potential agencies")
                             logging.info(f"   📄 Response received ({len(response)} chars)")
                             logging.info(f"   🔍 Parsed {len(agencies)} potential agencies from response")
@@ -1691,13 +1798,42 @@ class GeminiAgencyFinder:
             exclude_text = f" Exclude these agencies we already know about: {', '.join(existing_agencies[:5])}. "
             logging.info(f"   📋 Excluding {len(existing_agencies)} known agencies from {city_name}")
 
-        # Create targeted prompts with Polish keywords and context awareness
+        # Create targeted prompts with structured JSON output
         prompts = [
-            f"Znajdź biura nieruchomości w {city_name}, Polska które specjalizują się w nieruchomościach Costa del Sol.{exclude_text}Podaj ich strony internetowe i dane kontaktowe.",
-            f"Find real estate agencies in {city_name}, Poland that specialize in Costa del Sol properties.{exclude_text}Include their websites and contact information.",
-            f"Search for property agencies in {city_name}, Poland that offer 'nieruchomości Costa del Sol' for sale.{exclude_text}List their contact details.",
-            f"Find Polish real estate companies in {city_name} that help clients buy property in Marbella, Spain using keywords like '{keywords['combinations'][0]}'.{exclude_text}",
-            f"Look for 'biuro nieruchomości' in {city_name}, Poland that advertise 'Marbella nieruchomości' services.{exclude_text}Include phone numbers and websites."
+            f"""Find real estate agencies in {city_name}, Poland that specialize in Costa del Sol or international properties.{exclude_text}
+
+Return ONLY a JSON array with this exact format:
+[{{"name": "Agency Name", "website": "https://example.com", "phone": "+48 XXX XXX XXX", "address": "Address in {city_name}"}}]
+
+If no agencies are found, return an empty array []. Do not include explanations or additional text.""",
+
+            f"""Search for property agencies in {city_name}, Poland that help with international property purchases including Spain/Costa del Sol.{exclude_text}
+
+Return ONLY a JSON array with this exact format:
+[{{"name": "Agency Name", "website": "https://example.com", "phone": "+48 XXX XXX XXX", "address": "Address in {city_name}"}}]
+
+If no agencies are found, return an empty array []. Do not include explanations or additional text.""",
+
+            f"""Find Polish real estate companies in {city_name} that offer services for buying property abroad, especially in Spain.{exclude_text}
+
+Return ONLY a JSON array with this exact format:
+[{{"name": "Agency Name", "website": "https://example.com", "phone": "+48 XXX XXX XXX", "address": "Address in {city_name}"}}]
+
+If no agencies are found, return an empty array []. Do not include explanations or additional text.""",
+
+            f"""Search for 'biuro nieruchomości' in {city_name}, Poland that might handle international property transactions.{exclude_text}
+
+Return ONLY a JSON array with this exact format:
+[{{"name": "Agency Name", "website": "https://example.com", "phone": "+48 XXX XXX XXX", "address": "Address in {city_name}"}}]
+
+If no agencies are found, return an empty array []. Do not include explanations or additional text.""",
+
+            f"""Find any real estate agencies in {city_name}, Poland that could assist with foreign property purchases.{exclude_text}
+
+Return ONLY a JSON array with this exact format:
+[{{"name": "Agency Name", "website": "https://example.com", "phone": "+48 XXX XXX XXX", "address": "Address in {city_name}"}}]
+
+If no agencies are found, return an empty array []. Do not include explanations or additional text."""
         ]
 
         city_agencies = []
@@ -1706,7 +1842,7 @@ class GeminiAgencyFinder:
             response = self.run_gemini_prompt(prompt)
             if response:
                 logging.info(f"   📄 Response received ({len(response)} chars)")
-                agencies = self.parse_agency_data(response)
+                agencies = self.parse_agency_data(response, city_name)
                 logging.info(f"   🔍 Parsed {len(agencies)} potential agencies from response")
                 city_agencies.extend(agencies)
             else:

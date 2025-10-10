@@ -2059,3 +2059,487 @@ Find their ad...
 2025-10-10 19:58:43,996 - INFO - 🎯 Progress: 104/100 total agencies saved
 2025-10-10 19:58:43,998 - INFO - 🎉 Target reached! Found 104 new agencies
 2025-10-10 19:58:43,999 - INFO - 🏁 Targeted search complete. Total agencies found: 104
+2025-10-10 21:18:55,934 - INFO - Starting targeted Polish town agency discovery... Target: 20 new agencies
+2025-10-10 21:18:55,935 - INFO - Found 30 scanned cities from tracking file
+2025-10-10 21:18:55,935 - INFO - === Iteration 1 === Total agencies found so far: 0
+2025-10-10 21:18:55,937 - INFO - 🔍 Searching for agencies in Plock, Poland...
+2025-10-10 21:18:55,937 - INFO -    🤖 Prompt 1/5: Znajdź biura nieruchomości w Plock, Polska które specjalizują się w nieruchomośc...
+2025-10-10 21:18:55,938 - INFO - Running Gemini prompt: Znajdź biura nieruchomości w Plock, Polska które specjalizują się w nieruchomościach Costa del Sol.P...
+2025-10-10 21:18:55,938 - INFO - AFC is enabled with max remote calls: 10.
+2025-10-10 21:19:12,515 - INFO - HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent "HTTP/1.1 200 OK"
+2025-10-10 21:19:12,520 - INFO -    📄 Response received (3453 chars)
+2025-10-10 21:19:12,520 - INFO -    🔍 Parsed 5 potential agencies from response
+2025-10-10 21:19:13,521 - INFO -    🤖 Prompt 2/5: Find real estate agencies in Plock, Poland that specialize in Costa del Sol prop...
+2025-10-10 21:19:13,522 - INFO - Running Gemini prompt: Find real estate agencies in Plock, Poland that specialize in Costa del Sol properties.Include their...
+2025-10-10 21:19:13,522 - INFO - AFC is enabled with max remote calls: 10.
+2025-10-10 21:19:33,837 - INFO - HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent "HTTP/1.1 200 OK"
+2025-10-10 21:19:33,853 - INFO -    📄 Response received (4820 chars)
+2025-10-10 21:19:33,854 - INFO -    🔍 Parsed 11 potential agencies from response
+2025-10-10 21:19:34,855 - INFO -    🤖 Prompt 3/5: Search for property agencies in Plock, Poland that offer 'nieruchomości Costa de...
+2025-10-10 21:19:34,856 - INFO - Running Gemini prompt: Search for property agencies in Plock, Poland that offer 'nieruchomości Costa del Sol' for sale.List...
+2025-10-10 21:19:34,856 - INFO - AFC is enabled with max remote calls: 10.
+2025-10-10 21:19:50,168 - INFO - HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent "HTTP/1.1 200 OK"
+2025-10-10 21:19:50,172 - INFO -    📄 Response received (2847 chars)
+2025-10-10 21:19:50,172 - INFO -    🔍 Parsed 6 potential agencies from response
+2025-10-10 21:19:51,173 - INFO -    🤖 Prompt 4/5: Find Polish real estate companies in Plock that help clients buy property in Mar...
+2025-10-10 21:19:51,173 - INFO - Running Gemini prompt: Find Polish real estate companies in Plock that help clients buy property in Marbella, Spain using k...
+2025-10-10 21:19:51,174 - INFO - AFC is enabled with max remote calls: 10.
+2025-10-10 21:20:08,425 - INFO - HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent "HTTP/1.1 200 OK"
+2025-10-10 21:20:08,439 - INFO -    📄 Response received (3619 chars)
+2025-10-10 21:20:08,440 - INFO -    🔍 Parsed 5 potential agencies from response
+2025-10-10 21:20:09,440 - INFO -    🤖 Prompt 5/5: Look for 'biuro nieruchomości' in Plock, Poland that advertise 'Marbella nieruch...
+2025-10-10 21:20:09,441 - INFO - Running Gemini prompt: Look for 'biuro nieruchomości' in Plock, Poland that advertise 'Marbella nieruchomości' services.Inc...
+2025-10-10 21:20:09,444 - INFO - AFC is enabled with max remote calls: 10.
+2025-10-10 21:20:29,938 - INFO - HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent "HTTP/1.1 200 OK"
+2025-10-10 21:20:29,943 - INFO -    📄 Response received (3229 chars)
+2025-10-10 21:20:29,943 - INFO -    🔍 Parsed 4 potential agencies from response
+2025-10-10 21:20:30,945 - INFO -    ✅ Found 31 new agencies for Plock
+2025-10-10 21:20:30,945 - INFO -       ➕ NEW: Dream Property Spain / Dream Property Polska - http://www.dreamproperty.pl)
+2025-10-10 21:20:30,945 - INFO -       ➕ NEW: SunGate Estates - http://www.sungateestates.pl)
+2025-10-10 21:20:30,945 - INFO -       ➕ NEW: Euro Style Nieruchomości - http://www.euro-style.pl)
+2025-10-10 21:20:30,946 - INFO - 🔍 Searching for agencies in Elblag, Poland...
+2025-10-10 21:20:30,946 - INFO -    🤖 Prompt 1/5: Znajdź biura nieruchomości w Elblag, Polska które specjalizują się w nieruchomoś...
+2025-10-10 21:20:30,946 - INFO - Running Gemini prompt: Znajdź biura nieruchomości w Elblag, Polska które specjalizują się w nieruchomościach Costa del Sol....
+2025-10-10 21:20:30,946 - INFO - AFC is enabled with max remote calls: 10.
+2025-10-10 21:21:27,074 - INFO - HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent "HTTP/1.1 200 OK"
+2025-10-10 21:21:27,129 - INFO -    📄 Response received (4672 chars)
+2025-10-10 21:21:27,130 - INFO -    🔍 Parsed 8 potential agencies from response
+2025-10-10 21:21:28,130 - INFO -    🤖 Prompt 2/5: Find real estate agencies in Elblag, Poland that specialize in Costa del Sol pro...
+2025-10-10 21:21:28,131 - INFO - Running Gemini prompt: Find real estate agencies in Elblag, Poland that specialize in Costa del Sol properties.Include thei...
+2025-10-10 21:21:28,131 - INFO - AFC is enabled with max remote calls: 10.
+2025-10-10 21:21:46,255 - INFO - HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent "HTTP/1.1 200 OK"
+2025-10-10 21:21:46,267 - INFO -    📄 Response received (4284 chars)
+2025-10-10 21:21:46,268 - INFO -    🔍 Parsed 7 potential agencies from response
+2025-10-10 21:21:47,269 - INFO -    🤖 Prompt 3/5: Search for property agencies in Elblag, Poland that offer 'nieruchomości Costa d...
+2025-10-10 21:21:47,269 - INFO - Running Gemini prompt: Search for property agencies in Elblag, Poland that offer 'nieruchomości Costa del Sol' for sale.Lis...
+2025-10-10 21:21:47,269 - INFO - AFC is enabled with max remote calls: 10.
+2025-10-10 21:22:04,343 - INFO - HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent "HTTP/1.1 200 OK"
+2025-10-10 21:22:04,357 - INFO -    📄 Response received (2889 chars)
+2025-10-10 21:22:04,359 - INFO -    🔍 Parsed 4 potential agencies from response
+2025-10-10 21:22:05,360 - INFO -    🤖 Prompt 4/5: Find Polish real estate companies in Elblag that help clients buy property in Ma...
+2025-10-10 21:22:05,360 - INFO - Running Gemini prompt: Find Polish real estate companies in Elblag that help clients buy property in Marbella, Spain using ...
+2025-10-10 21:22:05,360 - INFO - AFC is enabled with max remote calls: 10.
+2025-10-10 21:22:21,640 - INFO - HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent "HTTP/1.1 200 OK"
+2025-10-10 21:22:21,670 - INFO -    📄 Response received (4449 chars)
+2025-10-10 21:22:21,670 - INFO -    🔍 Parsed 12 potential agencies from response
+2025-10-10 21:22:22,671 - INFO -    🤖 Prompt 5/5: Look for 'biuro nieruchomości' in Elblag, Poland that advertise 'Marbella nieruc...
+2025-10-10 21:22:22,671 - INFO - Running Gemini prompt: Look for 'biuro nieruchomości' in Elblag, Poland that advertise 'Marbella nieruchomości' services.In...
+2025-10-10 21:22:22,671 - INFO - AFC is enabled with max remote calls: 10.
+2025-10-10 21:42:16,298 - INFO - Starting targeted Polish town agency discovery... Target: 20 new agencies
+2025-10-10 21:42:16,299 - INFO - Found 30 scanned cities from tracking file
+2025-10-10 21:42:16,299 - INFO - === Iteration 1 === Total agencies found so far: 0
+2025-10-10 21:42:16,301 - INFO - 🔍 Searching for agencies in Plock, Poland...
+2025-10-10 21:42:16,301 - INFO -    🤖 Prompt 1/5: Znajdź biura nieruchomości w Plock, Polska które specjalizują się w nieruchomośc...
+2025-10-10 21:42:16,302 - INFO - Running Gemini prompt: Znajdź biura nieruchomości w Plock, Polska które specjalizują się w nieruchomościach Costa del Sol.P...
+2025-10-10 21:42:16,302 - INFO - AFC is enabled with max remote calls: 10.
+2025-10-10 21:42:34,286 - INFO - HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent "HTTP/1.1 200 OK"
+2025-10-10 21:42:34,294 - INFO -    📄 Response received (3250 chars)
+2025-10-10 21:42:34,295 - INFO -    🔍 Parsed 5 potential agencies from response
+2025-10-10 21:42:35,295 - INFO -    🤖 Prompt 2/5: Find real estate agencies in Plock, Poland that specialize in Costa del Sol prop...
+2025-10-10 21:42:35,295 - INFO - Running Gemini prompt: Find real estate agencies in Plock, Poland that specialize in Costa del Sol properties.Include their...
+2025-10-10 21:42:35,295 - INFO - AFC is enabled with max remote calls: 10.
+2025-10-10 21:42:57,245 - INFO - HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent "HTTP/1.1 200 OK"
+2025-10-10 21:42:57,249 - INFO -    📄 Response received (4517 chars)
+2025-10-10 21:42:57,250 - INFO -    🔍 Parsed 5 potential agencies from response
+2025-10-10 21:42:58,250 - INFO -    🤖 Prompt 3/5: Search for property agencies in Plock, Poland that offer 'nieruchomości Costa de...
+2025-10-10 21:42:58,251 - INFO - Running Gemini prompt: Search for property agencies in Plock, Poland that offer 'nieruchomości Costa del Sol' for sale.List...
+2025-10-10 21:42:58,252 - INFO - AFC is enabled with max remote calls: 10.
+2025-10-10 21:43:17,083 - INFO - HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent "HTTP/1.1 200 OK"
+2025-10-10 21:43:17,097 - INFO -    📄 Response received (3832 chars)
+2025-10-10 21:43:17,098 - INFO -    🔍 Parsed 2 potential agencies from response
+2025-10-10 21:43:18,100 - INFO -    🤖 Prompt 4/5: Find Polish real estate companies in Plock that help clients buy property in Mar...
+2025-10-10 21:43:18,101 - INFO - Running Gemini prompt: Find Polish real estate companies in Plock that help clients buy property in Marbella, Spain using k...
+2025-10-10 21:43:18,101 - INFO - AFC is enabled with max remote calls: 10.
+2025-10-10 21:43:33,275 - INFO - HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent "HTTP/1.1 200 OK"
+2025-10-10 21:43:33,280 - INFO -    📄 Response received (3706 chars)
+2025-10-10 21:43:33,281 - INFO -    🔍 Parsed 4 potential agencies from response
+2025-10-10 21:43:34,283 - INFO -    🤖 Prompt 5/5: Look for 'biuro nieruchomości' in Plock, Poland that advertise 'Marbella nieruch...
+2025-10-10 21:43:34,284 - INFO - Running Gemini prompt: Look for 'biuro nieruchomości' in Plock, Poland that advertise 'Marbella nieruchomości' services.Inc...
+2025-10-10 21:43:34,284 - INFO - AFC is enabled with max remote calls: 10.
+2025-10-10 21:43:49,136 - INFO - HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent "HTTP/1.1 200 OK"
+2025-10-10 21:43:49,143 - INFO -    📄 Response received (471 chars)
+2025-10-10 21:43:49,144 - INFO -    🔍 Parsed 1 potential agencies from response
+2025-10-10 21:43:50,150 - INFO -    ✅ Found 17 new agencies for Plock
+2025-10-10 21:43:50,150 - INFO -       ➕ NEW: Dream Properties - https://www.dreamproperties.pl/](https://www.dreamproperties.pl/)
+2025-10-10 21:43:50,151 - INFO -       ➕ NEW: Spain Home - https://spainhome.pl/](https://spainhome.pl/)
+2025-10-10 21:43:50,151 - INFO -       ➕ NEW: Europia Nieruchomości Hiszpania - https://europia.pl/](https://europia.pl/)
+2025-10-10 21:43:50,151 - INFO - 🔍 Searching for agencies in Elblag, Poland...
+2025-10-10 21:43:50,151 - INFO -    🤖 Prompt 1/5: Znajdź biura nieruchomości w Elblag, Polska które specjalizują się w nieruchomoś...
+2025-10-10 21:43:50,151 - INFO - Running Gemini prompt: Znajdź biura nieruchomości w Elblag, Polska które specjalizują się w nieruchomościach Costa del Sol....
+2025-10-10 21:43:50,152 - INFO - AFC is enabled with max remote calls: 10.
+2025-10-10 21:44:08,693 - INFO - HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent "HTTP/1.1 200 OK"
+2025-10-10 21:44:08,696 - INFO -    📄 Response received (3221 chars)
+2025-10-10 21:44:08,696 - INFO -    🔍 Parsed 5 potential agencies from response
+2025-10-10 21:44:09,696 - INFO -    🤖 Prompt 2/5: Find real estate agencies in Elblag, Poland that specialize in Costa del Sol pro...
+2025-10-10 21:44:09,697 - INFO - Running Gemini prompt: Find real estate agencies in Elblag, Poland that specialize in Costa del Sol properties.Include thei...
+2025-10-10 21:44:09,697 - INFO - AFC is enabled with max remote calls: 10.
+2025-10-10 21:44:30,095 - INFO - HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent "HTTP/1.1 200 OK"
+2025-10-10 21:44:30,117 - INFO -    📄 Response received (4751 chars)
+2025-10-10 21:44:30,117 - INFO -    🔍 Parsed 9 potential agencies from response
+2025-10-10 21:44:31,117 - INFO -    🤖 Prompt 3/5: Search for property agencies in Elblag, Poland that offer 'nieruchomości Costa d...
+2025-10-10 21:44:31,118 - INFO - Running Gemini prompt: Search for property agencies in Elblag, Poland that offer 'nieruchomości Costa del Sol' for sale.Lis...
+2025-10-10 21:44:31,118 - INFO - AFC is enabled with max remote calls: 10.
+2025-10-10 21:44:56,924 - INFO - HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent "HTTP/1.1 200 OK"
+2025-10-10 21:44:56,932 - INFO -    📄 Response received (4035 chars)
+2025-10-10 21:44:56,933 - INFO -    🔍 Parsed 3 potential agencies from response
+2025-10-10 21:44:57,933 - INFO -    🤖 Prompt 4/5: Find Polish real estate companies in Elblag that help clients buy property in Ma...
+2025-10-10 21:44:57,933 - INFO - Running Gemini prompt: Find Polish real estate companies in Elblag that help clients buy property in Marbella, Spain using ...
+2025-10-10 21:44:57,933 - INFO - AFC is enabled with max remote calls: 10.
+2025-10-10 21:45:19,193 - INFO - HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent "HTTP/1.1 200 OK"
+2025-10-10 21:45:19,205 - INFO -    📄 Response received (4532 chars)
+2025-10-10 21:45:19,206 - INFO -    🔍 Parsed 6 potential agencies from response
+2025-10-10 21:45:20,206 - INFO -    🤖 Prompt 5/5: Look for 'biuro nieruchomości' in Elblag, Poland that advertise 'Marbella nieruc...
+2025-10-10 21:45:20,206 - INFO - Running Gemini prompt: Look for 'biuro nieruchomości' in Elblag, Poland that advertise 'Marbella nieruchomości' services.In...
+2025-10-10 21:45:20,207 - INFO - AFC is enabled with max remote calls: 10.
+2025-10-10 21:45:32,662 - INFO - HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent "HTTP/1.1 200 OK"
+2025-10-10 21:45:32,671 - INFO -    📄 Response received (2212 chars)
+2025-10-10 21:45:32,672 - INFO -    🔍 Parsed 4 potential agencies from response
+2025-10-10 21:45:33,675 - INFO -    ✅ Found 27 new agencies for Elblag
+2025-10-10 21:45:33,676 - INFO -       ➕ NEW: Costa Invest - https://www.costainvest.pl)
+2025-10-10 21:45:33,676 - INFO -       ➕ NEW: Sun & Snow Homes (Moraira Invest) - https://www.sunandsnowhomes.com)
+2025-10-10 21:45:33,676 - INFO -       ➕ NEW: Spain Property - https://www.spain-property.pl)
+2025-10-10 21:45:33,676 - INFO - 🔍 Searching for agencies in Walbrzych, Poland...
+2025-10-10 21:45:33,676 - INFO -    🤖 Prompt 1/5: Znajdź biura nieruchomości w Walbrzych, Polska które specjalizują się w nierucho...
+2025-10-10 21:45:33,676 - INFO - Running Gemini prompt: Znajdź biura nieruchomości w Walbrzych, Polska które specjalizują się w nieruchomościach Costa del S...
+2025-10-10 21:45:33,677 - INFO - AFC is enabled with max remote calls: 10.
+2025-10-10 21:45:51,299 - INFO - HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent "HTTP/1.1 200 OK"
+2025-10-10 21:45:51,313 - INFO -    📄 Response received (4804 chars)
+2025-10-10 21:45:51,314 - INFO -    🔍 Parsed 5 potential agencies from response
+2025-10-10 21:45:52,315 - INFO -    🤖 Prompt 2/5: Find real estate agencies in Walbrzych, Poland that specialize in Costa del Sol ...
+2025-10-10 21:45:52,315 - INFO - Running Gemini prompt: Find real estate agencies in Walbrzych, Poland that specialize in Costa del Sol properties.Include t...
+2025-10-10 21:45:52,316 - INFO - AFC is enabled with max remote calls: 10.
+2025-10-10 21:46:11,267 - INFO - HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent "HTTP/1.1 200 OK"
+2025-10-10 21:46:11,283 - INFO -    📄 Response received (3579 chars)
+2025-10-10 21:46:11,284 - INFO -    🔍 Parsed 5 potential agencies from response
+2025-10-10 21:46:12,285 - INFO -    🤖 Prompt 3/5: Search for property agencies in Walbrzych, Poland that offer 'nieruchomości Cost...
+2025-10-10 21:46:12,285 - INFO - Running Gemini prompt: Search for property agencies in Walbrzych, Poland that offer 'nieruchomości Costa del Sol' for sale....
+2025-10-10 21:46:12,285 - INFO - AFC is enabled with max remote calls: 10.
+2025-10-10 21:46:26,935 - INFO - HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent "HTTP/1.1 200 OK"
+2025-10-10 21:46:26,948 - INFO -    📄 Response received (3208 chars)
+2025-10-10 21:46:26,950 - INFO -    🔍 Parsed 5 potential agencies from response
+2025-10-10 21:46:27,951 - INFO -    🤖 Prompt 4/5: Find Polish real estate companies in Walbrzych that help clients buy property in...
+2025-10-10 21:46:27,951 - INFO - Running Gemini prompt: Find Polish real estate companies in Walbrzych that help clients buy property in Marbella, Spain usi...
+2025-10-10 21:46:27,951 - INFO - AFC is enabled with max remote calls: 10.
+2025-10-10 21:46:48,339 - INFO - HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent "HTTP/1.1 200 OK"
+2025-10-10 21:46:48,359 - INFO -    📄 Response received (4669 chars)
+2025-10-10 21:46:48,360 - INFO -    🔍 Parsed 9 potential agencies from response
+2025-10-10 21:46:49,361 - INFO -    🤖 Prompt 5/5: Look for 'biuro nieruchomości' in Walbrzych, Poland that advertise 'Marbella nie...
+2025-10-10 21:46:49,361 - INFO - Running Gemini prompt: Look for 'biuro nieruchomości' in Walbrzych, Poland that advertise 'Marbella nieruchomości' services...
+2025-10-10 21:46:49,361 - INFO - AFC is enabled with max remote calls: 10.
+2025-10-10 21:47:07,405 - INFO - HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent "HTTP/1.1 200 OK"
+2025-10-10 21:47:07,408 - INFO -    📄 Response received (4534 chars)
+2025-10-10 21:47:07,409 - INFO -    🔍 Parsed 2 potential agencies from response
+2025-10-10 21:47:08,414 - INFO -    ✅ Found 26 new agencies for Walbrzych
+2025-10-10 21:47:08,414 - INFO -       ➕ NEW: Nieruchomości Hiszpania (grupa Euro-Style) - https://www.nieruchomoscipolska.com/hiszpania/](https://www.nieruchomoscipolska.com/hiszpania/)
+2025-10-10 21:47:08,414 - INFO -       ➕ NEW: Dream Property Spain - https://www.dreampropertyspain.com/](https://www.dreampropertyspain.com/)
+2025-10-10 21:47:08,415 - INFO -       ➕ NEW: Spain Homes / DomiCasa - https://www.spainhomes.pl/](https://www.spainhomes.pl/)
+2025-10-10 21:47:08,415 - INFO - 🔍 Searching for agencies in Tarnow, Poland...
+2025-10-10 21:47:08,415 - INFO -    🤖 Prompt 1/5: Znajdź biura nieruchomości w Tarnow, Polska które specjalizują się w nieruchomoś...
+2025-10-10 21:47:08,416 - INFO - Running Gemini prompt: Znajdź biura nieruchomości w Tarnow, Polska które specjalizują się w nieruchomościach Costa del Sol....
+2025-10-10 21:47:08,416 - INFO - AFC is enabled with max remote calls: 10.
+2025-10-10 21:47:28,095 - INFO - HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent "HTTP/1.1 200 OK"
+2025-10-10 21:47:28,099 - INFO -    📄 Response received (4758 chars)
+2025-10-10 21:47:28,100 - INFO -    🔍 Parsed 3 potential agencies from response
+2025-10-10 21:47:29,101 - INFO -    🤖 Prompt 2/5: Find real estate agencies in Tarnow, Poland that specialize in Costa del Sol pro...
+2025-10-10 21:47:29,102 - INFO - Running Gemini prompt: Find real estate agencies in Tarnow, Poland that specialize in Costa del Sol properties.Include thei...
+2025-10-10 21:47:29,102 - INFO - AFC is enabled with max remote calls: 10.
+2025-10-10 21:47:49,913 - INFO - HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent "HTTP/1.1 200 OK"
+2025-10-10 21:47:49,917 - INFO -    📄 Response received (5280 chars)
+2025-10-10 21:47:49,917 - INFO -    🔍 Parsed 2 potential agencies from response
+2025-10-10 21:47:50,917 - INFO -    🤖 Prompt 3/5: Search for property agencies in Tarnow, Poland that offer 'nieruchomości Costa d...
+2025-10-10 21:47:50,918 - INFO - Running Gemini prompt: Search for property agencies in Tarnow, Poland that offer 'nieruchomości Costa del Sol' for sale.Lis...
+2025-10-10 21:47:50,919 - INFO - AFC is enabled with max remote calls: 10.
+2025-10-10 21:48:08,281 - INFO - HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent "HTTP/1.1 200 OK"
+2025-10-10 21:48:08,290 - INFO -    📄 Response received (2336 chars)
+2025-10-10 21:48:08,290 - INFO -    🔍 Parsed 3 potential agencies from response
+2025-10-10 21:48:09,291 - INFO -    🤖 Prompt 4/5: Find Polish real estate companies in Tarnow that help clients buy property in Ma...
+2025-10-10 21:48:09,291 - INFO - Running Gemini prompt: Find Polish real estate companies in Tarnow that help clients buy property in Marbella, Spain using ...
+2025-10-10 21:48:09,291 - INFO - AFC is enabled with max remote calls: 10.
+2025-10-10 21:48:26,849 - INFO - HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent "HTTP/1.1 200 OK"
+2025-10-10 21:48:26,854 - INFO -    📄 Response received (4226 chars)
+2025-10-10 21:48:26,854 - INFO -    🔍 Parsed 9 potential agencies from response
+2025-10-10 21:48:27,855 - INFO -    🤖 Prompt 5/5: Look for 'biuro nieruchomości' in Tarnow, Poland that advertise 'Marbella nieruc...
+2025-10-10 21:48:27,855 - INFO - Running Gemini prompt: Look for 'biuro nieruchomości' in Tarnow, Poland that advertise 'Marbella nieruchomości' services.In...
+2025-10-10 21:48:27,855 - INFO - AFC is enabled with max remote calls: 10.
+2025-10-10 21:48:47,235 - INFO - HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent "HTTP/1.1 200 OK"
+2025-10-10 21:48:47,244 - INFO -    📄 Response received (2547 chars)
+2025-10-10 21:48:47,245 - INFO -    🔍 Parsed 7 potential agencies from response
+2025-10-10 21:48:48,249 - INFO -    ✅ Found 24 new agencies for Tarnow
+2025-10-10 21:48:48,249 - INFO -       ➕ NEW: 1. Lokalne biura nieruchomości w Tarnowie (które mogą pomóc w pośrednictwie lub mają partnerów): - 
+2025-10-10 21:48:48,250 - INFO -       ➕ NEW: 2. Polskie biura nieruchomości *specjalizujące się* w nieruchomościach na Costa del Sol (działające online, obsługujące klientów z całej Polski): - 
+2025-10-10 21:48:48,251 - INFO -       ➕ NEW: Rekomendacja: - 
+2025-10-10 21:48:48,251 - INFO - 🔍 Searching for agencies in Chorzow, Poland...
+2025-10-10 21:48:48,252 - INFO -    🤖 Prompt 1/5: Znajdź biura nieruchomości w Chorzow, Polska które specjalizują się w nieruchomo...
+2025-10-10 21:48:48,253 - INFO - Running Gemini prompt: Znajdź biura nieruchomości w Chorzow, Polska które specjalizują się w nieruchomościach Costa del Sol...
+2025-10-10 21:48:48,253 - INFO - AFC is enabled with max remote calls: 10.
+2025-10-10 21:49:10,510 - INFO - HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent "HTTP/1.1 200 OK"
+2025-10-10 21:49:10,515 - INFO -    📄 Response received (4858 chars)
+2025-10-10 21:49:10,516 - INFO -    🔍 Parsed 3 potential agencies from response
+2025-10-10 21:49:11,517 - INFO -    🤖 Prompt 2/5: Find real estate agencies in Chorzow, Poland that specialize in Costa del Sol pr...
+2025-10-10 21:49:11,517 - INFO - Running Gemini prompt: Find real estate agencies in Chorzow, Poland that specialize in Costa del Sol properties.Include the...
+2025-10-10 21:49:11,520 - INFO - AFC is enabled with max remote calls: 10.
+2025-10-10 21:49:31,940 - INFO - HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent "HTTP/1.1 200 OK"
+2025-10-10 21:49:31,944 - INFO -    📄 Response received (4514 chars)
+2025-10-10 21:49:31,944 - INFO -    🔍 Parsed 7 potential agencies from response
+2025-10-10 21:49:32,945 - INFO -    🤖 Prompt 3/5: Search for property agencies in Chorzow, Poland that offer 'nieruchomości Costa ...
+2025-10-10 21:49:32,946 - INFO - Running Gemini prompt: Search for property agencies in Chorzow, Poland that offer 'nieruchomości Costa del Sol' for sale.Li...
+2025-10-10 21:49:32,946 - INFO - AFC is enabled with max remote calls: 10.
+2025-10-10 21:49:47,706 - INFO - HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent "HTTP/1.1 200 OK"
+2025-10-10 21:49:47,709 - INFO -    📄 Response received (2812 chars)
+2025-10-10 21:49:47,709 - INFO -    🔍 Parsed 5 potential agencies from response
+2025-10-10 21:49:48,710 - INFO -    🤖 Prompt 4/5: Find Polish real estate companies in Chorzow that help clients buy property in M...
+2025-10-10 21:49:48,710 - INFO - Running Gemini prompt: Find Polish real estate companies in Chorzow that help clients buy property in Marbella, Spain using...
+2025-10-10 21:49:48,711 - INFO - AFC is enabled with max remote calls: 10.
+2025-10-10 21:50:07,906 - INFO - HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent "HTTP/1.1 200 OK"
+2025-10-10 21:50:07,919 - INFO -    📄 Response received (4290 chars)
+2025-10-10 21:50:07,919 - INFO -    🔍 Parsed 12 potential agencies from response
+2025-10-10 21:50:08,920 - INFO -    🤖 Prompt 5/5: Look for 'biuro nieruchomości' in Chorzow, Poland that advertise 'Marbella nieru...
+2025-10-10 21:50:08,921 - INFO - Running Gemini prompt: Look for 'biuro nieruchomości' in Chorzow, Poland that advertise 'Marbella nieruchomości' services.I...
+2025-10-10 21:50:08,921 - INFO - AFC is enabled with max remote calls: 10.
+2025-10-10 21:50:17,507 - INFO - HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent "HTTP/1.1 200 OK"
+2025-10-10 21:50:17,522 - INFO -    📄 Response received (812 chars)
+2025-10-10 21:50:17,524 - INFO -    🔍 Parsed 1 potential agencies from response
+2025-10-10 21:50:18,530 - INFO -    ✅ Found 28 new agencies for Chorzow
+2025-10-10 21:50:18,531 - INFO -       ➕ NEW: Duże polskie agencje nieruchomości z działem zagranicznym:** Mają biura w większych miastach (często Katowice lub Warszawa, ale działają ogólnopolsko) i specjalizują się w nieruchomościach zagranicznych, w tym Costa del Sol. - 
+2025-10-10 21:50:18,531 - INFO -       ➕ NEW: Agencje z Hiszpanii (lub z polskimi korzeniami w Hiszpanii), które aktywnie działają na rynku polskim:** Mają polskojęzyczny personel i strony internetowe skierowane do polskich klientów, a swoje usługi oferują online lub podczas spotkań w Polsce. - 
+2025-10-10 21:50:18,531 - INFO -       ➕ NEW: Wskazówka: - 
+2025-10-10 21:50:18,532 - INFO - Added new agency: Dream Properties from Plock
+2025-10-10 21:50:18,533 - INFO - Added new agency: Spain Home from Plock
+2025-10-10 21:50:18,533 - INFO - Added new agency: Europia Nieruchomości Hiszpania from Plock
+2025-10-10 21:50:18,533 - INFO - Added new agency: Sun Gardens Properties from Plock
+2025-10-10 21:50:18,533 - INFO - Added new agency: Ważne uwagi dla klienta z Płocka: from Plock
+2025-10-10 21:50:18,533 - INFO - Added new agency: Dream Property from Plock
+2025-10-10 21:50:18,534 - INFO - Added new agency: Nieruchomości w Hiszpanii / Hiszpański Dom (Spanish Home) from Plock
+2025-10-10 21:50:18,534 - INFO - Added new agency: Costa del Sol Poland / Costa del Sol Homes from Plock
+2025-10-10 21:50:18,534 - INFO - Added new agency: Sun & Snow Invest from Plock
+2025-10-10 21:50:18,534 - INFO - Added new agency: How these agencies work for clients from Płock: from Plock
+2025-10-10 21:50:18,535 - INFO - Added new agency: 1. General Property Agencies in Płock (Who *Might* Have International Connections or Referrals) from Plock
+2025-10-10 21:50:18,535 - INFO - Added new agency: Recommendation: from Plock
+2025-10-10 21:50:18,535 - INFO - Added new agency: Strategies to Find Companies: from Plock
+2025-10-10 21:50:18,535 - INFO - Added new agency: Action Steps: from Plock
+2025-10-10 21:50:18,536 - INFO - Added new agency: Start with broader searches for specialized Polish companies:** Use `nieruchomości Costa del Sol Polska`. from Plock
+2025-10-10 21:50:18,536 - INFO - Added new agency: Contact them directly:** Explain you are from Płock and interested in buying in Marbella. Ask about their process for clients not located near their main office. They are usually well-equipped for remote service. from Plock
+2025-10-10 21:50:18,536 - INFO - Added new agency: Marbella Nieruchomości from Plock
+2025-10-10 21:50:18,537 - INFO - Added new agency: Costa Invest from Elblag
+2025-10-10 21:50:18,537 - INFO - Added new agency: Sun & Snow Homes (Moraira Invest) from Elblag
+2025-10-10 21:50:18,537 - INFO - Added new agency: Spain Property from Elblag
+2025-10-10 21:50:18,537 - INFO - Added new agency: White Real Estate from Elblag
+2025-10-10 21:50:18,537 - INFO - Added new agency: Ważna rada: from Elblag
+2025-10-10 21:50:18,538 - INFO - Added new agency: General real estate agencies in Elbląg** that you *could* contact to see if they have any connections or experience with foreign properties, though they are unlikely to be specialists in Costa del Sol specifically. from Elblag
+2025-10-10 21:50:18,541 - INFO - Added new agency: 1. Dream Properties Spain from Elblag
+2025-10-10 21:50:18,541 - INFO - Added new agency: 2. Sunyway - Nieruchomości w Hiszpanii from Elblag
+2025-10-10 21:50:18,541 - INFO - Added new agency: 3. Costa Homes - Nieruchomości Hiszpania from Elblag
+2025-10-10 21:50:18,542 - INFO - Added new agency: 4. Investinspain.be (Polish Branch) from Elblag
+2025-10-10 21:50:18,542 - INFO - Added new agency: 1. Centrum Nieruchomości (Centre of Real Estate) from Elblag
+2025-10-10 21:50:18,542 - INFO - Added new agency: 2. Kwadrat Nieruchomości (Square Real Estate) from Elblag
+2025-10-10 21:50:18,542 - INFO - Added new agency: 3. Investor Nieruchomości Elbląg from Elblag
+2025-10-10 21:50:18,543 - INFO - Added new agency: General property agencies in Elbląg** that *might* assist with international property inquiries or connect you with partners. from Elblag
+2025-10-10 21:50:18,543 - INFO - Added new agency: Option 1: General Property Agencies in Elbląg (You'd need to inquire about their international/Costa del Sol services) from Elblag
+2025-10-10 21:50:18,543 - INFO - Added new agency: Local Elbląg agencies** that have a "foreign properties" section or a partnership with a Spanish agency, though this is less common for a dedicated specialization. from Elblag
+2025-10-10 21:50:18,543 - INFO - Added new agency: Start with Elbląg-based Agencies and Check Their Offerings: from Elblag
+2025-10-10 21:50:18,544 - INFO - Added new agency: Examples of such companies (you'd need to contact them to confirm how they handle clients from Elbląg): from Elblag
+2025-10-10 21:50:18,546 - INFO - Added new agency: Check Major Polish Real Estate Portals: from Elblag
+2025-10-10 21:50:18,547 - INFO - Added new agency: Google Searches (as described above):** Focus first on `nieruchomości Elbląg Hiszpania` and then broaden to national specialists. from Elblag
+2025-10-10 21:50:18,548 - INFO - Added new agency: Direct Contact:** The most effective way is to call or email agencies that seem to fit the bill. Ask them directly if they assist clients from Elbląg with purchasing property in Marbella, and what their process involves. from Elblag
+2025-10-10 21:50:18,549 - INFO - Added new agency: WGN Nieruchomości Elbląg from Elblag
+2025-10-10 21:50:18,552 - INFO - Added new agency: Freedom Nieruchomości Elbląg from Elblag
+2025-10-10 21:50:18,553 - INFO - Added new agency: ATUT Nieruchomości Elbląg from Elblag
+2025-10-10 21:50:18,553 - INFO - Added new agency: Nieruchomości Hiszpania (grupa Euro-Style) from Walbrzych
+2025-10-10 21:50:18,554 - INFO - Added new agency: Dream Property Spain from Walbrzych
+2025-10-10 21:50:18,555 - INFO - Added new agency: Spain Homes / DomiCasa from Walbrzych
+2025-10-10 21:50:18,556 - INFO - Added new agency: Promoción Homes from Walbrzych
+2025-10-10 21:50:18,557 - INFO - Added new agency: Wskazówka:** Jeśli mimo wszystko chcesz zacząć od lokalnego biura w Wałbrzychu, możesz skontaktować się z większymi sieciowymi agencjami, które mają swoje oddziały w Wałbrzychu, np. **Metrohouse** czy **Freedom Nieruchomości**. Zapytaj ich, czy mają partnerów lub oferty zagraniczne, a konkretnie w Hiszpanii. Jest szansa, że odeślą Cię do swojej wewnętrznej komórki lub współpracującego partnera specjalizującego się w nieruchomościach międzynarodowych. from Walbrzych
+2025-10-10 21:50:18,557 - INFO - Added new agency: Freedom Nieruchomości (Wałbrzych Office) from Walbrzych
+2025-10-10 21:50:18,559 - INFO - Added new agency: Lignum Nieruchomości (Wałbrzych) from Walbrzych
+2025-10-10 21:50:18,559 - INFO - Added new agency: Kancelaria Nieruchomości (Wałbrzych) from Walbrzych
+2025-10-10 21:50:18,559 - INFO - Added new agency: Important Considerations when contacting them: from Walbrzych
+2025-10-10 21:50:18,560 - INFO - Added new agency: Alternative Approach (if Wałbrzych agencies don't meet your needs): from Walbrzych
+2025-10-10 21:50:18,560 - INFO - Added new agency: Therefore, I cannot provide contact details for a Walbrzych agency directly offering this specific type of property. from Walbrzych
+2025-10-10 21:50:18,560 - INFO - Added new agency: Costa Dorada Nieruchomości (often referred to for Costa del Sol as well due to broader Spain focus) from Walbrzych
+2025-10-10 21:50:18,561 - INFO - Added new agency: Sun & Snow Homes (International Branch of a popular Polish holiday rental company) from Walbrzych
+2025-10-10 21:50:18,561 - INFO - Added new agency: Property For Sale Spain (Polish agent for Spanish properties) from Walbrzych
+2025-10-10 21:50:18,561 - INFO - Added new agency: How to Find Them & What to Expect: from Walbrzych
+2025-10-10 21:50:18,561 - INFO - Added new agency: Search Terms to Use (in Polish): from Walbrzych
+2025-10-10 21:50:18,562 - INFO - Added new agency: Potential Companies (Based on typical agency types - *you will need to verify their current services and specialization for Marbella*): from Walbrzych
+2025-10-10 21:50:18,562 - INFO - Added new agency: Merkury Nieruchomości Wałbrzych:** (Often a common name for agencies, or similar local ones) from Walbrzych
+2025-10-10 21:50:18,563 - INFO - Added new agency: PZM Nieruchomości Wałbrzych (or similar local brands like "Metrohouse" affiliates, "Freedom Nieruchomości" affiliates): from Walbrzych
+2025-10-10 21:50:18,564 - INFO - Added new agency: Agencies that *Definitely* Deal with Costa del Sol (but might not have a physical Walbrzych office, serving clients nationwide): from Walbrzych
+2025-10-10 21:50:18,565 - INFO - Added new agency: Your Best Course of Action: from Walbrzych
+2025-10-10 21:50:18,565 - INFO - Added new agency: Start Local in Walbrzych: from Walbrzych
+2025-10-10 21:50:18,566 - INFO - Added new agency: If Walbrzych options are limited, expand your search: from Walbrzych
+2025-10-10 21:50:18,567 - INFO - Added new agency: Agencies that offer a broad "international properties" service**, but rarely brand it with "Marbella nieruchomości" unless it's a dedicated subsection. from Walbrzych
+2025-10-10 21:50:18,567 - INFO - Added new agency: 1. Lokalne biura nieruchomości w Tarnowie (które mogą pomóc w pośrednictwie lub mają partnerów): from Tarnow
+2025-10-10 21:50:18,567 - INFO - Added new agency: 2. Polskie biura nieruchomości *specjalizujące się* w nieruchomościach na Costa del Sol (działające online, obsługujące klientów z całej Polski): from Tarnow
+2025-10-10 21:50:18,568 - INFO - Added new agency: Rekomendacja: from Tarnow
+2025-10-10 21:50:18,568 - INFO - Added new agency: Start by contacting RE/MAX Prestige Tarnów** and clearly state your interest in Costa del Sol properties. Ask if they can leverage their international network. from Tarnow
+2025-10-10 21:50:18,568 - INFO - Added new agency: RE/MAX Home Tarnów from Tarnow
+2025-10-10 21:50:18,568 - INFO - Added new agency: Freedom Nieruchomości Tarnów from Tarnow
+2025-10-10 21:50:18,568 - INFO - Added new agency: Google Search (Polish terms): from Tarnow
+2025-10-10 21:50:18,569 - INFO - Added new agency: Check Websites of General Tarnów Agencies: from Tarnow
+2025-10-10 21:50:18,569 - INFO - Added new agency: Direct Contact: from Tarnow
+2025-10-10 21:50:18,569 - INFO - Added new agency: Dream Property Spain (dreamproperty.pl): from Tarnow
+2025-10-10 21:50:18,569 - INFO - Added new agency: Blue Marlin Estates (bluemarlinestates.com): from Tarnow
+2025-10-10 21:50:18,569 - INFO - Added new agency: White Star Nieruchomości (whitestar.pl): from Tarnow
+2025-10-10 21:50:18,570 - INFO - Added new agency: Poland Properties (poland-properties.eu): from Tarnow
+2025-10-10 21:50:18,570 - INFO - Added new agency: Dom w Hiszpanii (domwhispania.pl): from Tarnow
+2025-10-10 21:50:18,570 - INFO - Added new agency: Larger, national real estate agencies** with branches in major Polish cities (Warsaw, Krakow, Wroclaw, Gdansk) that have dedicated international departments. from Tarnow
+2025-10-10 21:50:18,570 - INFO - Added new agency: Specialized international property brokers** who operate nationally or online. from Tarnow
+2025-10-10 21:50:18,571 - INFO - Added new agency: Direct Spanish real estate agencies** that target Polish buyers and have Polish-speaking staff or websites. from Tarnow
+2025-10-10 21:50:18,571 - INFO - Added new agency: What you might do instead: from Tarnow
+2025-10-10 21:50:18,571 - INFO - Added new agency: Contact general "biura nieruchomości" in Tarnow and inquire:** Some agencies might have partnerships or be able to connect you with brokers who handle international properties, even if they don't advertise it directly. You would need to call them and ask. from Tarnow
+2025-10-10 21:50:18,572 - INFO - Added new agency: To give you an idea of general real estate agencies in Tarnow (whom you might call to inquire, but they do NOT advertise Marbella services): from Tarnow
+2025-10-10 21:50:18,572 - INFO - Added new agency: Disclaimer:** The agencies listed above are reputable Tarnow-based real estate agencies, but *they do not advertise "Marbella nieruchomości" services*. You would need to contact them directly to see if they could assist you or recommend a partner who does. from Tarnow
+2025-10-10 21:50:18,573 - INFO - Added new agency: Duże polskie agencje nieruchomości z działem zagranicznym:** Mają biura w większych miastach (często Katowice lub Warszawa, ale działają ogólnopolsko) i specjalizują się w nieruchomościach zagranicznych, w tym Costa del Sol. from Chorzow
+2025-10-10 21:50:18,573 - INFO - Added new agency: Agencje z Hiszpanii (lub z polskimi korzeniami w Hiszpanii), które aktywnie działają na rynku polskim:** Mają polskojęzyczny personel i strony internetowe skierowane do polskich klientów, a swoje usługi oferują online lub podczas spotkań w Polsce. from Chorzow
+2025-10-10 21:50:18,574 - INFO - Added new agency: Wskazówka: from Chorzow
+2025-10-10 21:50:18,574 - INFO - Added new agency: General real estate agencies in Chorzow** that *might* have departments or partnerships for foreign properties. You would need to contact them directly to inquire about their Costa del Sol offerings. from Chorzow
+2025-10-10 21:50:18,574 - INFO - Added new agency: a) Sunnier Nieruchomości / Sunnier Homes from Chorzow
+2025-10-10 21:50:18,575 - INFO - Added new agency: b) Blue Marine - Mieszkania w Hiszpanii from Chorzow
+2025-10-10 21:50:18,575 - INFO - Added new agency: c) InvestHouse - Nieruchomości w Hiszpanii from Chorzow
+2025-10-10 21:50:18,575 - INFO - Added new agency: a) Metrohouse Chorzów from Chorzow
+2025-10-10 21:50:18,575 - INFO - Added new agency: b) Home Broker Chorzów from Chorzow
+2025-10-10 21:50:18,576 - INFO - Added new agency: Nieruchomości Hiszpania (hiszpania.pl) from Chorzow
+2025-10-10 21:50:18,576 - INFO - Added new agency: S.B.N. (nieruchomoscisbh.pl) from Chorzow
+2025-10-10 21:50:18,576 - INFO - Added new agency: Dream Property (dreamproperty.pl) from Chorzow
+2025-10-10 21:50:18,576 - INFO - Added new agency: White Riviera (whiteriviera.pl) from Chorzow
+2025-10-10 21:50:18,576 - INFO - Added new agency: Recommended Search Terms (in Polish): from Chorzow
+2025-10-10 21:50:18,577 - INFO - Added new agency: "nieruchomości Chorzów Hiszpania"** (real estate Chorzów Spain) from Chorzow
+2025-10-10 21:50:18,577 - INFO - Added new agency: "agencja nieruchomości Chorzów Costa del Sol"** (real estate agency Chorzów Costa del Sol) from Chorzow
+2025-10-10 21:50:18,577 - INFO - Added new agency: "domy w Hiszpanii Chorzów"** (houses in Spain Chorzów) from Chorzow
+2025-10-10 21:50:18,577 - INFO - Added new agency: "inwestycje Hiszpania Chorzów"** (investments Spain Chorzów) from Chorzow
+2025-10-10 21:50:18,578 - INFO - Added new agency: "Marbella nieruchomości Chorzów"** (Marbella real estate Chorzów) from Chorzow
+2025-10-10 21:50:18,578 - INFO - Added new agency: Example of Companies (General Search Results - Not Guaranteed Chorzów Specific): from Chorzow
+2025-10-10 21:50:18,578 - INFO - Added new agency: Agencies Specializing *Solely* in Spanish Property (often with an office in a major Polish city like Katowice or online-first): from Chorzow
+2025-10-10 21:50:18,578 - INFO - Added new agency: How to Proceed: from Chorzow
+2025-10-10 21:50:18,579 - INFO - Added new agency: Use the search terms** in Google or other Polish search engines (e.g., Panorama Firm). from Chorzow
+2025-10-10 21:50:18,579 - INFO - Added new agency: Review the websites** of the agencies that appear. from Chorzow
+2025-10-10 21:50:18,579 - INFO - Added new agency: Contact them:** Even if their office isn't *in* Chorzów, ask if they serve clients from the Chorzów area and how they handle the process for international purchases. Many will conduct initial consultations online or by phone. from Chorzow
+2025-10-10 21:50:18,603 - INFO - 📊 Batch complete: Found 111 unique agencies, saved 111 to database
+2025-10-10 21:50:18,603 - INFO - 🎯 Progress: 111/20 total agencies saved
+2025-10-10 21:50:18,603 - INFO - 🎉 Target reached! Found 111 new agencies
+2025-10-10 21:50:18,604 - INFO - 🏁 Targeted search complete. Total agencies found: 111
+2025-10-10 21:53:25,066 - INFO - Starting targeted Polish town agency discovery... Target: 20 new agencies
+2025-10-10 21:53:25,066 - INFO - Found 30 scanned cities from tracking file
+2025-10-10 21:53:25,067 - INFO - === Iteration 1 === Total agencies found so far: 0
+2025-10-10 21:53:25,068 - INFO - 🔍 Searching for agencies in Plock, Poland...
+2025-10-10 21:53:25,069 - INFO -    🤖 Prompt 1/5: Znajdź biura nieruchomości w Plock, Polska które specjalizują się w nieruchomośc...
+2025-10-10 21:53:25,069 - INFO - Running Gemini prompt: Znajdź biura nieruchomości w Plock, Polska które specjalizują się w nieruchomościach Costa del Sol.P...
+2025-10-10 21:53:25,069 - INFO - AFC is enabled with max remote calls: 10.
+2025-10-10 21:53:47,262 - INFO - HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent "HTTP/1.1 200 OK"
+2025-10-10 21:53:47,281 - INFO -    📄 Response received (4780 chars)
+2025-10-10 21:53:47,284 - INFO -    🔍 Parsed 9 potential agencies from response
+2025-10-10 21:53:48,284 - INFO -    🤖 Prompt 2/5: Find real estate agencies in Plock, Poland that specialize in Costa del Sol prop...
+2025-10-10 21:53:48,284 - INFO - Running Gemini prompt: Find real estate agencies in Plock, Poland that specialize in Costa del Sol properties.Include their...
+2025-10-10 21:53:48,284 - INFO - AFC is enabled with max remote calls: 10.
+2025-10-10 21:54:06,616 - INFO - HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent "HTTP/1.1 200 OK"
+2025-10-10 21:54:06,628 - INFO -    📄 Response received (4640 chars)
+2025-10-10 21:54:06,628 - INFO -    🔍 Parsed 5 potential agencies from response
+2025-10-10 21:54:07,629 - INFO -    🤖 Prompt 3/5: Search for property agencies in Plock, Poland that offer 'nieruchomości Costa de...
+2025-10-10 21:54:07,629 - INFO - Running Gemini prompt: Search for property agencies in Plock, Poland that offer 'nieruchomości Costa del Sol' for sale.List...
+2025-10-10 21:54:07,630 - INFO - AFC is enabled with max remote calls: 10.
+2025-10-10 21:54:20,235 - INFO - HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent "HTTP/1.1 200 OK"
+2025-10-10 21:54:20,249 - INFO -    📄 Response received (2507 chars)
+2025-10-10 21:54:20,250 - INFO -    🔍 Parsed 4 potential agencies from response
+2025-10-10 21:54:21,252 - INFO -    🤖 Prompt 4/5: Find Polish real estate companies in Plock that help clients buy property in Mar...
+2025-10-10 21:54:21,253 - INFO - Running Gemini prompt: Find Polish real estate companies in Plock that help clients buy property in Marbella, Spain using k...
+2025-10-10 21:54:21,253 - INFO - AFC is enabled with max remote calls: 10.
+2025-10-10 21:54:36,516 - INFO - HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent "HTTP/1.1 200 OK"
+2025-10-10 21:54:36,528 - INFO -    📄 Response received (5319 chars)
+2025-10-10 21:54:36,529 - INFO -    🔍 Parsed 4 potential agencies from response
+2025-10-10 21:54:37,529 - INFO -    🤖 Prompt 5/5: Look for 'biuro nieruchomości' in Plock, Poland that advertise 'Marbella nieruch...
+2025-10-10 21:54:37,530 - INFO - Running Gemini prompt: Look for 'biuro nieruchomości' in Plock, Poland that advertise 'Marbella nieruchomości' services.Inc...
+2025-10-10 21:54:37,530 - INFO - AFC is enabled with max remote calls: 10.
+2025-10-10 21:56:18,378 - INFO - Starting single city scan for Plock... Target: 3 agencies
+2025-10-10 21:56:18,379 - INFO - 🔍 Scanning single city: Plock, Poland...
+2025-10-10 21:56:18,381 - INFO -    🤖 Prompt 1/5: Znajdź biura nieruchomości w Plock, Polska które specjalizują się w nieruchomośc...
+2025-10-10 21:56:18,381 - INFO - Running Gemini prompt: Znajdź biura nieruchomości w Plock, Polska które specjalizują się w nieruchomościach Costa del Sol.P...
+2025-10-10 21:56:18,381 - INFO - AFC is enabled with max remote calls: 10.
+2025-10-10 21:56:37,450 - INFO - HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent "HTTP/1.1 200 OK"
+2025-10-10 21:56:37,453 - INFO -    📄 Response received (4418 chars)
+2025-10-10 21:56:37,457 - INFO -    🔍 Parsed 8 potential agencies from response
+2025-10-10 21:56:38,459 - INFO -    🤖 Prompt 2/5: Find real estate agencies in Plock, Poland that specialize in Costa del Sol prop...
+2025-10-10 21:56:38,459 - INFO - Running Gemini prompt: Find real estate agencies in Plock, Poland that specialize in Costa del Sol properties.Include their...
+2025-10-10 21:56:38,459 - INFO - AFC is enabled with max remote calls: 10.
+2025-10-10 21:56:59,832 - INFO - HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent "HTTP/1.1 200 OK"
+2025-10-10 21:56:59,835 - INFO -    📄 Response received (4719 chars)
+2025-10-10 21:56:59,840 - INFO -    🔍 Parsed 8 potential agencies from response
+2025-10-10 21:57:00,841 - INFO -    🤖 Prompt 3/5: Search for property agencies in Plock, Poland that offer 'nieruchomości Costa de...
+2025-10-10 21:57:00,842 - INFO - Running Gemini prompt: Search for property agencies in Plock, Poland that offer 'nieruchomości Costa del Sol' for sale.List...
+2025-10-10 21:57:00,843 - INFO - AFC is enabled with max remote calls: 10.
+2025-10-10 21:57:13,805 - INFO - HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent "HTTP/1.1 200 OK"
+2025-10-10 21:57:13,809 - INFO -    📄 Response received (2721 chars)
+2025-10-10 21:57:13,812 - INFO -    🔍 Parsed 5 potential agencies from response
+2025-10-10 21:57:14,812 - INFO -    🤖 Prompt 4/5: Find Polish real estate companies in Plock that help clients buy property in Mar...
+2025-10-10 21:57:14,813 - INFO - Running Gemini prompt: Find Polish real estate companies in Plock that help clients buy property in Marbella, Spain using k...
+2025-10-10 21:57:14,816 - INFO - AFC is enabled with max remote calls: 10.
+2025-10-10 21:59:09,824 - INFO - Starting single city scan for Plock... Target: 10 agencies
+2025-10-10 21:59:09,824 - INFO - 🔍 Scanning single city: Plock, Poland...
+2025-10-10 21:59:09,826 - INFO -    🤖 Prompt 1/5: Znajdź biura nieruchomości w Plock, Polska które specjalizują się w nieruchomośc...
+2025-10-10 21:59:09,827 - INFO - Running Gemini prompt: Znajdź biura nieruchomości w Plock, Polska które specjalizują się w nieruchomościach Costa del Sol.P...
+2025-10-10 21:59:09,827 - INFO - AFC is enabled with max remote calls: 10.
+2025-10-10 21:59:29,280 - INFO - HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent "HTTP/1.1 200 OK"
+2025-10-10 21:59:29,282 - INFO -    📄 Response received (3647 chars)
+2025-10-10 21:59:29,288 - INFO -    🔍 Parsed 8 potential agencies from response
+2025-10-10 21:59:30,288 - INFO -    🤖 Prompt 2/5: Find real estate agencies in Plock, Poland that specialize in Costa del Sol prop...
+2025-10-10 21:59:30,289 - INFO - Running Gemini prompt: Find real estate agencies in Plock, Poland that specialize in Costa del Sol properties.Include their...
+2025-10-10 21:59:30,289 - INFO - AFC is enabled with max remote calls: 10.
+2025-10-10 21:59:48,077 - INFO - HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent "HTTP/1.1 200 OK"
+2025-10-10 21:59:48,095 - INFO -    📄 Response received (4780 chars)
+2025-10-10 21:59:48,098 - INFO -    🔍 Parsed 5 potential agencies from response
+2025-10-10 21:59:49,099 - INFO -    🤖 Prompt 3/5: Search for property agencies in Plock, Poland that offer 'nieruchomości Costa de...
+2025-10-10 21:59:49,099 - INFO - Running Gemini prompt: Search for property agencies in Plock, Poland that offer 'nieruchomości Costa del Sol' for sale.List...
+2025-10-10 21:59:49,099 - INFO - AFC is enabled with max remote calls: 10.
+2025-10-10 22:00:19,120 - INFO - Starting single city scan for Plock... Target: 10 agencies
+2025-10-10 22:00:19,120 - INFO - 🔍 Scanning single city: Plock, Poland...
+2025-10-10 22:00:19,122 - INFO -    🤖 Prompt 1/5: Find real estate agencies in Plock, Poland that specialize in Costa del Sol or i...
+2025-10-10 22:00:19,122 - INFO - Running Gemini prompt: Find real estate agencies in Plock, Poland that specialize in Costa del Sol or international propert...
+2025-10-10 22:00:19,123 - INFO - AFC is enabled with max remote calls: 10.
+2025-10-10 22:00:28,984 - INFO - HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent "HTTP/1.1 200 OK"
+2025-10-10 22:00:28,996 - INFO -    📄 Response received (194 chars)
+2025-10-10 22:00:29,000 - INFO -    🔍 Parsed 1 potential agencies from response
+2025-10-10 22:00:30,001 - INFO -    🤖 Prompt 2/5: Search for property agencies in Plock, Poland that help with international prope...
+2025-10-10 22:00:30,003 - INFO - Running Gemini prompt: Search for property agencies in Plock, Poland that help with international property purchases includ...
+2025-10-10 22:00:30,003 - INFO - AFC is enabled with max remote calls: 10.
+2025-10-10 22:00:43,930 - INFO - HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent "HTTP/1.1 200 OK"
+2025-10-10 22:00:43,933 - INFO -    📄 Response received (181 chars)
+2025-10-10 22:00:43,934 - INFO -    🔍 Parsed 1 potential agencies from response
+2025-10-10 22:00:44,934 - INFO -    🤖 Prompt 3/5: Find Polish real estate companies in Plock that offer services for buying proper...
+2025-10-10 22:00:44,935 - INFO - Running Gemini prompt: Find Polish real estate companies in Plock that offer services for buying property abroad, especiall...
+2025-10-10 22:00:44,936 - INFO - AFC is enabled with max remote calls: 10.
+2025-10-10 22:00:58,914 - INFO - HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent "HTTP/1.1 200 OK"
+2025-10-10 22:00:58,920 - INFO -    📄 Response received (203 chars)
+2025-10-10 22:00:58,922 - INFO -    🔍 Parsed 1 potential agencies from response
+2025-10-10 22:00:59,928 - INFO -    🤖 Prompt 4/5: Search for 'biuro nieruchomości' in Plock, Poland that might handle internationa...
+2025-10-10 22:00:59,928 - INFO - Running Gemini prompt: Search for 'biuro nieruchomości' in Plock, Poland that might handle international property transacti...
+2025-10-10 22:00:59,929 - INFO - AFC is enabled with max remote calls: 10.
+2025-10-10 22:01:12,603 - INFO - HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent "HTTP/1.1 200 OK"
+2025-10-10 22:01:12,607 - INFO -    📄 Response received (410 chars)
+2025-10-10 22:01:12,609 - INFO -    🔍 Parsed 2 potential agencies from response
+2025-10-10 22:01:13,610 - INFO -    🤖 Prompt 5/5: Find any real estate agencies in Plock, Poland that could assist with foreign pr...
+2025-10-10 22:01:13,610 - INFO - Running Gemini prompt: Find any real estate agencies in Plock, Poland that could assist with foreign property purchases.
+
+R...
+2025-10-10 22:01:13,611 - INFO - AFC is enabled with max remote calls: 10.
+2025-10-10 22:01:26,529 - INFO - HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent "HTTP/1.1 200 OK"
+2025-10-10 22:01:26,533 - INFO -    📄 Response received (928 chars)
+2025-10-10 22:01:26,538 - INFO -    🔍 Parsed 5 potential agencies from response
+2025-10-10 22:01:27,539 - INFO -    🚫 Duplicate domain found: freedom-nieruchomosci.pl
+2025-10-10 22:01:27,539 - INFO -    🚫 Duplicate domain found: metrohouse.pl
+2025-10-10 22:01:27,539 - INFO -    🚫 Duplicate domain found: metrohouse.pl
+2025-10-10 22:01:27,540 - INFO -    ✅ Found 7 new agencies for Plock
+2025-10-10 22:01:27,540 - INFO -       ➕ NEW: Północ Nieruchomości Płock - https://www.polnoc.pl/biuro/plock
+2025-10-10 22:01:27,540 - INFO -       ➕ NEW: RE/MAX Invest Płock - https://remax-invest.pl/
+2025-10-10 22:01:27,540 - INFO -       ➕ NEW: RE/MAX Płock Exclusive - https://www.remax-polska.pl/biura/re-max-plock-exclusive-0380
+2025-10-10 22:01:27,541 - INFO -       ➕ NEW: Re/Max Partner Płock - https://remax-partner.pl/
+2025-10-10 22:01:27,541 - INFO -       ➕ NEW: Investor Nieruchomości Płock - https://www.investor.nieruchomosci.pl/oddzial-plock/
+2025-10-10 22:01:27,541 - INFO -       ➕ NEW: Biuro Nieruchomości Płock S-M-K - https://smknieruchomosci.pl/
+2025-10-10 22:01:27,541 - INFO -       ➕ NEW: WGN Nieruchomości Płock - https://www.wgn.pl/oddzial-plock,20
+2025-10-10 22:01:27,542 - INFO - Added new agency: Północ Nieruchomości Płock from Plock
+2025-10-10 22:01:27,543 - INFO - Added new agency: RE/MAX Invest Płock from Plock
+2025-10-10 22:01:27,543 - INFO - Added new agency: RE/MAX Płock Exclusive from Plock
+2025-10-10 22:01:27,543 - INFO - Added new agency: Re/Max Partner Płock from Plock
+2025-10-10 22:01:27,543 - INFO - Added new agency: Investor Nieruchomości Płock from Plock
+2025-10-10 22:01:27,543 - INFO - Added new agency: Biuro Nieruchomości Płock S-M-K from Plock
+2025-10-10 22:01:27,544 - INFO - Added new agency: WGN Nieruchomości Płock from Plock
+2025-10-10 22:01:27,560 - INFO - Updated tracking file for city: Plock
+2025-10-10 22:01:27,560 - INFO - 🏁 Single city scan complete for Plock. Found 7 agencies, saved 7 to database
