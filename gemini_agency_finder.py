@@ -1653,40 +1653,40 @@ class GeminiAgencyFinder:
                     print(f"   📋 Excluding {len(existing_agencies)} known agencies")
                     logging.info(f"   📋 Excluding {len(existing_agencies)} known agencies from {town}")
 
-                # Create targeted prompts with structured JSON output
+                # Create targeted prompts with structured JSON output - optimized for efficiency and detailed descriptions
                 prompts = [
-                    f"""Find real estate agencies in {town}, Poland that specialize in Costa del Sol or international properties.{exclude_text}
+                    f"""Find up to 15 real estate agencies in {town}, Poland that specialize in Costa del Sol, Marbella, or international properties.{exclude_text}
 
 Return ONLY a JSON array with this exact format:
-[{{"name": "Agency Name", "website": "https://example.com", "phone": "+48 XXX XXX XXX", "address": "Address in {town}"}}]
+[{{"name": "Agency Name", "website": "https://example.com", "phone": "+48 XXX XXX XXX", "address": "Address in {town}", "description": "Marbella connection: [office/partnership/specialization]. Polish services: [language/legal/financing]. Experience: [X years]. Staff: [Polish-speaking focus]."}}]
 
 If no agencies are found, return an empty array []. Do not include explanations or additional text.""",
 
-                    f"""Search for property agencies in {town}, Poland that help with international property purchases including Spain/Costa del Sol.{exclude_text}
+                    f"""Search for up to 15 property agencies in {town}, Poland that help Polish clients buy properties in Spain, especially Marbella and Costa del Sol.{exclude_text}
 
 Return ONLY a JSON array with this exact format:
-[{{"name": "Agency Name", "website": "https://example.com", "phone": "+48 XXX XXX XXX", "address": "Address in {town}"}}]
+[{{"name": "Agency Name", "website": "https://example.com", "phone": "+48 XXX XXX XXX", "address": "Address in {town}", "description": "Marbella office: [location]. Partnerships: [Spanish agencies]. Specialization: [luxury/beachfront]. Polish services: [tax/visas/management]. Languages: [Polish/English/Spanish]."}}]
 
 If no agencies are found, return an empty array []. Do not include explanations or additional text.""",
 
-                    f"""Find Polish real estate companies in {town} that offer services for buying property abroad, especially in Spain.{exclude_text}
+                    f"""Find up to 15 Polish real estate companies in {town} that offer international property services, particularly for Marbella and Costa del Sol investments.{exclude_text}
 
 Return ONLY a JSON array with this exact format:
-[{{"name": "Agency Name", "website": "https://example.com", "phone": "+48 XXX XXX XXX", "address": "Address in {town}"}}]
+[{{"name": "Agency Name", "website": "https://example.com", "phone": "+48 XXX XXX XXX", "address": "Address in {town}", "description": "Costa del Sol experience: [X years]. Local network: [contacts]. Property portfolio: [size]. Success rate: [percentage]. Services: [mortgages/insurance/relocation]."}}]
 
 If no agencies are found, return an empty array []. Do not include explanations or additional text.""",
 
-                    f"""Search for 'biuro nieruchomości' in {town}, Poland that might handle international property transactions.{exclude_text}
+                    f"""Search for up to 15 'biuro nieruchomości' in {town}, Poland that handle international property transactions, especially Marbella and Costa del Sol.{exclude_text}
 
 Return ONLY a JSON array with this exact format:
-[{{"name": "Agency Name", "website": "https://example.com", "phone": "+48 XXX XXX XXX", "address": "Address in {town}"}}]
+[{{"name": "Agency Name", "website": "https://example.com", "phone": "+48 XXX XXX XXX", "address": "Address in {town}", "description": "Costa del Sol areas: [Marbella/Estepona/Puerto Banus]. Price ranges: [€X-€Y]. Investment focus: [residential/commercial]. Polish networks: [community connections]. Services: [management/rentals]."}}]
 
 If no agencies are found, return an empty array []. Do not include explanations or additional text.""",
 
-                    f"""Find any real estate agencies in {town}, Poland that could assist with foreign property purchases.{exclude_text}
+                    f"""Find up to 15 real estate agencies in {town}, Poland that could assist Polish investors with Marbella property purchases.{exclude_text}
 
 Return ONLY a JSON array with this exact format:
-[{{"name": "Agency Name", "website": "https://example.com", "phone": "+48 XXX XXX XXX", "address": "Address in {town}"}}]
+[{{"name": "Agency Name", "website": "https://example.com", "phone": "+48 XXX XXX XXX", "address": "Address in {town}", "description": "Marbella connection: [office/partnership]. Polish expatriate focus: [yes/no]. Property types: [apartments/villas]. Legal services: [yes/no]. Years experience: [X]."}}]
 
 If no agencies are found, return an empty array []. Do not include explanations or additional text."""
                 ]
@@ -1798,40 +1798,50 @@ If no agencies are found, return an empty array []. Do not include explanations 
             exclude_text = f" Exclude these agencies we already know about: {', '.join(existing_agencies[:5])}. "
             logging.info(f"   📋 Excluding {len(existing_agencies)} known agencies from {city_name}")
 
-        # Create targeted prompts with structured JSON output
+        # Create targeted prompts with structured JSON output - optimized for efficiency
         prompts = [
-            f"""Find real estate agencies in {city_name}, Poland that specialize in Costa del Sol or international properties.{exclude_text}
+            f"""Find up to 15 real estate agencies in {city_name}, Poland that specialize in Costa del Sol, Marbella, or international properties.{exclude_text}
+
+Focus on agencies with Polish connections to Marbella/Costa del Sol area. Include details about their Polish-Marbella connections in descriptions.
 
 Return ONLY a JSON array with this exact format:
-[{{"name": "Agency Name", "website": "https://example.com", "phone": "+48 XXX XXX XXX", "address": "Address in {city_name}"}}]
+[{{"name": "Agency Name", "website": "https://example.com", "phone": "+48 XXX XXX XXX", "address": "Address in {city_name}", "description": "Polish agency specializing in Marbella properties"}}]
 
 If no agencies are found, return an empty array []. Do not include explanations or additional text.""",
 
-            f"""Search for property agencies in {city_name}, Poland that help with international property purchases including Spain/Costa del Sol.{exclude_text}
+            f"""Search for up to 15 property agencies in {city_name}, Poland that help Polish clients buy properties in Spain, especially Marbella and Costa del Sol.{exclude_text}
+
+Include agencies that have Polish-speaking staff, Polish websites, or specialize in Polish expatriate property purchases in Marbella area.
 
 Return ONLY a JSON array with this exact format:
-[{{"name": "Agency Name", "website": "https://example.com", "phone": "+48 XXX XXX XXX", "address": "Address in {city_name}"}}]
+[{{"name": "Agency Name", "website": "https://example.com", "phone": "+48 XXX XXX XXX", "address": "Address in {city_name}", "description": "Polish-Marbella property specialists"}}]
 
 If no agencies are found, return an empty array []. Do not include explanations or additional text.""",
 
-            f"""Find Polish real estate companies in {city_name} that offer services for buying property abroad, especially in Spain.{exclude_text}
+            f"""Find up to 15 Polish real estate companies in {city_name} that offer international property services, particularly for Marbella and Costa del Sol investments.{exclude_text}
+
+Look for agencies with established connections to Marbella real estate market and experience with Polish buyers.
 
 Return ONLY a JSON array with this exact format:
-[{{"name": "Agency Name", "website": "https://example.com", "phone": "+48 XXX XXX XXX", "address": "Address in {city_name}"}}]
+[{{"name": "Agency Name", "website": "https://example.com", "phone": "+48 XXX XXX XXX", "address": "Address in {city_name}", "description": "Marbella property experts for Polish clients"}}]
 
 If no agencies are found, return an empty array []. Do not include explanations or additional text.""",
 
-            f"""Search for 'biuro nieruchomości' in {city_name}, Poland that might handle international property transactions.{exclude_text}
+            f"""Search for up to 15 'biuro nieruchomości' in {city_name}, Poland that handle international property transactions, especially Marbella and Costa del Sol.{exclude_text}
+
+Include agencies that advertise Polish client services for Spanish property market or have Marbella office connections.
 
 Return ONLY a JSON array with this exact format:
-[{{"name": "Agency Name", "website": "https://example.com", "phone": "+48 XXX XXX XXX", "address": "Address in {city_name}"}}]
+[{{"name": "Agency Name", "website": "https://example.com", "phone": "+48 XXX XXX XXX", "address": "Address in {city_name}", "description": "Costa del Sol property agency with Polish connections"}}]
 
 If no agencies are found, return an empty array []. Do not include explanations or additional text.""",
 
-            f"""Find any real estate agencies in {city_name}, Poland that could assist with foreign property purchases.{exclude_text}
+            f"""Find up to 15 real estate agencies in {city_name}, Poland that could assist Polish investors with Marbella property purchases.{exclude_text}
+
+Focus on agencies with experience in Spanish property market and Polish expatriate communities in Costa del Sol.
 
 Return ONLY a JSON array with this exact format:
-[{{"name": "Agency Name", "website": "https://example.com", "phone": "+48 XXX XXX XXX", "address": "Address in {city_name}"}}]
+[{{"name": "Agency Name", "website": "https://example.com", "phone": "+48 XXX XXX XXX", "address": "Address in {city_name}", "description": "Polish agency serving Marbella property market"}}]
 
 If no agencies are found, return an empty array []. Do not include explanations or additional text."""
         ]
@@ -2105,6 +2115,211 @@ Only include factual information from reliable sources."""
             logging.error(f"Error updating agency data: {e}")
             return False
 
+    def update_existing_agency_descriptions(self, max_agencies=None, target_cities=None):
+        """Update descriptions for existing agencies using improved detailed prompts"""
+        print("🔄 Starting update of existing agency descriptions...")
+        print("🎯 Using improved prompts to get detailed Marbella connection information")
+        print("=" * 70)
+
+        try:
+            conn = sqlite3.connect(self.db_path)
+            cursor = conn.cursor()
+
+            # Get agencies that need description updates
+            query = '''
+                SELECT id, name, website, phone, address, description, polish_city
+                FROM agencies
+                WHERE (description IS NULL OR description = '' OR
+                       description NOT LIKE '%Marbella%' OR
+                       description NOT LIKE '%Costa del Sol%' OR
+                       LENGTH(description) < 50)
+                AND type = 'gemini_discovered'
+            '''
+
+            if target_cities:
+                placeholders = ','.join(['?'] * len(target_cities))
+                query += f' AND polish_city IN ({placeholders})'
+                cursor.execute(query, target_cities)
+            else:
+                cursor.execute(query)
+
+            agencies_to_update = cursor.fetchall()
+            conn.close()
+
+            if not agencies_to_update:
+                print("✅ No agencies found that need description updates")
+                return 0
+
+            if max_agencies:
+                agencies_to_update = agencies_to_update[:max_agencies]
+
+            print(f"📋 Found {len(agencies_to_update)} agencies needing description updates")
+            logging.info(f"Found {len(agencies_to_update)} agencies needing description updates")
+
+            updated_count = 0
+
+            for agency_id, name, website, phone, address, old_description, polish_city in agencies_to_update:
+                print(f"\n🔍 Updating: {name} (from {polish_city or 'unknown city'})")
+
+                # Create a targeted prompt to get detailed information about this specific agency
+                prompt = f"""Research the real estate agency "{name}" in {polish_city or 'Poland'} and provide detailed information about their Marbella/Costa del Sol connections.
+
+Focus on:
+- Their specific office location or partnerships in Marbella/Costa del Sol
+- Years of experience with Spanish property market
+- Services offered to Polish clients (language support, legal help, financing, visas)
+- Property types they specialize in (apartments, villas, commercial)
+- Any Polish-speaking staff or expatriate focus
+- Price ranges they handle
+- Success stories or specializations
+
+Return ONLY a JSON object with this exact format:
+{{"description": "Detailed description: Marbella office: [location/partnership]. Experience: [X years]. Polish services: [legal/financing/translation]. Property types: [apartments/villas]. Price ranges: [€X-€Y]. Languages: [Polish/English/Spanish]. Specialization: [luxury/beachfront/golf]."}}
+
+Do not include explanations or additional text."""
+
+                print(f"   🤖 Researching detailed Marbella connections...")
+                logging.info(f"Researching detailed description for agency: {name}")
+
+                response = self.run_gemini_prompt(prompt)
+                if response:
+                    # Parse the response to extract the new description
+                    new_description = self.extract_description_from_response(response)
+
+                    if new_description and new_description != old_description:
+                        # Update the database
+                        if self.update_agency_description(agency_id, new_description):
+                            updated_count += 1
+                            print(f"   ✅ Updated description ({len(new_description)} chars)")
+                            print(f"      📝 New: {new_description[:100]}{'...' if len(new_description) > 100 else ''}")
+                            logging.info(f"Updated description for {name}: {new_description[:100]}...")
+                        else:
+                            print("   ❌ Failed to update database")
+                    else:
+                        print("   ⚠️ No improved description found or description unchanged")
+                else:
+                    print("   ❌ No response from AI")
+
+                # Rate limiting between updates
+                time.sleep(2)
+
+            print(f"\n🎉 Completed! Updated descriptions for {updated_count} agencies")
+            logging.info(f"Description update complete. Updated {updated_count} agencies")
+            return updated_count
+
+        except Exception as e:
+            print(f"💥 Error during description updates: {e}")
+            logging.error(f"Error during description updates: {e}")
+            return 0
+
+    def extract_description_from_response(self, response):
+        """Extract description from Gemini response"""
+        try:
+            # Try to parse as JSON first
+            data = json.loads(response.strip())
+            if isinstance(data, dict) and 'description' in data:
+                return data['description'].strip()
+        except:
+            pass
+
+        # Fallback: Look for description in text
+        lines = response.split('\n')
+        for line in lines:
+            line = line.strip()
+            if line.startswith('"description":') or line.startswith('description:'):
+                # Extract the description value
+                desc_match = re.search(r'"description":\s*"([^"]*)"', line, re.IGNORECASE)
+                if desc_match:
+                    return desc_match.group(1).strip()
+
+                # Try without quotes
+                desc_match = re.search(r'description:\s*(.+)', line, re.IGNORECASE)
+                if desc_match:
+                    return desc_match.group(1).strip()
+
+        # If no structured format found, return the whole response if it looks like a description
+        if len(response.strip()) > 50 and not response.strip().startswith('```'):
+            return response.strip()
+
+        return None
+
+    def update_agency_description(self, agency_id, new_description):
+        """Update agency description in database"""
+        try:
+            conn = sqlite3.connect(self.db_path)
+            cursor = conn.cursor()
+
+            cursor.execute('''
+                UPDATE agencies
+                SET description = ?, additional_info = additional_info || ?
+                WHERE id = ?
+            ''', (
+                new_description,
+                f" | Description enhanced via detailed research on {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}",
+                agency_id
+            ))
+
+            conn.commit()
+            conn.close()
+            return True
+
+        except Exception as e:
+            logging.error(f"Error updating agency description: {e}")
+            return False
+
+    def calculate_agencies_per_call(self, sample_city="Warsaw"):
+        """Calculate estimated agencies per API call based on current prompt optimization"""
+        print("🧮 Calculating agencies per API call efficiency...")
+        print(f"📍 Using sample city: {sample_city}")
+        print("=" * 50)
+
+        # Test one of our optimized prompts
+        test_prompt = f"""Find up to 15 real estate agencies in {sample_city}, Poland that specialize in Costa del Sol, Marbella, or international properties.
+
+Focus on agencies with Polish connections to Marbella/Costa del Sol area. Include details about their Polish-Marbella connections in descriptions.
+
+Return ONLY a JSON array with this exact format:
+[{{"name": "Agency Name", "website": "https://example.com", "phone": "+48 XXX XXX XXX", "address": "Address in {sample_city}", "description": "Polish agency specializing in Marbella properties"}}]
+
+If no agencies are found, return an empty array []. Do not include explanations or additional text."""
+
+        print(f"🤖 Testing prompt ({len(test_prompt)} chars)...")
+        response = self.run_gemini_prompt(test_prompt)
+
+        if response:
+            agencies = self.parse_agency_data(response, sample_city)
+            print(f"✅ Response received ({len(response)} chars)")
+            print(f"📊 Agencies parsed: {len(agencies)}")
+
+            # Calculate token usage estimates
+            # Rough estimate: 4 chars per token
+            input_tokens = len(test_prompt) // 4
+            output_tokens = len(response) // 4
+
+            print(f"🔢 Estimated input tokens: ~{input_tokens}")
+            print(f"🔢 Estimated output tokens: ~{output_tokens}")
+            print(f"🔢 Total tokens per call: ~{input_tokens + output_tokens}")
+
+            # Gemini 2.5 Flash free tier estimates (based on typical limits)
+            # Assuming generous free tier: ~1M tokens/day or ~1000 requests/day
+            estimated_daily_calls = min(1000, 1000000 // (input_tokens + output_tokens)) if (input_tokens + output_tokens) > 0 else 1000
+
+            print(f"📈 Estimated daily API calls within free tier: ~{estimated_daily_calls}")
+            print(f"🎯 Agencies per call: {len(agencies)}")
+            print(f"🚀 Daily agency discovery potential: ~{len(agencies) * estimated_daily_calls}")
+
+            return {
+                'agencies_per_call': len(agencies),
+                'input_tokens': input_tokens,
+                'output_tokens': output_tokens,
+                'total_tokens': input_tokens + output_tokens,
+                'estimated_daily_calls': estimated_daily_calls,
+                'daily_agency_potential': len(agencies) * estimated_daily_calls
+            }
+        else:
+            print("❌ No response received")
+            return None
+
 def main():
     finder = GeminiAgencyFinder()
     # Use more prompts now that we have targeted Polish town searches
@@ -2184,6 +2399,36 @@ if __name__ == '__main__':
 
         print("=" * 60)
         print(f"🎉 COMPLETED: Successfully updated {updated_count} agencies with missing data!")
+        print("📊 Check gemini_agency_finder.log for detailed operation logs")
+
+    elif len(sys.argv) > 1 and sys.argv[1] == '--update-descriptions':
+        # Update existing agency descriptions with improved detailed prompts
+        max_agencies = None
+        target_cities = None
+
+        if len(sys.argv) > 2:
+            try:
+                max_agencies = int(sys.argv[2])
+            except ValueError:
+                print("Invalid number for max agencies, processing all that need updates")
+
+        if len(sys.argv) > 3:
+            # Parse city names (comma-separated)
+            target_cities = [city.strip() for city in sys.argv[3].split(',') if city.strip()]
+
+        print("🔄 Updating existing agency descriptions with improved Marbella connection details...")
+        if max_agencies:
+            print(f"🎯 Max agencies to process: {max_agencies}")
+        if target_cities:
+            print(f"🎯 Target cities: {', '.join(target_cities)}")
+        else:
+            print("🎯 Processing all cities")
+        print("=" * 70)
+
+        updated_count = finder.update_existing_agency_descriptions(max_agencies=max_agencies, target_cities=target_cities)
+
+        print("=" * 70)
+        print(f"🎉 COMPLETED: Successfully updated descriptions for {updated_count} agencies!")
         print("📊 Check gemini_agency_finder.log for detailed operation logs")
 
     else:

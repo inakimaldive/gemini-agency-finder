@@ -37,8 +37,8 @@ This file tracks which Polish cities have been scanned for real estate agencies 
 | Gorzow Wielkopolski | 29 | ✅ | 5 | 2025-10-10 | Latest scan - 5 agencies found |
 | Dabrowa Gornicza | 30 | ✅ | 2 | 2025-10-10 | Latest scan - 2 agencies found |
 | Plock | 31 | ✅ | 7 | 2025-10-10 | Scanned - 7 agencies found |
-| Elblag | 32 | ❌ | 0 | - | Not yet scanned |
-| Walbrzych | 33 | ❌ | 0 | - | Not yet scanned |
+| Elblag | 32 | ✅ | 1 | 2025-10-10 | Scanned - 1 agencies found |
+| Walbrzych | 33 | ✅ | 1 | 2025-10-10 | Scanned - 1 agencies found |
 | Tarnow | 34 | ❌ | 0 | - | Not yet scanned |
 | Chorzow | 35 | ❌ | 0 | - | Not yet scanned |
 | Koszalin | 36 | ❌ | 0 | - | Not yet scanned |
@@ -87,11 +87,15 @@ These cities could be added to expand the search coverage:
 ## Scanning Statistics
 
 - **Total Cities in Current List:** 50
-- **Cities Scanned:** 35 (Warsaw, Krakow, Lodz, Wroclaw, Poznan, Gdansk, Szczecin, Bydgoszcz, Lublin, Katowice, Bialystok, Gdynia, Czestochowa, Radom, Sosnowiec, Torun, Kielce, Rzeszow, Gliwice, Zabrze, Olsztyn, Bielsko-Biala, Bytom, Zielona Gora, Rybnik, Ruda Slaska, Opole, Tychy, Gorzow Wielkopolski, Dabrowa Gornicza)
-- **Cities Remaining:** 15
-- **Total Agencies Found:** 321 (217 from previous scans + 104 from latest scan)
-- **Average Agencies per City:** ~9.2 (based on recent scans)
-- **Potential Total Agencies:** ~400 (if all cities yield similar results)
+- **Cities Scanned:** 33 (Warsaw, Krakow, Lodz, Wroclaw, Poznan, Gdansk, Szczecin, Bydgoszcz, Lublin, Katowice, Bialystok, Gdynia, Czestochowa, Radom, Sosnowiec, Torun, Kielce, Rzeszow, Gliwice, Zabrze, Olsztyn, Bielsko-Biala, Bytom, Zielona Gora, Rybnik, Ruda Slaska, Opole, Tychy, Gorzow Wielkopolski, Dabrowa Gornicza, Plock, Elblag, Walbrzych)
+- **Cities Remaining:** 17
+- **Total Agencies Found:** 664 (comprehensive database with detailed Marbella connections)
+- **Active Agencies (after cleanup):** 59 (high-quality entries with valid data)
+- **Undefined Agencies Moved:** 128 (entries with insufficient information)
+- **Website Validation:** 147 active websites confirmed
+- **Average Agencies per City:** ~15.5 agencies (based on comprehensive scans)
+- **Enhanced Descriptions:** 254+ agencies with detailed Marbella/Costa del Sol connection information
+- **Potential Total Agencies:** ~700+ (with ongoing discovery and enhancement)
 
 ## Scanning Strategy
 
@@ -188,7 +192,36 @@ python gemini_agency_finder.py --targeted 25
 python gemini_agency_finder.py --targeted 50
 ```
 
+## Latest Database Cleanup & Validation (2025-10-11)
+
+### Data Quality Improvements
+- **Website Validation:** 147 websites confirmed as active and accessible
+- **Duplicate Removal:** 105 duplicate entries removed from database
+- **Enhanced Type Classification:** 167 agencies reclassified using multiple indicators (phone numbers, domains, addresses, descriptions):
+  - Polish agencies: 194 (Polish-focused operations)
+  - Marbella agencies: 178 (Spain-based with Marbella focus)
+  - Both categories: 117 (Dual Polish-Spanish operations)
+  - Spain&Poland agencies: 41 (Strong international connections)
+  - Unclassified: 29 (insufficient location indicators)
+- **Website Status Integration:** 3 additional agencies marked as inactive due to broken websites
+- **URL Fixing:** 125 invalid URLs corrected by adding missing "https://" prefixes
+- **Name Cleaning:** 10 agency names cleaned (removed numbering prefixes)
+- **Data Cleanup:** 128 agencies with insufficient information moved to separate 'undefined' table
+- **Final Active Agencies:** 59 high-quality entries remaining in main database
+
+### Website Status Summary
+- **Active Websites:** 147 (websites that load successfully)
+- **Inactive Websites:** Various error types including connection errors, 403/404 responses, and invalid URLs
+- **Most Common Issues:** Missing https:// prefix, domain registration issues, temporary server problems
+
+### Enhanced Classification Details
+- **Phone Analysis:** +48 Polish vs +34 Spanish number detection
+- **Domain Analysis:** .pl Polish vs .es Spanish domain recognition
+- **Address Recognition:** Polish city names vs Spanish locations
+- **Keyword Analysis:** Polish/Spanish language indicators in descriptions
+- **Scoring System:** Weighted indicators for accurate categorization
+
 ---
 
-**Last Updated: 2025-10-10**
-*Next Scan Target: Torun, Kielce, Rzeszow, Gliwice, Zabrze*
+*****Last Updated: 2025-10-11*****
+*Next Scan Target: Tarnow, Chorzow, Koszalin, Kalisz, Legnica*

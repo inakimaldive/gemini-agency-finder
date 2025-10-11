@@ -32,8 +32,8 @@ def find_duplicates():
     conn = sqlite3.connect('agencies.db')
     cursor = conn.cursor()
 
-    # Get all agencies
-    cursor.execute('SELECT id, name, type, website, phone, address, description, additional_info, website_status FROM agencies ORDER BY name')
+    # Get all agencies (process recent entries first)
+    cursor.execute('SELECT id, name, type, website, phone, address, description, additional_info, website_status FROM agencies ORDER BY id DESC')
     agencies = cursor.fetchall()
     conn.close()
 

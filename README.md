@@ -8,12 +8,14 @@ A static web interface for exploring the Gemini Agency Finder database of real e
 
 ## 📊 Database Overview
 
-This interface displays **321 real estate agencies** across multiple categories:
-- **Marbella Based** (182): Agencies with physical locations in Marbella, Spain
-- **Polish Agencies** (74): Polish agencies specializing in Costa del Sol properties
-- **Dual Market** (9): Agencies serving both Spanish and Polish markets
-- **AI Discovered** (28): Agencies discovered via Google Gemini AI search
-- **Other** (28): Agencies with incomplete classification data
+This interface displays **664 real estate agencies** (59 active high-quality entries after cleanup) across multiple categories:
+- **Polish Agencies** (194): Polish agencies specializing in Costa del Sol properties
+- **Marbella Agencies** (178): Spain-based agencies with Marbella focus
+- **Dual Operations** (117): Agencies serving both Spanish and Polish markets
+- **Spain&Poland Specialists** (41): Strong international connections
+- **Enhanced Classification** (55 recently reclassified): Agencies with broken websites but proper categorization
+- **Website Validation** (147 active): Confirmed working websites
+- **Data Quality**: 128 undefined entries moved to separate archive table
 
 ## ✨ Features
 
@@ -139,11 +141,14 @@ gemini-agency-finder/
 ├── README.md               # This documentation
 ├── .gitignore             # Git ignore rules
 └── tools/                 # Data cleanup and maintenance tools
-    ├── clean_names.py     # Remove numbering prefixes from names
-    ├── fix_websites.py    # Extract URLs from descriptions
-    ├── remove_duplicates.py # Identify and remove duplicates
-    ├── update_types.py    # Classify agency types
-    └── move_undefined.py  # Archive empty agency records
+    ├── clean_names.py         # Remove numbering prefixes from names
+    ├── fix_websites.py        # Extract & fix URLs from descriptions
+    ├── remove_duplicates.py   # Identify and remove duplicates
+    ├── update_types.py        # Classify agency types (basic)
+    ├── move_undefined.py      # Archive empty agency records
+    ├── validate_websites.py   # Check website accessibility
+    ├── update_website_status.py # Mark inactive agencies
+    └── enhanced_type_classification.py # Advanced multi-indicator classification
 ```
 
 ## 🚀 Quick Start
@@ -267,32 +272,52 @@ To find new agencies:
    ```
 
 ### Data Cleanup and Maintenance
-After discovering new agencies, clean and organize the data:
+After discovering new agencies, clean and organize the data using the enhanced tool suite:
+
+#### **Recommended Cleanup Sequence** (run in this order):
 
 1. **Clean agency names** (remove numbering prefixes):
    ```bash
    python tools/clean_names.py
    ```
 
-2. **Extract missing websites** from descriptions:
+2. **Fix and validate websites** (extract URLs, add missing https://):
    ```bash
    python tools/fix_websites.py
    ```
 
-3. **Classify agency types** (Marbella, Polish, etc.):
+3. **Check website accessibility** (validate all URLs work):
    ```bash
-   python tools/update_types.py
+   python tools/validate_websites.py
    ```
 
-4. **Remove duplicates** (keep most complete entries):
+4. **Update inactive agencies** (mark broken websites as inactive):
+   ```bash
+   python tools/update_website_status.py
+   ```
+
+5. **Enhanced type classification** (multi-indicator analysis):
+   ```bash
+   python tools/enhanced_type_classification.py
+   ```
+
+6. **Remove duplicates** (keep most complete entries):
    ```bash
    python tools/remove_duplicates.py
    ```
 
-5. **Archive empty records** (optional):
+7. **Archive empty records** (optional cleanup):
    ```bash
    python tools/move_undefined.py
    ```
+
+#### **Tool Capabilities**:
+
+- **Enhanced Classification**: Uses phone numbers (+48/+34), domains (.pl/.es), addresses, and descriptions
+- **Website Validation**: Checks 147+ websites for accessibility with detailed status reporting
+- **URL Fixing**: Automatically adds missing "https://" prefixes and extracts URLs from text
+- **Duplicate Detection**: Processes recent entries first, keeps most complete records
+- **Data Quality**: Maintains 59 high-quality active entries from 664 total discovered
 
 ### Export and Deploy
 1. Export updated data to JSON:
@@ -353,5 +378,5 @@ For questions or issues:
 
 This database is maintained by the Gemini Agency Finder project, which uses AI-powered search to discover real estate agencies working with Costa del Sol properties. The data includes agencies physically located in Marbella, Polish agencies specializing in Spanish properties, and agencies discovered through automated AI searches.
 
-**Last Updated**: October 10, 2025
-**Total Agencies**: 321
+**Last Updated**: October 11, 2025
+**Total Agencies**: 664 (59 active high-quality entries)
