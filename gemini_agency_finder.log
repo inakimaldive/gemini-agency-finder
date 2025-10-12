@@ -5114,3 +5114,5 @@ Find their ...
 2025-10-12 09:54:22,052 - INFO - 🎯 Progress: 21/20 total agencies saved
 2025-10-12 09:54:22,052 - INFO - 🎉 Target reached! Found 21 new agencies
 2025-10-12 09:54:22,052 - INFO - 🏁 Targeted search complete. Total agencies found: 21
+2025-10-12 11:26:23,558 - INFO - Starting single city scan for 20... Target: 10 agencies
+2025-10-12 11:26:23,559 - ERROR - City '20' not found in Polish cities list

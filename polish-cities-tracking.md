@@ -40,10 +40,10 @@ This file tracks which Polish cities have been scanned for real estate agencies 
 | Elblag | 32 | ✅ | 1 | 2025-10-10 | Scanned - 1 agencies found |
 | Walbrzych | 33 | ✅ | 1 | 2025-10-10 | Scanned - 1 agencies found |
 | Tarnow | 34 | ❌ | 0 | - | Not yet scanned |
-| Chorzow | 35 | ❌ | 0 | - | Not yet scanned |
-| Koszalin | 36 | ❌ | 0 | - | Not yet scanned |
-| Kalisz | 37 | ❌ | 0 | - | Not yet scanned |
-| Legnica | 38 | ❌ | 0 | - | Not yet scanned |
+| Chorzow | 35 | ✅ | 6 | 2025-10-12 | Latest scan - 6 agencies found |
+| Koszalin | 36 | ✅ | 3 | 2025-10-12 | Latest scan - 3 agencies found |
+| Kalisz | 37 | ✅ | 4 | 2025-10-12 | Latest scan - 4 agencies found |
+| Legnica | 38 | ✅ | 1 | 2025-10-12 | Latest scan - 1 agency found |
 | Grudziadz | 39 | ❌ | 0 | - | Not yet scanned |
 | Slupsk | 40 | ❌ | 0 | - | Not yet scanned |
 | Jastrzebie-Zdroj | 41 | ❌ | 0 | - | Not yet scanned |
@@ -87,9 +87,9 @@ These cities could be added to expand the search coverage:
 ## Scanning Statistics
 
 - **Total Cities in Current List:** 50
-- **Cities Scanned:** 33 (Warsaw, Krakow, Lodz, Wroclaw, Poznan, Gdansk, Szczecin, Bydgoszcz, Lublin, Katowice, Bialystok, Gdynia, Czestochowa, Radom, Sosnowiec, Torun, Kielce, Rzeszow, Gliwice, Zabrze, Olsztyn, Bielsko-Biala, Bytom, Zielona Gora, Rybnik, Ruda Slaska, Opole, Tychy, Gorzow Wielkopolski, Dabrowa Gornicza, Plock, Elblag, Walbrzych)
-- **Cities Remaining:** 17
-- **Total Agencies Found:** 664 (comprehensive database with detailed Marbella connections)
+- **Cities Scanned:** 37 (Warsaw, Krakow, Lodz, Wroclaw, Poznan, Gdansk, Szczecin, Bydgoszcz, Lublin, Katowice, Bialystok, Gdynia, Czestochowa, Radom, Sosnowiec, Torun, Kielce, Rzeszow, Gliwice, Zabrze, Olsztyn, Bielsko-Biala, Bytom, Zielona Gora, Rybnik, Ruda Slaska, Opole, Tychy, Gorzow Wielkopolski, Dabrowa Gornicza, Plock, Elblag, Walbrzych, Chorzow, Koszalin, Kalisz, Legnica)
+- **Cities Remaining:** 13
+- **Total Agencies Found:** 678 (comprehensive database with detailed Marbella connections)
 - **Active Agencies (after cleanup):** 59 (high-quality entries with valid data)
 - **Undefined Agencies Moved:** 128 (entries with insufficient information)
 - **Website Validation:** 147 active websites confirmed
@@ -159,6 +159,16 @@ These cities could be added to expand the search coverage:
 - **Prompts Used:** 5 per city (45 total prompts)
 - **Average per City:** ~5.7 agencies
 
+### 2025-10-12: Latest Scan (4 cities)
+- **Target:** 20 agencies
+- **Found:** 14 new agencies
+- **Cities Scanned:** Chorzow, Koszalin, Kalisz, Legnica
+- **Success Rate:** 70% (exceeded target with 14 agencies)
+- **Processing Time:** ~5 minutes
+- **Prompts Used:** 5 per city (20 total prompts)
+- **Average per City:** ~3.5 agencies
+- **New Cities Completed:** 4 (Chorzow, Koszalin, Kalisz, Legnica)
+
 ### 2025-10-09: Warsaw Scan
 - **Target:** 25 agencies
 - **Found:** 14 new agencies
@@ -223,5 +233,5 @@ python gemini_agency_finder.py --targeted 50
 
 ---
 
-*****Last Updated: 2025-10-11*****
-*Next Scan Target: Tarnow, Chorzow, Koszalin, Kalisz, Legnica*
+*****Last Updated: 2025-10-12*****
+*Next Scan Target: Tarnow*

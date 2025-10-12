@@ -99,62 +99,62 @@ def main():
         conn = sqlite3.connect('agencies.db')
         cursor = conn.cursor()
 
-        # First, fix invalid URLs that are already in the database (process recent entries first)
+        # Process agencies that haven't been cleaned yet
         cursor.execute('''
-            SELECT id, name, website
+            SELECT id, name, website, description
             FROM agencies
-            WHERE website IS NOT NULL AND website != ''
-            ORDER BY id DESC
+            WHERE cleanup_status != 'cleaned' OR cleanup_status IS NULL
+            ORDER BY id
         ''')
 
-        agencies_with_websites = cursor.fetchall()
-        fixed_invalid_count = 0
+        agencies_to_process = cursor.fetchall()
+        logging.info(f"Found {len(agencies_to_process)} agencies to check for website fixes")
 
-        for agency_id, name, website in agencies_with_websites:
-            if not is_valid_url(website):
+        fixed_invalid_count = 0
+        extracted_count = 0
+
+        for agency_id, name, website, description in agencies_to_process:
+            updated = False
+
+            # First, fix invalid URLs that are already in the database
+            if website and not is_valid_url(website):
                 fixed_url = fix_url_format(website)
                 if fixed_url != website and is_valid_url(fixed_url):
                     logging.info(f"Fixed invalid URL for '{name}': '{website}' -> '{fixed_url}'")
                     cursor.execute('''
                         UPDATE agencies
-                        SET website = ?
+                        SET website = ?, cleanup_status = 'cleaned'
                         WHERE id = ?
                     ''', (fixed_url, agency_id))
                     fixed_invalid_count += 1
+                    updated = True
 
-        logging.info(f"Fixed {fixed_invalid_count} invalid URLs")
+            # Then, extract URLs from descriptions for agencies with missing websites
+            if not website or website == '':
+                urls = extract_urls_from_text(description)
 
-        # Then, extract URLs from descriptions for agencies with missing websites
-        cursor.execute('''
-            SELECT id, name, description
-            FROM agencies
-            WHERE (website IS NULL OR website = '')
-            ORDER BY id
-        ''')
+                if urls:
+                    # Take the first URL found
+                    website = urls[0]
+                    logging.info(f"Extracted website for '{name}': {website}")
 
-        agencies_missing_websites = cursor.fetchall()
-        logging.info(f"Found {len(agencies_missing_websites)} agencies with missing website info")
+                    # Update the database
+                    cursor.execute('''
+                        UPDATE agencies
+                        SET website = ?, cleanup_status = 'cleaned'
+                        WHERE id = ?
+                    ''', (website, agency_id))
 
-        extracted_count = 0
+                    extracted_count += 1
+                    updated = True
 
-        for agency_id, name, description in agencies_missing_websites:
-            urls = extract_urls_from_text(description)
-
-            if urls:
-                # Take the first URL found
-                website = urls[0]
-                logging.info(f"Extracted website for '{name}': {website}")
-
-                # Update the database
+            # Mark as cleaned even if no changes were made
+            if not updated:
                 cursor.execute('''
                     UPDATE agencies
-                    SET website = ?
+                    SET cleanup_status = 'cleaned'
                     WHERE id = ?
-                ''', (website, agency_id))
-
-                extracted_count += 1
-            else:
-                logging.debug(f"No URL found in description for '{name}'")
+                ''', (agency_id,))
 
         conn.commit()
         conn.close()

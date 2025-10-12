@@ -8,14 +8,15 @@ A static web interface for exploring the Gemini Agency Finder database of real e
 
 ## 📊 Database Overview
 
-This interface displays **664 real estate agencies** (59 active high-quality entries after cleanup) across multiple categories:
-- **Polish Agencies** (194): Polish agencies specializing in Costa del Sol properties
-- **Marbella Agencies** (178): Spain-based agencies with Marbella focus
-- **Dual Operations** (117): Agencies serving both Spanish and Polish markets
+This interface displays **708 real estate agencies** (491 active high-quality entries after cleanup) across multiple categories:
+- **Polish Agencies** (199): Polish agencies specializing in Costa del Sol properties
+- **Marbella Agencies** (156): Spain-based agencies with Marbella focus
+- **Dual Operations** (92): Agencies serving both Spanish and Polish markets
 - **Spain&Poland Specialists** (41): Strong international connections
-- **Enhanced Classification** (55 recently reclassified): Agencies with broken websites but proper categorization
-- **Website Validation** (147 active): Confirmed working websites
-- **Data Quality**: 128 undefined entries moved to separate archive table
+- **Enhanced Classification**: Advanced multi-indicator type classification
+- **Website Validation**: Comprehensive URL validation and fixing
+- **Data Quality**: 217 undefined entries archived to separate table
+- **Cleanup Tracking**: Robust `cleanup_status` system prevents redundant processing
 
 ## ✨ Features
 
@@ -136,19 +137,21 @@ gemini-agency-finder/
 ├── agencies.json           # Agency data (JSON format)
 ├── agencies.db             # SQLite database
 ├── gemini_agency_finder.py # Main agency discovery script
-├── update_data.sh          # Data export script
 ├── polish-cities-tracking.md # City scanning progress
 ├── README.md               # This documentation
 ├── .gitignore             # Git ignore rules
-└── tools/                 # Data cleanup and maintenance tools
-    ├── clean_names.py         # Remove numbering prefixes from names
-    ├── fix_websites.py        # Extract & fix URLs from descriptions
-    ├── remove_duplicates.py   # Identify and remove duplicates
-    ├── update_types.py        # Classify agency types (basic)
-    ├── move_undefined.py      # Archive empty agency records
-    ├── validate_websites.py   # Check website accessibility
-    ├── update_website_status.py # Mark inactive agencies
-    └── enhanced_type_classification.py # Advanced multi-indicator classification
+├── tools/                 # Data cleanup and maintenance tools
+│   ├── run_full_cleanup.py    # 🚀 COMPREHENSIVE CLEANUP SYSTEM
+│   ├── update_data.sh         # Export database to JSON + web update
+│   ├── clean_names.py         # Remove numbering prefixes from names
+│   ├── fix_websites.py        # Extract & fix URLs from descriptions
+│   ├── remove_duplicates.py   # Identify and remove duplicates
+│   ├── update_types.py        # Classify agency types (basic)
+│   ├── move_undefined.py      # Archive empty agency records
+│   ├── validate_websites.py   # Check website accessibility
+│   ├── update_website_status.py # Mark inactive agencies
+│   └── enhanced_type_classification.py # Advanced multi-indicator classification
+└── .venv/                 # Python virtual environment
 ```
 
 ## 🚀 Quick Start
@@ -271,10 +274,22 @@ To find new agencies:
    python gemini_agency_finder.py --targeted 50
    ```
 
-### Data Cleanup and Maintenance
-After discovering new agencies, clean and organize the data using the enhanced tool suite:
+### 🚀 **Comprehensive Data Cleanup System**
 
-#### **Recommended Cleanup Sequence** (run in this order):
+The project now features an **automated comprehensive cleanup system** that runs all cleanup tools in the proper order with intelligent tracking to avoid redundant processing.
+
+#### **One-Command Cleanup** (Recommended):
+```bash
+# Run all cleanup tools automatically + update web interface
+python tools/run_full_cleanup.py
+```
+
+This single command performs:
+1. **Data cleanup** (names, websites, duplicates, classification)
+2. **Database reorganization** (move undefined entries)
+3. **Web interface update** (export JSON automatically)
+
+#### **Manual Cleanup Tools** (if needed individually):
 
 1. **Clean agency names** (remove numbering prefixes):
    ```bash
@@ -286,38 +301,42 @@ After discovering new agencies, clean and organize the data using the enhanced t
    python tools/fix_websites.py
    ```
 
-3. **Check website accessibility** (validate all URLs work):
-   ```bash
-   python tools/validate_websites.py
-   ```
-
-4. **Update inactive agencies** (mark broken websites as inactive):
-   ```bash
-   python tools/update_website_status.py
-   ```
-
-5. **Enhanced type classification** (multi-indicator analysis):
+3. **Enhanced type classification** (multi-indicator analysis):
    ```bash
    python tools/enhanced_type_classification.py
    ```
 
-6. **Remove duplicates** (keep most complete entries):
+4. **Remove duplicates** (keep most complete entries):
    ```bash
    python tools/remove_duplicates.py
    ```
 
-7. **Archive empty records** (optional cleanup):
+5. **Archive empty records**:
    ```bash
    python tools/move_undefined.py
    ```
 
+#### **Smart Cleanup Tracking System**:
+
+The system now uses a `cleanup_status` column to track processing state:
+- **`'pending'`**: New entries awaiting cleanup
+- **`'cleaned'`**: Entries that have been processed
+- **`'undefined'`**: Entries moved to undefined table
+
+**Benefits**:
+- ✅ **Incremental Processing**: Only processes new/uncleaned entries
+- ✅ **No Redundant Work**: Skips already processed data
+- ✅ **Progress Tracking**: Clear visibility into processing status
+- ✅ **Reliable Operation**: Independent of agency type classifications
+- ✅ **Automated Workflow**: One command handles everything
+
 #### **Tool Capabilities**:
 
 - **Enhanced Classification**: Uses phone numbers (+48/+34), domains (.pl/.es), addresses, and descriptions
-- **Website Validation**: Checks 147+ websites for accessibility with detailed status reporting
+- **Website Validation**: Comprehensive URL validation and fixing
 - **URL Fixing**: Automatically adds missing "https://" prefixes and extracts URLs from text
-- **Duplicate Detection**: Processes recent entries first, keeps most complete records
-- **Data Quality**: Maintains 59 high-quality active entries from 664 total discovered
+- **Duplicate Detection**: Intelligent deduplication with completeness scoring
+- **Data Quality**: Maintains 491 high-quality active entries from 708 total discovered
 
 ### Export and Deploy
 1. Export updated data to JSON:
@@ -378,5 +397,5 @@ For questions or issues:
 
 This database is maintained by the Gemini Agency Finder project, which uses AI-powered search to discover real estate agencies working with Costa del Sol properties. The data includes agencies physically located in Marbella, Polish agencies specializing in Spanish properties, and agencies discovered through automated AI searches.
 
-**Last Updated**: October 11, 2025
-**Total Agencies**: 664 (59 active high-quality entries)
+**Last Updated**: October 12, 2025
+**Total Agencies**: 708 (491 active high-quality entries)

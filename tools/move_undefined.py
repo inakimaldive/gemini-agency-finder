@@ -44,7 +44,7 @@ def main():
         cursor.execute(create_undefined_table())
         logging.info("Created 'undefined' table")
 
-        # Find agencies with no useful information
+        # Find agencies with no useful information that haven't been processed yet
         cursor.execute('''
             SELECT id, name, type, website, phone, address, description, additional_info, website_status
             FROM agencies
@@ -52,32 +52,44 @@ def main():
             AND (phone IS NULL OR phone = '')
             AND (address IS NULL OR address = '')
             AND (description IS NULL OR description = '')
+            AND (cleanup_status != 'undefined' OR cleanup_status IS NULL)
         ''')
 
         undefined_agencies = cursor.fetchall()
         logging.info(f"Found {len(undefined_agencies)} agencies with no useful information")
 
         if undefined_agencies:
-            # Insert into undefined table
-            cursor.executemany('''
-                INSERT INTO undefined (id, name, type, website, phone, address, description, additional_info, website_status)
-                VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)
-            ''', undefined_agencies)
+            # Check which agencies are not already in undefined table
+            existing_ids = set()
+            cursor.execute('SELECT id FROM undefined')
+            existing_ids = set(row[0] for row in cursor.fetchall())
 
-            # Get the IDs to delete
-            undefined_ids = [agency[0] for agency in undefined_agencies]
+            # Filter out agencies that are already in undefined
+            new_undefined_agencies = [agency for agency in undefined_agencies if agency[0] not in existing_ids]
 
-            # Delete from agencies table
-            cursor.execute(f'''
-                DELETE FROM agencies
-                WHERE id IN ({','.join('?' * len(undefined_ids))})
-            ''', undefined_ids)
+            if new_undefined_agencies:
+                # Insert into undefined table (without preserving original IDs to avoid conflicts)
+                cursor.executemany('''
+                    INSERT INTO undefined (name, type, website, phone, address, description, additional_info, website_status)
+                    VALUES (?, ?, ?, ?, ?, ?, ?, ?)
+                ''', [agency[1:] for agency in new_undefined_agencies])  # Skip the ID field
 
-            logging.info(f"Moved {len(undefined_agencies)} agencies to 'undefined' table")
+                # Get the IDs to delete from agencies table
+                undefined_ids = [agency[0] for agency in new_undefined_agencies]
 
-            # Show some examples
-            for agency in undefined_agencies[:5]:
-                logging.info(f"Moved: '{agency[1]}' (ID: {agency[0]})")
+                # Delete from agencies table
+                cursor.execute(f'''
+                    DELETE FROM agencies
+                    WHERE id IN ({','.join('?' * len(undefined_ids))})
+                ''', undefined_ids)
+
+                logging.info(f"Moved {len(new_undefined_agencies)} agencies to 'undefined' table")
+
+                # Show some examples
+                for agency in new_undefined_agencies[:5]:
+                    logging.info(f"Moved: '{agency[1]}' (ID: {agency[0]})")
+            else:
+                logging.info("No new agencies to move (all candidates already in undefined table)")
 
         conn.commit()
         conn.close()

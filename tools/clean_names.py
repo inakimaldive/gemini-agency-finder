@@ -14,13 +14,35 @@ logging.basicConfig(
 )
 
 def clean_name_prefix(name):
-    """Remove numbering prefixes like '1. ', '2. ', etc. from the beginning of names"""
+    """Remove various problematic prefixes and formatting from agency names"""
     if not name:
         return name
 
-    # Pattern to match: optional whitespace + digits + period + optional whitespace
-    pattern = r'^\s*\d+\.\s*'
-    cleaned_name = re.sub(pattern, '', name)
+    # Apply multiple cleaning patterns in sequence
+    patterns = [
+        # Remove numbering prefixes like '1. ', '2. ', etc.
+        (r'^\s*\d+\.\s*', ''),
+        # Remove leading quotes
+        (r'^"', ''),
+        # Remove "A real estate agency *" patterns and similar
+        (r'^A real estate agency \*.*$', ''),
+        (r'^Agencies Specializing \*.*\*.*$', ''),
+        # Remove letter prefixes like a) b) c)
+        (r'^[a-zA-Z]\)\s*', ''),
+        # Remove "Discovered" date patterns
+        (r"'Discovered'\s*Oct\s*\d+", ''),
+        (r"'Discovered'\s*[A-Za-z]{3}\s*\d+", ''),
+        # Remove markdown bold formatting
+        (r'\*\*([^*]+)\*\*', r'\1'),
+        # Remove markdown italic formatting
+        (r'\*([^*]+)\*', r'\1'),
+        # Remove any remaining asterisks at start/end
+        (r'^\*+|\*+$', ''),
+    ]
+
+    cleaned_name = name
+    for pattern, replacement in patterns:
+        cleaned_name = re.sub(pattern, replacement, cleaned_name, flags=re.IGNORECASE)
 
     return cleaned_name.strip()
 
@@ -32,10 +54,11 @@ def main():
         conn = sqlite3.connect('agencies.db')
         cursor = conn.cursor()
 
-        # Get all agencies
+        # Get agencies that need name cleaning (pending or not yet processed)
         cursor.execute('''
             SELECT id, name
             FROM agencies
+            WHERE cleanup_status != 'cleaned' OR cleanup_status IS NULL
             ORDER BY id
         ''')
 
@@ -53,11 +76,18 @@ def main():
                 # Update the database
                 cursor.execute('''
                     UPDATE agencies
-                    SET name = ?
+                    SET name = ?, cleanup_status = 'cleaned'
                     WHERE id = ?
                 ''', (cleaned_name, agency_id))
 
                 updated_count += 1
+            else:
+                # Mark as cleaned even if no change was needed
+                cursor.execute('''
+                    UPDATE agencies
+                    SET cleanup_status = 'cleaned'
+                    WHERE id = ?
+                ''', (agency_id,))
 
         conn.commit()
         conn.close()
