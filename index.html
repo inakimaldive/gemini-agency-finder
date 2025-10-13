@@ -590,100 +590,230 @@
             // Update detail title
             document.getElementById('detail-title').textContent = agency.name || 'Unknown Agency';
 
-            // Create detailed content
+            // Create detailed content with all available information
             const detailContent = document.getElementById('detail-content');
+
+            // Determine if agency should be marked as inactive
+            const hasMainUrl = agency.website && agency.website.trim();
+            const mainUrlNotWorking = hasMainUrl && agency.website_status && !['active', 'corrected'].includes(agency.website_status);
+            const noWorkingAlternatives = !agency.alternative_urls || !Array.isArray(agency.alternative_urls) || !agency.alternative_urls.some(alt => ['active', 'corrected'].includes(alt.status));
+            const shouldBeInactive = hasMainUrl && mainUrlNotWorking && noWorkingAlternatives;
+
+            // Get type badge class and text
+            const typeBadgeClass = shouldBeInactive ? 'bg-danger' : (
+                agency.type === 'marbella' ? 'bg-success' :
+                agency.type === 'polish' ? 'bg-primary' :
+                agency.type === 'both' ? 'bg-info' : 'bg-warning'
+            );
+            const typeText = shouldBeInactive ? 'Inactive' : (
+                agency.type === 'marbella' ? 'Marbella Based' :
+                agency.type === 'polish' ? 'Polish Agency' :
+                agency.type === 'both' ? 'Spain & Poland' : 'AI Discovered'
+            );
+
             detailContent.innerHTML = `
                 <div class="row">
-                    <div class="col-md-8">
-                        <div class="mb-4">
-                            <h4 class="mb-3">${agency.name || 'Unknown Agency'}</h4>
-
-                            <div class="mb-3">
-                                <strong>Type:</strong>
-                                <span class="badge ${(() => {
-                                    const hasMainUrl = agency.website && agency.website.trim();
-                                    const mainUrlNotWorking = hasMainUrl && agency.website_status && !['active', 'corrected'].includes(agency.website_status);
-                                    const noWorkingAlternatives = !agency.alternative_urls || !agency.alternative_urls.some(alt => ['active', 'corrected'].includes(alt.status));
-                                    const shouldBeInactive = hasMainUrl && mainUrlNotWorking && noWorkingAlternatives;
-
-                                    if (shouldBeInactive) {
-                                        return 'bg-danger';
-                                    } else {
-                                        return agency.type === 'marbella' ? 'bg-success' :
-                                               agency.type === 'polish' ? 'bg-primary' :
-                                               agency.type === 'both' ? 'bg-info' : 'bg-warning';
-                                    }
-                                })()} ms-2">
-                                    ${(() => {
-                                        const hasMainUrl = agency.website && agency.website.trim();
-                                        const mainUrlNotWorking = hasMainUrl && agency.website_status && !['active', 'corrected'].includes(agency.website_status);
-                                        const noWorkingAlternatives = !agency.alternative_urls || !agency.alternative_urls.some(alt => ['active', 'corrected'].includes(alt.status));
-                                        const shouldBeInactive = hasMainUrl && mainUrlNotWorking && noWorkingAlternatives;
-
-                                        if (shouldBeInactive) {
-                                            return 'Inactive';
-                                        } else {
-                                            return agency.type === 'marbella' ? 'Marbella Based' :
-                                                   agency.type === 'polish' ? 'Polish Agency' :
-                                                   agency.type === 'both' ? 'Spain & Poland' : 'AI Discovered';
-                                        }
-                                    })()}
-                                </span>
+                    <div class="col-lg-8">
+                        <!-- Main Agency Information -->
+                        <div class="card mb-4">
+                            <div class="card-header">
+                                <h4 class="card-title mb-0">${agency.name || 'Unknown Agency'}</h4>
                             </div>
-
-                            ${getBestWebsite(agency) ? `
-                            <div class="mb-3">
-                                <strong>Website:</strong>
-                                <a href="${getBestWebsite(agency).startsWith('http') ? getBestWebsite(agency) : 'https://' + getBestWebsite(agency)}"
-                                   target="_blank" class="ms-2 text-decoration-none">
-                                    ${getBestWebsite(agency)} <i class="fas fa-external-link-alt small"></i>
-                                </a>
-                            </div>
-                            ` : ''}
-
-                            ${agency.phone ? `
-                            <div class="mb-3">
-                                <strong>Phone:</strong>
-                                <a href="tel:${agency.phone.replace(/[^\d+\-\s()]/g, '')}"
-                                   class="ms-2 text-decoration-none">
-                                    ${agency.phone} <i class="fas fa-phone small"></i>
-                                </a>
-                            </div>
-                            ` : ''}
-
-                            ${agency.address ? `
-                            <div class="mb-3">
-                                <strong>Address:</strong>
-                                <span class="ms-2">${stripMarkdown(agency.address)}</span>
-                            </div>
-                            ` : ''}
-
-                            ${agency.description ? `
-                            <div class="mb-3">
-                                <strong>Description:</strong>
-                                <p class="ms-2 mt-2">${stripMarkdown(agency.description)}</p>
-                            </div>
-                            ` : ''}
-                        </div>
-                    </div>
-                    <div class="col-md-4">
-                        <div class="card bg-light">
                             <div class="card-body">
-                                <h6 class="card-title">Agency Information</h6>
-                                <div class="mb-2">
-                                    <strong>ID:</strong> ${agency.id || 'N/A'}
+                                <!-- Type Badge -->
+                                <div class="mb-3">
+                                    <span class="badge ${typeBadgeClass} fs-6 px-3 py-2">${typeText}</span>
                                 </div>
-                                ${agency.additional_info ? `
-                                <div class="mb-2">
-                                    <strong>Discovery:</strong>
-                                    <small class="text-muted">${agency.additional_info}</small>
+
+                                <!-- Website Section -->
+                                ${getBestWebsite(agency) ? `
+                                <div class="mb-3">
+                                    <h6 class="text-primary mb-2"><i class="fas fa-globe"></i> Website</h6>
+                                    <a href="${getBestWebsite(agency).startsWith('http') ? getBestWebsite(agency) : 'https://' + getBestWebsite(agency)}"
+                                       target="_blank" class="btn btn-outline-primary btn-sm">
+                                        <i class="fas fa-external-link-alt"></i> Visit Website
+                                    </a>
+                                    <small class="text-muted ms-2">${getBestWebsite(agency)}</small>
                                 </div>
                                 ` : ''}
+
+                                <!-- Contact Information -->
+                                <div class="row">
+                                    ${agency.phone ? `
+                                    <div class="col-md-6 mb-3">
+                                        <h6 class="text-primary mb-2"><i class="fas fa-phone"></i> Phone</h6>
+                                        <a href="tel:${agency.phone.replace(/[^\d+\-\s()]/g, '')}"
+                                           class="text-decoration-none">
+                                            ${agency.phone}
+                                        </a>
+                                    </div>
+                                    ` : ''}
+
+                                    ${agency.address ? `
+                                    <div class="col-md-6 mb-3">
+                                        <h6 class="text-primary mb-2"><i class="fas fa-map-marker-alt"></i> Address</h6>
+                                        <span>${stripMarkdown(agency.address)}</span>
+                                    </div>
+                                    ` : ''}
+                                </div>
+
+                                <!-- Description -->
+                                ${agency.description ? `
+                                <div class="mb-3">
+                                    <h6 class="text-primary mb-2"><i class="fas fa-info-circle"></i> Description</h6>
+                                    <p class="mb-0">${stripMarkdown(agency.description)}</p>
+                                </div>
+                                ` : ''}
+                            </div>
+                        </div>
+
+                        <!-- Technical Details -->
+                        <div class="card mb-4">
+                            <div class="card-header">
+                                <h6 class="card-title mb-0"><i class="fas fa-cogs"></i> Technical Information</h6>
+                            </div>
+                            <div class="card-body">
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <strong>Database ID:</strong> ${agency.id || 'N/A'}
+                                    </div>
+                                    <div class="col-md-6">
+                                        <strong>Cleanup Status:</strong>
+                                        <span class="badge ${agency.cleanup_status === 'cleaned' ? 'bg-success' : 'bg-warning'}">${agency.cleanup_status || 'unknown'}</span>
+                                    </div>
+                                </div>
+
+                                ${agency.website_status ? `
+                                <div class="mt-3">
+                                    <strong>Main Website Status:</strong>
+                                    <span class="badge ${agency.website_status === 'active' ? 'bg-success' :
+                                                       agency.website_status === 'corrected' ? 'bg-info' :
+                                                       'bg-danger'}">${agency.website_status}</span>
+                                </div>
+                                ` : ''}
+
+                                ${agency.polish_city ? `
+                                <div class="mt-2">
+                                    <strong>Polish City:</strong> ${agency.polish_city}
+                                </div>
+                                ` : ''}
+
+                                ${agency.url_validation_date ? `
+                                <div class="mt-2">
+                                    <strong>Last URL Validation:</strong> ${new Date(agency.url_validation_date).toLocaleDateString()}
+                                </div>
+                                ` : ''}
+                            </div>
+                        </div>
+
+                        <!-- Alternative URLs -->
+                        ${agency.alternative_urls && Array.isArray(agency.alternative_urls) && agency.alternative_urls.length > 0 ? `
+                        <div class="card mb-4">
+                            <div class="card-header">
+                                <h6 class="card-title mb-0"><i class="fas fa-link"></i> Alternative URLs</h6>
+                            </div>
+                            <div class="card-body">
+                                <div class="list-group">
+                                    ${agency.alternative_urls.map(alt => `
+                                        <div class="list-group-item d-flex justify-content-between align-items-center">
+                                            <div>
+                                                <a href="${alt.url.startsWith('http') ? alt.url : 'https://' + alt.url}"
+                                                   target="_blank" class="text-decoration-none">
+                                                    ${alt.url}
+                                                </a>
+                                                ${alt.reason ? `<br><small class="text-muted">${alt.reason}</small>` : ''}
+                                            </div>
+                                            <span class="badge ${alt.status === 'active' ? 'bg-success' :
+                                                               alt.status === 'corrected' ? 'bg-info' : 'bg-secondary'}">${alt.status}</span>
+                                        </div>
+                                    `).join('')}
+                                </div>
+                            </div>
+                        </div>
+                        ` : ''}
+
+                        <!-- Security & Redirect Information -->
+                        ${(agency.security_warnings || agency.redirect_chain) ? `
+                        <div class="card mb-4">
+                            <div class="card-header">
+                                <h6 class="card-title mb-0"><i class="fas fa-shield-alt"></i> Security & Redirect Information</h6>
+                            </div>
+                            <div class="card-body">
+                                ${agency.security_warnings ? `
+                                <div class="mb-3">
+                                    <strong>Security Warnings:</strong>
+                                    <ul class="mb-0">
+                                        ${Array.isArray(agency.security_warnings) ?
+                                            agency.security_warnings.map(warning => `<li class="text-danger">${warning}</li>`).join('') :
+                                            `<li class="text-danger">${agency.security_warnings}</li>`}
+                                    </ul>
+                                </div>
+                                ` : ''}
+
+                                ${agency.redirect_chain && Array.isArray(agency.redirect_chain) ? `
+                                <div>
+                                    <strong>Redirect Chain:</strong>
+                                    <ul class="mb-0">
+                                        ${agency.redirect_chain.map(redirect => `
+                                            <li><code>${redirect.from}</code> → <code>${redirect.to}</code>
+                                                <span class="badge bg-info">${redirect.status}</span></li>
+                                        `).join('')}
+                                    </ul>
+                                </div>
+                                ` : ''}
+                            </div>
+                        </div>
+                        ` : ''}
+                    </div>
+
+                    <!-- Sidebar Information -->
+                    <div class="col-lg-4">
+                        <!-- Discovery Information -->
+                        <div class="card mb-4">
+                            <div class="card-header">
+                                <h6 class="card-title mb-0"><i class="fas fa-search"></i> Discovery Information</h6>
+                            </div>
+                            <div class="card-body">
+                                ${agency.additional_info ? `
+                                <div class="mb-2">
+                                    <strong>Source:</strong>
+                                    <span>${agency.additional_info}</span>
+                                </div>
+                                ` : ''}
+
                                 <div class="mt-3">
                                     <small class="text-muted">
-                                        Data from Gemini Agency Finder database
+                                        <i class="fas fa-database"></i> Data from Gemini Agency Finder database<br>
+                                        <i class="fas fa-clock"></i> Last updated: ${agency.url_validation_date ?
+                                            new Date(agency.url_validation_date).toLocaleDateString() : 'Unknown'}
                                     </small>
                                 </div>
+                            </div>
+                        </div>
+
+                        <!-- Quick Actions -->
+                        <div class="card">
+                            <div class="card-header">
+                                <h6 class="card-title mb-0"><i class="fas fa-bolt"></i> Quick Actions</h6>
+                            </div>
+                            <div class="card-body">
+                                ${getBestWebsite(agency) ? `
+                                <a href="${getBestWebsite(agency).startsWith('http') ? getBestWebsite(agency) : 'https://' + getBestWebsite(agency)}"
+                                   target="_blank" class="btn btn-primary btn-sm w-100 mb-2">
+                                    <i class="fas fa-external-link-alt"></i> Visit Website
+                                </a>
+                                ` : ''}
+
+                                ${agency.phone ? `
+                                <a href="tel:${agency.phone.replace(/[^\d+\-\s()]/g, '')}"
+                                   class="btn btn-success btn-sm w-100 mb-2">
+                                    <i class="fas fa-phone"></i> Call Now
+                                </a>
+                                ` : ''}
+
+                                <button class="btn btn-outline-secondary btn-sm w-100" onclick="window.print()">
+                                    <i class="fas fa-print"></i> Print Details
+                                </button>
                             </div>
                         </div>
                     </div>

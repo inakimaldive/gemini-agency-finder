@@ -14,6 +14,7 @@ This interface displays **515 real estate agencies** (491 active high-quality en
 - **Dual Operations** (92): Agencies serving both Spanish and Polish markets
 - **Spain&Poland Specialists** (41): Strong international connections
 - **AI Discovered** (4): Agencies found through AI-powered web searches
+- **Inactive Agencies**: Agencies with broken main URLs and no working alternatives
 - **Enhanced Classification**: Advanced multi-indicator type classification
 - **Website Validation**: Comprehensive URL validation, fixing, and enhancement system
 - **Alternative URLs**: Backup website options for improved reliability
@@ -43,9 +44,10 @@ This interface displays **515 real estate agencies** (491 active high-quality en
 
 ### Data Visualization
 - **Color-coded Rows**: Different background colors by agency type
-- **Badge System**: Visual type indicators (Marbella, Polish, AI Found)
+- **Badge System**: Visual type indicators (Marbella, Polish, AI Found, Inactive)
 - **Interactive Chart**: Doughnut chart showing agency distribution
 - **Hover Effects**: Enhanced user interaction
+- **Detailed Agency Pages**: Comprehensive individual listing pages with all available information
 
 ## 🛠️ Technical Stack
 
