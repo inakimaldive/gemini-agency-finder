@@ -8,13 +8,16 @@ A static web interface for exploring the Gemini Agency Finder database of real e
 
 ## 📊 Database Overview
 
-This interface displays **708 real estate agencies** (491 active high-quality entries after cleanup) across multiple categories:
-- **Polish Agencies** (199): Polish agencies specializing in Costa del Sol properties
+This interface displays **515 real estate agencies** (491 active high-quality entries after cleanup) across multiple categories:
+- **Polish Agencies** (221): Polish agencies specializing in Costa del Sol properties
 - **Marbella Agencies** (156): Spain-based agencies with Marbella focus
 - **Dual Operations** (92): Agencies serving both Spanish and Polish markets
 - **Spain&Poland Specialists** (41): Strong international connections
+- **AI Discovered** (4): Agencies found through AI-powered web searches
 - **Enhanced Classification**: Advanced multi-indicator type classification
-- **Website Validation**: Comprehensive URL validation and fixing
+- **Website Validation**: Comprehensive URL validation, fixing, and enhancement system
+- **Alternative URLs**: Backup website options for improved reliability
+- **Security Monitoring**: SSL validation and security warning detection
 - **Data Quality**: 217 undefined entries archived to separate table
 - **Cleanup Tracking**: Robust `cleanup_status` system prevents redundant processing
 
@@ -143,6 +146,11 @@ gemini-agency-finder/
 ├── tools/                 # Data cleanup and maintenance tools
 │   ├── run_full_cleanup.py    # 🚀 COMPREHENSIVE CLEANUP SYSTEM
 │   ├── update_data.sh         # Export database to JSON + web update
+│   ├── batch_website_processor.py # 🔧 BATCH WEBSITE ENHANCEMENT SYSTEM
+│   ├── enhanced_website_validator.py # ✅ ADVANCED URL VALIDATION & FIXING
+│   ├── website_discovery_ai.py # 🤖 AI-POWERED WEBSITE DISCOVERY
+│   ├── chrome_website_audit.py # 🌐 CHROME DEVTOOLS INTEGRATION FRAMEWORK
+│   ├── clean_website_urls.py  # 🧹 MALFORMED URL CLEANUP (markdown, punctuation)
 │   ├── clean_names.py         # Remove numbering prefixes from names
 │   ├── fix_websites.py        # Extract & fix URLs from descriptions
 │   ├── remove_duplicates.py   # Identify and remove duplicates
@@ -397,5 +405,5 @@ For questions or issues:
 
 This database is maintained by the Gemini Agency Finder project, which uses AI-powered search to discover real estate agencies working with Costa del Sol properties. The data includes agencies physically located in Marbella, Polish agencies specializing in Spanish properties, and agencies discovered through automated AI searches.
 
-**Last Updated**: October 12, 2025
-**Total Agencies**: 708 (491 active high-quality entries)
+**Last Updated**: October 13, 2025
+**Total Agencies**: 515 (491 active high-quality entries)
