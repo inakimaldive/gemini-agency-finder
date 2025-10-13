@@ -84,6 +84,11 @@
             max-width: 100%;
         }
 
+        .address-cell {
+            white-space: normal !important;
+            word-break: break-word !important;
+        }
+
         /* Custom container padding for large screens */
         @media (min-width: 992px) {
             .container {
@@ -401,6 +406,7 @@
                         data: 'address',
                         title: 'Address',
                         width: '16%',
+                        className: 'address-cell',
                         render: function(data, type, row) {
                             if (data && data.trim()) {
                                 const cleanAddress = stripMarkdown(data);

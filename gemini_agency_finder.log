@@ -5116,3 +5116,945 @@ Find their ...
 2025-10-12 09:54:22,052 - INFO - 🏁 Targeted search complete. Total agencies found: 21
 2025-10-12 11:26:23,558 - INFO - Starting single city scan for 20... Target: 10 agencies
 2025-10-12 11:26:23,559 - ERROR - City '20' not found in Polish cities list
+2025-10-12 12:30:48,095 - INFO - Starting targeted Polish town agency discovery... Target: 50 new agencies
+2025-10-12 12:30:48,096 - INFO - Found 37 scanned cities from tracking file
+2025-10-12 12:30:48,096 - INFO - === Iteration 1 === Total agencies found so far: 0
+2025-10-12 12:30:48,101 - INFO - 🔍 Searching for agencies in Tarnow, Poland...
+2025-10-12 12:30:48,102 - INFO -    🤖 Prompt 1/5: Find up to 15 real estate agencies in Tarnow, Poland that specialize in Costa de...
+2025-10-12 12:30:48,102 - INFO - Running Gemini prompt: Find up to 15 real estate agencies in Tarnow, Poland that specialize in Costa del Sol, Marbella, or ...
+2025-10-12 12:30:48,102 - INFO - AFC is enabled with max remote calls: 10.
+2025-10-12 12:31:18,973 - INFO - HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent "HTTP/1.1 200 OK"
+2025-10-12 12:31:18,975 - INFO -    📄 Response received (591 chars)
+2025-10-12 12:31:18,975 - INFO -    🔍 Parsed 1 potential agencies from response
+2025-10-12 12:31:19,976 - INFO -    🤖 Prompt 2/5: Search for up to 15 property agencies in Tarnow, Poland that help Polish clients...
+2025-10-12 12:31:19,976 - INFO - Running Gemini prompt: Search for up to 15 property agencies in Tarnow, Poland that help Polish clients buy properties in S...
+2025-10-12 12:31:19,976 - INFO - AFC is enabled with max remote calls: 10.
+2025-10-12 12:31:32,081 - INFO - HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent "HTTP/1.1 200 OK"
+2025-10-12 12:31:32,083 - INFO -    📄 Response received (2 chars)
+2025-10-12 12:31:32,083 - INFO -    🔍 Parsed 0 potential agencies from response
+2025-10-12 12:31:33,084 - INFO -    🤖 Prompt 3/5: Find up to 15 Polish real estate companies in Tarnow that offer international pr...
+2025-10-12 12:31:33,084 - INFO - Running Gemini prompt: Find up to 15 Polish real estate companies in Tarnow that offer international property services, par...
+2025-10-12 12:31:33,084 - INFO - AFC is enabled with max remote calls: 10.
+2025-10-12 12:31:45,877 - INFO - HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent "HTTP/1.1 200 OK"
+2025-10-12 12:31:45,884 - INFO -    📄 Response received (2 chars)
+2025-10-12 12:31:45,885 - INFO -    🔍 Parsed 0 potential agencies from response
+2025-10-12 12:31:46,886 - INFO -    🤖 Prompt 4/5: Search for up to 15 'biuro nieruchomości' in Tarnow, Poland that handle internat...
+2025-10-12 12:31:46,887 - INFO - Running Gemini prompt: Search for up to 15 'biuro nieruchomości' in Tarnow, Poland that handle international property trans...
+2025-10-12 12:31:46,887 - INFO - AFC is enabled with max remote calls: 10.
+2025-10-12 12:32:16,517 - INFO - HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent "HTTP/1.1 200 OK"
+2025-10-12 12:32:16,524 - INFO -    📄 Response received (1775 chars)
+2025-10-12 12:32:16,525 - INFO -    🔍 Parsed 3 potential agencies from response
+2025-10-12 12:32:17,526 - INFO -    🤖 Prompt 5/5: Find up to 15 real estate agencies in Tarnow, Poland that could assist Polish in...
+2025-10-12 12:32:17,526 - INFO - Running Gemini prompt: Find up to 15 real estate agencies in Tarnow, Poland that could assist Polish investors with Marbell...
+2025-10-12 12:32:17,527 - INFO - AFC is enabled with max remote calls: 10.
+2025-10-12 12:32:59,734 - INFO - HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent "HTTP/1.1 200 OK"
+2025-10-12 12:32:59,749 - INFO -    📄 Response received (1274 chars)
+2025-10-12 12:32:59,750 - INFO -    🔍 Parsed 3 potential agencies from response
+2025-10-12 12:33:00,750 - INFO -    🚫 Duplicate name found: freedom nieruchomości tarnów
+2025-10-12 12:33:00,750 - INFO -    🚫 Duplicate domain found: remax-polska.pl
+2025-10-12 12:33:00,751 - INFO -    🚫 Duplicate name found: knc nieruchomości tarnów
+2025-10-12 12:33:00,751 - INFO -    🚫 Duplicate name found: freedom nieruchomości tarnów
+2025-10-12 12:33:00,751 - INFO -    🚫 Duplicate domain found: metrohouse.pl
+2025-10-12 12:33:00,751 - INFO -    🚫 Duplicate name found: północ nieruchomości tarnów
+2025-10-12 12:33:00,751 - INFO -    ✅ Found 1 new agencies for Tarnow
+2025-10-12 12:33:00,751 - INFO -       ➕ NEW: RE/MAX Expert Tarnów - https://www.remax-expert.pl/
+2025-10-12 12:33:00,751 - INFO - 🔍 Searching for agencies in Grudziadz, Poland...
+2025-10-12 12:33:00,751 - INFO -    📋 Excluding 1 known agencies from Grudziadz
+2025-10-12 12:33:00,752 - INFO -    🤖 Prompt 1/5: Find up to 15 real estate agencies in Grudziadz, Poland that specialize in Costa...
+2025-10-12 12:33:00,752 - INFO - Running Gemini prompt: Find up to 15 real estate agencies in Grudziadz, Poland that specialize in Costa del Sol, Marbella, ...
+2025-10-12 12:33:00,752 - INFO - AFC is enabled with max remote calls: 10.
+2025-10-12 12:33:11,437 - INFO - HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent "HTTP/1.1 200 OK"
+2025-10-12 12:33:11,448 - INFO -    📄 Response received (2 chars)
+2025-10-12 12:33:11,448 - INFO -    🔍 Parsed 0 potential agencies from response
+2025-10-12 12:33:12,449 - INFO -    🤖 Prompt 2/5: Search for up to 15 property agencies in Grudziadz, Poland that help Polish clie...
+2025-10-12 12:33:12,449 - INFO - Running Gemini prompt: Search for up to 15 property agencies in Grudziadz, Poland that help Polish clients buy properties i...
+2025-10-12 12:33:12,449 - INFO - AFC is enabled with max remote calls: 10.
+2025-10-12 12:33:23,555 - INFO - HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent "HTTP/1.1 200 OK"
+2025-10-12 12:33:23,560 - INFO -    📄 Response received (2 chars)
+2025-10-12 12:33:23,560 - INFO -    🔍 Parsed 0 potential agencies from response
+2025-10-12 12:33:24,561 - INFO -    🤖 Prompt 3/5: Find up to 15 Polish real estate companies in Grudziadz that offer international...
+2025-10-12 12:33:24,563 - INFO - Running Gemini prompt: Find up to 15 Polish real estate companies in Grudziadz that offer international property services, ...
+2025-10-12 12:33:24,563 - INFO - AFC is enabled with max remote calls: 10.
+2025-10-12 12:33:39,266 - INFO - HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent "HTTP/1.1 200 OK"
+2025-10-12 12:33:39,272 - INFO -    📄 Response received (2 chars)
+2025-10-12 12:33:39,272 - INFO -    🔍 Parsed 0 potential agencies from response
+2025-10-12 12:33:40,275 - INFO -    🤖 Prompt 4/5: Search for up to 15 'biuro nieruchomości' in Grudziadz, Poland that handle inter...
+2025-10-12 12:33:40,276 - INFO - Running Gemini prompt: Search for up to 15 'biuro nieruchomości' in Grudziadz, Poland that handle international property tr...
+2025-10-12 12:33:40,276 - INFO - AFC is enabled with max remote calls: 10.
+2025-10-12 12:33:57,666 - INFO - HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent "HTTP/1.1 200 OK"
+2025-10-12 12:33:57,670 - INFO -    📄 Response received (2 chars)
+2025-10-12 12:33:57,671 - INFO -    🔍 Parsed 0 potential agencies from response
+2025-10-12 12:33:58,671 - INFO -    🤖 Prompt 5/5: Find up to 15 real estate agencies in Grudziadz, Poland that could assist Polish...
+2025-10-12 12:33:58,672 - INFO - Running Gemini prompt: Find up to 15 real estate agencies in Grudziadz, Poland that could assist Polish investors with Marb...
+2025-10-12 12:33:58,673 - INFO - AFC is enabled with max remote calls: 10.
+2025-10-12 12:34:22,157 - INFO - HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent "HTTP/1.1 200 OK"
+2025-10-12 12:34:22,163 - INFO -    📄 Response received (750 chars)
+2025-10-12 12:34:22,163 - INFO -    🔍 Parsed 2 potential agencies from response
+2025-10-12 12:34:23,164 - INFO -    🚫 Duplicate name found: północ nieruchomości grudziądz
+2025-10-12 12:34:23,164 - INFO -    🚫 Duplicate domain found: freedom-nieruchomosci.pl
+2025-10-12 12:34:23,165 - INFO -    ✅ Found 0 new agencies for Grudziadz
+2025-10-12 12:34:23,165 - INFO - 🔍 Searching for agencies in Slupsk, Poland...
+2025-10-12 12:34:23,166 - INFO -    🤖 Prompt 1/5: Find up to 15 real estate agencies in Slupsk, Poland that specialize in Costa de...
+2025-10-12 12:34:23,167 - INFO - Running Gemini prompt: Find up to 15 real estate agencies in Slupsk, Poland that specialize in Costa del Sol, Marbella, or ...
+2025-10-12 12:34:23,167 - INFO - AFC is enabled with max remote calls: 10.
+2025-10-12 12:34:48,169 - INFO - HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent "HTTP/1.1 200 OK"
+2025-10-12 12:34:48,176 - INFO -    📄 Response received (1625 chars)
+2025-10-12 12:34:48,176 - INFO -    🔍 Parsed 3 potential agencies from response
+2025-10-12 12:34:49,177 - INFO -    🤖 Prompt 2/5: Search for up to 15 property agencies in Slupsk, Poland that help Polish clients...
+2025-10-12 12:34:49,179 - INFO - Running Gemini prompt: Search for up to 15 property agencies in Slupsk, Poland that help Polish clients buy properties in S...
+2025-10-12 12:34:49,180 - INFO - AFC is enabled with max remote calls: 10.
+2025-10-12 12:35:02,942 - INFO - HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent "HTTP/1.1 200 OK"
+2025-10-12 12:35:02,947 - INFO -    📄 Response received (2 chars)
+2025-10-12 12:35:02,948 - INFO -    🔍 Parsed 0 potential agencies from response
+2025-10-12 12:35:03,948 - INFO -    🤖 Prompt 3/5: Find up to 15 Polish real estate companies in Slupsk that offer international pr...
+2025-10-12 12:35:03,949 - INFO - Running Gemini prompt: Find up to 15 Polish real estate companies in Slupsk that offer international property services, par...
+2025-10-12 12:35:03,950 - INFO - AFC is enabled with max remote calls: 10.
+2025-10-12 12:35:16,941 - INFO - HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent "HTTP/1.1 200 OK"
+2025-10-12 12:35:16,946 - INFO -    📄 Response received (2 chars)
+2025-10-12 12:35:16,947 - INFO -    🔍 Parsed 0 potential agencies from response
+2025-10-12 12:35:17,948 - INFO -    🤖 Prompt 4/5: Search for up to 15 'biuro nieruchomości' in Slupsk, Poland that handle internat...
+2025-10-12 12:35:17,949 - INFO - Running Gemini prompt: Search for up to 15 'biuro nieruchomości' in Slupsk, Poland that handle international property trans...
+2025-10-12 12:35:17,950 - INFO - AFC is enabled with max remote calls: 10.
+2025-10-12 12:35:29,366 - INFO - HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent "HTTP/1.1 200 OK"
+2025-10-12 12:35:29,372 - INFO -    📄 Response received (2 chars)
+2025-10-12 12:35:29,372 - INFO -    🔍 Parsed 0 potential agencies from response
+2025-10-12 12:35:30,373 - INFO -    🤖 Prompt 5/5: Find up to 15 real estate agencies in Slupsk, Poland that could assist Polish in...
+2025-10-12 12:35:30,374 - INFO - Running Gemini prompt: Find up to 15 real estate agencies in Slupsk, Poland that could assist Polish investors with Marbell...
+2025-10-12 12:35:30,374 - INFO - AFC is enabled with max remote calls: 10.
+2025-10-12 12:35:58,417 - INFO - HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent "HTTP/1.1 200 OK"
+2025-10-12 12:35:58,424 - INFO -    📄 Response received (1377 chars)
+2025-10-12 12:35:58,425 - INFO -    🔍 Parsed 4 potential agencies from response
+2025-10-12 12:35:59,426 - INFO -    🚫 Duplicate domain found: freedom-nieruchomosci.pl
+2025-10-12 12:35:59,426 - INFO -    🚫 Duplicate domain found: metrohouse.pl
+2025-10-12 12:35:59,427 - INFO -    🚫 Duplicate domain found: remax-home.pl
+2025-10-12 12:35:59,427 - INFO -    🚫 Duplicate domain found: homebroker.pl
+2025-10-12 12:35:59,428 - INFO -    🚫 Duplicate domain found: polnoc.pl
+2025-10-12 12:35:59,428 - INFO -    🚫 Duplicate domain found: wgn.pl
+2025-10-12 12:35:59,428 - INFO -    🚫 Duplicate domain found: freedom-nieruchomosci.pl
+2025-10-12 12:35:59,428 - INFO -    ✅ Found 0 new agencies for Slupsk
+2025-10-12 12:35:59,428 - INFO - 🔍 Searching for agencies in Jastrzebie-Zdroj, Poland...
+2025-10-12 12:35:59,428 - INFO -    🤖 Prompt 1/5: Find up to 15 real estate agencies in Jastrzebie-Zdroj, Poland that specialize i...
+2025-10-12 12:35:59,429 - INFO - Running Gemini prompt: Find up to 15 real estate agencies in Jastrzebie-Zdroj, Poland that specialize in Costa del Sol, Mar...
+2025-10-12 12:35:59,429 - INFO - AFC is enabled with max remote calls: 10.
+2025-10-12 12:36:10,480 - INFO - HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent "HTTP/1.1 200 OK"
+2025-10-12 12:36:10,482 - INFO -    📄 Response received (2 chars)
+2025-10-12 12:36:10,482 - INFO -    🔍 Parsed 0 potential agencies from response
+2025-10-12 12:36:11,483 - INFO -    🤖 Prompt 2/5: Search for up to 15 property agencies in Jastrzebie-Zdroj, Poland that help Poli...
+2025-10-12 12:36:11,483 - INFO - Running Gemini prompt: Search for up to 15 property agencies in Jastrzebie-Zdroj, Poland that help Polish clients buy prope...
+2025-10-12 12:36:11,483 - INFO - AFC is enabled with max remote calls: 10.
+2025-10-12 12:36:23,402 - INFO - HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent "HTTP/1.1 200 OK"
+2025-10-12 12:36:23,408 - INFO -    📄 Response received (2 chars)
+2025-10-12 12:36:23,408 - INFO -    🔍 Parsed 0 potential agencies from response
+2025-10-12 12:36:24,409 - INFO -    🤖 Prompt 3/5: Find up to 15 Polish real estate companies in Jastrzebie-Zdroj that offer intern...
+2025-10-12 12:36:24,409 - INFO - Running Gemini prompt: Find up to 15 Polish real estate companies in Jastrzebie-Zdroj that offer international property ser...
+2025-10-12 12:36:24,410 - INFO - AFC is enabled with max remote calls: 10.
+2025-10-12 12:36:37,131 - INFO - HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent "HTTP/1.1 200 OK"
+2025-10-12 12:36:37,136 - INFO -    📄 Response received (2 chars)
+2025-10-12 12:36:37,137 - INFO -    🔍 Parsed 0 potential agencies from response
+2025-10-12 12:36:38,137 - INFO -    🤖 Prompt 4/5: Search for up to 15 'biuro nieruchomości' in Jastrzebie-Zdroj, Poland that handl...
+2025-10-12 12:36:38,138 - INFO - Running Gemini prompt: Search for up to 15 'biuro nieruchomości' in Jastrzebie-Zdroj, Poland that handle international prop...
+2025-10-12 12:36:38,138 - INFO - AFC is enabled with max remote calls: 10.
+2025-10-12 12:36:52,242 - INFO - HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent "HTTP/1.1 200 OK"
+2025-10-12 12:36:52,245 - INFO -    📄 Response received (2 chars)
+2025-10-12 12:36:52,245 - INFO -    🔍 Parsed 0 potential agencies from response
+2025-10-12 12:36:53,246 - INFO -    🤖 Prompt 5/5: Find up to 15 real estate agencies in Jastrzebie-Zdroj, Poland that could assist...
+2025-10-12 12:36:53,246 - INFO - Running Gemini prompt: Find up to 15 real estate agencies in Jastrzebie-Zdroj, Poland that could assist Polish investors wi...
+2025-10-12 12:36:53,247 - INFO - AFC is enabled with max remote calls: 10.
+2025-10-12 12:37:18,411 - INFO - HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent "HTTP/1.1 200 OK"
+2025-10-12 12:37:18,417 - INFO -    📄 Response received (761 chars)
+2025-10-12 12:37:18,417 - INFO -    🔍 Parsed 2 potential agencies from response
+2025-10-12 12:37:19,418 - INFO -    🚫 Duplicate domain found: metrohouse.pl
+2025-10-12 12:37:19,418 - INFO -    🚫 Duplicate domain found: wgn.pl
+2025-10-12 12:37:19,419 - INFO -    ✅ Found 0 new agencies for Jastrzebie-Zdroj
+2025-10-12 12:37:19,419 - INFO - 🔍 Searching for agencies in Nowy Sacz, Poland...
+2025-10-12 12:37:19,419 - INFO -    🤖 Prompt 1/5: Find up to 15 real estate agencies in Nowy Sacz, Poland that specialize in Costa...
+2025-10-12 12:37:19,420 - INFO - Running Gemini prompt: Find up to 15 real estate agencies in Nowy Sacz, Poland that specialize in Costa del Sol, Marbella, ...
+2025-10-12 12:37:19,420 - INFO - AFC is enabled with max remote calls: 10.
+2025-10-12 12:37:51,900 - INFO - HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent "HTTP/1.1 200 OK"
+2025-10-12 12:37:51,905 - INFO -    📄 Response received (790 chars)
+2025-10-12 12:37:51,905 - INFO -    🔍 Parsed 1 potential agencies from response
+2025-10-12 12:37:52,906 - INFO -    🤖 Prompt 2/5: Search for up to 15 property agencies in Nowy Sacz, Poland that help Polish clie...
+2025-10-12 12:37:52,906 - INFO - Running Gemini prompt: Search for up to 15 property agencies in Nowy Sacz, Poland that help Polish clients buy properties i...
+2025-10-12 12:37:52,907 - INFO - AFC is enabled with max remote calls: 10.
+2025-10-12 12:38:04,275 - INFO - HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent "HTTP/1.1 200 OK"
+2025-10-12 12:38:04,280 - INFO -    📄 Response received (2 chars)
+2025-10-12 12:38:04,280 - INFO -    🔍 Parsed 0 potential agencies from response
+2025-10-12 12:38:05,281 - INFO -    🤖 Prompt 3/5: Find up to 15 Polish real estate companies in Nowy Sacz that offer international...
+2025-10-12 12:38:05,282 - INFO - Running Gemini prompt: Find up to 15 Polish real estate companies in Nowy Sacz that offer international property services, ...
+2025-10-12 12:38:05,282 - INFO - AFC is enabled with max remote calls: 10.
+2025-10-12 12:38:29,405 - INFO - HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent "HTTP/1.1 200 OK"
+2025-10-12 12:38:29,412 - INFO -    📄 Response received (1352 chars)
+2025-10-12 12:38:29,412 - INFO -    🔍 Parsed 2 potential agencies from response
+2025-10-12 12:38:30,413 - INFO -    🤖 Prompt 4/5: Search for up to 15 'biuro nieruchomości' in Nowy Sacz, Poland that handle inter...
+2025-10-12 12:38:30,413 - INFO - Running Gemini prompt: Search for up to 15 'biuro nieruchomości' in Nowy Sacz, Poland that handle international property tr...
+2025-10-12 12:38:30,413 - INFO - AFC is enabled with max remote calls: 10.
+2025-10-12 12:38:42,165 - INFO - HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent "HTTP/1.1 200 OK"
+2025-10-12 12:38:42,167 - INFO -    📄 Response received (2 chars)
+2025-10-12 12:38:42,167 - INFO -    🔍 Parsed 0 potential agencies from response
+2025-10-12 12:38:43,167 - INFO -    🤖 Prompt 5/5: Find up to 15 real estate agencies in Nowy Sacz, Poland that could assist Polish...
+2025-10-12 12:38:43,168 - INFO - Running Gemini prompt: Find up to 15 real estate agencies in Nowy Sacz, Poland that could assist Polish investors with Marb...
+2025-10-12 12:38:43,168 - INFO - AFC is enabled with max remote calls: 10.
+2025-10-12 12:38:56,545 - INFO - HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent "HTTP/1.1 200 OK"
+2025-10-12 12:38:56,551 - INFO -    📄 Response received (2 chars)
+2025-10-12 12:38:56,552 - INFO -    🔍 Parsed 0 potential agencies from response
+2025-10-12 12:38:57,552 - INFO -    🚫 Duplicate domain found: remax-home.pl
+2025-10-12 12:38:57,553 - INFO -    🚫 Duplicate domain found: freedom-nieruchomosci.pl
+2025-10-12 12:38:57,553 - INFO -    🚫 Duplicate domain found: polnoc.pl
+2025-10-12 12:38:57,554 - INFO -    ✅ Found 0 new agencies for Nowy Sacz
+2025-10-12 12:38:57,556 - INFO - Added new agency: RE/MAX Expert Tarnów from Tarnow
+2025-10-12 12:38:57,571 - INFO - 📊 Batch complete: Found 1 unique agencies, saved 1 to database
+2025-10-12 12:38:57,571 - INFO - 🎯 Progress: 1/50 total agencies saved
+2025-10-12 12:38:57,571 - INFO - ⏳ Waiting 3 seconds before next batch...
+2025-10-12 12:39:00,572 - INFO - === Iteration 2 === Total agencies found so far: 1
+2025-10-12 12:39:00,588 - INFO - 🔍 Searching for agencies in Jaworzno, Poland...
+2025-10-12 12:39:00,589 - INFO -    📋 Excluding 2 known agencies from Jaworzno
+2025-10-12 12:39:00,589 - INFO -    🤖 Prompt 1/5: Find up to 15 real estate agencies in Jaworzno, Poland that specialize in Costa ...
+2025-10-12 12:39:00,590 - INFO - Running Gemini prompt: Find up to 15 real estate agencies in Jaworzno, Poland that specialize in Costa del Sol, Marbella, o...
+2025-10-12 12:39:00,590 - INFO - AFC is enabled with max remote calls: 10.
+2025-10-12 12:39:16,824 - INFO - HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent "HTTP/1.1 200 OK"
+2025-10-12 12:39:16,829 - INFO -    📄 Response received (2 chars)
+2025-10-12 12:39:16,829 - INFO -    🔍 Parsed 0 potential agencies from response
+2025-10-12 12:39:17,830 - INFO -    🤖 Prompt 2/5: Search for up to 15 property agencies in Jaworzno, Poland that help Polish clien...
+2025-10-12 12:39:17,830 - INFO - Running Gemini prompt: Search for up to 15 property agencies in Jaworzno, Poland that help Polish clients buy properties in...
+2025-10-12 12:39:17,831 - INFO - AFC is enabled with max remote calls: 10.
+2025-10-12 12:39:30,391 - INFO - HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent "HTTP/1.1 200 OK"
+2025-10-12 12:39:30,397 - INFO -    📄 Response received (2 chars)
+2025-10-12 12:39:30,397 - INFO -    🔍 Parsed 0 potential agencies from response
+2025-10-12 12:39:31,398 - INFO -    🤖 Prompt 3/5: Find up to 15 Polish real estate companies in Jaworzno that offer international ...
+2025-10-12 12:39:31,399 - INFO - Running Gemini prompt: Find up to 15 Polish real estate companies in Jaworzno that offer international property services, p...
+2025-10-12 12:39:31,399 - INFO - AFC is enabled with max remote calls: 10.
+2025-10-12 12:39:43,149 - INFO - HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent "HTTP/1.1 200 OK"
+2025-10-12 12:39:43,153 - INFO -    📄 Response received (2 chars)
+2025-10-12 12:39:43,154 - INFO -    🔍 Parsed 0 potential agencies from response
+2025-10-12 12:39:44,155 - INFO -    🤖 Prompt 4/5: Search for up to 15 'biuro nieruchomości' in Jaworzno, Poland that handle intern...
+2025-10-12 12:39:44,155 - INFO - Running Gemini prompt: Search for up to 15 'biuro nieruchomości' in Jaworzno, Poland that handle international property tra...
+2025-10-12 12:39:44,156 - INFO - AFC is enabled with max remote calls: 10.
+2025-10-12 12:40:13,463 - INFO - HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent "HTTP/1.1 200 OK"
+2025-10-12 12:40:13,469 - INFO -    📄 Response received (1059 chars)
+2025-10-12 12:40:13,469 - INFO -    🔍 Parsed 2 potential agencies from response
+2025-10-12 12:40:14,470 - INFO -    🤖 Prompt 5/5: Find up to 15 real estate agencies in Jaworzno, Poland that could assist Polish ...
+2025-10-12 12:40:14,470 - INFO - Running Gemini prompt: Find up to 15 real estate agencies in Jaworzno, Poland that could assist Polish investors with Marbe...
+2025-10-12 12:40:14,471 - INFO - AFC is enabled with max remote calls: 10.
+2025-10-12 12:40:45,016 - INFO - HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent "HTTP/1.1 200 OK"
+2025-10-12 12:40:45,025 - INFO -    📄 Response received (1416 chars)
+2025-10-12 12:40:45,026 - INFO -    🔍 Parsed 4 potential agencies from response
+2025-10-12 12:40:46,026 - INFO -    🚫 Duplicate domain found: metrohouse.pl
+2025-10-12 12:40:46,027 - INFO -    🚫 Duplicate domain found: homfi.pl
+2025-10-12 12:40:46,027 - INFO -    🚫 Duplicate domain found: freedom-nieruchomosci.pl
+2025-10-12 12:40:46,027 - INFO -    ✅ Found 3 new agencies for Jaworzno
+2025-10-12 12:40:46,027 - INFO -       ➕ NEW: Freedom Nieruchomości Jaworzno - https://jaworzno.freedom-nieruchomosci.pl/
+2025-10-12 12:40:46,027 - INFO -       ➕ NEW: WGN Nieruchomości Jaworzno - https://jaworzno.wgn.pl/
+2025-10-12 12:40:46,028 - INFO -       ➕ NEW: KNC Nieruchomości Jaworzno - https://jaworzno.knc.com.pl/
+2025-10-12 12:40:46,028 - INFO - 🔍 Searching for agencies in Jelenia Gora, Poland...
+2025-10-12 12:40:46,028 - INFO -    🤖 Prompt 1/5: Find up to 15 real estate agencies in Jelenia Gora, Poland that specialize in Co...
+2025-10-12 12:40:46,028 - INFO - Running Gemini prompt: Find up to 15 real estate agencies in Jelenia Gora, Poland that specialize in Costa del Sol, Marbell...
+2025-10-12 12:40:46,028 - INFO - AFC is enabled with max remote calls: 10.
+2025-10-12 12:41:02,429 - INFO - HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent "HTTP/1.1 200 OK"
+2025-10-12 12:41:02,434 - INFO -    📄 Response received (2 chars)
+2025-10-12 12:41:02,434 - INFO -    🔍 Parsed 0 potential agencies from response
+2025-10-12 12:41:03,435 - INFO -    🤖 Prompt 2/5: Search for up to 15 property agencies in Jelenia Gora, Poland that help Polish c...
+2025-10-12 12:41:03,435 - INFO - Running Gemini prompt: Search for up to 15 property agencies in Jelenia Gora, Poland that help Polish clients buy propertie...
+2025-10-12 12:41:03,436 - INFO - AFC is enabled with max remote calls: 10.
+2025-10-12 12:41:20,116 - INFO - HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent "HTTP/1.1 200 OK"
+2025-10-12 12:41:20,122 - INFO -    📄 Response received (2 chars)
+2025-10-12 12:41:20,122 - INFO -    🔍 Parsed 0 potential agencies from response
+2025-10-12 12:41:21,123 - INFO -    🤖 Prompt 3/5: Find up to 15 Polish real estate companies in Jelenia Gora that offer internatio...
+2025-10-12 12:41:21,124 - INFO - Running Gemini prompt: Find up to 15 Polish real estate companies in Jelenia Gora that offer international property service...
+2025-10-12 12:41:21,124 - INFO - AFC is enabled with max remote calls: 10.
+2025-10-12 12:41:30,273 - INFO - HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent "HTTP/1.1 200 OK"
+2025-10-12 12:41:30,278 - INFO -    📄 Response received (2 chars)
+2025-10-12 12:41:30,278 - INFO -    🔍 Parsed 0 potential agencies from response
+2025-10-12 12:41:31,279 - INFO -    🤖 Prompt 4/5: Search for up to 15 'biuro nieruchomości' in Jelenia Gora, Poland that handle in...
+2025-10-12 12:41:31,279 - INFO - Running Gemini prompt: Search for up to 15 'biuro nieruchomości' in Jelenia Gora, Poland that handle international property...
+2025-10-12 12:41:31,280 - INFO - AFC is enabled with max remote calls: 10.
+2025-10-12 12:41:49,764 - INFO - HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent "HTTP/1.1 200 OK"
+2025-10-12 12:41:49,770 - INFO -    📄 Response received (588 chars)
+2025-10-12 12:41:49,770 - INFO -    🔍 Parsed 1 potential agencies from response
+2025-10-12 12:41:50,771 - INFO -    🤖 Prompt 5/5: Find up to 15 real estate agencies in Jelenia Gora, Poland that could assist Pol...
+2025-10-12 12:41:50,772 - INFO - Running Gemini prompt: Find up to 15 real estate agencies in Jelenia Gora, Poland that could assist Polish investors with M...
+2025-10-12 12:41:50,772 - INFO - AFC is enabled with max remote calls: 10.
+2025-10-12 12:42:20,575 - INFO - HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent "HTTP/1.1 200 OK"
+2025-10-12 12:42:20,581 - INFO -    📄 Response received (1495 chars)
+2025-10-12 12:42:20,581 - INFO -    🔍 Parsed 4 potential agencies from response
+2025-10-12 12:42:21,582 - INFO -    🚫 Duplicate domain found: metrohouse.pl
+2025-10-12 12:42:21,582 - INFO -    🚫 Duplicate name found: północ nieruchomości jelenia góra
+2025-10-12 12:42:21,582 - INFO -    🚫 Duplicate domain found: investor.net.pl
+2025-10-12 12:42:21,582 - INFO -    ✅ Found 2 new agencies for Jelenia Gora
+2025-10-12 12:42:21,582 - INFO -       ➕ NEW: PGN Nieruchomości - https://pgn.com.pl/
+2025-10-12 12:42:21,582 - INFO -       ➕ NEW: RE/MAX Dream Jelenia Góra - https://remax-dream.pl/
+2025-10-12 12:42:21,582 - INFO - 🔍 Searching for agencies in Ostrow Mazowiecka, Poland...
+2025-10-12 12:42:21,583 - INFO -    🤖 Prompt 1/5: Find up to 15 real estate agencies in Ostrow Mazowiecka, Poland that specialize ...
+2025-10-12 12:42:21,583 - INFO - Running Gemini prompt: Find up to 15 real estate agencies in Ostrow Mazowiecka, Poland that specialize in Costa del Sol, Ma...
+2025-10-12 12:42:21,583 - INFO - AFC is enabled with max remote calls: 10.
+2025-10-12 12:42:33,447 - INFO - HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent "HTTP/1.1 200 OK"
+2025-10-12 12:42:33,449 - INFO -    📄 Response received (2 chars)
+2025-10-12 12:42:33,449 - INFO -    🔍 Parsed 0 potential agencies from response
+2025-10-12 12:42:34,450 - INFO -    🤖 Prompt 2/5: Search for up to 15 property agencies in Ostrow Mazowiecka, Poland that help Pol...
+2025-10-12 12:42:34,450 - INFO - Running Gemini prompt: Search for up to 15 property agencies in Ostrow Mazowiecka, Poland that help Polish clients buy prop...
+2025-10-12 12:42:34,450 - INFO - AFC is enabled with max remote calls: 10.
+2025-10-12 12:42:40,687 - INFO - HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent "HTTP/1.1 200 OK"
+2025-10-12 12:42:40,694 - INFO -    📄 Response received (2 chars)
+2025-10-12 12:42:40,694 - INFO -    🔍 Parsed 0 potential agencies from response
+2025-10-12 12:42:41,695 - INFO -    🤖 Prompt 3/5: Find up to 15 Polish real estate companies in Ostrow Mazowiecka that offer inter...
+2025-10-12 12:42:41,696 - INFO - Running Gemini prompt: Find up to 15 Polish real estate companies in Ostrow Mazowiecka that offer international property se...
+2025-10-12 12:42:41,696 - INFO - AFC is enabled with max remote calls: 10.
+2025-10-12 12:42:45,746 - INFO - HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent "HTTP/1.1 200 OK"
+2025-10-12 12:42:45,748 - INFO -    📄 Response received (2 chars)
+2025-10-12 12:42:45,748 - INFO -    🔍 Parsed 0 potential agencies from response
+2025-10-12 12:42:46,750 - INFO -    🤖 Prompt 4/5: Search for up to 15 'biuro nieruchomości' in Ostrow Mazowiecka, Poland that hand...
+2025-10-12 12:42:46,751 - INFO - Running Gemini prompt: Search for up to 15 'biuro nieruchomości' in Ostrow Mazowiecka, Poland that handle international pro...
+2025-10-12 12:42:46,753 - INFO - AFC is enabled with max remote calls: 10.
+2025-10-12 12:42:52,902 - INFO - HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent "HTTP/1.1 200 OK"
+2025-10-12 12:42:52,907 - INFO -    📄 Response received (2 chars)
+2025-10-12 12:42:52,908 - INFO -    🔍 Parsed 0 potential agencies from response
+2025-10-12 12:42:53,909 - INFO -    🤖 Prompt 5/5: Find up to 15 real estate agencies in Ostrow Mazowiecka, Poland that could assis...
+2025-10-12 12:42:53,909 - INFO - Running Gemini prompt: Find up to 15 real estate agencies in Ostrow Mazowiecka, Poland that could assist Polish investors w...
+2025-10-12 12:42:53,910 - INFO - AFC is enabled with max remote calls: 10.
+2025-10-12 12:43:09,468 - INFO - HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent "HTTP/1.1 200 OK"
+2025-10-12 12:43:09,475 - INFO -    📄 Response received (2 chars)
+2025-10-12 12:43:09,476 - INFO -    🔍 Parsed 0 potential agencies from response
+2025-10-12 12:43:10,477 - INFO -    ✅ Found 0 new agencies for Ostrow Mazowiecka
+2025-10-12 12:43:10,477 - INFO - 🔍 Searching for agencies in Swidnica, Poland...
+2025-10-12 12:43:10,477 - INFO -    🤖 Prompt 1/5: Find up to 15 real estate agencies in Swidnica, Poland that specialize in Costa ...
+2025-10-12 12:43:10,477 - INFO - Running Gemini prompt: Find up to 15 real estate agencies in Swidnica, Poland that specialize in Costa del Sol, Marbella, o...
+2025-10-12 12:43:10,477 - INFO - AFC is enabled with max remote calls: 10.
+2025-10-12 12:43:30,629 - INFO - HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent "HTTP/1.1 200 OK"
+2025-10-12 12:43:30,632 - INFO -    📄 Response received (2418 chars)
+2025-10-12 12:43:30,632 - INFO -    🔍 Parsed 3 potential agencies from response
+2025-10-12 12:43:31,634 - INFO -    🤖 Prompt 2/5: Search for up to 15 property agencies in Swidnica, Poland that help Polish clien...
+2025-10-12 12:43:31,635 - INFO - Running Gemini prompt: Search for up to 15 property agencies in Swidnica, Poland that help Polish clients buy properties in...
+2025-10-12 12:43:31,635 - INFO - AFC is enabled with max remote calls: 10.
+2025-10-12 12:43:44,416 - INFO - HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent "HTTP/1.1 200 OK"
+2025-10-12 12:43:44,419 - INFO -    📄 Response received (2 chars)
+2025-10-12 12:43:44,420 - INFO -    🔍 Parsed 0 potential agencies from response
+2025-10-12 12:43:45,420 - INFO -    🤖 Prompt 3/5: Find up to 15 Polish real estate companies in Swidnica that offer international ...
+2025-10-12 12:43:45,420 - INFO - Running Gemini prompt: Find up to 15 Polish real estate companies in Swidnica that offer international property services, p...
+2025-10-12 12:43:45,421 - INFO - AFC is enabled with max remote calls: 10.
+2025-10-12 12:43:55,447 - INFO - HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent "HTTP/1.1 200 OK"
+2025-10-12 12:43:55,452 - INFO -    📄 Response received (2 chars)
+2025-10-12 12:43:55,452 - INFO -    🔍 Parsed 0 potential agencies from response
+2025-10-12 12:43:56,455 - INFO -    🤖 Prompt 4/5: Search for up to 15 'biuro nieruchomości' in Swidnica, Poland that handle intern...
+2025-10-12 12:43:56,455 - INFO - Running Gemini prompt: Search for up to 15 'biuro nieruchomości' in Swidnica, Poland that handle international property tra...
+2025-10-12 12:43:56,455 - INFO - AFC is enabled with max remote calls: 10.
+2025-10-12 12:44:41,678 - INFO - HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent "HTTP/1.1 200 OK"
+2025-10-12 12:44:41,685 - INFO -    📄 Response received (2670 chars)
+2025-10-12 12:44:41,687 - INFO -    🔍 Parsed 5 potential agencies from response
+2025-10-12 12:44:42,688 - INFO -    🤖 Prompt 5/5: Find up to 15 real estate agencies in Swidnica, Poland that could assist Polish ...
+2025-10-12 12:44:42,688 - INFO - Running Gemini prompt: Find up to 15 real estate agencies in Swidnica, Poland that could assist Polish investors with Marbe...
+2025-10-12 12:44:42,688 - INFO - AFC is enabled with max remote calls: 10.
+2025-10-12 12:45:10,397 - INFO - HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent "HTTP/1.1 200 OK"
+2025-10-12 12:45:10,399 - INFO -    📄 Response received (1430 chars)
+2025-10-12 12:45:10,399 - INFO -    🔍 Parsed 4 potential agencies from response
+2025-10-12 12:45:11,400 - INFO -    🚫 Duplicate domain found: polnoc.pl
+2025-10-12 12:45:11,400 - INFO -    🚫 Duplicate domain found: investor.net.pl
+2025-10-12 12:45:11,400 - INFO -    🚫 Duplicate domain found: remax-polska.pl
+2025-10-12 12:45:11,400 - INFO -    🚫 Duplicate domain found: freedom-nieruchomosci.pl
+2025-10-12 12:45:11,401 - INFO -    🚫 Duplicate domain found: polnoc.pl
+2025-10-12 12:45:11,401 - INFO -    🚫 Duplicate domain found: wgn.pl
+2025-10-12 12:45:11,401 - INFO -    🚫 Duplicate domain found: remax-home.pl
+2025-10-12 12:45:11,401 - INFO -    🚫 Duplicate domain found: polnoc.pl
+2025-10-12 12:45:11,401 - INFO -    🚫 Duplicate domain found: freedom-nieruchomosci.pl
+2025-10-12 12:45:11,402 - INFO -    🚫 Duplicate domain found: remax-polska.pl
+2025-10-12 12:45:11,402 - INFO -    🚫 Duplicate domain found: wgn.pl
+2025-10-12 12:45:11,402 - INFO -    ✅ Found 1 new agencies for Swidnica
+2025-10-12 12:45:11,403 - INFO -       ➕ NEW: Locum Nieruchomości - https://www.locumnieruchomosci.com/
+2025-10-12 12:45:11,403 - INFO - 🔍 Searching for agencies in Stalowa Wola, Poland...
+2025-10-12 12:45:11,403 - INFO -    📋 Excluding 1 known agencies from Stalowa Wola
+2025-10-12 12:45:11,403 - INFO -    🤖 Prompt 1/5: Find up to 15 real estate agencies in Stalowa Wola, Poland that specialize in Co...
+2025-10-12 12:45:11,404 - INFO - Running Gemini prompt: Find up to 15 real estate agencies in Stalowa Wola, Poland that specialize in Costa del Sol, Marbell...
+2025-10-12 12:45:11,404 - INFO - AFC is enabled with max remote calls: 10.
+2025-10-12 12:45:32,577 - INFO - HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent "HTTP/1.1 200 OK"
+2025-10-12 12:45:32,579 - INFO -    📄 Response received (1531 chars)
+2025-10-12 12:45:32,580 - INFO -    🔍 Parsed 2 potential agencies from response
+2025-10-12 12:45:33,580 - INFO -    🤖 Prompt 2/5: Search for up to 15 property agencies in Stalowa Wola, Poland that help Polish c...
+2025-10-12 12:45:33,581 - INFO - Running Gemini prompt: Search for up to 15 property agencies in Stalowa Wola, Poland that help Polish clients buy propertie...
+2025-10-12 12:45:33,581 - INFO - AFC is enabled with max remote calls: 10.
+2025-10-12 12:45:52,059 - INFO - HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent "HTTP/1.1 200 OK"
+2025-10-12 12:45:52,061 - INFO -    📄 Response received (627 chars)
+2025-10-12 12:45:52,062 - INFO -    🔍 Parsed 1 potential agencies from response
+2025-10-12 12:45:53,062 - INFO -    🤖 Prompt 3/5: Find up to 15 Polish real estate companies in Stalowa Wola that offer internatio...
+2025-10-12 12:45:53,063 - INFO - Running Gemini prompt: Find up to 15 Polish real estate companies in Stalowa Wola that offer international property service...
+2025-10-12 12:45:53,065 - INFO - AFC is enabled with max remote calls: 10.
+2025-10-12 12:46:02,810 - INFO - HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent "HTTP/1.1 200 OK"
+2025-10-12 12:46:02,813 - INFO -    📄 Response received (2 chars)
+2025-10-12 12:46:02,813 - INFO -    🔍 Parsed 0 potential agencies from response
+2025-10-12 12:46:03,815 - INFO -    🤖 Prompt 4/5: Search for up to 15 'biuro nieruchomości' in Stalowa Wola, Poland that handle in...
+2025-10-12 12:46:03,815 - INFO - Running Gemini prompt: Search for up to 15 'biuro nieruchomości' in Stalowa Wola, Poland that handle international property...
+2025-10-12 12:46:03,816 - INFO - AFC is enabled with max remote calls: 10.
+2025-10-12 12:46:21,814 - INFO - HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent "HTTP/1.1 200 OK"
+2025-10-12 12:46:21,817 - INFO -    📄 Response received (2 chars)
+2025-10-12 12:46:21,817 - INFO -    🔍 Parsed 0 potential agencies from response
+2025-10-12 12:46:22,817 - INFO -    🤖 Prompt 5/5: Find up to 15 real estate agencies in Stalowa Wola, Poland that could assist Pol...
+2025-10-12 12:46:22,818 - INFO - Running Gemini prompt: Find up to 15 real estate agencies in Stalowa Wola, Poland that could assist Polish investors with M...
+2025-10-12 12:46:22,819 - INFO - AFC is enabled with max remote calls: 10.
+2025-10-12 12:46:42,133 - INFO - HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent "HTTP/1.1 200 OK"
+2025-10-12 12:46:42,137 - INFO -    📄 Response received (2 chars)
+2025-10-12 12:46:42,138 - INFO -    🔍 Parsed 0 potential agencies from response
+2025-10-12 12:46:43,138 - INFO -    🚫 Duplicate domain found: metrohouse.pl
+2025-10-12 12:46:43,139 - INFO -    🚫 Duplicate domain found: polnoc.pl
+2025-10-12 12:46:43,139 - INFO -    ✅ Found 1 new agencies for Stalowa Wola
+2025-10-12 12:46:43,140 - INFO -       ➕ NEW: Global Estate Nieruchomości - https://globalestate.com.pl
+2025-10-12 12:46:43,147 - INFO - Added new agency: RE/MAX Expert Tarnów from Tarnow
+2025-10-12 12:46:43,147 - INFO - Added new agency: Freedom Nieruchomości Jaworzno from Jaworzno
+2025-10-12 12:46:43,147 - INFO - Added new agency: WGN Nieruchomości Jaworzno from Jaworzno
+2025-10-12 12:46:43,148 - INFO - Added new agency: KNC Nieruchomości Jaworzno from Jaworzno
+2025-10-12 12:46:43,148 - INFO - Added new agency: PGN Nieruchomości from Jelenia Gora
+2025-10-12 12:46:43,148 - INFO - Added new agency: RE/MAX Dream Jelenia Góra from Jelenia Gora
+2025-10-12 12:46:43,149 - INFO - Added new agency: Locum Nieruchomości from Swidnica
+2025-10-12 12:46:43,149 - INFO - Added new agency: Global Estate Nieruchomości from Stalowa Wola
+2025-10-12 12:46:43,162 - INFO - 📊 Batch complete: Found 8 unique agencies, saved 8 to database
+2025-10-12 12:46:43,162 - INFO - 🎯 Progress: 9/50 total agencies saved
+2025-10-12 12:46:43,162 - INFO - ⏳ Waiting 3 seconds before next batch...
+2025-10-12 12:46:46,162 - INFO - === Iteration 3 === Total agencies found so far: 9
+2025-10-12 12:46:46,180 - INFO - 🔍 Searching for agencies in Piekary Slaskie, Poland...
+2025-10-12 12:46:46,181 - INFO -    🤖 Prompt 1/5: Find up to 15 real estate agencies in Piekary Slaskie, Poland that specialize in...
+2025-10-12 12:46:46,181 - INFO - Running Gemini prompt: Find up to 15 real estate agencies in Piekary Slaskie, Poland that specialize in Costa del Sol, Marb...
+2025-10-12 12:46:46,181 - INFO - AFC is enabled with max remote calls: 10.
+2025-10-12 12:47:16,096 - INFO - HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent "HTTP/1.1 200 OK"
+2025-10-12 12:47:16,110 - INFO -    📄 Response received (1347 chars)
+2025-10-12 12:47:16,110 - INFO -    🔍 Parsed 2 potential agencies from response
+2025-10-12 12:47:17,115 - INFO -    🤖 Prompt 2/5: Search for up to 15 property agencies in Piekary Slaskie, Poland that help Polis...
+2025-10-12 12:47:17,116 - INFO - Running Gemini prompt: Search for up to 15 property agencies in Piekary Slaskie, Poland that help Polish clients buy proper...
+2025-10-12 12:47:17,117 - INFO - AFC is enabled with max remote calls: 10.
+2025-10-12 12:47:26,535 - INFO - HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent "HTTP/1.1 200 OK"
+2025-10-12 12:47:26,539 - INFO -    📄 Response received (2 chars)
+2025-10-12 12:47:26,540 - INFO -    🔍 Parsed 0 potential agencies from response
+2025-10-12 12:47:27,541 - INFO -    🤖 Prompt 3/5: Find up to 15 Polish real estate companies in Piekary Slaskie that offer interna...
+2025-10-12 12:47:27,543 - INFO - Running Gemini prompt: Find up to 15 Polish real estate companies in Piekary Slaskie that offer international property serv...
+2025-10-12 12:47:27,545 - INFO - AFC is enabled with max remote calls: 10.
+2025-10-12 12:47:37,028 - INFO - HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent "HTTP/1.1 200 OK"
+2025-10-12 12:47:37,030 - INFO -    📄 Response received (2 chars)
+2025-10-12 12:47:37,031 - INFO -    🔍 Parsed 0 potential agencies from response
+2025-10-12 12:47:38,031 - INFO -    🤖 Prompt 4/5: Search for up to 15 'biuro nieruchomości' in Piekary Slaskie, Poland that handle...
+2025-10-12 12:47:38,032 - INFO - Running Gemini prompt: Search for up to 15 'biuro nieruchomości' in Piekary Slaskie, Poland that handle international prope...
+2025-10-12 12:47:38,032 - INFO - AFC is enabled with max remote calls: 10.
+2025-10-12 12:48:03,666 - INFO - HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent "HTTP/1.1 200 OK"
+2025-10-12 12:48:03,670 - INFO -    📄 Response received (1575 chars)
+2025-10-12 12:48:03,670 - INFO -    🔍 Parsed 3 potential agencies from response
+2025-10-12 12:48:04,670 - INFO -    🤖 Prompt 5/5: Find up to 15 real estate agencies in Piekary Slaskie, Poland that could assist ...
+2025-10-12 12:48:04,671 - INFO - Running Gemini prompt: Find up to 15 real estate agencies in Piekary Slaskie, Poland that could assist Polish investors wit...
+2025-10-12 12:48:04,671 - INFO - AFC is enabled with max remote calls: 10.
+2025-10-12 12:48:32,498 - INFO - HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent "HTTP/1.1 200 OK"
+2025-10-12 12:48:32,505 - INFO -    📄 Response received (1258 chars)
+2025-10-12 12:48:32,505 - INFO -    🔍 Parsed 3 potential agencies from response
+2025-10-12 12:48:33,506 - INFO -    🚫 Duplicate domain found: remax-gold.pl
+2025-10-12 12:48:33,507 - INFO -    🚫 Duplicate domain found: metrohouse.pl
+2025-10-12 12:48:33,507 - INFO -    🚫 Duplicate domain found: aspect.info.pl
+2025-10-12 12:48:33,507 - INFO -    🚫 Duplicate domain found: freedom-nieruchomosci.pl
+2025-10-12 12:48:33,507 - INFO -    🚫 Duplicate domain found: polnoc.pl
+2025-10-12 12:48:33,507 - INFO -    ✅ Found 3 new agencies for Piekary Slaskie
+2025-10-12 12:48:33,508 - INFO -       ➕ NEW: HOME-EXPERT Agencja Nieruchomości - https://home-expert.eu
+2025-10-12 12:48:33,508 - INFO -       ➕ NEW: WGN Nieruchomości Piekary Śląskie - https://piekary.wgn.pl
+2025-10-12 12:48:33,508 - INFO -       ➕ NEW: M & M Nieruchomości Piekary Śląskie - https://mmnieruchomosci.pl/biura/Piekary%20Slaskie,9
+2025-10-12 12:48:33,508 - INFO - 🔍 Searching for agencies in Lubin, Poland...
+2025-10-12 12:48:33,508 - INFO -    📋 Excluding 5 known agencies from Lubin
+2025-10-12 12:48:33,508 - INFO -    🤖 Prompt 1/5: Find up to 15 real estate agencies in Lubin, Poland that specialize in Costa del...
+2025-10-12 12:48:33,508 - INFO - Running Gemini prompt: Find up to 15 real estate agencies in Lubin, Poland that specialize in Costa del Sol, Marbella, or i...
+2025-10-12 12:48:33,508 - INFO - AFC is enabled with max remote calls: 10.
+2025-10-12 12:49:01,025 - INFO - HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent "HTTP/1.1 200 OK"
+2025-10-12 12:49:01,032 - INFO -    📄 Response received (896 chars)
+2025-10-12 12:49:01,033 - INFO -    🔍 Parsed 1 potential agencies from response
+2025-10-12 12:49:02,033 - INFO -    🤖 Prompt 2/5: Search for up to 15 property agencies in Lubin, Poland that help Polish clients ...
+2025-10-12 12:49:02,034 - INFO - Running Gemini prompt: Search for up to 15 property agencies in Lubin, Poland that help Polish clients buy properties in Sp...
+2025-10-12 12:49:02,034 - INFO - AFC is enabled with max remote calls: 10.
+2025-10-12 12:49:24,109 - INFO - HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent "HTTP/1.1 200 OK"
+2025-10-12 12:49:24,112 - INFO -    📄 Response received (723 chars)
+2025-10-12 12:49:24,113 - INFO -    🔍 Parsed 1 potential agencies from response
+2025-10-12 12:49:25,113 - INFO -    🤖 Prompt 3/5: Find up to 15 Polish real estate companies in Lubin that offer international pro...
+2025-10-12 12:49:25,114 - INFO - Running Gemini prompt: Find up to 15 Polish real estate companies in Lubin that offer international property services, part...
+2025-10-12 12:49:25,114 - INFO - AFC is enabled with max remote calls: 10.
+2025-10-12 12:49:48,922 - INFO - HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent "HTTP/1.1 200 OK"
+2025-10-12 12:49:48,925 - INFO -    📄 Response received (1871 chars)
+2025-10-12 12:49:48,925 - INFO -    🔍 Parsed 3 potential agencies from response
+2025-10-12 12:49:49,926 - INFO -    🤖 Prompt 4/5: Search for up to 15 'biuro nieruchomości' in Lubin, Poland that handle internati...
+2025-10-12 12:49:49,926 - INFO - Running Gemini prompt: Search for up to 15 'biuro nieruchomości' in Lubin, Poland that handle international property transa...
+2025-10-12 12:49:49,928 - INFO - AFC is enabled with max remote calls: 10.
+2025-10-12 12:50:05,072 - INFO - HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent "HTTP/1.1 200 OK"
+2025-10-12 12:50:05,074 - INFO -    📄 Response received (2 chars)
+2025-10-12 12:50:05,074 - INFO -    🔍 Parsed 0 potential agencies from response
+2025-10-12 12:50:06,075 - INFO -    🤖 Prompt 5/5: Find up to 15 real estate agencies in Lubin, Poland that could assist Polish inv...
+2025-10-12 12:50:06,075 - INFO - Running Gemini prompt: Find up to 15 real estate agencies in Lubin, Poland that could assist Polish investors with Marbella...
+2025-10-12 12:50:06,076 - INFO - AFC is enabled with max remote calls: 10.
+2025-10-12 12:50:40,908 - INFO - HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent "HTTP/1.1 200 OK"
+2025-10-12 12:50:40,911 - INFO -    📄 Response received (353 chars)
+2025-10-12 12:50:40,912 - INFO -    🔍 Parsed 1 potential agencies from response
+2025-10-12 12:50:41,918 - INFO -    🚫 Duplicate domain found: homebroker.pl
+2025-10-12 12:50:41,918 - INFO -    🚫 Duplicate domain found: wgn.pl
+2025-10-12 12:50:41,918 - INFO -    🚫 Duplicate domain found: polnoc.pl
+2025-10-12 12:50:41,918 - INFO -    🚫 Duplicate domain found: maxon.pl
+2025-10-12 12:50:41,919 - INFO -    🚫 Duplicate domain found: wgn.pl
+2025-10-12 12:50:41,919 - INFO -    ✅ Found 1 new agencies for Lubin
+2025-10-12 12:50:41,919 - INFO -       ➕ NEW: Prestige Nieruchomości Lubin - https://prestige-nieruchomosci.eu/
+2025-10-12 12:50:41,919 - INFO - 🔍 Searching for agencies in Zamosc, Poland...
+2025-10-12 12:50:41,919 - INFO -    🤖 Prompt 1/5: Find up to 15 real estate agencies in Zamosc, Poland that specialize in Costa de...
+2025-10-12 12:50:41,920 - INFO - Running Gemini prompt: Find up to 15 real estate agencies in Zamosc, Poland that specialize in Costa del Sol, Marbella, or ...
+2025-10-12 12:50:41,920 - INFO - AFC is enabled with max remote calls: 10.
+2025-10-12 12:51:05,945 - INFO - HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent "HTTP/1.1 200 OK"
+2025-10-12 12:51:05,948 - INFO -    📄 Response received (2 chars)
+2025-10-12 12:51:05,950 - INFO -    🔍 Parsed 0 potential agencies from response
+2025-10-12 12:51:06,951 - INFO -    🤖 Prompt 2/5: Search for up to 15 property agencies in Zamosc, Poland that help Polish clients...
+2025-10-12 12:51:06,952 - INFO - Running Gemini prompt: Search for up to 15 property agencies in Zamosc, Poland that help Polish clients buy properties in S...
+2025-10-12 12:51:06,953 - INFO - AFC is enabled with max remote calls: 10.
+2025-10-12 12:51:15,166 - INFO - HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent "HTTP/1.1 200 OK"
+2025-10-12 12:51:15,168 - INFO -    📄 Response received (2 chars)
+2025-10-12 12:51:15,169 - INFO -    🔍 Parsed 0 potential agencies from response
+2025-10-12 12:51:16,169 - INFO -    🤖 Prompt 3/5: Find up to 15 Polish real estate companies in Zamosc that offer international pr...
+2025-10-12 12:51:16,170 - INFO - Running Gemini prompt: Find up to 15 Polish real estate companies in Zamosc that offer international property services, par...
+2025-10-12 12:51:16,170 - INFO - AFC is enabled with max remote calls: 10.
+2025-10-12 12:51:27,676 - INFO - HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent "HTTP/1.1 200 OK"
+2025-10-12 12:51:27,681 - INFO -    📄 Response received (2 chars)
+2025-10-12 12:51:27,681 - INFO -    🔍 Parsed 0 potential agencies from response
+2025-10-12 12:51:28,683 - INFO -    🤖 Prompt 4/5: Search for up to 15 'biuro nieruchomości' in Zamosc, Poland that handle internat...
+2025-10-12 12:51:28,685 - INFO - Running Gemini prompt: Search for up to 15 'biuro nieruchomości' in Zamosc, Poland that handle international property trans...
+2025-10-12 12:51:28,685 - INFO - AFC is enabled with max remote calls: 10.
+2025-10-12 12:51:57,435 - INFO - HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent "HTTP/1.1 200 OK"
+2025-10-12 12:51:57,438 - INFO -    📄 Response received (513 chars)
+2025-10-12 12:51:57,438 - INFO -    🔍 Parsed 1 potential agencies from response
+2025-10-12 12:51:58,446 - INFO -    🤖 Prompt 5/5: Find up to 15 real estate agencies in Zamosc, Poland that could assist Polish in...
+2025-10-12 12:51:58,448 - INFO - Running Gemini prompt: Find up to 15 real estate agencies in Zamosc, Poland that could assist Polish investors with Marbell...
+2025-10-12 12:51:58,450 - INFO - AFC is enabled with max remote calls: 10.
+2025-10-12 12:52:09,098 - INFO - HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent "HTTP/1.1 200 OK"
+2025-10-12 12:52:09,109 - INFO -    📄 Response received (2 chars)
+2025-10-12 12:52:09,112 - INFO -    🔍 Parsed 0 potential agencies from response
+2025-10-12 12:52:10,113 - INFO -    🚫 Duplicate name found: knc nieruchomości zamość
+2025-10-12 12:52:10,115 - INFO -    ✅ Found 0 new agencies for Zamosc
+2025-10-12 12:52:10,123 - INFO - Added new agency: RE/MAX Expert Tarnów from Tarnow
+2025-10-12 12:52:10,123 - INFO - Added new agency: Freedom Nieruchomości Jaworzno from Jaworzno
+2025-10-12 12:52:10,123 - INFO - Added new agency: WGN Nieruchomości Jaworzno from Jaworzno
+2025-10-12 12:52:10,124 - INFO - Added new agency: KNC Nieruchomości Jaworzno from Jaworzno
+2025-10-12 12:52:10,124 - INFO - Added new agency: PGN Nieruchomości from Jelenia Gora
+2025-10-12 12:52:10,124 - INFO - Added new agency: RE/MAX Dream Jelenia Góra from Jelenia Gora
+2025-10-12 12:52:10,124 - INFO - Added new agency: Locum Nieruchomości from Swidnica
+2025-10-12 12:52:10,126 - INFO - Added new agency: Global Estate Nieruchomości from Stalowa Wola
+2025-10-12 12:52:10,126 - INFO - Added new agency: HOME-EXPERT Agencja Nieruchomości from Piekary Slaskie
+2025-10-12 12:52:10,126 - INFO - Added new agency: WGN Nieruchomości Piekary Śląskie from Piekary Slaskie
+2025-10-12 12:52:10,127 - INFO - Added new agency: M & M Nieruchomości Piekary Śląskie from Piekary Slaskie
+2025-10-12 12:52:10,128 - INFO - Added new agency: Prestige Nieruchomości Lubin from Lubin
+2025-10-12 12:52:10,146 - INFO - 📊 Batch complete: Found 12 unique agencies, saved 12 to database
+2025-10-12 12:52:10,146 - INFO - 🎯 Progress: 21/50 total agencies saved
+2025-10-12 12:52:10,147 - INFO - ⏳ Waiting 3 seconds before next batch...
+2025-10-12 12:52:13,149 - INFO - === Iteration 4 === Total agencies found so far: 21
+2025-10-12 12:52:13,186 - INFO - All unscanned cities processed, restarting from beginning...
+2025-10-12 12:52:13,187 - INFO - 🔍 Searching for agencies in Tarnow, Poland...
+2025-10-12 12:52:13,187 - INFO -    🤖 Prompt 1/5: Find up to 15 real estate agencies in Tarnow, Poland that specialize in Costa de...
+2025-10-12 12:52:13,189 - INFO - Running Gemini prompt: Find up to 15 real estate agencies in Tarnow, Poland that specialize in Costa del Sol, Marbella, or ...
+2025-10-12 12:52:13,191 - INFO - AFC is enabled with max remote calls: 10.
+2025-10-12 12:52:32,572 - INFO - HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent "HTTP/1.1 200 OK"
+2025-10-12 12:52:32,574 - INFO -    📄 Response received (2 chars)
+2025-10-12 12:52:32,574 - INFO -    🔍 Parsed 0 potential agencies from response
+2025-10-12 12:52:33,575 - INFO -    🤖 Prompt 2/5: Search for up to 15 property agencies in Tarnow, Poland that help Polish clients...
+2025-10-12 12:52:33,575 - INFO - Running Gemini prompt: Search for up to 15 property agencies in Tarnow, Poland that help Polish clients buy properties in S...
+2025-10-12 12:52:33,576 - INFO - AFC is enabled with max remote calls: 10.
+2025-10-12 12:52:43,254 - INFO - HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent "HTTP/1.1 200 OK"
+2025-10-12 12:52:43,263 - INFO -    📄 Response received (2 chars)
+2025-10-12 12:52:43,264 - INFO -    🔍 Parsed 0 potential agencies from response
+2025-10-12 12:52:44,265 - INFO -    🤖 Prompt 3/5: Find up to 15 Polish real estate companies in Tarnow that offer international pr...
+2025-10-12 12:52:44,265 - INFO - Running Gemini prompt: Find up to 15 Polish real estate companies in Tarnow that offer international property services, par...
+2025-10-12 12:52:44,265 - INFO - AFC is enabled with max remote calls: 10.
+2025-10-12 12:53:09,589 - INFO - HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent "HTTP/1.1 200 OK"
+2025-10-12 12:53:09,594 - INFO -    📄 Response received (2 chars)
+2025-10-12 12:53:09,595 - INFO -    🔍 Parsed 0 potential agencies from response
+2025-10-12 12:53:10,595 - INFO -    🤖 Prompt 4/5: Search for up to 15 'biuro nieruchomości' in Tarnow, Poland that handle internat...
+2025-10-12 12:53:10,596 - INFO - Running Gemini prompt: Search for up to 15 'biuro nieruchomości' in Tarnow, Poland that handle international property trans...
+2025-10-12 12:53:10,596 - INFO - AFC is enabled with max remote calls: 10.
+2025-10-12 12:53:39,506 - INFO - HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent "HTTP/1.1 200 OK"
+2025-10-12 12:53:39,510 - INFO -    📄 Response received (1040 chars)
+2025-10-12 12:53:39,510 - INFO -    🔍 Parsed 2 potential agencies from response
+2025-10-12 12:53:40,511 - INFO -    🤖 Prompt 5/5: Find up to 15 real estate agencies in Tarnow, Poland that could assist Polish in...
+2025-10-12 12:53:40,511 - INFO - Running Gemini prompt: Find up to 15 real estate agencies in Tarnow, Poland that could assist Polish investors with Marbell...
+2025-10-12 12:53:40,511 - INFO - AFC is enabled with max remote calls: 10.
+2025-10-12 12:54:11,027 - INFO - HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent "HTTP/1.1 200 OK"
+2025-10-12 12:54:11,033 - INFO -    📄 Response received (2061 chars)
+2025-10-12 12:54:11,033 - INFO -    🔍 Parsed 6 potential agencies from response
+2025-10-12 12:54:12,033 - INFO -    🚫 Duplicate domain found: metrohouse.pl
+2025-10-12 12:54:12,035 - INFO -    🚫 Duplicate name found: freedom nieruchomości tarnów
+2025-10-12 12:54:12,035 - INFO -    🚫 Duplicate name found: knc nieruchomości tarnów
+2025-10-12 12:54:12,036 - INFO -    🚫 Duplicate domain found: investor.net.pl
+2025-10-12 12:54:12,036 - INFO -    🚫 Duplicate domain found: metrohouse.pl
+2025-10-12 12:54:12,037 - INFO -    🚫 Duplicate domain found: remax-polska.pl
+2025-10-12 12:54:12,037 - INFO -    🚫 Duplicate name found: północ nieruchomości tarnów
+2025-10-12 12:54:12,037 - INFO -    ✅ Found 1 new agencies for Tarnow
+2025-10-12 12:54:12,037 - INFO -       ➕ NEW: RE/MAX Invest Tarnów - https://www.remax-invest-tarnow.pl/
+2025-10-12 12:54:12,037 - INFO - 🔍 Searching for agencies in Grudziadz, Poland...
+2025-10-12 12:54:12,038 - INFO -    📋 Excluding 1 known agencies from Grudziadz
+2025-10-12 12:54:12,038 - INFO -    🤖 Prompt 1/5: Find up to 15 real estate agencies in Grudziadz, Poland that specialize in Costa...
+2025-10-12 12:54:12,038 - INFO - Running Gemini prompt: Find up to 15 real estate agencies in Grudziadz, Poland that specialize in Costa del Sol, Marbella, ...
+2025-10-12 12:54:12,038 - INFO - AFC is enabled with max remote calls: 10.
+2025-10-12 12:54:33,144 - INFO - HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent "HTTP/1.1 200 OK"
+2025-10-12 12:54:33,147 - INFO -    📄 Response received (874 chars)
+2025-10-12 12:54:33,147 - INFO -    🔍 Parsed 1 potential agencies from response
+2025-10-12 12:54:34,147 - INFO -    🤖 Prompt 2/5: Search for up to 15 property agencies in Grudziadz, Poland that help Polish clie...
+2025-10-12 12:54:34,147 - INFO - Running Gemini prompt: Search for up to 15 property agencies in Grudziadz, Poland that help Polish clients buy properties i...
+2025-10-12 12:54:34,147 - INFO - AFC is enabled with max remote calls: 10.
+2025-10-12 12:54:53,310 - INFO - HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent "HTTP/1.1 200 OK"
+2025-10-12 12:54:53,312 - INFO -    📄 Response received (2 chars)
+2025-10-12 12:54:53,312 - INFO -    🔍 Parsed 0 potential agencies from response
+2025-10-12 12:54:54,313 - INFO -    🤖 Prompt 3/5: Find up to 15 Polish real estate companies in Grudziadz that offer international...
+2025-10-12 12:54:54,314 - INFO - Running Gemini prompt: Find up to 15 Polish real estate companies in Grudziadz that offer international property services, ...
+2025-10-12 12:54:54,314 - INFO - AFC is enabled with max remote calls: 10.
+2025-10-12 12:54:58,326 - INFO - HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent "HTTP/1.1 200 OK"
+2025-10-12 12:54:58,327 - INFO -    📄 Response received (2 chars)
+2025-10-12 12:54:58,327 - INFO -    🔍 Parsed 0 potential agencies from response
+2025-10-12 12:54:59,327 - INFO -    🤖 Prompt 4/5: Search for up to 15 'biuro nieruchomości' in Grudziadz, Poland that handle inter...
+2025-10-12 12:54:59,328 - INFO - Running Gemini prompt: Search for up to 15 'biuro nieruchomości' in Grudziadz, Poland that handle international property tr...
+2025-10-12 12:54:59,328 - INFO - AFC is enabled with max remote calls: 10.
+2025-10-12 12:55:31,042 - INFO - HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent "HTTP/1.1 200 OK"
+2025-10-12 12:55:31,044 - INFO -    📄 Response received (1139 chars)
+2025-10-12 12:55:31,045 - INFO -    🔍 Parsed 2 potential agencies from response
+2025-10-12 12:55:32,045 - INFO -    🤖 Prompt 5/5: Find up to 15 real estate agencies in Grudziadz, Poland that could assist Polish...
+2025-10-12 12:55:32,045 - INFO - Running Gemini prompt: Find up to 15 real estate agencies in Grudziadz, Poland that could assist Polish investors with Marb...
+2025-10-12 12:55:32,046 - INFO - AFC is enabled with max remote calls: 10.
+2025-10-12 12:55:57,440 - INFO - HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent "HTTP/1.1 200 OK"
+2025-10-12 12:55:57,443 - INFO -    📄 Response received (677 chars)
+2025-10-12 12:55:57,443 - INFO -    🔍 Parsed 2 potential agencies from response
+2025-10-12 12:55:58,444 - INFO -    🚫 Duplicate domain found: freedom-nieruchomosci.pl
+2025-10-12 12:55:58,444 - INFO -    🚫 Duplicate name found: północ nieruchomości grudziądz
+2025-10-12 12:55:58,444 - INFO -    🚫 Duplicate domain found: freedom-nieruchomosci.pl
+2025-10-12 12:55:58,444 - INFO -    🚫 Duplicate name found: freedom nieruchomości
+2025-10-12 12:55:58,444 - INFO -    🚫 Duplicate name found: metrohouse
+2025-10-12 12:55:58,444 - INFO -    ✅ Found 0 new agencies for Grudziadz
+2025-10-12 12:55:58,445 - INFO - 🔍 Searching for agencies in Slupsk, Poland...
+2025-10-12 12:55:58,445 - INFO -    🤖 Prompt 1/5: Find up to 15 real estate agencies in Slupsk, Poland that specialize in Costa de...
+2025-10-12 12:55:58,445 - INFO - Running Gemini prompt: Find up to 15 real estate agencies in Slupsk, Poland that specialize in Costa del Sol, Marbella, or ...
+2025-10-12 12:55:58,445 - INFO - AFC is enabled with max remote calls: 10.
+2025-10-12 12:56:21,210 - INFO - HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent "HTTP/1.1 200 OK"
+2025-10-12 12:56:21,215 - INFO -    📄 Response received (1422 chars)
+2025-10-12 12:56:21,216 - INFO -    🔍 Parsed 2 potential agencies from response
+2025-10-12 12:56:22,216 - INFO -    🤖 Prompt 2/5: Search for up to 15 property agencies in Slupsk, Poland that help Polish clients...
+2025-10-12 12:56:22,216 - INFO - Running Gemini prompt: Search for up to 15 property agencies in Slupsk, Poland that help Polish clients buy properties in S...
+2025-10-12 12:56:22,216 - INFO - AFC is enabled with max remote calls: 10.
+2025-10-12 12:56:28,983 - INFO - HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent "HTTP/1.1 200 OK"
+2025-10-12 12:56:28,984 - INFO -    📄 Response received (2 chars)
+2025-10-12 12:56:28,985 - INFO -    🔍 Parsed 0 potential agencies from response
+2025-10-12 12:56:29,985 - INFO -    🤖 Prompt 3/5: Find up to 15 Polish real estate companies in Slupsk that offer international pr...
+2025-10-12 12:56:29,986 - INFO - Running Gemini prompt: Find up to 15 Polish real estate companies in Slupsk that offer international property services, par...
+2025-10-12 12:56:29,986 - INFO - AFC is enabled with max remote calls: 10.
+2025-10-12 12:56:41,132 - INFO - HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent "HTTP/1.1 200 OK"
+2025-10-12 12:56:41,133 - INFO -    📄 Response received (2 chars)
+2025-10-12 12:56:41,134 - INFO -    🔍 Parsed 0 potential agencies from response
+2025-10-12 12:56:42,134 - INFO -    🤖 Prompt 4/5: Search for up to 15 'biuro nieruchomości' in Slupsk, Poland that handle internat...
+2025-10-12 12:56:42,134 - INFO - Running Gemini prompt: Search for up to 15 'biuro nieruchomości' in Slupsk, Poland that handle international property trans...
+2025-10-12 12:56:42,135 - INFO - AFC is enabled with max remote calls: 10.
+2025-10-12 12:57:06,961 - INFO - HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent "HTTP/1.1 200 OK"
+2025-10-12 12:57:06,965 - INFO -    📄 Response received (1141 chars)
+2025-10-12 12:57:06,966 - INFO -    🔍 Parsed 2 potential agencies from response
+2025-10-12 12:57:07,966 - INFO -    🤖 Prompt 5/5: Find up to 15 real estate agencies in Slupsk, Poland that could assist Polish in...
+2025-10-12 12:57:07,966 - INFO - Running Gemini prompt: Find up to 15 real estate agencies in Slupsk, Poland that could assist Polish investors with Marbell...
+2025-10-12 12:57:07,967 - INFO - AFC is enabled with max remote calls: 10.
+2025-10-12 12:57:29,573 - INFO - HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent "HTTP/1.1 200 OK"
+2025-10-12 12:57:29,575 - INFO -    📄 Response received (938 chars)
+2025-10-12 12:57:29,575 - INFO -    🔍 Parsed 2 potential agencies from response
+2025-10-12 12:57:30,575 - INFO -    🚫 Duplicate domain found: remax-invest.pl
+2025-10-12 12:57:30,576 - INFO -    🚫 Duplicate domain found: freedom-nieruchomosci.pl
+2025-10-12 12:57:30,576 - INFO -    🚫 Duplicate domain found: freedom-nieruchomosci.pl
+2025-10-12 12:57:30,576 - INFO -    🚫 Duplicate domain found: polnoc.pl
+2025-10-12 12:57:30,576 - INFO -    ✅ Found 2 new agencies for Slupsk
+2025-10-12 12:57:30,576 - INFO -       ➕ NEW: WGN Nieruchomości - https://slupsk.wgn.pl/
+2025-10-12 12:57:30,576 - INFO -       ➕ NEW: KNC Nieruchomości Słupsk - https://slupsk.kncnieruchomosci.pl/
+2025-10-12 12:57:30,576 - INFO - 🔍 Searching for agencies in Jastrzebie-Zdroj, Poland...
+2025-10-12 12:57:30,576 - INFO -    🤖 Prompt 1/5: Find up to 15 real estate agencies in Jastrzebie-Zdroj, Poland that specialize i...
+2025-10-12 12:57:30,577 - INFO - Running Gemini prompt: Find up to 15 real estate agencies in Jastrzebie-Zdroj, Poland that specialize in Costa del Sol, Mar...
+2025-10-12 12:57:30,577 - INFO - AFC is enabled with max remote calls: 10.
+2025-10-12 12:57:58,081 - INFO - HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent "HTTP/1.1 200 OK"
+2025-10-12 12:57:58,083 - INFO -    📄 Response received (2206 chars)
+2025-10-12 12:57:58,084 - INFO -    🔍 Parsed 3 potential agencies from response
+2025-10-12 12:57:59,084 - INFO -    🤖 Prompt 2/5: Search for up to 15 property agencies in Jastrzebie-Zdroj, Poland that help Poli...
+2025-10-12 12:57:59,084 - INFO - Running Gemini prompt: Search for up to 15 property agencies in Jastrzebie-Zdroj, Poland that help Polish clients buy prope...
+2025-10-12 12:57:59,084 - INFO - AFC is enabled with max remote calls: 10.
+2025-10-12 12:58:10,542 - INFO - HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent "HTTP/1.1 200 OK"
+2025-10-12 12:58:10,553 - INFO -    📄 Response received (2 chars)
+2025-10-12 12:58:10,553 - INFO -    🔍 Parsed 0 potential agencies from response
+2025-10-12 12:58:11,553 - INFO -    🤖 Prompt 3/5: Find up to 15 Polish real estate companies in Jastrzebie-Zdroj that offer intern...
+2025-10-12 12:58:11,554 - INFO - Running Gemini prompt: Find up to 15 Polish real estate companies in Jastrzebie-Zdroj that offer international property ser...
+2025-10-12 12:58:11,554 - INFO - AFC is enabled with max remote calls: 10.
+2025-10-12 12:58:20,486 - INFO - HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent "HTTP/1.1 200 OK"
+2025-10-12 12:58:20,490 - INFO -    📄 Response received (2 chars)
+2025-10-12 12:58:20,491 - INFO -    🔍 Parsed 0 potential agencies from response
+2025-10-12 12:58:21,491 - INFO -    🤖 Prompt 4/5: Search for up to 15 'biuro nieruchomości' in Jastrzebie-Zdroj, Poland that handl...
+2025-10-12 12:58:21,492 - INFO - Running Gemini prompt: Search for up to 15 'biuro nieruchomości' in Jastrzebie-Zdroj, Poland that handle international prop...
+2025-10-12 12:58:21,495 - INFO - AFC is enabled with max remote calls: 10.
+2025-10-12 12:58:57,677 - INFO - HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent "HTTP/1.1 200 OK"
+2025-10-12 12:58:57,679 - INFO -    📄 Response received (3160 chars)
+2025-10-12 12:58:57,680 - INFO -    🔍 Parsed 3 potential agencies from response
+2025-10-12 12:58:58,680 - INFO -    🤖 Prompt 5/5: Find up to 15 real estate agencies in Jastrzebie-Zdroj, Poland that could assist...
+2025-10-12 12:58:58,680 - INFO - Running Gemini prompt: Find up to 15 real estate agencies in Jastrzebie-Zdroj, Poland that could assist Polish investors wi...
+2025-10-12 12:58:58,680 - INFO - AFC is enabled with max remote calls: 10.
+2025-10-12 12:59:22,530 - INFO - HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent "HTTP/1.1 200 OK"
+2025-10-12 12:59:22,533 - INFO -    📄 Response received (448 chars)
+2025-10-12 12:59:22,533 - INFO -    🔍 Parsed 1 potential agencies from response
+2025-10-12 12:59:23,533 - INFO -    🚫 Duplicate domain found: remax-gold.pl
+2025-10-12 12:59:23,534 - INFO -    🚫 Duplicate domain found: polnoc.nieruchomosci.pl
+2025-10-12 12:59:23,534 - INFO -    🚫 Duplicate domain found: metrohouse.pl
+2025-10-12 12:59:23,534 - INFO -    🚫 Duplicate domain found: wgn.pl
+2025-10-12 12:59:23,534 - INFO -    🚫 Duplicate name found: metrohouse
+2025-10-12 12:59:23,534 - INFO -    ✅ Found 2 new agencies for Jastrzebie-Zdroj
+2025-10-12 12:59:23,535 - INFO -       ➕ NEW: RE/MAX City - https://remax-city.pl
+2025-10-12 12:59:23,535 - INFO -       ➕ NEW: RE/MAX City Jastrzębie-Zdrój - https://remax-city.pl
+2025-10-12 12:59:23,535 - INFO - 🔍 Searching for agencies in Nowy Sacz, Poland...
+2025-10-12 12:59:23,535 - INFO -    🤖 Prompt 1/5: Find up to 15 real estate agencies in Nowy Sacz, Poland that specialize in Costa...
+2025-10-12 12:59:23,535 - INFO - Running Gemini prompt: Find up to 15 real estate agencies in Nowy Sacz, Poland that specialize in Costa del Sol, Marbella, ...
+2025-10-12 12:59:23,535 - INFO - AFC is enabled with max remote calls: 10.
+2025-10-12 13:00:00,358 - INFO - HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent "HTTP/1.1 200 OK"
+2025-10-12 13:00:00,366 - INFO -    📄 Response received (2365 chars)
+2025-10-12 13:00:00,366 - INFO -    🔍 Parsed 3 potential agencies from response
+2025-10-12 13:00:01,366 - INFO -    🤖 Prompt 2/5: Search for up to 15 property agencies in Nowy Sacz, Poland that help Polish clie...
+2025-10-12 13:00:01,367 - INFO - Running Gemini prompt: Search for up to 15 property agencies in Nowy Sacz, Poland that help Polish clients buy properties i...
+2025-10-12 13:00:01,367 - INFO - AFC is enabled with max remote calls: 10.
+2025-10-12 13:00:31,172 - INFO - HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent "HTTP/1.1 200 OK"
+2025-10-12 13:00:31,174 - INFO -    📄 Response received (585 chars)
+2025-10-12 13:00:31,174 - INFO -    🔍 Parsed 1 potential agencies from response
+2025-10-12 13:00:32,174 - INFO -    🤖 Prompt 3/5: Find up to 15 Polish real estate companies in Nowy Sacz that offer international...
+2025-10-12 13:00:32,175 - INFO - Running Gemini prompt: Find up to 15 Polish real estate companies in Nowy Sacz that offer international property services, ...
+2025-10-12 13:00:32,175 - INFO - AFC is enabled with max remote calls: 10.
+2025-10-12 13:00:50,329 - INFO - HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent "HTTP/1.1 200 OK"
+2025-10-12 13:00:50,331 - INFO -    📄 Response received (2 chars)
+2025-10-12 13:00:50,331 - INFO -    🔍 Parsed 0 potential agencies from response
+2025-10-12 13:00:51,332 - INFO -    🤖 Prompt 4/5: Search for up to 15 'biuro nieruchomości' in Nowy Sacz, Poland that handle inter...
+2025-10-12 13:00:51,332 - INFO - Running Gemini prompt: Search for up to 15 'biuro nieruchomości' in Nowy Sacz, Poland that handle international property tr...
+2025-10-12 13:00:51,332 - INFO - AFC is enabled with max remote calls: 10.
+2025-10-12 13:01:04,749 - INFO - HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent "HTTP/1.1 200 OK"
+2025-10-12 13:01:04,751 - INFO -    📄 Response received (2 chars)
+2025-10-12 13:01:04,752 - INFO -    🔍 Parsed 0 potential agencies from response
+2025-10-12 13:01:05,752 - INFO -    🤖 Prompt 5/5: Find up to 15 real estate agencies in Nowy Sacz, Poland that could assist Polish...
+2025-10-12 13:01:05,753 - INFO - Running Gemini prompt: Find up to 15 real estate agencies in Nowy Sacz, Poland that could assist Polish investors with Marb...
+2025-10-12 13:01:05,753 - INFO - AFC is enabled with max remote calls: 10.
+2025-10-12 13:01:35,375 - INFO - HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent "HTTP/1.1 200 OK"
+2025-10-12 13:01:35,377 - INFO -    📄 Response received (1077 chars)
+2025-10-12 13:01:35,377 - INFO -    🔍 Parsed 3 potential agencies from response
+2025-10-12 13:01:36,378 - INFO -    🚫 Duplicate domain found: remax-polska.pl
+2025-10-12 13:01:36,378 - INFO -    🚫 Duplicate name found: wgn nieruchomości nowy sącz
+2025-10-12 13:01:36,378 - INFO -    🚫 Duplicate domain found: remax-duo.pl
+2025-10-12 13:01:36,378 - INFO -    🚫 Duplicate name found: wgn nieruchomości nowy sącz
+2025-10-12 13:01:36,378 - INFO -    ✅ Found 3 new agencies for Nowy Sacz
+2025-10-12 13:01:36,379 - INFO -       ➕ NEW: Century 21 Capital Nowy Sącz - https://www.century21.pl/oddzial/capital/
+2025-10-12 13:01:36,379 - INFO -       ➕ NEW: Freedom Nieruchomości Nowy Sącz - https://nowysacz.freedom-nieruchomosci.pl/
+2025-10-12 13:01:36,379 - INFO -       ➕ NEW: Freedom Nieruchomości Nowy Sącz - https://nowysacz.freedom-nieruchomosci.pl
+2025-10-12 13:01:36,382 - INFO - Added new agency: RE/MAX Expert Tarnów from Tarnow
+2025-10-12 13:01:36,382 - INFO - Added new agency: Freedom Nieruchomości Jaworzno from Jaworzno
+2025-10-12 13:01:36,382 - INFO - Added new agency: WGN Nieruchomości Jaworzno from Jaworzno
+2025-10-12 13:01:36,382 - INFO - Added new agency: KNC Nieruchomości Jaworzno from Jaworzno
+2025-10-12 13:01:36,383 - INFO - Added new agency: PGN Nieruchomości from Jelenia Gora
+2025-10-12 13:01:36,383 - INFO - Added new agency: RE/MAX Dream Jelenia Góra from Jelenia Gora
+2025-10-12 13:01:36,383 - INFO - Added new agency: Locum Nieruchomości from Swidnica
+2025-10-12 13:01:36,383 - INFO - Added new agency: Global Estate Nieruchomości from Stalowa Wola
+2025-10-12 13:01:36,383 - INFO - Added new agency: HOME-EXPERT Agencja Nieruchomości from Piekary Slaskie
+2025-10-12 13:01:36,383 - INFO - Added new agency: WGN Nieruchomości Piekary Śląskie from Piekary Slaskie
+2025-10-12 13:01:36,383 - INFO - Added new agency: M & M Nieruchomości Piekary Śląskie from Piekary Slaskie
+2025-10-12 13:01:36,384 - INFO - Added new agency: Prestige Nieruchomości Lubin from Lubin
+2025-10-12 13:01:36,384 - INFO - Added new agency: RE/MAX Invest Tarnów from Tarnow
+2025-10-12 13:01:36,384 - INFO - Added new agency: WGN Nieruchomości from Slupsk
+2025-10-12 13:01:36,384 - INFO - Added new agency: KNC Nieruchomości Słupsk from Slupsk
+2025-10-12 13:01:36,385 - INFO - Added new agency: RE/MAX City from Jastrzebie-Zdroj
+2025-10-12 13:01:36,385 - INFO - Added new agency: RE/MAX City Jastrzębie-Zdrój from Jastrzebie-Zdroj
+2025-10-12 13:01:36,385 - INFO - Added new agency: Century 21 Capital Nowy Sącz from Nowy Sacz
+2025-10-12 13:01:36,385 - INFO - Added new agency: Freedom Nieruchomości Nowy Sącz from Nowy Sacz
+2025-10-12 13:01:36,407 - INFO - 📊 Batch complete: Found 19 unique agencies, saved 19 to database
+2025-10-12 13:01:36,408 - INFO - 🎯 Progress: 40/50 total agencies saved
+2025-10-12 13:01:36,408 - INFO - ⏳ Waiting 3 seconds before next batch...
+2025-10-12 13:01:39,408 - INFO - === Iteration 5 === Total agencies found so far: 40
+2025-10-12 13:01:39,420 - INFO - 🔍 Searching for agencies in Jaworzno, Poland...
+2025-10-12 13:01:39,420 - INFO -    📋 Excluding 2 known agencies from Jaworzno
+2025-10-12 13:01:39,420 - INFO -    🤖 Prompt 1/5: Find up to 15 real estate agencies in Jaworzno, Poland that specialize in Costa ...
+2025-10-12 13:01:39,420 - INFO - Running Gemini prompt: Find up to 15 real estate agencies in Jaworzno, Poland that specialize in Costa del Sol, Marbella, o...
+2025-10-12 13:01:39,421 - INFO - AFC is enabled with max remote calls: 10.
+2025-10-12 13:02:06,903 - INFO - HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent "HTTP/1.1 200 OK"
+2025-10-12 13:02:06,906 - INFO -    📄 Response received (1320 chars)
+2025-10-12 13:02:06,906 - INFO -    🔍 Parsed 2 potential agencies from response
+2025-10-12 13:02:07,906 - INFO -    🤖 Prompt 2/5: Search for up to 15 property agencies in Jaworzno, Poland that help Polish clien...
+2025-10-12 13:02:07,907 - INFO - Running Gemini prompt: Search for up to 15 property agencies in Jaworzno, Poland that help Polish clients buy properties in...
+2025-10-12 13:02:07,907 - INFO - AFC is enabled with max remote calls: 10.
+2025-10-12 13:02:20,616 - INFO - HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent "HTTP/1.1 200 OK"
+2025-10-12 13:02:20,619 - INFO -    📄 Response received (2 chars)
+2025-10-12 13:02:20,620 - INFO -    🔍 Parsed 0 potential agencies from response
+2025-10-12 13:02:21,622 - INFO -    🤖 Prompt 3/5: Find up to 15 Polish real estate companies in Jaworzno that offer international ...
+2025-10-12 13:02:21,622 - INFO - Running Gemini prompt: Find up to 15 Polish real estate companies in Jaworzno that offer international property services, p...
+2025-10-12 13:02:21,622 - INFO - AFC is enabled with max remote calls: 10.
+2025-10-12 13:02:40,240 - INFO - HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent "HTTP/1.1 200 OK"
+2025-10-12 13:02:40,242 - INFO -    📄 Response received (2 chars)
+2025-10-12 13:02:40,243 - INFO -    🔍 Parsed 0 potential agencies from response
+2025-10-12 13:02:41,245 - INFO -    🤖 Prompt 4/5: Search for up to 15 'biuro nieruchomości' in Jaworzno, Poland that handle intern...
+2025-10-12 13:02:41,245 - INFO - Running Gemini prompt: Search for up to 15 'biuro nieruchomości' in Jaworzno, Poland that handle international property tra...
+2025-10-12 13:02:41,245 - INFO - AFC is enabled with max remote calls: 10.
+2025-10-12 13:03:09,937 - INFO - HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent "HTTP/1.1 200 OK"
+2025-10-12 13:03:09,939 - INFO -    📄 Response received (2453 chars)
+2025-10-12 13:03:09,940 - INFO -    🔍 Parsed 4 potential agencies from response
+2025-10-12 13:03:10,943 - INFO -    🤖 Prompt 5/5: Find up to 15 real estate agencies in Jaworzno, Poland that could assist Polish ...
+2025-10-12 13:03:10,943 - INFO - Running Gemini prompt: Find up to 15 real estate agencies in Jaworzno, Poland that could assist Polish investors with Marbe...
+2025-10-12 13:03:10,943 - INFO - AFC is enabled with max remote calls: 10.
+2025-10-12 13:03:38,514 - INFO - HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent "HTTP/1.1 200 OK"
+2025-10-12 13:03:38,517 - INFO -    📄 Response received (802 chars)
+2025-10-12 13:03:38,517 - INFO -    🔍 Parsed 1 potential agencies from response
+2025-10-12 13:03:39,519 - INFO -    🚫 Duplicate domain found: polnoc.pl
+2025-10-12 13:03:39,519 - INFO -    🚫 Duplicate domain found: wgn.pl
+2025-10-12 13:03:39,519 - INFO -    🚫 Duplicate domain found: polnoc.pl
+2025-10-12 13:03:39,520 - INFO -    🚫 Duplicate domain found: freedom-nieruchomosci.pl
+2025-10-12 13:03:39,520 - INFO -    🚫 Duplicate domain found: metrohouse.pl
+2025-10-12 13:03:39,520 - INFO -    🚫 Duplicate domain found: wgn.pl
+2025-10-12 13:03:39,520 - INFO -    🚫 Duplicate domain found: wgn.pl
+2025-10-12 13:03:39,520 - INFO -    ✅ Found 0 new agencies for Jaworzno
+2025-10-12 13:03:39,520 - INFO - 🔍 Searching for agencies in Jelenia Gora, Poland...
+2025-10-12 13:03:39,520 - INFO -    🤖 Prompt 1/5: Find up to 15 real estate agencies in Jelenia Gora, Poland that specialize in Co...
+2025-10-12 13:03:39,521 - INFO - Running Gemini prompt: Find up to 15 real estate agencies in Jelenia Gora, Poland that specialize in Costa del Sol, Marbell...
+2025-10-12 13:03:39,521 - INFO - AFC is enabled with max remote calls: 10.
+2025-10-12 13:03:57,282 - INFO - HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent "HTTP/1.1 200 OK"
+2025-10-12 13:03:57,286 - INFO -    📄 Response received (2 chars)
+2025-10-12 13:03:57,286 - INFO -    🔍 Parsed 0 potential agencies from response
+2025-10-12 13:03:58,287 - INFO -    🤖 Prompt 2/5: Search for up to 15 property agencies in Jelenia Gora, Poland that help Polish c...
+2025-10-12 13:03:58,287 - INFO - Running Gemini prompt: Search for up to 15 property agencies in Jelenia Gora, Poland that help Polish clients buy propertie...
+2025-10-12 13:03:58,287 - INFO - AFC is enabled with max remote calls: 10.
+2025-10-12 13:04:11,008 - INFO - HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent "HTTP/1.1 200 OK"
+2025-10-12 13:04:11,009 - INFO -    📄 Response received (2 chars)
+2025-10-12 13:04:11,009 - INFO -    🔍 Parsed 0 potential agencies from response
+2025-10-12 13:04:12,009 - INFO -    🤖 Prompt 3/5: Find up to 15 Polish real estate companies in Jelenia Gora that offer internatio...
+2025-10-12 13:04:12,010 - INFO - Running Gemini prompt: Find up to 15 Polish real estate companies in Jelenia Gora that offer international property service...
+2025-10-12 13:04:12,010 - INFO - AFC is enabled with max remote calls: 10.
+2025-10-12 13:04:22,737 - INFO - HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent "HTTP/1.1 200 OK"
+2025-10-12 13:04:22,742 - INFO -    📄 Response received (2 chars)
+2025-10-12 13:04:22,742 - INFO -    🔍 Parsed 0 potential agencies from response
+2025-10-12 13:04:23,743 - INFO -    🤖 Prompt 4/5: Search for up to 15 'biuro nieruchomości' in Jelenia Gora, Poland that handle in...
+2025-10-12 13:04:23,743 - INFO - Running Gemini prompt: Search for up to 15 'biuro nieruchomości' in Jelenia Gora, Poland that handle international property...
+2025-10-12 13:04:23,744 - INFO - AFC is enabled with max remote calls: 10.
+2025-10-12 13:04:36,503 - INFO - HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent "HTTP/1.1 200 OK"
+2025-10-12 13:04:36,505 - INFO -    📄 Response received (2 chars)
+2025-10-12 13:04:36,505 - INFO -    🔍 Parsed 0 potential agencies from response
+2025-10-12 13:04:37,505 - INFO -    🤖 Prompt 5/5: Find up to 15 real estate agencies in Jelenia Gora, Poland that could assist Pol...
+2025-10-12 13:04:37,506 - INFO - Running Gemini prompt: Find up to 15 real estate agencies in Jelenia Gora, Poland that could assist Polish investors with M...
+2025-10-12 13:04:37,506 - INFO - AFC is enabled with max remote calls: 10.
+2025-10-12 13:05:06,888 - INFO - HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent "HTTP/1.1 200 OK"
+2025-10-12 13:05:06,901 - INFO -    📄 Response received (1232 chars)
+2025-10-12 13:05:06,904 - INFO -    🔍 Parsed 3 potential agencies from response
+2025-10-12 13:05:07,909 - INFO -    🚫 Duplicate domain found: freedom-nieruchomosci.pl
+2025-10-12 13:05:07,910 - INFO -    🚫 Duplicate name found: północ nieruchomości jelenia góra
+2025-10-12 13:05:07,911 - INFO -    ✅ Found 1 new agencies for Jelenia Gora
+2025-10-12 13:05:07,912 - INFO -       ➕ NEW: Grupa WGN Nieruchomości Jelenia Góra - https://jelenia-gora.wgn.pl/
+2025-10-12 13:05:07,914 - INFO - 🔍 Searching for agencies in Ostrow Mazowiecka, Poland...
+2025-10-12 13:05:07,916 - INFO -    🤖 Prompt 1/5: Find up to 15 real estate agencies in Ostrow Mazowiecka, Poland that specialize ...
+2025-10-12 13:05:07,918 - INFO - Running Gemini prompt: Find up to 15 real estate agencies in Ostrow Mazowiecka, Poland that specialize in Costa del Sol, Ma...
+2025-10-12 13:05:07,918 - INFO - AFC is enabled with max remote calls: 10.
+2025-10-12 13:05:20,057 - INFO - HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent "HTTP/1.1 200 OK"
+2025-10-12 13:05:20,059 - INFO -    📄 Response received (2 chars)
+2025-10-12 13:05:20,059 - INFO -    🔍 Parsed 0 potential agencies from response
+2025-10-12 13:05:21,059 - INFO -    🤖 Prompt 2/5: Search for up to 15 property agencies in Ostrow Mazowiecka, Poland that help Pol...
+2025-10-12 13:05:21,060 - INFO - Running Gemini prompt: Search for up to 15 property agencies in Ostrow Mazowiecka, Poland that help Polish clients buy prop...
+2025-10-12 13:05:21,061 - INFO - AFC is enabled with max remote calls: 10.
+2025-10-12 13:05:27,119 - INFO - HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent "HTTP/1.1 200 OK"
+2025-10-12 13:05:27,123 - INFO -    📄 Response received (2 chars)
+2025-10-12 13:05:27,123 - INFO -    🔍 Parsed 0 potential agencies from response
+2025-10-12 13:05:28,126 - INFO -    🤖 Prompt 3/5: Find up to 15 Polish real estate companies in Ostrow Mazowiecka that offer inter...
+2025-10-12 13:05:28,126 - INFO - Running Gemini prompt: Find up to 15 Polish real estate companies in Ostrow Mazowiecka that offer international property se...
+2025-10-12 13:05:28,126 - INFO - AFC is enabled with max remote calls: 10.
+2025-10-12 13:05:36,475 - INFO - HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent "HTTP/1.1 200 OK"
+2025-10-12 13:05:36,484 - INFO -    📄 Response received (2 chars)
+2025-10-12 13:05:36,485 - INFO -    🔍 Parsed 0 potential agencies from response
+2025-10-12 13:05:37,485 - INFO -    🤖 Prompt 4/5: Search for up to 15 'biuro nieruchomości' in Ostrow Mazowiecka, Poland that hand...
+2025-10-12 13:05:37,488 - INFO - Running Gemini prompt: Search for up to 15 'biuro nieruchomości' in Ostrow Mazowiecka, Poland that handle international pro...
+2025-10-12 13:05:37,488 - INFO - AFC is enabled with max remote calls: 10.
+2025-10-12 13:05:54,013 - INFO - HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent "HTTP/1.1 200 OK"
+2025-10-12 13:05:54,031 - INFO -    📄 Response received (2 chars)
+2025-10-12 13:05:54,031 - INFO -    🔍 Parsed 0 potential agencies from response
+2025-10-12 13:05:55,032 - INFO -    🤖 Prompt 5/5: Find up to 15 real estate agencies in Ostrow Mazowiecka, Poland that could assis...
+2025-10-12 13:05:55,032 - INFO - Running Gemini prompt: Find up to 15 real estate agencies in Ostrow Mazowiecka, Poland that could assist Polish investors w...
+2025-10-12 13:05:55,034 - INFO - AFC is enabled with max remote calls: 10.
+2025-10-12 13:06:09,382 - INFO - HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent "HTTP/1.1 200 OK"
+2025-10-12 13:06:09,383 - INFO -    📄 Response received (2 chars)
+2025-10-12 13:06:09,384 - INFO -    🔍 Parsed 0 potential agencies from response
+2025-10-12 13:06:10,384 - INFO -    ✅ Found 0 new agencies for Ostrow Mazowiecka
+2025-10-12 13:06:10,384 - INFO - 🔍 Searching for agencies in Swidnica, Poland...
+2025-10-12 13:06:10,384 - INFO -    🤖 Prompt 1/5: Find up to 15 real estate agencies in Swidnica, Poland that specialize in Costa ...
+2025-10-12 13:06:10,384 - INFO - Running Gemini prompt: Find up to 15 real estate agencies in Swidnica, Poland that specialize in Costa del Sol, Marbella, o...
+2025-10-12 13:06:10,384 - INFO - AFC is enabled with max remote calls: 10.
+2025-10-12 13:06:38,669 - INFO - HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent "HTTP/1.1 200 OK"
+2025-10-12 13:06:38,672 - INFO -    📄 Response received (1448 chars)
+2025-10-12 13:06:38,672 - INFO -    🔍 Parsed 2 potential agencies from response
+2025-10-12 13:06:39,673 - INFO -    🤖 Prompt 2/5: Search for up to 15 property agencies in Swidnica, Poland that help Polish clien...
+2025-10-12 13:06:39,673 - INFO - Running Gemini prompt: Search for up to 15 property agencies in Swidnica, Poland that help Polish clients buy properties in...
+2025-10-12 13:06:39,673 - INFO - AFC is enabled with max remote calls: 10.
+2025-10-12 13:06:50,214 - INFO - HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent "HTTP/1.1 200 OK"
+2025-10-12 13:06:50,216 - INFO -    📄 Response received (2 chars)
+2025-10-12 13:06:50,216 - INFO -    🔍 Parsed 0 potential agencies from response
+2025-10-12 13:06:51,216 - INFO -    🤖 Prompt 3/5: Find up to 15 Polish real estate companies in Swidnica that offer international ...
+2025-10-12 13:06:51,216 - INFO - Running Gemini prompt: Find up to 15 Polish real estate companies in Swidnica that offer international property services, p...
+2025-10-12 13:06:51,216 - INFO - AFC is enabled with max remote calls: 10.
+2025-10-12 13:06:58,751 - INFO - HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent "HTTP/1.1 200 OK"
+2025-10-12 13:06:58,753 - INFO -    📄 Response received (2 chars)
+2025-10-12 13:06:58,753 - INFO -    🔍 Parsed 0 potential agencies from response
+2025-10-12 13:06:59,753 - INFO -    🤖 Prompt 4/5: Search for up to 15 'biuro nieruchomości' in Swidnica, Poland that handle intern...
+2025-10-12 13:06:59,754 - INFO - Running Gemini prompt: Search for up to 15 'biuro nieruchomości' in Swidnica, Poland that handle international property tra...
+2025-10-12 13:06:59,754 - INFO - AFC is enabled with max remote calls: 10.
+2025-10-12 13:07:21,566 - INFO - HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent "HTTP/1.1 200 OK"
+2025-10-12 13:07:21,569 - INFO -    📄 Response received (2 chars)
+2025-10-12 13:07:21,570 - INFO -    🔍 Parsed 0 potential agencies from response
+2025-10-12 13:07:22,573 - INFO -    🤖 Prompt 5/5: Find up to 15 real estate agencies in Swidnica, Poland that could assist Polish ...
+2025-10-12 13:07:22,573 - INFO - Running Gemini prompt: Find up to 15 real estate agencies in Swidnica, Poland that could assist Polish investors with Marbe...
+2025-10-12 13:07:22,573 - INFO - AFC is enabled with max remote calls: 10.
+2025-10-12 13:07:52,078 - INFO - HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent "HTTP/1.1 200 OK"
+2025-10-12 13:07:52,081 - INFO -    📄 Response received (1202 chars)
+2025-10-12 13:07:52,081 - INFO -    🔍 Parsed 3 potential agencies from response
+2025-10-12 13:07:53,082 - INFO -    🚫 Duplicate domain found: remax-invest.pl
+2025-10-12 13:07:53,083 - INFO -    🚫 Duplicate domain found: investor.nieruchomosci.pl
+2025-10-12 13:07:53,083 - INFO -    🚫 Duplicate domain found: polnoc.nieruchomosci.pl
+2025-10-12 13:07:53,084 - INFO -    ✅ Found 2 new agencies for Swidnica
+2025-10-12 13:07:53,085 - INFO -       ➕ NEW: WGN Nieruchomości Świdnica - https://www.wgnsi.pl
+2025-10-12 13:07:53,087 - INFO -       ➕ NEW: Home Expert Nieruchomości - https://www.homeexpert.com.pl/
+2025-10-12 13:07:53,087 - INFO - 🔍 Searching for agencies in Stalowa Wola, Poland...
+2025-10-12 13:07:53,088 - INFO -    📋 Excluding 1 known agencies from Stalowa Wola
+2025-10-12 13:07:53,089 - INFO -    🤖 Prompt 1/5: Find up to 15 real estate agencies in Stalowa Wola, Poland that specialize in Co...
+2025-10-12 13:07:53,089 - INFO - Running Gemini prompt: Find up to 15 real estate agencies in Stalowa Wola, Poland that specialize in Costa del Sol, Marbell...
+2025-10-12 13:07:53,089 - INFO - AFC is enabled with max remote calls: 10.
+2025-10-12 13:08:05,958 - INFO - HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent "HTTP/1.1 200 OK"
+2025-10-12 13:08:05,960 - INFO -    📄 Response received (2 chars)
+2025-10-12 13:08:05,960 - INFO -    🔍 Parsed 0 potential agencies from response
+2025-10-12 13:08:06,960 - INFO -    🤖 Prompt 2/5: Search for up to 15 property agencies in Stalowa Wola, Poland that help Polish c...
+2025-10-12 13:08:06,960 - INFO - Running Gemini prompt: Search for up to 15 property agencies in Stalowa Wola, Poland that help Polish clients buy propertie...
+2025-10-12 13:08:06,963 - INFO - AFC is enabled with max remote calls: 10.
+2025-10-12 13:08:20,195 - INFO - HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent "HTTP/1.1 200 OK"
+2025-10-12 13:08:20,200 - INFO -    📄 Response received (2 chars)
+2025-10-12 13:08:20,201 - INFO -    🔍 Parsed 0 potential agencies from response
+2025-10-12 13:08:21,202 - INFO -    🤖 Prompt 3/5: Find up to 15 Polish real estate companies in Stalowa Wola that offer internatio...
+2025-10-12 13:08:21,202 - INFO - Running Gemini prompt: Find up to 15 Polish real estate companies in Stalowa Wola that offer international property service...
+2025-10-12 13:08:21,202 - INFO - AFC is enabled with max remote calls: 10.
+2025-10-12 13:08:35,567 - INFO - HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent "HTTP/1.1 200 OK"
+2025-10-12 13:08:35,577 - INFO -    📄 Response received (2 chars)
+2025-10-12 13:08:35,578 - INFO -    🔍 Parsed 0 potential agencies from response
+2025-10-12 13:08:36,579 - INFO -    🤖 Prompt 4/5: Search for up to 15 'biuro nieruchomości' in Stalowa Wola, Poland that handle in...
+2025-10-12 13:08:36,580 - INFO - Running Gemini prompt: Search for up to 15 'biuro nieruchomości' in Stalowa Wola, Poland that handle international property...
+2025-10-12 13:08:36,580 - INFO - AFC is enabled with max remote calls: 10.
+2025-10-12 13:09:06,719 - INFO - HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent "HTTP/1.1 200 OK"
+2025-10-12 13:09:06,722 - INFO -    📄 Response received (1543 chars)
+2025-10-12 13:09:06,722 - INFO -    🔍 Parsed 2 potential agencies from response
+2025-10-12 13:09:07,722 - INFO -    🤖 Prompt 5/5: Find up to 15 real estate agencies in Stalowa Wola, Poland that could assist Pol...
+2025-10-12 13:09:07,723 - INFO - Running Gemini prompt: Find up to 15 real estate agencies in Stalowa Wola, Poland that could assist Polish investors with M...
+2025-10-12 13:09:07,723 - INFO - AFC is enabled with max remote calls: 10.
+2025-10-12 13:09:22,643 - INFO - HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent "HTTP/1.1 200 OK"
+2025-10-12 13:09:22,644 - INFO -    📄 Response received (2 chars)
+2025-10-12 13:09:22,644 - INFO -    🔍 Parsed 0 potential agencies from response
+2025-10-12 13:09:23,645 - INFO -    🚫 Duplicate domain found: remax-home.pl
+2025-10-12 13:09:23,645 - INFO -    ✅ Found 1 new agencies for Stalowa Wola
+2025-10-12 13:09:23,646 - INFO -       ➕ NEW: BN WGN Nieruchomości Stalowa Wola - https://www.stalowawola.wgn.pl/
+2025-10-12 13:09:23,651 - INFO - Added new agency: RE/MAX Expert Tarnów from Tarnow
+2025-10-12 13:09:23,651 - INFO - Added new agency: Freedom Nieruchomości Jaworzno from Jaworzno
+2025-10-12 13:09:23,652 - INFO - Added new agency: WGN Nieruchomości Jaworzno from Jaworzno
+2025-10-12 13:09:23,652 - INFO - Added new agency: KNC Nieruchomości Jaworzno from Jaworzno
+2025-10-12 13:09:23,652 - INFO - Added new agency: PGN Nieruchomości from Jelenia Gora
+2025-10-12 13:09:23,652 - INFO - Added new agency: RE/MAX Dream Jelenia Góra from Jelenia Gora
+2025-10-12 13:09:23,652 - INFO - Added new agency: Locum Nieruchomości from Swidnica
+2025-10-12 13:09:23,652 - INFO - Added new agency: Global Estate Nieruchomości from Stalowa Wola
+2025-10-12 13:09:23,653 - INFO - Added new agency: HOME-EXPERT Agencja Nieruchomości from Piekary Slaskie
+2025-10-12 13:09:23,653 - INFO - Added new agency: WGN Nieruchomości Piekary Śląskie from Piekary Slaskie
+2025-10-12 13:09:23,653 - INFO - Added new agency: M & M Nieruchomości Piekary Śląskie from Piekary Slaskie
+2025-10-12 13:09:23,654 - INFO - Added new agency: Prestige Nieruchomości Lubin from Lubin
+2025-10-12 13:09:23,654 - INFO - Added new agency: RE/MAX Invest Tarnów from Tarnow
+2025-10-12 13:09:23,654 - INFO - Added new agency: WGN Nieruchomości from Slupsk
+2025-10-12 13:09:23,654 - INFO - Added new agency: KNC Nieruchomości Słupsk from Slupsk
+2025-10-12 13:09:23,654 - INFO - Added new agency: RE/MAX City from Jastrzebie-Zdroj
+2025-10-12 13:09:23,655 - INFO - Added new agency: RE/MAX City Jastrzębie-Zdrój from Jastrzebie-Zdroj
+2025-10-12 13:09:23,656 - INFO - Added new agency: Century 21 Capital Nowy Sącz from Nowy Sacz
+2025-10-12 13:09:23,656 - INFO - Added new agency: Freedom Nieruchomości Nowy Sącz from Nowy Sacz
+2025-10-12 13:09:23,656 - INFO - Added new agency: Grupa WGN Nieruchomości Jelenia Góra from Jelenia Gora
+2025-10-12 13:09:23,656 - INFO - Added new agency: WGN Nieruchomości Świdnica from Swidnica
+2025-10-12 13:09:23,656 - INFO - Added new agency: Home Expert Nieruchomości from Swidnica
+2025-10-12 13:09:23,656 - INFO - Added new agency: BN WGN Nieruchomości Stalowa Wola from Stalowa Wola
+2025-10-12 13:09:23,673 - INFO - 📊 Batch complete: Found 23 unique agencies, saved 23 to database
+2025-10-12 13:09:23,674 - INFO - 🎯 Progress: 63/50 total agencies saved
+2025-10-12 13:09:23,678 - INFO - 🎉 Target reached! Found 63 new agencies
+2025-10-12 13:09:23,678 - INFO - 🏁 Targeted search complete. Total agencies found: 63

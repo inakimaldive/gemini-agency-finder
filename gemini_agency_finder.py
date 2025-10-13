@@ -28,7 +28,9 @@ logging.basicConfig(
 class GeminiAgencyFinder:
     def __init__(self, db_path='agencies.db', api_key=None):
         self.db_path = db_path
-        self.api_key = api_key or os.getenv('GOOGLE_API_KEY') or 'AIzaSyB7iUl70z8jjHuaQbOPWMhN0lEpC9GwM0Q'
+        self.api_key = api_key or os.getenv('GOOGLE_API_KEY')
+        if not self.api_key:
+            raise ValueError("Google API key not found. Please set the GOOGLE_API_KEY environment variable.")
         self.client = genai.Client(api_key=self.api_key)
         self.existing_domains = self.get_existing_domains()
         self.existing_names = self.get_existing_names()
