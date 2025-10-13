@@ -272,6 +272,35 @@
                 .trim();
         }
 
+        // Function to check if agency has valid website
+        function hasValidWebsite(row) {
+            // Check main website
+            if (row.website_status === 'active' || row.website_status === 'corrected') {
+                return true;
+            }
+            // Check alternatives
+            if (row.alternative_urls && Array.isArray(row.alternative_urls)) {
+                return row.alternative_urls.some(alt => alt.status === 'active' || alt.status === 'corrected');
+            }
+            return false;
+        }
+
+        // Function to get best available website URL
+        function getBestWebsite(row) {
+            // Check main website
+            if ((row.website_status === 'active' || row.website_status === 'corrected') && row.website && row.website.trim()) {
+                return row.website;
+            }
+            // Check alternatives
+            if (row.alternative_urls && Array.isArray(row.alternative_urls)) {
+                const activeAlt = row.alternative_urls.find(alt => alt.status === 'active' || alt.status === 'corrected');
+                if (activeAlt) {
+                    return activeAlt.url;
+                }
+            }
+            return null;
+        }
+
         // Load data from JSON file
         async function loadAgenciesData() {
             try {
@@ -363,6 +392,10 @@
                         width: '6%',
                         className: 'text-center',
                         render: function(data, type, row) {
+                            // Check if agency has valid website - if not, show inactive
+                            const hasValidSite = hasValidWebsite(row);
+                            const displayType = hasValidSite ? data : 'inactive';
+
                             const badges = {
                                 'marbella': '<span class="badge bg-success badge-sm">Marbella</span>',
                                 'polish': '<span class="badge bg-primary badge-sm">Polish</span>',
@@ -370,7 +403,7 @@
                                 'inactive': '<span class="badge bg-danger badge-sm">Inactive</span>',
                                 'gemini_discovered': '<span class="badge bg-warning badge-sm">AI</span>'
                             };
-                            return badges[data] || `<span class="badge bg-secondary badge-sm">${data}</span>`;
+                            return badges[displayType] || `<span class="badge bg-secondary badge-sm">${displayType}</span>`;
                         }
                     },
                     {
@@ -379,10 +412,11 @@
                         width: '18%',
                         className: 'text-truncate',
                         render: function(data, type, row) {
-                            if (data && data.trim()) {
-                                const url = data.startsWith('http') ? data : `https://${data}`;
-                                const displayUrl = data.length > 23 ? data.substring(0, 23) + '...' : data;
-                                return `<a href="${url}" target="_blank" class="website-link text-truncate d-inline-block" style="max-width: 180px;" title="${data}">${displayUrl}</a>`;
+                            const bestWebsite = getBestWebsite(row);
+                            if (bestWebsite && bestWebsite.trim()) {
+                                const url = bestWebsite.startsWith('http') ? bestWebsite : `https://${bestWebsite}`;
+                                const displayUrl = bestWebsite.length > 23 ? bestWebsite.substring(0, 23) + '...' : bestWebsite;
+                                return `<a href="${url}" target="_blank" class="website-link text-truncate d-inline-block" style="max-width: 180px;" title="${bestWebsite}">${displayUrl}</a>`;
                             }
                             return '<span class="text-muted"><em>N/A</em></span>';
                         }
@@ -484,16 +518,21 @@
                         const data = this.data();
                         const row = this.node();
 
-                        if (data.type === 'marbella') {
-                            $(row).addClass('table-success');
-                        } else if (data.type === 'polish') {
-                            $(row).addClass('table-primary');
-                        } else if (data.type === 'both') {
-                            $(row).addClass('table-info');
-                        } else if (data.type === 'inactive') {
+                        // Check if agency has valid website for styling
+                        const hasValidSite = hasValidWebsite(data);
+
+                        if (hasValidSite) {
+                            if (data.type === 'marbella') {
+                                $(row).addClass('table-success');
+                            } else if (data.type === 'polish') {
+                                $(row).addClass('table-primary');
+                            } else if (data.type === 'both') {
+                                $(row).addClass('table-info');
+                            } else if (data.type === 'gemini_discovered') {
+                                $(row).addClass('table-warning');
+                            }
+                        } else {
                             $(row).addClass('table-danger');
-                        } else if (data.type === 'gemini_discovered') {
-                            $(row).addClass('table-warning');
                         }
 
                         // Make rows clickable
@@ -555,23 +594,21 @@
 
                             <div class="mb-3">
                                 <strong>Type:</strong>
-                                <span class="badge ${agency.type === 'marbella' ? 'bg-success' :
+                                <span class="badge ${hasValidWebsite(agency) ? (agency.type === 'marbella' ? 'bg-success' :
                                                    agency.type === 'polish' ? 'bg-primary' :
-                                                   agency.type === 'both' ? 'bg-info' :
-                                                   agency.type === 'inactive' ? 'bg-danger' : 'bg-warning'} ms-2">
-                                    ${agency.type === 'marbella' ? 'Marbella Based' :
+                                                   agency.type === 'both' ? 'bg-info' : 'bg-warning') : 'bg-danger'} ms-2">
+                                    ${hasValidWebsite(agency) ? (agency.type === 'marbella' ? 'Marbella Based' :
                                       agency.type === 'polish' ? 'Polish Agency' :
-                                      agency.type === 'both' ? 'Spain & Poland' :
-                                      agency.type === 'inactive' ? 'Inactive' : 'AI Discovered'}
+                                      agency.type === 'both' ? 'Spain & Poland' : 'AI Discovered') : 'Inactive'}
                                 </span>
                             </div>
 
-                            ${agency.website ? `
+                            ${getBestWebsite(agency) ? `
                             <div class="mb-3">
                                 <strong>Website:</strong>
-                                <a href="${agency.website.startsWith('http') ? agency.website : 'https://' + agency.website}"
+                                <a href="${getBestWebsite(agency).startsWith('http') ? getBestWebsite(agency) : 'https://' + getBestWebsite(agency)}"
                                    target="_blank" class="ms-2 text-decoration-none">
-                                    ${agency.website} <i class="fas fa-external-link-alt small"></i>
+                                    ${getBestWebsite(agency)} <i class="fas fa-external-link-alt small"></i>
                                 </a>
                             </div>
                             ` : ''}
