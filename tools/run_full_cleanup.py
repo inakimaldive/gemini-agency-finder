@@ -121,6 +121,8 @@ def main():
         ('remove_duplicates', 'Remove exact duplicate entries'),
         ('update_types', 'Classify agencies by type (marbella, polish, both, etc.)'),
         ('enhanced_type_classification', 'Apply advanced classification rules with multiple indicators'),
+        ('clean_website_urls', 'Clean up malformed website URLs (markdown syntax, trailing punctuation)'),
+        ('enhanced_website_validator', 'Advanced website validation with HTTPS upgrade, redirects, and corrections'),
         # ('validate_websites', 'Check website accessibility and update status'),  # Commented out - too slow for regular cleanup
         ('move_undefined', 'Move incomplete entries to separate undefined table')
     ]
