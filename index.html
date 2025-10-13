@@ -392,9 +392,12 @@
                         width: '6%',
                         className: 'text-center',
                         render: function(data, type, row) {
-                            // Check if agency has valid website - if not, show inactive
-                            const hasValidSite = hasValidWebsite(row);
-                            const displayType = hasValidSite ? data : 'inactive';
+                            // Show 'inactive' only for listings with a clearly identified main URL that does not work
+                            const hasMainUrl = row.website && row.website.trim();
+                            const mainUrlNotWorking = hasMainUrl && row.website_status && !['active', 'corrected'].includes(row.website_status);
+                            const noWorkingAlternatives = !row.alternative_urls || !Array.isArray(row.alternative_urls) || !row.alternative_urls.some(alt => ['active', 'corrected'].includes(alt.status));
+
+                            const displayType = (hasMainUrl && mainUrlNotWorking && noWorkingAlternatives) ? 'inactive' : data;
 
                             const badges = {
                                 'marbella': '<span class="badge bg-success badge-sm">Marbella</span>',
@@ -518,10 +521,15 @@
                         const data = this.data();
                         const row = this.node();
 
-                        // Check if agency has valid website for styling
-                        const hasValidSite = hasValidWebsite(data);
+                        // Check if agency should be marked as inactive for styling
+                        const hasMainUrl = data.website && data.website.trim();
+                        const mainUrlNotWorking = hasMainUrl && data.website_status && !['active', 'corrected'].includes(data.website_status);
+                        const noWorkingAlternatives = !data.alternative_urls || !Array.isArray(data.alternative_urls) || !data.alternative_urls.some(alt => ['active', 'corrected'].includes(alt.status));
+                        const shouldBeInactive = hasMainUrl && mainUrlNotWorking && noWorkingAlternatives;
 
-                        if (hasValidSite) {
+                        if (shouldBeInactive) {
+                            $(row).addClass('table-danger');
+                        } else {
                             if (data.type === 'marbella') {
                                 $(row).addClass('table-success');
                             } else if (data.type === 'polish') {
@@ -531,8 +539,6 @@
                             } else if (data.type === 'gemini_discovered') {
                                 $(row).addClass('table-warning');
                             }
-                        } else {
-                            $(row).addClass('table-danger');
                         }
 
                         // Make rows clickable
@@ -594,12 +600,34 @@
 
                             <div class="mb-3">
                                 <strong>Type:</strong>
-                                <span class="badge ${hasValidWebsite(agency) ? (agency.type === 'marbella' ? 'bg-success' :
-                                                   agency.type === 'polish' ? 'bg-primary' :
-                                                   agency.type === 'both' ? 'bg-info' : 'bg-warning') : 'bg-danger'} ms-2">
-                                    ${hasValidWebsite(agency) ? (agency.type === 'marbella' ? 'Marbella Based' :
-                                      agency.type === 'polish' ? 'Polish Agency' :
-                                      agency.type === 'both' ? 'Spain & Poland' : 'AI Discovered') : 'Inactive'}
+                                <span class="badge ${(() => {
+                                    const hasMainUrl = agency.website && agency.website.trim();
+                                    const mainUrlNotWorking = hasMainUrl && agency.website_status && !['active', 'corrected'].includes(agency.website_status);
+                                    const noWorkingAlternatives = !agency.alternative_urls || !agency.alternative_urls.some(alt => ['active', 'corrected'].includes(alt.status));
+                                    const shouldBeInactive = hasMainUrl && mainUrlNotWorking && noWorkingAlternatives;
+
+                                    if (shouldBeInactive) {
+                                        return 'bg-danger';
+                                    } else {
+                                        return agency.type === 'marbella' ? 'bg-success' :
+                                               agency.type === 'polish' ? 'bg-primary' :
+                                               agency.type === 'both' ? 'bg-info' : 'bg-warning';
+                                    }
+                                })()} ms-2">
+                                    ${(() => {
+                                        const hasMainUrl = agency.website && agency.website.trim();
+                                        const mainUrlNotWorking = hasMainUrl && agency.website_status && !['active', 'corrected'].includes(agency.website_status);
+                                        const noWorkingAlternatives = !agency.alternative_urls || !agency.alternative_urls.some(alt => ['active', 'corrected'].includes(alt.status));
+                                        const shouldBeInactive = hasMainUrl && mainUrlNotWorking && noWorkingAlternatives;
+
+                                        if (shouldBeInactive) {
+                                            return 'Inactive';
+                                        } else {
+                                            return agency.type === 'marbella' ? 'Marbella Based' :
+                                                   agency.type === 'polish' ? 'Polish Agency' :
+                                                   agency.type === 'both' ? 'Spain & Poland' : 'AI Discovered';
+                                        }
+                                    })()}
                                 </span>
                             </div>
 
