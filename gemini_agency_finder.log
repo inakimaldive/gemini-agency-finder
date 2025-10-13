@@ -6058,3 +6058,1272 @@ Find their ...
 2025-10-12 13:09:23,674 - INFO - 🎯 Progress: 63/50 total agencies saved
 2025-10-12 13:09:23,678 - INFO - 🎉 Target reached! Found 63 new agencies
 2025-10-12 13:09:23,678 - INFO - 🏁 Targeted search complete. Total agencies found: 63
+2025-10-13 15:02:37,409 - INFO - Found 2 inactive agencies to enrich
+2025-10-13 15:02:37,409 - INFO - Processing agency: Sotheby's International Realty (ID: 6)
+2025-10-13 15:02:37,410 - INFO - Searching for more info on: Sotheby's International Realty
+2025-10-13 15:02:37,410 - INFO - Running Gemini prompt: Search the web for the real estate agency "Sotheby's International Realty" located at "Av. Bulevar P...
+2025-10-13 15:02:37,411 - INFO - AFC is enabled with max remote calls: 10.
+2025-10-13 15:02:53,542 - INFO - HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent "HTTP/1.1 200 OK"
+2025-10-13 15:02:53,573 - INFO - ✅ Got response for Sotheby's International Realty (attempt 1)
+2025-10-13 15:02:53,574 - ERROR - 💥 Error enriching Sotheby's International Realty (attempt 1): cannot access local variable 're' where it is not associated with a value
+2025-10-13 15:02:55,576 - INFO - Running Gemini prompt: Search the web for the real estate agency "Sotheby's International Realty" located at "Av. Bulevar P...
+2025-10-13 15:02:55,576 - INFO - AFC is enabled with max remote calls: 10.
+2025-10-13 15:03:09,315 - INFO - HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent "HTTP/1.1 200 OK"
+2025-10-13 15:03:09,335 - INFO - ✅ Got response for Sotheby's International Realty (attempt 2)
+2025-10-13 15:03:09,335 - ERROR - 💥 Error enriching Sotheby's International Realty (attempt 2): cannot access local variable 're' where it is not associated with a value
+2025-10-13 15:03:12,335 - INFO - Processing agency: Strand Properties (ID: 10)
+2025-10-13 15:03:12,336 - INFO - Searching for more info on: Strand Properties
+2025-10-13 15:03:12,336 - INFO - Running Gemini prompt: Search the web for the real estate agency "Strand Properties" located at "Av. Playas del Duque Málag...
+2025-10-13 15:03:12,336 - INFO - AFC is enabled with max remote calls: 10.
+2025-10-13 15:03:26,903 - INFO - HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent "HTTP/1.1 200 OK"
+2025-10-13 15:03:26,987 - INFO - ✅ Got response for Strand Properties (attempt 1)
+2025-10-13 15:03:26,987 - ERROR - 💥 Error enriching Strand Properties (attempt 1): cannot access local variable 're' where it is not associated with a value
+2025-10-13 15:03:28,987 - INFO - Running Gemini prompt: Search the web for the real estate agency "Strand Properties" located at "Av. Playas del Duque Málag...
+2025-10-13 15:03:28,988 - INFO - AFC is enabled with max remote calls: 10.
+2025-10-13 15:03:35,250 - INFO - Found 1 inactive agencies to enrich
+2025-10-13 15:03:35,250 - INFO - Processing agency: Sotheby's International Realty (ID: 6)
+2025-10-13 15:03:35,250 - INFO - Searching for more info on: Sotheby's International Realty
+2025-10-13 15:03:35,251 - INFO - Running Gemini prompt: Search the web for the real estate agency "Sotheby's International Realty" located at "Av. Bulevar P...
+2025-10-13 15:03:35,251 - INFO - AFC is enabled with max remote calls: 10.
+2025-10-13 15:03:41,470 - INFO - HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent "HTTP/1.1 200 OK"
+2025-10-13 15:03:41,500 - INFO - ✅ Got response for Strand Properties (attempt 2)
+2025-10-13 15:03:41,501 - ERROR - 💥 Error enriching Strand Properties (attempt 2): cannot access local variable 're' where it is not associated with a value
+2025-10-13 15:03:41,502 - INFO - Enrichment complete. Processed: 2, Enriched: 0
+2025-10-13 15:03:47,074 - INFO - HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent "HTTP/1.1 200 OK"
+2025-10-13 15:03:47,119 - INFO - ✅ Got response for Sotheby's International Realty (attempt 1)
+2025-10-13 15:03:47,119 - INFO - Enrichment complete. Processed: 1, Enriched: 1
+2025-10-13 15:04:09,800 - INFO - Found 5 inactive agencies to enrich
+2025-10-13 15:04:09,801 - INFO - Processing agency: Sotheby's International Realty (ID: 6)
+2025-10-13 15:04:09,801 - INFO - Searching for more info on: Sotheby's International Realty
+2025-10-13 15:04:09,801 - INFO - Running Gemini prompt: Search the web for the real estate agency "Sotheby's International Realty" located at "Av. Bulevar P...
+2025-10-13 15:04:09,801 - INFO - AFC is enabled with max remote calls: 10.
+2025-10-13 15:04:34,623 - INFO - HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent "HTTP/1.1 200 OK"
+2025-10-13 15:04:34,643 - INFO - ✅ Got response for Sotheby's International Realty (attempt 1)
+2025-10-13 15:04:34,681 - INFO - ✅ Updated agency 6 with: ['phone', 'address', '_raw_response']
+2025-10-13 15:04:37,682 - INFO - Processing agency: Strand Properties (ID: 10)
+2025-10-13 15:04:37,683 - INFO - Searching for more info on: Strand Properties
+2025-10-13 15:04:37,683 - INFO - Running Gemini prompt: Search the web for the real estate agency "Strand Properties" located at "Av. Playas del Duque Málag...
+2025-10-13 15:04:37,684 - INFO - AFC is enabled with max remote calls: 10.
+2025-10-13 15:04:57,447 - INFO - HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent "HTTP/1.1 200 OK"
+2025-10-13 15:04:57,475 - INFO - ✅ Got response for Strand Properties (attempt 1)
+2025-10-13 15:04:57,512 - INFO - ✅ Updated agency 10 with: ['website', 'phone', 'address', '_raw_response']
+2025-10-13 15:05:00,513 - INFO - Processing agency: The Agency Marbella (ID: 11)
+2025-10-13 15:05:00,514 - INFO - Searching for more info on: The Agency Marbella
+2025-10-13 15:05:00,514 - INFO - Running Gemini prompt: Search the web for the real estate agency "The Agency Marbella" located at "Avenida Jaime de Mora, 2...
+2025-10-13 15:05:00,515 - INFO - AFC is enabled with max remote calls: 10.
+2025-10-13 15:05:20,023 - INFO - HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent "HTTP/1.1 200 OK"
+2025-10-13 15:05:20,040 - INFO - ✅ Got response for The Agency Marbella (attempt 1)
+2025-10-13 15:05:20,075 - INFO - ✅ Updated agency 11 with: ['phone', 'address', '_raw_response']
+2025-10-13 15:05:23,076 - INFO - Processing agency: Bjurfors Real Estate (ID: 16)
+2025-10-13 15:05:23,077 - INFO - Searching for more info on: Bjurfors Real Estate
+2025-10-13 15:05:23,077 - INFO - Running Gemini prompt: Search the web for the real estate agency "Bjurfors Real Estate" located at "Avda. de Manolete 1, Ce...
+2025-10-13 15:05:23,078 - INFO - AFC is enabled with max remote calls: 10.
+2025-10-13 15:05:37,942 - INFO - HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent "HTTP/1.1 200 OK"
+2025-10-13 15:05:37,968 - INFO - ✅ Got response for Bjurfors Real Estate (attempt 1)
+2025-10-13 15:05:38,008 - INFO - ✅ Updated agency 16 with: ['website', 'phone', 'address', '_raw_response']
+2025-10-13 15:05:41,010 - INFO - Processing agency: Marbella Dream Living (ID: 23)
+2025-10-13 15:05:41,010 - INFO - Searching for more info on: Marbella Dream Living
+2025-10-13 15:05:41,011 - INFO - Running Gemini prompt: Search the web for the real estate agency "Marbella Dream Living" located at "Av de Manolete, 20, Ce...
+2025-10-13 15:05:41,011 - INFO - AFC is enabled with max remote calls: 10.
+2025-10-13 15:05:52,171 - INFO - HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent "HTTP/1.1 200 OK"
+2025-10-13 15:05:52,190 - INFO - ✅ Got response for Marbella Dream Living (attempt 1)
+2025-10-13 15:05:52,233 - INFO - ✅ Updated agency 23 with: ['address', '_raw_response']
+2025-10-13 15:05:52,234 - INFO - Enrichment complete. Processed: 5, Enriched: 5
+2025-10-13 15:07:20,514 - INFO - Found 170 inactive agencies to enrich
+2025-10-13 15:07:20,514 - INFO - Processing agency: Sotheby's International Realty (ID: 6)
+2025-10-13 15:07:20,514 - INFO - Searching for more info on: Sotheby's International Realty
+2025-10-13 15:07:20,514 - INFO - Running Gemini prompt: Search the web for the real estate agency "Sotheby's International Realty" located at "The agency op...
+2025-10-13 15:07:20,515 - INFO - AFC is enabled with max remote calls: 10.
+2025-10-13 15:07:35,903 - INFO - HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent "HTTP/1.1 200 OK"
+2025-10-13 15:07:35,931 - INFO - ✅ Got response for Sotheby's International Realty (attempt 1)
+2025-10-13 15:07:35,967 - INFO - ✅ Updated agency 6 with: ['phone', 'address', '_raw_response']
+2025-10-13 15:07:38,969 - INFO - Processing agency: Strand Properties (ID: 10)
+2025-10-13 15:07:38,969 - INFO - Searching for more info on: Strand Properties
+2025-10-13 15:07:38,970 - INFO - Running Gemini prompt: Search the web for the real estate agency "Strand Properties" located at "** There is no indication ...
+2025-10-13 15:07:38,970 - INFO - AFC is enabled with max remote calls: 10.
+2025-10-13 15:07:56,197 - INFO - HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent "HTTP/1.1 200 OK"
+2025-10-13 15:07:56,214 - INFO - ✅ Got response for Strand Properties (attempt 1)
+2025-10-13 15:07:56,250 - INFO - ✅ Updated agency 10 with: ['phone', 'address', '_raw_response']
+2025-10-13 15:07:59,251 - INFO - Processing agency: The Agency Marbella (ID: 11)
+2025-10-13 15:07:59,252 - INFO - Searching for more info on: The Agency Marbella
+2025-10-13 15:07:59,253 - INFO - Running Gemini prompt: Search the web for the real estate agency "The Agency Marbella" located at "** The agency operates u...
+2025-10-13 15:07:59,253 - INFO - AFC is enabled with max remote calls: 10.
+2025-10-13 15:08:16,851 - INFO - HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent "HTTP/1.1 200 OK"
+2025-10-13 15:08:16,876 - INFO - ✅ Got response for The Agency Marbella (attempt 1)
+2025-10-13 15:08:16,895 - INFO - ✅ Updated agency 11 with: ['phone', 'address', '_raw_response']
+2025-10-13 15:08:19,896 - INFO - Processing agency: Bjurfors Real Estate (ID: 16)
+2025-10-13 15:08:19,896 - INFO - Searching for more info on: Bjurfors Real Estate
+2025-10-13 15:08:19,897 - INFO - Running Gemini prompt: Search the web for the real estate agency "Bjurfors Real Estate" located at "** The address is Avda....
+2025-10-13 15:08:19,897 - INFO - AFC is enabled with max remote calls: 10.
+2025-10-13 15:08:37,434 - INFO - HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent "HTTP/1.1 200 OK"
+2025-10-13 15:08:37,449 - INFO - ✅ Got response for Bjurfors Real Estate (attempt 1)
+2025-10-13 15:08:37,484 - INFO - ✅ Updated agency 16 with: ['phone', 'address', '_raw_response']
+2025-10-13 15:08:40,484 - INFO - Processing agency: Marbella Dream Living (ID: 23)
+2025-10-13 15:08:40,485 - INFO - Searching for more info on: Marbella Dream Living
+2025-10-13 15:08:40,485 - INFO - Running Gemini prompt: Search the web for the real estate agency "Marbella Dream Living" located at "** Marbella Dream Livi...
+2025-10-13 15:08:40,486 - INFO - AFC is enabled with max remote calls: 10.
+2025-10-13 15:09:05,181 - INFO - HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent "HTTP/1.1 200 OK"
+2025-10-13 15:09:05,196 - INFO - ✅ Got response for Marbella Dream Living (attempt 1)
+2025-10-13 15:09:05,236 - INFO - ✅ Updated agency 23 with: ['phone', 'address', '_raw_response']
+2025-10-13 15:09:08,237 - INFO - Processing agency: Right Casa Estates (ID: 26)
+2025-10-13 15:09:08,238 - INFO - Searching for more info on: Right Casa Estates
+2025-10-13 15:09:08,238 - INFO - Running Gemini prompt: Search the web for the real estate agency "Right Casa Estates" located at "Calle Mérida de Jarales, ...
+2025-10-13 15:09:08,239 - INFO - AFC is enabled with max remote calls: 10.
+2025-10-13 15:09:24,128 - INFO - HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent "HTTP/1.1 200 OK"
+2025-10-13 15:09:24,152 - INFO - ✅ Got response for Right Casa Estates (attempt 1)
+2025-10-13 15:09:24,193 - INFO - ✅ Updated agency 26 with: ['address', '_raw_response']
+2025-10-13 15:09:27,194 - INFO - Processing agency: Roccabox Property Group (ID: 27)
+2025-10-13 15:09:27,194 - INFO - Searching for more info on: Roccabox Property Group
+2025-10-13 15:09:27,195 - INFO - Running Gemini prompt: Search the web for the real estate agency "Roccabox Property Group" located at "Calle Los Jazmines, ...
+2025-10-13 15:09:27,195 - INFO - AFC is enabled with max remote calls: 10.
+2025-10-13 15:09:46,451 - INFO - HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent "HTTP/1.1 200 OK"
+2025-10-13 15:09:46,491 - INFO - ✅ Got response for Roccabox Property Group (attempt 1)
+2025-10-13 15:09:46,531 - INFO - ✅ Updated agency 27 with: ['phone', 'address', '_raw_response']
+2025-10-13 15:09:49,532 - INFO - Processing agency: Nordica (ID: 31)
+2025-10-13 15:09:49,533 - INFO - Searching for more info on: Nordica
+2025-10-13 15:09:49,533 - INFO - Running Gemini prompt: Search the web for the real estate agency "Nordica" located at "Avenida del Prado, s/n. Lorcrigolf l...
+2025-10-13 15:09:49,534 - INFO - AFC is enabled with max remote calls: 10.
+2025-10-13 15:09:59,581 - INFO - HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent "HTTP/1.1 200 OK"
+2025-10-13 15:09:59,601 - INFO - ✅ Got response for Nordica (attempt 1)
+2025-10-13 15:09:59,636 - INFO - ✅ Updated agency 31 with: ['website', 'address', '_raw_response']
+2025-10-13 15:10:02,636 - INFO - Processing agency: Hamptons International (ID: 38)
+2025-10-13 15:10:02,637 - INFO - Searching for more info on: Hamptons International
+2025-10-13 15:10:02,638 - INFO - Running Gemini prompt: Search the web for the real estate agency "Hamptons International" located at "Marbella Club Centro ...
+2025-10-13 15:10:02,638 - INFO - AFC is enabled with max remote calls: 10.
+2025-10-13 15:10:15,839 - INFO - HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent "HTTP/1.1 200 OK"
+2025-10-13 15:10:15,871 - INFO - ✅ Got response for Hamptons International (attempt 1)
+2025-10-13 15:10:15,899 - INFO - ✅ Updated agency 38 with: ['website', '_raw_response']
+2025-10-13 15:10:18,900 - INFO - Processing agency: Colliers International Spain (ID: 49)
+2025-10-13 15:10:18,900 - INFO - Searching for more info on: Colliers International Spain
+2025-10-13 15:10:18,901 - INFO - Running Gemini prompt: Search the web for the real estate agency "Colliers International Spain" located at "Alfonso de Hohe...
+2025-10-13 15:10:18,902 - INFO - AFC is enabled with max remote calls: 10.
+2025-10-13 15:10:33,965 - INFO - HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent "HTTP/1.1 200 OK"
+2025-10-13 15:10:33,991 - INFO - ✅ Got response for Colliers International Spain (attempt 1)
+2025-10-13 15:10:34,025 - INFO - ✅ Updated agency 49 with: ['address', '_raw_response']
+2025-10-13 15:10:37,026 - INFO - Processing agency: Keller Williams Marbella (ID: 57)
+2025-10-13 15:10:37,027 - INFO - Searching for more info on: Keller Williams Marbella
+2025-10-13 15:10:37,027 - INFO - Running Gemini prompt: Search the web for the real estate agency "Keller Williams Marbella" located at "Urb. Los Patios de ...
+2025-10-13 15:10:37,028 - INFO - AFC is enabled with max remote calls: 10.
+2025-10-13 15:10:55,706 - INFO - HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent "HTTP/1.1 200 OK"
+2025-10-13 15:10:55,728 - INFO - ✅ Got response for Keller Williams Marbella (attempt 1)
+2025-10-13 15:10:55,768 - INFO - ✅ Updated agency 57 with: ['address', '_raw_response']
+2025-10-13 15:10:58,769 - INFO - Processing agency: MARBELLA 360 (ID: 59)
+2025-10-13 15:10:58,769 - INFO - Searching for more info on: MARBELLA 360
+2025-10-13 15:10:58,769 - INFO - Running Gemini prompt: Search the web for the real estate agency "MARBELLA 360" located at "Not found" in Spain.
+
+Please pr...
+2025-10-13 15:10:58,770 - INFO - AFC is enabled with max remote calls: 10.
+2025-10-13 15:11:28,650 - INFO - HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent "HTTP/1.1 200 OK"
+2025-10-13 15:11:28,772 - INFO - ✅ Got response for MARBELLA 360 (attempt 1)
+2025-10-13 15:11:28,812 - INFO - ✅ Updated agency 59 with: ['website', 'phone', 'address', '_raw_response']
+2025-10-13 15:11:31,812 - INFO - Processing agency: Move2Marbella Real Estate (ID: 65)
+2025-10-13 15:11:31,813 - INFO - Searching for more info on: Move2Marbella Real Estate
+2025-10-13 15:11:31,813 - INFO - Running Gemini prompt: Search the web for the real estate agency "Move2Marbella Real Estate" located at "Not found" in Spai...
+2025-10-13 15:11:31,814 - INFO - AFC is enabled with max remote calls: 10.
+2025-10-13 15:11:54,871 - INFO - HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent "HTTP/1.1 200 OK"
+2025-10-13 15:11:54,892 - INFO - ✅ Got response for Move2Marbella Real Estate (attempt 1)
+2025-10-13 15:11:54,931 - INFO - ✅ Updated agency 65 with: ['address', '_raw_response']
+2025-10-13 15:11:57,933 - INFO - Processing agency: Sandtons Property (ID: 67)
+2025-10-13 15:11:57,933 - INFO - Searching for more info on: Sandtons Property
+2025-10-13 15:11:57,934 - INFO - Running Gemini prompt: Search the web for the real estate agency "Sandtons Property" located at "San Antonio 35, Old Town 2...
+2025-10-13 15:11:57,934 - INFO - AFC is enabled with max remote calls: 10.
+2025-10-13 15:12:12,179 - INFO - HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent "HTTP/1.1 200 OK"
+2025-10-13 15:12:12,221 - INFO - ✅ Got response for Sandtons Property (attempt 1)
+2025-10-13 15:12:12,252 - INFO - ✅ Updated agency 67 with: ['address', '_raw_response']
+2025-10-13 15:12:15,252 - INFO - Processing agency: Tip Top Investments (ID: 73)
+2025-10-13 15:12:15,253 - INFO - Searching for more info on: Tip Top Investments
+2025-10-13 15:12:15,253 - INFO - Running Gemini prompt: Search the web for the real estate agency "Tip Top Investments" located at "Calle Chopo 11 29679 - B...
+2025-10-13 15:12:15,254 - INFO - AFC is enabled with max remote calls: 10.
+2025-10-13 15:12:31,329 - INFO - HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent "HTTP/1.1 200 OK"
+2025-10-13 15:12:31,368 - INFO - ✅ Got response for Tip Top Investments (attempt 1)
+2025-10-13 15:12:31,399 - INFO - ✅ Updated agency 73 with: ['address', 'phone', '_raw_response']
+2025-10-13 15:12:34,399 - INFO - Processing agency: Marbella Heart (ID: 78)
+2025-10-13 15:12:34,400 - INFO - Searching for more info on: Marbella Heart
+2025-10-13 15:12:34,400 - INFO - Running Gemini prompt: Search the web for the real estate agency "Marbella Heart" located at "Calle Jaen 38, Calahonda 2964...
+2025-10-13 15:12:34,401 - INFO - AFC is enabled with max remote calls: 10.
+2025-10-13 15:12:49,961 - INFO - HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent "HTTP/1.1 200 OK"
+2025-10-13 15:12:49,974 - INFO - ✅ Got response for Marbella Heart (attempt 1)
+2025-10-13 15:12:50,012 - INFO - ✅ Updated agency 78 with: ['address', '_raw_response']
+2025-10-13 15:12:53,013 - INFO - Processing agency: LuxuryForSale.Properties (ID: 81)
+2025-10-13 15:12:53,013 - INFO - Searching for more info on: LuxuryForSale.Properties
+2025-10-13 15:12:53,014 - INFO - Running Gemini prompt: Search the web for the real estate agency "LuxuryForSale.Properties" located at "Puerto Banus / Puen...
+2025-10-13 15:12:53,014 - INFO - AFC is enabled with max remote calls: 10.
+2025-10-13 15:13:07,475 - INFO - HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent "HTTP/1.1 200 OK"
+2025-10-13 15:13:07,499 - INFO - ✅ Got response for LuxuryForSale.Properties (attempt 1)
+2025-10-13 15:13:07,533 - INFO - ✅ Updated agency 81 with: ['address', '_raw_response']
+2025-10-13 15:13:10,535 - INFO - Processing agency: Marbella-Resales (ID: 82)
+2025-10-13 15:13:10,535 - INFO - Searching for more info on: Marbella-Resales
+2025-10-13 15:13:10,536 - INFO - Running Gemini prompt: Search the web for the real estate agency "Marbella-Resales" located at "Edificio Marina Banús Bl.4 ...
+2025-10-13 15:13:10,536 - INFO - AFC is enabled with max remote calls: 10.
+2025-10-13 15:13:23,961 - INFO - HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent "HTTP/1.1 200 OK"
+2025-10-13 15:13:23,977 - INFO - ✅ Got response for Marbella-Resales (attempt 1)
+2025-10-13 15:13:24,012 - INFO - ✅ Updated agency 82 with: ['website', 'address', '_raw_response']
+2025-10-13 15:13:27,012 - INFO - Processing agency: Costa Group Estates (ID: 95)
+2025-10-13 15:13:27,013 - INFO - Searching for more info on: Costa Group Estates
+2025-10-13 15:13:27,013 - INFO - Running Gemini prompt: Search the web for the real estate agency "Costa Group Estates" located at "Oasis Business Centre on...
+2025-10-13 15:13:27,013 - INFO - AFC is enabled with max remote calls: 10.
+2025-10-13 15:13:38,503 - INFO - HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent "HTTP/1.1 200 OK"
+2025-10-13 15:13:38,523 - INFO - ✅ Got response for Costa Group Estates (attempt 1)
+2025-10-13 15:13:41,525 - INFO - Processing agency: Lavanda Real Estate (ID: 98)
+2025-10-13 15:13:41,525 - INFO - Searching for more info on: Lavanda Real Estate
+2025-10-13 15:13:41,525 - INFO - Running Gemini prompt: Search the web for the real estate agency "Lavanda Real Estate" located at "Centro Comercial Los Dol...
+2025-10-13 15:13:41,526 - INFO - AFC is enabled with max remote calls: 10.
+2025-10-13 15:13:55,200 - INFO - HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent "HTTP/1.1 200 OK"
+2025-10-13 15:13:55,221 - INFO - ✅ Got response for Lavanda Real Estate (attempt 1)
+2025-10-13 15:13:55,259 - INFO - ✅ Updated agency 98 with: ['address', '_raw_response']
+2025-10-13 15:13:58,260 - INFO - Processing agency: Marbella Houses (ID: 104)
+2025-10-13 15:13:58,261 - INFO - Searching for more info on: Marbella Houses
+2025-10-13 15:13:58,261 - INFO - Running Gemini prompt: Search the web for the real estate agency "Marbella Houses" located at "Andasol Business ctr. N-340,...
+2025-10-13 15:13:58,262 - INFO - AFC is enabled with max remote calls: 10.
+2025-10-13 15:14:12,407 - INFO - HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent "HTTP/1.1 200 OK"
+2025-10-13 15:14:12,444 - INFO - ✅ Got response for Marbella Houses (attempt 1)
+2025-10-13 15:14:12,485 - INFO - ✅ Updated agency 104 with: ['address', 'phone', '_raw_response']
+2025-10-13 15:14:15,486 - INFO - Processing agency: Dom en Sol (ID: 106)
+2025-10-13 15:14:15,486 - INFO - Searching for more info on: Dom en Sol
+2025-10-13 15:14:15,487 - INFO - Running Gemini prompt: Search the web for the real estate agency "Dom en Sol" located at "*Mobile Agency / No public office...
+2025-10-13 15:14:15,487 - INFO - AFC is enabled with max remote calls: 10.
+2025-10-13 15:14:47,219 - INFO - HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent "HTTP/1.1 200 OK"
+2025-10-13 15:14:47,235 - INFO - ✅ Got response for Dom en Sol (attempt 1)
+2025-10-13 15:14:47,281 - INFO - ✅ Updated agency 106 with: ['address', 'phone', '_raw_response']
+2025-10-13 15:14:50,284 - INFO - Processing agency: Crystal House (ID: 123)
+2025-10-13 15:14:50,285 - INFO - Searching for more info on: Crystal House
+2025-10-13 15:14:50,285 - INFO - Running Gemini prompt: Search the web for the real estate agency "Crystal House" located at "Magna Marbella, Nueva Andaluci...
+2025-10-13 15:14:50,286 - INFO - AFC is enabled with max remote calls: 10.
+2025-10-13 15:15:04,940 - INFO - HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent "HTTP/1.1 200 OK"
+2025-10-13 15:15:04,956 - INFO - ✅ Got response for Crystal House (attempt 1)
+2025-10-13 15:15:04,999 - INFO - ✅ Updated agency 123 with: ['address', '_raw_response']
+2025-10-13 15:15:08,001 - INFO - Processing agency: Costa del Sol Seaview (Inmobiliaria) (ID: 128)
+2025-10-13 15:15:08,001 - INFO - Searching for more info on: Costa del Sol Seaview (Inmobiliaria)
+2025-10-13 15:15:08,002 - INFO - Running Gemini prompt: Search the web for the real estate agency "Costa del Sol Seaview (Inmobiliaria)" located at "*Mobile...
+2025-10-13 15:15:08,002 - INFO - AFC is enabled with max remote calls: 10.
+2025-10-13 15:15:21,117 - INFO - HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent "HTTP/1.1 200 OK"
+2025-10-13 15:15:21,138 - INFO - ✅ Got response for Costa del Sol Seaview (Inmobiliaria) (attempt 1)
+2025-10-13 15:15:21,171 - INFO - ✅ Updated agency 128 with: ['website', 'phone', 'address', '_raw_response']
+2025-10-13 15:15:24,173 - INFO - Processing agency: BEST-HOME (ID: 131)
+2025-10-13 15:15:24,174 - INFO - Searching for more info on: BEST-HOME
+2025-10-13 15:15:24,174 - INFO - Running Gemini prompt: Search the web for the real estate agency "BEST-HOME" located at "*Mobile Agency / No public office ...
+2025-10-13 15:15:24,175 - INFO - AFC is enabled with max remote calls: 10.
+2025-10-13 15:15:53,991 - INFO - HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent "HTTP/1.1 200 OK"
+2025-10-13 15:15:54,012 - INFO - ✅ Got response for BEST-HOME (attempt 1)
+2025-10-13 15:15:54,047 - INFO - ✅ Updated agency 131 with: ['address', 'website', '_raw_response']
+2025-10-13 15:15:57,048 - INFO - Processing agency: CBRE Marbella (ID: 153)
+2025-10-13 15:15:57,048 - INFO - Searching for more info on: CBRE Marbella
+2025-10-13 15:15:57,049 - INFO - Running Gemini prompt: Search the web for the real estate agency "CBRE Marbella" located at "Calle Velázquez, 40, 28001 Mad...
+2025-10-13 15:15:57,049 - INFO - AFC is enabled with max remote calls: 10.
+2025-10-13 15:16:15,287 - INFO - HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent "HTTP/1.1 200 OK"
+2025-10-13 15:16:15,308 - INFO - ✅ Got response for CBRE Marbella (attempt 1)
+2025-10-13 15:16:15,344 - INFO - ✅ Updated agency 153 with: ['address', 'website', 'phone', '_raw_response']
+2025-10-13 15:16:18,345 - INFO - Processing agency: Marbella Polish Realty (ID: 161)
+2025-10-13 15:16:18,345 - INFO - Searching for more info on: Marbella Polish Realty
+2025-10-13 15:16:18,346 - INFO - Running Gemini prompt: Search the web for the real estate agency "Marbella Polish Realty" located at "Calle Ancha, 10, 2960...
+2025-10-13 15:16:18,346 - INFO - AFC is enabled with max remote calls: 10.
+2025-10-13 15:16:39,861 - INFO - HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent "HTTP/1.1 200 OK"
+2025-10-13 15:16:39,954 - INFO - ✅ Got response for Marbella Polish Realty (attempt 1)
+2025-10-13 15:16:39,989 - INFO - ✅ Updated agency 161 with: ['address', 'phone', '_raw_response']
+2025-10-13 15:16:42,990 - INFO - Processing agency: Costa del Sol Polish Properties (ID: 162)
+2025-10-13 15:16:42,991 - INFO - Searching for more info on: Costa del Sol Polish Properties
+2025-10-13 15:16:42,991 - INFO - Running Gemini prompt: Search the web for the real estate agency "Costa del Sol Polish Properties" located at "Avenida del ...
+2025-10-13 15:16:42,992 - INFO - AFC is enabled with max remote calls: 10.
+2025-10-13 15:16:57,472 - INFO - HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent "HTTP/1.1 200 OK"
+2025-10-13 15:16:57,524 - INFO - ✅ Got response for Costa del Sol Polish Properties (attempt 1)
+2025-10-13 15:16:57,560 - INFO - ✅ Updated agency 162 with: ['address', '_raw_response']
+2025-10-13 15:17:00,561 - INFO - Processing agency: Polish Estate Marbella (ID: 163)
+2025-10-13 15:17:00,561 - INFO - Searching for more info on: Polish Estate Marbella
+2025-10-13 15:17:00,562 - INFO - Running Gemini prompt: Search the web for the real estate agency "Polish Estate Marbella" located at "Puerto Banús, Local 1...
+2025-10-13 15:17:00,562 - INFO - AFC is enabled with max remote calls: 10.
+2025-10-13 15:17:21,228 - INFO - HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent "HTTP/1.1 200 OK"
+2025-10-13 15:17:21,263 - INFO - ✅ Got response for Polish Estate Marbella (attempt 1)
+2025-10-13 15:17:21,294 - INFO - ✅ Updated agency 163 with: ['address', '_raw_response']
+2025-10-13 15:17:24,295 - INFO - Processing agency: Marbella Property Poland (ID: 164)
+2025-10-13 15:17:24,295 - INFO - Searching for more info on: Marbella Property Poland
+2025-10-13 15:17:24,296 - INFO - Running Gemini prompt: Search the web for the real estate agency "Marbella Property Poland" located at "Centro Plaza, Local...
+2025-10-13 15:17:24,297 - INFO - AFC is enabled with max remote calls: 10.
+2025-10-13 15:17:47,648 - INFO - HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent "HTTP/1.1 200 OK"
+2025-10-13 15:17:47,677 - INFO - ✅ Got response for Marbella Property Poland (attempt 1)
+2025-10-13 15:17:47,708 - INFO - ✅ Updated agency 164 with: ['address', 'phone', '_raw_response']
+2025-10-13 15:17:50,709 - INFO - Processing agency: Andalusia Polish Real Estate (ID: 165)
+2025-10-13 15:17:50,709 - INFO - Searching for more info on: Andalusia Polish Real Estate
+2025-10-13 15:17:50,710 - INFO - Running Gemini prompt: Search the web for the real estate agency "Andalusia Polish Real Estate" located at "Calle Málaga, 8...
+2025-10-13 15:17:50,710 - INFO - AFC is enabled with max remote calls: 10.
+2025-10-13 15:18:26,150 - INFO - HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent "HTTP/1.1 200 OK"
+2025-10-13 15:18:26,171 - INFO - ✅ Got response for Andalusia Polish Real Estate (attempt 1)
+2025-10-13 15:18:26,207 - INFO - ✅ Updated agency 165 with: ['address', 'phone', '_raw_response']
+2025-10-13 15:18:29,208 - INFO - Processing agency: Sol Polish Villas (ID: 166)
+2025-10-13 15:18:29,209 - INFO - Searching for more info on: Sol Polish Villas
+2025-10-13 15:18:29,209 - INFO - Running Gemini prompt: Search the web for the real estate agency "Sol Polish Villas" located at "Urbanización Elviria, 2960...
+2025-10-13 15:18:29,210 - INFO - AFC is enabled with max remote calls: 10.
+2025-10-13 15:18:46,456 - INFO - HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent "HTTP/1.1 200 OK"
+2025-10-13 15:18:46,475 - INFO - ✅ Got response for Sol Polish Villas (attempt 1)
+2025-10-13 15:18:46,514 - INFO - ✅ Updated agency 166 with: ['address', 'phone', '_raw_response']
+2025-10-13 15:18:49,515 - INFO - Processing agency: Marbella Polish Connection (ID: 167)
+2025-10-13 15:18:49,516 - INFO - Searching for more info on: Marbella Polish Connection
+2025-10-13 15:18:49,516 - INFO - Running Gemini prompt: Search the web for the real estate agency "Marbella Polish Connection" located at "Calle Sevilla, 12...
+2025-10-13 15:18:49,517 - INFO - AFC is enabled with max remote calls: 10.
+2025-10-13 15:19:10,950 - INFO - HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent "HTTP/1.1 200 OK"
+2025-10-13 15:19:11,011 - INFO - ✅ Got response for Marbella Polish Connection (attempt 1)
+2025-10-13 15:19:11,042 - INFO - ✅ Updated agency 167 with: ['address', '_raw_response']
+2025-10-13 15:19:14,043 - INFO - Processing agency: Polish Homes Marbella (ID: 168)
+2025-10-13 15:19:14,043 - INFO - Searching for more info on: Polish Homes Marbella
+2025-10-13 15:19:14,044 - INFO - Running Gemini prompt: Search the web for the real estate agency "Polish Homes Marbella" located at "Nueva Andalucía, 29660...
+2025-10-13 15:19:14,044 - INFO - AFC is enabled with max remote calls: 10.
+2025-10-13 15:19:33,629 - INFO - HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent "HTTP/1.1 200 OK"
+2025-10-13 15:19:33,649 - INFO - ✅ Got response for Polish Homes Marbella (attempt 1)
+2025-10-13 15:19:33,691 - INFO - ✅ Updated agency 168 with: ['address', 'phone', '_raw_response']
+2025-10-13 15:19:36,691 - INFO - Processing agency: Costa Polish Realty (ID: 169)
+2025-10-13 15:19:36,692 - INFO - Searching for more info on: Costa Polish Realty
+2025-10-13 15:19:36,692 - INFO - Running Gemini prompt: Search the web for the real estate agency "Costa Polish Realty" located at "Estepona, 29680 Málaga, ...
+2025-10-13 15:19:36,693 - INFO - AFC is enabled with max remote calls: 10.
+2025-10-13 15:20:02,368 - INFO - HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent "HTTP/1.1 200 OK"
+2025-10-13 15:20:02,448 - INFO - ✅ Got response for Costa Polish Realty (attempt 1)
+2025-10-13 15:20:02,489 - INFO - ✅ Updated agency 169 with: ['address', 'phone', '_raw_response']
+2025-10-13 15:20:05,489 - INFO - Processing agency: Marbella Polish Investments (ID: 170)
+2025-10-13 15:20:05,490 - INFO - Searching for more info on: Marbella Polish Investments
+2025-10-13 15:20:05,490 - INFO - Running Gemini prompt: Search the web for the real estate agency "Marbella Polish Investments" located at "Benahavís, 29679...
+2025-10-13 15:20:05,491 - INFO - AFC is enabled with max remote calls: 10.
+2025-10-13 15:20:30,465 - INFO - HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent "HTTP/1.1 200 OK"
+2025-10-13 15:20:30,500 - INFO - ✅ Got response for Marbella Polish Investments (attempt 1)
+2025-10-13 15:20:30,539 - INFO - ✅ Updated agency 170 with: ['address', 'phone', '_raw_response']
+2025-10-13 15:20:33,540 - INFO - Processing agency: Habitat Marbella (ID: 184)
+2025-10-13 15:20:33,541 - INFO - Searching for more info on: Habitat Marbella
+2025-10-13 15:20:33,541 - INFO - Running Gemini prompt: Search the web for the real estate agency "Habitat Marbella" located at "Nueva Andalucía, 29660 Marb...
+2025-10-13 15:20:33,541 - INFO - AFC is enabled with max remote calls: 10.
+2025-10-13 15:21:19,728 - INFO - HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent "HTTP/1.1 200 OK"
+2025-10-13 15:21:19,745 - INFO - ✅ Got response for Habitat Marbella (attempt 1)
+2025-10-13 15:21:19,788 - INFO - ✅ Updated agency 184 with: ['website', 'address', '_raw_response']
+2025-10-13 15:21:22,788 - INFO - Processing agency: Teatro Marbella (ID: 185)
+2025-10-13 15:21:22,789 - INFO - Searching for more info on: Teatro Marbella
+2025-10-13 15:21:22,789 - INFO - Running Gemini prompt: Search the web for the real estate agency "Teatro Marbella" located at "Centro Histórico, 29601 Marb...
+2025-10-13 15:21:22,790 - INFO - AFC is enabled with max remote calls: 10.
+2025-10-13 15:21:37,228 - INFO - HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent "HTTP/1.1 200 OK"
+2025-10-13 15:21:37,246 - INFO - ✅ Got response for Teatro Marbella (attempt 1)
+2025-10-13 15:21:37,287 - INFO - ✅ Updated agency 185 with: ['address', 'phone', 'website', '_raw_response']
+2025-10-13 15:21:40,289 - INFO - Processing agency: Inmobiliaria Marbella (ID: 186)
+2025-10-13 15:21:40,289 - INFO - Searching for more info on: Inmobiliaria Marbella
+2025-10-13 15:21:40,290 - INFO - Running Gemini prompt: Search the web for the real estate agency "Inmobiliaria Marbella" located at "Elviria, 29604 Marbell...
+2025-10-13 15:21:40,290 - INFO - AFC is enabled with max remote calls: 10.
+2025-10-13 15:22:09,902 - INFO - HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent "HTTP/1.1 200 OK"
+2025-10-13 15:22:09,930 - INFO - ✅ Got response for Inmobiliaria Marbella (attempt 1)
+2025-10-13 15:22:09,967 - INFO - ✅ Updated agency 186 with: ['address', 'phone', '_raw_response']
+2025-10-13 15:22:12,968 - INFO - Processing agency: Costa del Sol Properties Marbella (ID: 187)
+2025-10-13 15:22:12,969 - INFO - Searching for more info on: Costa del Sol Properties Marbella
+2025-10-13 15:22:12,969 - INFO - Running Gemini prompt: Search the web for the real estate agency "Costa del Sol Properties Marbella" located at "Estepona R...
+2025-10-13 15:22:12,970 - INFO - AFC is enabled with max remote calls: 10.
+2025-10-13 15:22:39,388 - INFO - HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent "HTTP/1.1 200 OK"
+2025-10-13 15:22:39,410 - INFO - ✅ Got response for Costa del Sol Properties Marbella (attempt 1)
+2025-10-13 15:22:39,450 - INFO - ✅ Updated agency 187 with: ['address', 'phone', '_raw_response']
+2025-10-13 15:22:42,452 - INFO - Processing agency: Golden Mile Properties (ID: 188)
+2025-10-13 15:22:42,452 - INFO - Searching for more info on: Golden Mile Properties
+2025-10-13 15:22:42,452 - INFO - Running Gemini prompt: Search the web for the real estate agency "Golden Mile Properties" located at "Golden Mile, 29602 Ma...
+2025-10-13 15:22:42,453 - INFO - AFC is enabled with max remote calls: 10.
+2025-10-13 15:22:58,955 - INFO - HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent "HTTP/1.1 200 OK"
+2025-10-13 15:22:59,339 - INFO - ✅ Got response for Golden Mile Properties (attempt 1)
+2025-10-13 15:22:59,384 - INFO - ✅ Updated agency 188 with: ['address', '_raw_response']
+2025-10-13 15:23:02,385 - INFO - Processing agency: Marbella Luxury Estates (ID: 189)
+2025-10-13 15:23:02,385 - INFO - Searching for more info on: Marbella Luxury Estates
+2025-10-13 15:23:02,386 - INFO - Running Gemini prompt: Search the web for the real estate agency "Marbella Luxury Estates" located at "Puerto Banús, 29660 ...
+2025-10-13 15:23:02,386 - INFO - AFC is enabled with max remote calls: 10.
+2025-10-13 15:23:21,375 - INFO - HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent "HTTP/1.1 200 OK"
+2025-10-13 15:23:21,406 - INFO - ✅ Got response for Marbella Luxury Estates (attempt 1)
+2025-10-13 15:23:21,447 - INFO - ✅ Updated agency 189 with: ['address', '_raw_response']
+2025-10-13 15:23:24,448 - INFO - Processing agency: Andalusia Real Estate Marbella (ID: 190)
+2025-10-13 15:23:24,448 - INFO - Searching for more info on: Andalusia Real Estate Marbella
+2025-10-13 15:23:24,449 - INFO - Running Gemini prompt: Search the web for the real estate agency "Andalusia Real Estate Marbella" located at "Sierra Blanca...
+2025-10-13 15:23:24,449 - INFO - AFC is enabled with max remote calls: 10.
+2025-10-13 15:23:53,733 - INFO - HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent "HTTP/1.1 200 OK"
+2025-10-13 15:23:53,768 - INFO - ✅ Got response for Andalusia Real Estate Marbella (attempt 1)
+2025-10-13 15:23:53,806 - INFO - ✅ Updated agency 190 with: ['address', 'phone', '_raw_response']
+2025-10-13 15:23:56,807 - INFO - Processing agency: Mediterranean Properties Marbella (ID: 191)
+2025-10-13 15:23:56,807 - INFO - Searching for more info on: Mediterranean Properties Marbella
+2025-10-13 15:23:56,807 - INFO - Running Gemini prompt: Search the web for the real estate agency "Mediterranean Properties Marbella" located at "La Zagalet...
+2025-10-13 15:23:56,808 - INFO - AFC is enabled with max remote calls: 10.
+2025-10-13 15:24:11,757 - INFO - HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent "HTTP/1.1 200 OK"
+2025-10-13 15:24:11,776 - INFO - ✅ Got response for Mediterranean Properties Marbella (attempt 1)
+2025-10-13 15:24:11,812 - INFO - ✅ Updated agency 191 with: ['address', '_raw_response']
+2025-10-13 15:24:14,814 - INFO - Processing agency: Marbella Property Services (ID: 193)
+2025-10-13 15:24:14,814 - INFO - Searching for more info on: Marbella Property Services
+2025-10-13 15:24:14,814 - INFO - Running Gemini prompt: Search the web for the real estate agency "Marbella Property Services" located at "Cabopino, 29604 M...
+2025-10-13 15:24:14,816 - INFO - AFC is enabled with max remote calls: 10.
+2025-10-13 15:24:35,051 - INFO - HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent "HTTP/1.1 200 OK"
+2025-10-13 15:24:35,076 - INFO - ✅ Got response for Marbella Property Services (attempt 1)
+2025-10-13 15:24:35,123 - INFO - ✅ Updated agency 193 with: ['address', 'phone', '_raw_response']
+2025-10-13 15:24:38,123 - INFO - Processing agency: Costa Blanca Properties Marbella (ID: 194)
+2025-10-13 15:24:38,125 - INFO - Searching for more info on: Costa Blanca Properties Marbella
+2025-10-13 15:24:38,125 - INFO - Running Gemini prompt: Search the web for the real estate agency "Costa Blanca Properties Marbella" located at "Mijas Costa...
+2025-10-13 15:24:38,125 - INFO - AFC is enabled with max remote calls: 10.
+2025-10-13 15:25:13,879 - INFO - HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent "HTTP/1.1 200 OK"
+2025-10-13 15:25:13,908 - ERROR - No response from Gemini API
+2025-10-13 15:25:13,909 - WARNING - ❌ No response for Costa Blanca Properties Marbella (attempt 1)
+2025-10-13 15:25:15,909 - INFO - Running Gemini prompt: Search the web for the real estate agency "Costa Blanca Properties Marbella" located at "Mijas Costa...
+2025-10-13 15:25:15,910 - INFO - AFC is enabled with max remote calls: 10.
+2025-10-13 15:25:38,532 - INFO - HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent "HTTP/1.1 200 OK"
+2025-10-13 15:25:38,546 - INFO - ✅ Got response for Costa Blanca Properties Marbella (attempt 2)
+2025-10-13 15:25:38,596 - INFO - ✅ Updated agency 194 with: ['address', '_raw_response']
+2025-10-13 15:25:41,598 - INFO - Processing agency: Polska Nieruchomości Marbella (ID: 195)
+2025-10-13 15:25:41,598 - INFO - Searching for more info on: Polska Nieruchomości Marbella
+2025-10-13 15:25:41,599 - INFO - Running Gemini prompt: Search the web for the real estate agency "Polska Nieruchomości Marbella" located at "Calle Real, 20...
+2025-10-13 15:25:41,600 - INFO - AFC is enabled with max remote calls: 10.
+2025-10-13 15:26:11,293 - INFO - HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent "HTTP/1.1 200 OK"
+2025-10-13 15:26:11,305 - INFO - ✅ Got response for Polska Nieruchomości Marbella (attempt 1)
+2025-10-13 15:26:11,350 - INFO - ✅ Updated agency 195 with: ['address', 'phone', '_raw_response']
+2025-10-13 15:26:14,350 - INFO - Processing agency: Marbella dla Polaków (ID: 196)
+2025-10-13 15:26:14,350 - INFO - Searching for more info on: Marbella dla Polaków
+2025-10-13 15:26:14,350 - INFO - Running Gemini prompt: Search the web for the real estate agency "Marbella dla Polaków" located at "Avenida del Mar, 30, 29...
+2025-10-13 15:26:14,351 - INFO - AFC is enabled with max remote calls: 10.
+2025-10-13 15:26:41,063 - INFO - HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent "HTTP/1.1 200 OK"
+2025-10-13 15:26:41,074 - INFO - ✅ Got response for Marbella dla Polaków (attempt 1)
+2025-10-13 15:26:41,115 - INFO - ✅ Updated agency 196 with: ['address', '_raw_response']
+2025-10-13 15:26:44,115 - INFO - Processing agency: Polskie Inwestycje Marbella (ID: 197)
+2025-10-13 15:26:44,116 - INFO - Searching for more info on: Polskie Inwestycje Marbella
+2025-10-13 15:26:44,116 - INFO - Running Gemini prompt: Search the web for the real estate agency "Polskie Inwestycje Marbella" located at "Puerto Deportivo...
+2025-10-13 15:26:44,117 - INFO - AFC is enabled with max remote calls: 10.
+2025-10-13 15:26:58,178 - INFO - HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent "HTTP/1.1 200 OK"
+2025-10-13 15:26:58,185 - INFO - ✅ Got response for Polskie Inwestycje Marbella (attempt 1)
+2025-10-13 15:26:58,231 - INFO - ✅ Updated agency 197 with: ['address', '_raw_response']
+2025-10-13 15:27:01,231 - INFO - Processing agency: Costa del Sol Polish Homes (ID: 198)
+2025-10-13 15:27:01,232 - INFO - Searching for more info on: Costa del Sol Polish Homes
+2025-10-13 15:27:01,233 - INFO - Running Gemini prompt: Search the web for the real estate agency "Costa del Sol Polish Homes" located at "Nueva Andalucía, ...
+2025-10-13 15:27:01,234 - INFO - AFC is enabled with max remote calls: 10.
+2025-10-13 15:27:46,461 - INFO - HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent "HTTP/1.1 200 OK"
+2025-10-13 15:27:46,484 - INFO - ✅ Got response for Costa del Sol Polish Homes (attempt 1)
+2025-10-13 15:27:46,517 - INFO - ✅ Updated agency 198 with: ['phone', 'address', '_raw_response']
+2025-10-13 15:27:49,517 - INFO - Processing agency: Polski Dom Marbella (ID: 199)
+2025-10-13 15:27:49,518 - INFO - Searching for more info on: Polski Dom Marbella
+2025-10-13 15:27:49,518 - INFO - Running Gemini prompt: Search the web for the real estate agency "Polski Dom Marbella" located at "El Rosario, 29604 Marbel...
+2025-10-13 15:27:49,519 - INFO - AFC is enabled with max remote calls: 10.
+2025-10-13 15:28:12,312 - INFO - HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent "HTTP/1.1 200 OK"
+2025-10-13 15:28:12,330 - INFO - ✅ Got response for Polski Dom Marbella (attempt 1)
+2025-10-13 15:28:12,370 - INFO - ✅ Updated agency 199 with: ['address', 'phone', '_raw_response']
+2025-10-13 15:28:15,370 - INFO - Processing agency: Marbella Polish Villas (ID: 200)
+2025-10-13 15:28:15,371 - INFO - Searching for more info on: Marbella Polish Villas
+2025-10-13 15:28:15,371 - INFO - Running Gemini prompt: Search the web for the real estate agency "Marbella Polish Villas" located at "La Mola, 29602 Marbel...
+2025-10-13 15:28:15,372 - INFO - AFC is enabled with max remote calls: 10.
+2025-10-13 15:28:34,529 - INFO - HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent "HTTP/1.1 200 OK"
+2025-10-13 15:28:34,548 - INFO - ✅ Got response for Marbella Polish Villas (attempt 1)
+2025-10-13 15:28:34,585 - INFO - ✅ Updated agency 200 with: ['address', 'phone', '_raw_response']
+2025-10-13 15:28:37,585 - INFO - Processing agency: Polskie Nieruchomości Costa del Sol (ID: 201)
+2025-10-13 15:28:37,586 - INFO - Searching for more info on: Polskie Nieruchomości Costa del Sol
+2025-10-13 15:28:37,586 - INFO - Running Gemini prompt: Search the web for the real estate agency "Polskie Nieruchomości Costa del Sol" located at "Estepona...
+2025-10-13 15:28:37,587 - INFO - AFC is enabled with max remote calls: 10.
+2025-10-13 15:29:07,094 - INFO - HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent "HTTP/1.1 200 OK"
+2025-10-13 15:29:07,137 - INFO - ✅ Got response for Polskie Nieruchomości Costa del Sol (attempt 1)
+2025-10-13 15:29:07,179 - INFO - ✅ Updated agency 201 with: ['address', 'phone', 'website', '_raw_response']
+2025-10-13 15:29:10,181 - INFO - Processing agency: Marbella dla Inwestorów (ID: 202)
+2025-10-13 15:29:10,182 - INFO - Searching for more info on: Marbella dla Inwestorów
+2025-10-13 15:29:10,182 - INFO - Running Gemini prompt: Search the web for the real estate agency "Marbella dla Inwestorów" located at "Benahavís, 29679 Mál...
+2025-10-13 15:29:10,183 - INFO - AFC is enabled with max remote calls: 10.
+2025-10-13 15:29:50,104 - INFO - HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent "HTTP/1.1 200 OK"
+2025-10-13 15:29:50,121 - INFO - ✅ Got response for Marbella dla Inwestorów (attempt 1)
+2025-10-13 15:29:50,161 - INFO - ✅ Updated agency 202 with: ['address', 'phone', '_raw_response']
+2025-10-13 15:29:53,162 - INFO - Processing agency: Polski Rynek Nieruchomości Marbella (ID: 203)
+2025-10-13 15:29:53,163 - INFO - Searching for more info on: Polski Rynek Nieruchomości Marbella
+2025-10-13 15:29:53,163 - INFO - Running Gemini prompt: Search the web for the real estate agency "Polski Rynek Nieruchomości Marbella" located at "Casares,...
+2025-10-13 15:29:53,164 - INFO - AFC is enabled with max remote calls: 10.
+2025-10-13 15:30:17,881 - INFO - HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent "HTTP/1.1 200 OK"
+2025-10-13 15:30:17,896 - INFO - ✅ Got response for Polski Rynek Nieruchomości Marbella (attempt 1)
+2025-10-13 15:30:17,942 - INFO - ✅ Updated agency 203 with: ['address', '_raw_response']
+2025-10-13 15:30:20,943 - INFO - Processing agency: Costa del Sol Polish Investments (ID: 204)
+2025-10-13 15:30:20,944 - INFO - Searching for more info on: Costa del Sol Polish Investments
+2025-10-13 15:30:20,944 - INFO - Running Gemini prompt: Search the web for the real estate agency "Costa del Sol Polish Investments" located at "Manilva, 29...
+2025-10-13 15:30:20,945 - INFO - AFC is enabled with max remote calls: 10.
+2025-10-13 15:30:39,566 - INFO - HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent "HTTP/1.1 200 OK"
+2025-10-13 15:30:39,577 - INFO - ✅ Got response for Costa del Sol Polish Investments (attempt 1)
+2025-10-13 15:30:39,613 - INFO - ✅ Updated agency 204 with: ['phone', 'address', '_raw_response']
+2025-10-13 15:30:42,614 - INFO - Processing agency: Marbella Polish Apartments (ID: 205)
+2025-10-13 15:30:42,615 - INFO - Searching for more info on: Marbella Polish Apartments
+2025-10-13 15:30:42,615 - INFO - Running Gemini prompt: Search the web for the real estate agency "Marbella Polish Apartments" located at "Ojén, 29610 Málag...
+2025-10-13 15:30:42,616 - INFO - AFC is enabled with max remote calls: 10.
+2025-10-13 15:31:05,666 - INFO - HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent "HTTP/1.1 200 OK"
+2025-10-13 15:31:05,681 - INFO - ✅ Got response for Marbella Polish Apartments (attempt 1)
+2025-10-13 15:31:05,721 - INFO - ✅ Updated agency 205 with: ['phone', 'address', '_raw_response']
+2025-10-13 15:31:08,722 - INFO - Processing agency: Polskie Włości Marbella (ID: 206)
+2025-10-13 15:31:08,722 - INFO - Searching for more info on: Polskie Włości Marbella
+2025-10-13 15:31:08,723 - INFO - Running Gemini prompt: Search the web for the real estate agency "Polskie Włości Marbella" located at "Istán, 29611 Málaga,...
+2025-10-13 15:31:08,723 - INFO - AFC is enabled with max remote calls: 10.
+2025-10-13 15:31:25,957 - INFO - HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent "HTTP/1.1 200 OK"
+2025-10-13 15:31:25,969 - INFO - ✅ Got response for Polskie Włości Marbella (attempt 1)
+2025-10-13 15:31:26,009 - INFO - ✅ Updated agency 206 with: ['website', 'phone', 'address', '_raw_response']
+2025-10-13 15:31:29,010 - INFO - Processing agency: Marbella dla Polaków Nieruchomości (ID: 207)
+2025-10-13 15:31:29,011 - INFO - Searching for more info on: Marbella dla Polaków Nieruchomości
+2025-10-13 15:31:29,011 - INFO - Running Gemini prompt: Search the web for the real estate agency "Marbella dla Polaków Nieruchomości" located at "Tolox, 29...
+2025-10-13 15:31:29,012 - INFO - AFC is enabled with max remote calls: 10.
+2025-10-13 15:31:50,296 - INFO - HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent "HTTP/1.1 200 OK"
+2025-10-13 15:31:50,310 - INFO - ✅ Got response for Marbella dla Polaków Nieruchomości (attempt 1)
+2025-10-13 15:31:50,349 - INFO - ✅ Updated agency 207 with: ['address', '_raw_response']
+2025-10-13 15:31:53,351 - INFO - Processing agency: Polski Portfel Nieruchomości Marbella (ID: 208)
+2025-10-13 15:31:53,351 - INFO - Searching for more info on: Polski Portfel Nieruchomości Marbella
+2025-10-13 15:31:53,352 - INFO - Running Gemini prompt: Search the web for the real estate agency "Polski Portfel Nieruchomości Marbella" located at "Yunque...
+2025-10-13 15:31:53,352 - INFO - AFC is enabled with max remote calls: 10.
+2025-10-13 15:32:33,033 - INFO - HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent "HTTP/1.1 200 OK"
+2025-10-13 15:32:33,041 - INFO - ✅ Got response for Polski Portfel Nieruchomości Marbella (attempt 1)
+2025-10-13 15:32:33,086 - INFO - ✅ Updated agency 208 with: ['address', '_raw_response']
+2025-10-13 15:32:36,087 - INFO - Processing agency: Costa del Sol Polish Estates (ID: 209)
+2025-10-13 15:32:36,087 - INFO - Searching for more info on: Costa del Sol Polish Estates
+2025-10-13 15:32:36,088 - INFO - Running Gemini prompt: Search the web for the real estate agency "Costa del Sol Polish Estates" located at "Alpandeire, 294...
+2025-10-13 15:32:36,088 - INFO - AFC is enabled with max remote calls: 10.
+2025-10-13 15:32:59,251 - INFO - HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent "HTTP/1.1 200 OK"
+2025-10-13 15:32:59,269 - INFO - ✅ Got response for Costa del Sol Polish Estates (attempt 1)
+2025-10-13 15:32:59,306 - INFO - ✅ Updated agency 209 with: ['phone', 'address', '_raw_response']
+2025-10-13 15:33:02,307 - INFO - Processing agency: Arcadia Estate & Events (ID: 500)
+2025-10-13 15:33:02,307 - INFO - Searching for more info on: Arcadia Estate & Events
+2025-10-13 15:33:02,308 - INFO - Running Gemini prompt: Search the web for the real estate agency "Arcadia Estate & Events" located at "C. Ribera, 29660 Mar...
+2025-10-13 15:33:02,309 - INFO - AFC is enabled with max remote calls: 10.
+2025-10-13 15:33:19,424 - INFO - HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent "HTTP/1.1 200 OK"
+2025-10-13 15:33:19,439 - INFO - ✅ Got response for Arcadia Estate & Events (attempt 1)
+2025-10-13 15:33:19,482 - INFO - ✅ Updated agency 500 with: ['address', '_raw_response']
+2025-10-13 15:33:22,483 - INFO - Processing agency: Centrum Nieruchomości (Centre of Real Estate) (ID: 646)
+2025-10-13 15:33:22,483 - INFO - Searching for more info on: Centrum Nieruchomości (Centre of Real Estate)
+2025-10-13 15:33:22,484 - INFO - Running Gemini prompt: Search the web for the real estate agency "Centrum Nieruchomości (Centre of Real Estate)" located at...
+2025-10-13 15:33:22,485 - INFO - AFC is enabled with max remote calls: 10.
+2025-10-13 15:33:39,494 - INFO - HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent "HTTP/1.1 200 OK"
+2025-10-13 15:33:39,504 - INFO - ✅ Got response for Centrum Nieruchomości (Centre of Real Estate) (attempt 1)
+2025-10-13 15:33:39,549 - INFO - ✅ Updated agency 646 with: ['address', '_raw_response']
+2025-10-13 15:33:42,549 - INFO - Processing agency: Kwadrat Nieruchomości (Square Real Estate) (ID: 647)
+2025-10-13 15:33:42,549 - INFO - Searching for more info on: Kwadrat Nieruchomości (Square Real Estate)
+2025-10-13 15:33:42,550 - INFO - Running Gemini prompt: Search the web for the real estate agency "Kwadrat Nieruchomości (Square Real Estate)" located at "*...
+2025-10-13 15:33:42,550 - INFO - AFC is enabled with max remote calls: 10.
+2025-10-13 15:33:55,063 - INFO - HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent "HTTP/1.1 200 OK"
+2025-10-13 15:33:55,072 - INFO - ✅ Got response for Kwadrat Nieruchomości (Square Real Estate) (attempt 1)
+2025-10-13 15:33:55,106 - INFO - ✅ Updated agency 647 with: ['address', 'phone', '_raw_response']
+2025-10-13 15:33:58,107 - INFO - Processing agency: Investor Nieruchomości Elbląg (ID: 648)
+2025-10-13 15:33:58,107 - INFO - Searching for more info on: Investor Nieruchomości Elbląg
+2025-10-13 15:33:58,108 - INFO - Running Gemini prompt: Search the web for the real estate agency "Investor Nieruchomości Elbląg" located at "*   **** ul. H...
+2025-10-13 15:33:58,109 - INFO - AFC is enabled with max remote calls: 10.
+2025-10-13 15:34:30,606 - INFO - HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent "HTTP/1.1 200 OK"
+2025-10-13 15:34:30,615 - INFO - ✅ Got response for Investor Nieruchomości Elbląg (attempt 1)
+2025-10-13 15:34:30,662 - INFO - ✅ Updated agency 648 with: ['address', '_raw_response']
+2025-10-13 15:34:33,663 - INFO - Processing agency: Metrohouse Chorzów (ID: 712)
+2025-10-13 15:34:33,664 - INFO - Searching for more info on: Metrohouse Chorzów
+2025-10-13 15:34:33,664 - INFO - Running Gemini prompt: Search the web for the real estate agency "Metrohouse Chorzów" located at "*   **** ul. Wolności 49,...
+2025-10-13 15:34:33,665 - INFO - AFC is enabled with max remote calls: 10.
+2025-10-13 15:34:59,054 - INFO - HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent "HTTP/1.1 200 OK"
+2025-10-13 15:34:59,076 - INFO - ✅ Got response for Metrohouse Chorzów (attempt 1)
+2025-10-13 15:34:59,116 - INFO - ✅ Updated agency 712 with: ['address', 'phone', '_raw_response']
+2025-10-13 15:35:02,117 - INFO - Processing agency: Północ Nieruchomości Płock (ID: 730)
+2025-10-13 15:35:02,117 - INFO - Searching for more info on: Północ Nieruchomości Płock
+2025-10-13 15:35:02,117 - INFO - Running Gemini prompt: Search the web for the real estate agency "Północ Nieruchomości Płock" located at "ul. Tumska 2A, 09...
+2025-10-13 15:35:02,117 - INFO - AFC is enabled with max remote calls: 10.
+2025-10-13 15:35:23,644 - INFO - HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent "HTTP/1.1 200 OK"
+2025-10-13 15:35:23,657 - INFO - ✅ Got response for Północ Nieruchomości Płock (attempt 1)
+2025-10-13 15:35:23,701 - INFO - ✅ Updated agency 730 with: ['address', 'phone', '_raw_response']
+2025-10-13 15:35:26,701 - INFO - Processing agency: Re/Max Partner Płock (ID: 733)
+2025-10-13 15:35:26,702 - INFO - Searching for more info on: Re/Max Partner Płock
+2025-10-13 15:35:26,702 - INFO - Running Gemini prompt: Search the web for the real estate agency "Re/Max Partner Płock" located at "ul. Bielska 1A, 09-400 ...
+2025-10-13 15:35:26,703 - INFO - AFC is enabled with max remote calls: 10.
+2025-10-13 15:35:44,715 - INFO - HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent "HTTP/1.1 200 OK"
+2025-10-13 15:35:44,724 - INFO - ✅ Got response for Re/Max Partner Płock (attempt 1)
+2025-10-13 15:35:44,772 - INFO - ✅ Updated agency 733 with: ['address', '_raw_response']
+2025-10-13 15:35:47,773 - INFO - Processing agency: Investor Nieruchomości Płock (ID: 734)
+2025-10-13 15:35:47,773 - INFO - Searching for more info on: Investor Nieruchomości Płock
+2025-10-13 15:35:47,774 - INFO - Running Gemini prompt: Search the web for the real estate agency "Investor Nieruchomości Płock" located at "ul. Kolegialna ...
+2025-10-13 15:35:47,775 - INFO - AFC is enabled with max remote calls: 10.
+2025-10-13 15:36:11,262 - INFO - HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent "HTTP/1.1 200 OK"
+2025-10-13 15:36:11,279 - INFO - ✅ Got response for Investor Nieruchomości Płock (attempt 1)
+2025-10-13 15:36:11,317 - INFO - ✅ Updated agency 734 with: ['address', 'phone', '_raw_response']
+2025-10-13 15:36:14,319 - INFO - Processing agency: Biuro Nieruchomości Płock S-M-K (ID: 735)
+2025-10-13 15:36:14,319 - INFO - Searching for more info on: Biuro Nieruchomości Płock S-M-K
+2025-10-13 15:36:14,320 - INFO - Running Gemini prompt: Search the web for the real estate agency "Biuro Nieruchomości Płock S-M-K" located at "ul. 1 Maja 1...
+2025-10-13 15:36:14,320 - INFO - AFC is enabled with max remote calls: 10.
+2025-10-13 15:36:28,261 - INFO - HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent "HTTP/1.1 200 OK"
+2025-10-13 15:36:28,269 - INFO - ✅ Got response for Biuro Nieruchomości Płock S-M-K (attempt 1)
+2025-10-13 15:36:28,309 - INFO - ✅ Updated agency 735 with: ['address', '_raw_response']
+2025-10-13 15:36:31,310 - INFO - Processing agency: My Spain Real Estate (ID: 738)
+2025-10-13 15:36:31,310 - INFO - Searching for more info on: My Spain Real Estate
+2025-10-13 15:36:31,311 - INFO - Running Gemini prompt: Search the web for the real estate agency "My Spain Real Estate" located at "Grzybowska 87, 00-844 W...
+2025-10-13 15:36:31,311 - INFO - AFC is enabled with max remote calls: 10.
+2025-10-13 15:36:54,685 - INFO - HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent "HTTP/1.1 200 OK"
+2025-10-13 15:36:54,695 - INFO - ✅ Got response for My Spain Real Estate (attempt 1)
+2025-10-13 15:36:54,733 - INFO - ✅ Updated agency 738 with: ['address', 'phone', '_raw_response']
+2025-10-13 15:36:57,734 - INFO - Processing agency: Sun Gate Estates (ID: 739)
+2025-10-13 15:36:57,735 - INFO - Searching for more info on: Sun Gate Estates
+2025-10-13 15:36:57,735 - INFO - Running Gemini prompt: Search the web for the real estate agency "Sun Gate Estates" located at "Prosta 51, 00-838 Warszawa"...
+2025-10-13 15:36:57,736 - INFO - AFC is enabled with max remote calls: 10.
+2025-10-13 15:37:10,043 - INFO - HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent "HTTP/1.1 200 OK"
+2025-10-13 15:37:10,054 - INFO - ✅ Got response for Sun Gate Estates (attempt 1)
+2025-10-13 15:37:10,104 - INFO - ✅ Updated agency 739 with: ['address', '_raw_response']
+2025-10-13 15:37:13,104 - INFO - Processing agency: Poland & Spain Real Estate (ID: 740)
+2025-10-13 15:37:13,105 - INFO - Searching for more info on: Poland & Spain Real Estate
+2025-10-13 15:37:13,105 - INFO - Running Gemini prompt: Search the web for the real estate agency "Poland & Spain Real Estate" located at "Aleje Jerozolimsk...
+2025-10-13 15:37:13,106 - INFO - AFC is enabled with max remote calls: 10.
+2025-10-13 15:37:45,478 - INFO - HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent "HTTP/1.1 200 OK"
+2025-10-13 15:37:45,488 - INFO - ✅ Got response for Poland & Spain Real Estate (attempt 1)
+2025-10-13 15:37:45,526 - INFO - ✅ Updated agency 740 with: ['address', '_raw_response']
+2025-10-13 15:37:48,527 - INFO - Processing agency: Lion Estate (ID: 742)
+2025-10-13 15:37:48,527 - INFO - Searching for more info on: Lion Estate
+2025-10-13 15:37:48,528 - INFO - Running Gemini prompt: Search the web for the real estate agency "Lion Estate" located at "Plac Trzech Krzyży 10/14, 00-499...
+2025-10-13 15:37:48,528 - INFO - AFC is enabled with max remote calls: 10.
+2025-10-13 15:38:09,132 - INFO - HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent "HTTP/1.1 200 OK"
+2025-10-13 15:38:09,136 - INFO - ✅ Got response for Lion Estate (attempt 1)
+2025-10-13 15:38:09,176 - INFO - ✅ Updated agency 742 with: ['address', 'phone', '_raw_response']
+2025-10-13 15:38:12,177 - INFO - Processing agency: Sotheby's International Realty Poland (ID: 743)
+2025-10-13 15:38:12,178 - INFO - Searching for more info on: Sotheby's International Realty Poland
+2025-10-13 15:38:12,178 - INFO - Running Gemini prompt: Search the web for the real estate agency "Sotheby's International Realty Poland" located at "Foksal...
+2025-10-13 15:38:12,179 - INFO - AFC is enabled with max remote calls: 10.
+2025-10-13 15:38:29,809 - INFO - HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent "HTTP/1.1 200 OK"
+2025-10-13 15:38:29,828 - INFO - ✅ Got response for Sotheby's International Realty Poland (attempt 1)
+2025-10-13 15:38:29,866 - INFO - ✅ Updated agency 743 with: ['address', 'phone', '_raw_response']
+2025-10-13 15:38:32,868 - INFO - Processing agency: Sun & Life Nieruchomości Hiszpania (ID: 745)
+2025-10-13 15:38:32,868 - INFO - Searching for more info on: Sun & Life Nieruchomości Hiszpania
+2025-10-13 15:38:32,868 - INFO - Running Gemini prompt: Search the web for the real estate agency "Sun & Life Nieruchomości Hiszpania" located at "Puławska ...
+2025-10-13 15:38:32,869 - INFO - AFC is enabled with max remote calls: 10.
+2025-10-13 15:39:00,037 - INFO - HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent "HTTP/1.1 200 OK"
+2025-10-13 15:39:00,047 - INFO - ✅ Got response for Sun & Life Nieruchomości Hiszpania (attempt 1)
+2025-10-13 15:39:00,090 - INFO - ✅ Updated agency 745 with: ['address', 'phone', '_raw_response']
+2025-10-13 15:39:03,090 - INFO - Processing agency: Costa Blanca Nieruchomości (ID: 746)
+2025-10-13 15:39:03,091 - INFO - Searching for more info on: Costa Blanca Nieruchomości
+2025-10-13 15:39:03,091 - INFO - Running Gemini prompt: Search the web for the real estate agency "Costa Blanca Nieruchomości" located at "Wilanowska 59B/48...
+2025-10-13 15:39:03,092 - INFO - AFC is enabled with max remote calls: 10.
+2025-10-13 15:39:41,815 - INFO - HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent "HTTP/1.1 200 OK"
+2025-10-13 15:39:41,825 - INFO - ✅ Got response for Costa Blanca Nieruchomości (attempt 1)
+2025-10-13 15:39:41,864 - INFO - ✅ Updated agency 746 with: ['address', 'phone', '_raw_response']
+2025-10-13 15:39:44,864 - INFO - Processing agency: Prowansja Nieruchomości (ID: 747)
+2025-10-13 15:39:44,865 - INFO - Searching for more info on: Prowansja Nieruchomości
+2025-10-13 15:39:44,865 - INFO - Running Gemini prompt: Search the web for the real estate agency "Prowansja Nieruchomości" located at "Ul. Mangalia 2A lok....
+2025-10-13 15:39:44,866 - INFO - AFC is enabled with max remote calls: 10.
+2025-10-13 15:40:02,804 - INFO - HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent "HTTP/1.1 200 OK"
+2025-10-13 15:40:02,811 - INFO - ✅ Got response for Prowansja Nieruchomości (attempt 1)
+2025-10-13 15:40:02,853 - INFO - ✅ Updated agency 747 with: ['address', '_raw_response']
+2025-10-13 15:40:05,854 - INFO - Processing agency: Nieruchomości Hiszpania (Hiszpania.info.pl) (ID: 748)
+2025-10-13 15:40:05,855 - INFO - Searching for more info on: Nieruchomości Hiszpania (Hiszpania.info.pl)
+2025-10-13 15:40:05,855 - INFO - Running Gemini prompt: Search the web for the real estate agency "Nieruchomości Hiszpania (Hiszpania.info.pl)" located at "...
+2025-10-13 15:40:05,856 - INFO - AFC is enabled with max remote calls: 10.
+2025-10-13 15:40:36,126 - INFO - HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent "HTTP/1.1 200 OK"
+2025-10-13 15:40:36,138 - INFO - ✅ Got response for Nieruchomości Hiszpania (Hiszpania.info.pl) (attempt 1)
+2025-10-13 15:40:36,179 - INFO - ✅ Updated agency 748 with: ['phone', 'address', '_raw_response']
+2025-10-13 15:40:39,180 - INFO - Processing agency: Puro Estates (ID: 749)
+2025-10-13 15:40:39,180 - INFO - Searching for more info on: Puro Estates
+2025-10-13 15:40:39,180 - INFO - Running Gemini prompt: Search the web for the real estate agency "Puro Estates" located at "Warsaw, Poland (online/remote s...
+2025-10-13 15:40:39,181 - INFO - AFC is enabled with max remote calls: 10.
+2025-10-13 15:40:52,062 - INFO - HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent "HTTP/1.1 200 OK"
+2025-10-13 15:40:52,071 - INFO - ✅ Got response for Puro Estates (attempt 1)
+2025-10-13 15:40:52,120 - INFO - ✅ Updated agency 749 with: ['address', 'phone', '_raw_response']
+2025-10-13 15:40:55,121 - INFO - Processing agency: Nieruchomości Hiszpania Słońce (ID: 750)
+2025-10-13 15:40:55,122 - INFO - Searching for more info on: Nieruchomości Hiszpania Słońce
+2025-10-13 15:40:55,122 - INFO - Running Gemini prompt: Search the web for the real estate agency "Nieruchomości Hiszpania Słońce" located at "Warsaw, Polan...
+2025-10-13 15:40:55,123 - INFO - AFC is enabled with max remote calls: 10.
+2025-10-13 15:41:17,257 - INFO - HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent "HTTP/1.1 200 OK"
+2025-10-13 15:41:17,270 - INFO - ✅ Got response for Nieruchomości Hiszpania Słońce (attempt 1)
+2025-10-13 15:41:17,314 - INFO - ✅ Updated agency 750 with: ['address', '_raw_response']
+2025-10-13 15:41:20,315 - INFO - Processing agency: Vesta Estate (ID: 753)
+2025-10-13 15:41:20,315 - INFO - Searching for more info on: Vesta Estate
+2025-10-13 15:41:20,315 - INFO - Running Gemini prompt: Search the web for the real estate agency "Vesta Estate" located at "Aleje Jerozolimskie 123A, 02-01...
+2025-10-13 15:41:20,316 - INFO - AFC is enabled with max remote calls: 10.
+2025-10-13 15:41:41,304 - INFO - HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent "HTTP/1.1 200 OK"
+2025-10-13 15:41:41,317 - INFO - ✅ Got response for Vesta Estate (attempt 1)
+2025-10-13 15:41:41,360 - INFO - ✅ Updated agency 753 with: ['address', 'phone', '_raw_response']
+2025-10-13 15:41:44,360 - INFO - Processing agency: Dream Property International / Dream Property Hiszpania (ID: 755)
+2025-10-13 15:41:44,361 - INFO - Searching for more info on: Dream Property International / Dream Property Hiszpania
+2025-10-13 15:41:44,362 - INFO - Running Gemini prompt: Search the web for the real estate agency "Dream Property International / Dream Property Hiszpania" ...
+2025-10-13 15:41:44,363 - INFO - AFC is enabled with max remote calls: 10.
+2025-10-13 15:42:05,452 - INFO - HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent "HTTP/1.1 200 OK"
+2025-10-13 15:42:05,463 - INFO - ✅ Got response for Dream Property International / Dream Property Hiszpania (attempt 1)
+2025-10-13 15:42:05,503 - INFO - ✅ Updated agency 755 with: ['address', '_raw_response']
+2025-10-13 15:42:08,504 - INFO - Processing agency: Estate Europe (ID: 756)
+2025-10-13 15:42:08,504 - INFO - Searching for more info on: Estate Europe
+2025-10-13 15:42:08,505 - INFO - Running Gemini prompt: Search the web for the real estate agency "Estate Europe" located at "ul. Nowogrodzka 50 lok. U2, 00...
+2025-10-13 15:42:08,506 - INFO - AFC is enabled with max remote calls: 10.
+2025-10-13 15:42:27,048 - INFO - HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent "HTTP/1.1 200 OK"
+2025-10-13 15:42:27,056 - INFO - ✅ Got response for Estate Europe (attempt 1)
+2025-10-13 15:42:27,100 - INFO - ✅ Updated agency 756 with: ['address', 'phone', '_raw_response']
+2025-10-13 15:42:30,101 - INFO - Processing agency: Prime Property Agency (ID: 759)
+2025-10-13 15:42:30,101 - INFO - Searching for more info on: Prime Property Agency
+2025-10-13 15:42:30,102 - INFO - Running Gemini prompt: Search the web for the real estate agency "Prime Property Agency" located at "ul. Wołoska 18, 02-675...
+2025-10-13 15:42:30,102 - INFO - AFC is enabled with max remote calls: 10.
+2025-10-13 15:43:01,329 - INFO - HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent "HTTP/1.1 200 OK"
+2025-10-13 15:43:01,340 - INFO - ✅ Got response for Prime Property Agency (attempt 1)
+2025-10-13 15:43:01,380 - INFO - ✅ Updated agency 759 with: ['address', 'website', 'phone', '_raw_response']
+2025-10-13 15:43:04,381 - INFO - Processing agency: Poland Sotheby's International Realty (ID: 761)
+2025-10-13 15:43:04,382 - INFO - Searching for more info on: Poland Sotheby's International Realty
+2025-10-13 15:43:04,382 - INFO - Running Gemini prompt: Search the web for the real estate agency "Poland Sotheby's International Realty" located at "ul. Mo...
+2025-10-13 15:43:04,383 - INFO - AFC is enabled with max remote calls: 10.
+2025-10-13 15:43:15,753 - INFO - HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent "HTTP/1.1 200 OK"
+2025-10-13 15:43:15,760 - INFO - ✅ Got response for Poland Sotheby's International Realty (attempt 1)
+2025-10-13 15:43:15,788 - INFO - ✅ Updated agency 761 with: ['address', 'phone', '_raw_response']
+2025-10-13 15:43:18,788 - INFO - Processing agency: Centrum Nieruchomości Hiszpania (ID: 764)
+2025-10-13 15:43:18,789 - INFO - Searching for more info on: Centrum Nieruchomości Hiszpania
+2025-10-13 15:43:18,789 - INFO - Running Gemini prompt: Search the web for the real estate agency "Centrum Nieruchomości Hiszpania" located at "ul. Domaniew...
+2025-10-13 15:43:18,790 - INFO - AFC is enabled with max remote calls: 10.
+2025-10-13 15:43:36,278 - INFO - HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent "HTTP/1.1 200 OK"
+2025-10-13 15:43:36,289 - INFO - ✅ Got response for Centrum Nieruchomości Hiszpania (attempt 1)
+2025-10-13 15:43:36,326 - INFO - ✅ Updated agency 764 with: ['address', '_raw_response']
+2025-10-13 15:43:39,327 - INFO - Processing agency: Marbella Property (ID: 765)
+2025-10-13 15:43:39,328 - INFO - Searching for more info on: Marbella Property
+2025-10-13 15:43:39,328 - INFO - Running Gemini prompt: Search the web for the real estate agency "Marbella Property" located at "ul. Wilcza 29/1, 00-544 Wa...
+2025-10-13 15:43:39,329 - INFO - AFC is enabled with max remote calls: 10.
+2025-10-13 15:44:07,764 - INFO - HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent "HTTP/1.1 200 OK"
+2025-10-13 15:44:07,775 - INFO - ✅ Got response for Marbella Property (attempt 1)
+2025-10-13 15:44:07,813 - INFO - ✅ Updated agency 765 with: ['address', '_raw_response']
+2025-10-13 15:44:10,815 - INFO - Processing agency: Polska Hiszpania Nieruchomości (ID: 767)
+2025-10-13 15:44:10,815 - INFO - Searching for more info on: Polska Hiszpania Nieruchomości
+2025-10-13 15:44:10,816 - INFO - Running Gemini prompt: Search the web for the real estate agency "Polska Hiszpania Nieruchomości" located at "ul. Franciszk...
+2025-10-13 15:44:10,816 - INFO - AFC is enabled with max remote calls: 10.
+2025-10-13 15:44:34,126 - INFO - HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent "HTTP/1.1 200 OK"
+2025-10-13 15:44:34,132 - INFO - ✅ Got response for Polska Hiszpania Nieruchomości (attempt 1)
+2025-10-13 15:44:34,174 - INFO - ✅ Updated agency 767 with: ['address', 'website', 'phone', '_raw_response']
+2025-10-13 15:44:37,174 - INFO - Processing agency: Sunsation (ID: 769)
+2025-10-13 15:44:37,175 - INFO - Searching for more info on: Sunsation
+2025-10-13 15:44:37,175 - INFO - Running Gemini prompt: Search the web for the real estate agency "Sunsation" located at "ul. Sienna 72 lok. U9, 00-833 Wars...
+2025-10-13 15:44:37,175 - INFO - AFC is enabled with max remote calls: 10.
+2025-10-13 15:45:03,775 - INFO - HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent "HTTP/1.1 200 OK"
+2025-10-13 15:45:03,788 - INFO - ✅ Got response for Sunsation (attempt 1)
+2025-10-13 15:45:03,832 - INFO - ✅ Updated agency 769 with: ['address', 'phone', '_raw_response']
+2025-10-13 15:45:06,834 - INFO - Processing agency: Eurovil (ID: 770)
+2025-10-13 15:45:06,834 - INFO - Searching for more info on: Eurovil
+2025-10-13 15:45:06,835 - INFO - Running Gemini prompt: Search the web for the real estate agency "Eurovil" located at "ul. Puławska 457, 02-801 Warszawa" i...
+2025-10-13 15:45:06,835 - INFO - AFC is enabled with max remote calls: 10.
+2025-10-13 15:45:32,226 - INFO - HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent "HTTP/1.1 200 OK"
+2025-10-13 15:45:32,246 - INFO - ✅ Got response for Eurovil (attempt 1)
+2025-10-13 15:45:32,287 - INFO - ✅ Updated agency 770 with: ['address', '_raw_response']
+2025-10-13 15:45:35,289 - INFO - Processing agency: Property.pl (ID: 772)
+2025-10-13 15:45:35,289 - INFO - Searching for more info on: Property.pl
+2025-10-13 15:45:35,289 - INFO - Running Gemini prompt: Search the web for the real estate agency "Property.pl" located at "ul. Powsińska 64, 02-902 Warszaw...
+2025-10-13 15:45:35,289 - INFO - AFC is enabled with max remote calls: 10.
+2025-10-13 15:45:57,000 - INFO - HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent "HTTP/1.1 200 OK"
+2025-10-13 15:45:57,008 - INFO - ✅ Got response for Property.pl (attempt 1)
+2025-10-13 15:45:57,058 - INFO - ✅ Updated agency 772 with: ['phone', 'address', '_raw_response']
+2025-10-13 15:46:00,058 - INFO - Processing agency: Elite Nieruchomości (ID: 774)
+2025-10-13 15:46:00,059 - INFO - Searching for more info on: Elite Nieruchomości
+2025-10-13 15:46:00,059 - INFO - Running Gemini prompt: Search the web for the real estate agency "Elite Nieruchomości" located at "ul. Naruszewicza 11, 02-...
+2025-10-13 15:46:00,060 - INFO - AFC is enabled with max remote calls: 10.
+2025-10-13 15:46:33,652 - INFO - HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent "HTTP/1.1 200 OK"
+2025-10-13 15:46:33,654 - ERROR - No response from Gemini API
+2025-10-13 15:46:33,654 - WARNING - ❌ No response for Elite Nieruchomości (attempt 1)
+2025-10-13 15:46:35,655 - INFO - Running Gemini prompt: Search the web for the real estate agency "Elite Nieruchomości" located at "ul. Naruszewicza 11, 02-...
+2025-10-13 15:46:35,655 - INFO - AFC is enabled with max remote calls: 10.
+2025-10-13 15:46:54,640 - INFO - HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent "HTTP/1.1 200 OK"
+2025-10-13 15:46:54,646 - INFO - ✅ Got response for Elite Nieruchomości (attempt 2)
+2025-10-13 15:46:54,685 - INFO - ✅ Updated agency 774 with: ['address', 'website', 'phone', '_raw_response']
+2025-10-13 15:46:57,685 - INFO - Processing agency: Estate Leaders (ID: 775)
+2025-10-13 15:46:57,686 - INFO - Searching for more info on: Estate Leaders
+2025-10-13 15:46:57,686 - INFO - Running Gemini prompt: Search the web for the real estate agency "Estate Leaders" located at "ul. Zgoda 11/14, 00-018 Warsz...
+2025-10-13 15:46:57,687 - INFO - AFC is enabled with max remote calls: 10.
+2025-10-13 15:47:24,487 - INFO - HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent "HTTP/1.1 200 OK"
+2025-10-13 15:47:24,503 - INFO - ✅ Got response for Estate Leaders (attempt 1)
+2025-10-13 15:47:24,542 - INFO - ✅ Updated agency 775 with: ['address', 'phone', '_raw_response']
+2025-10-13 15:47:27,545 - INFO - Processing agency: Sarego (ID: 776)
+2025-10-13 15:47:27,545 - INFO - Searching for more info on: Sarego
+2025-10-13 15:47:27,546 - INFO - Running Gemini prompt: Search the web for the real estate agency "Sarego" located at "ul. Sarego 2A, 00-661 Warszawa" in Sp...
+2025-10-13 15:47:27,546 - INFO - AFC is enabled with max remote calls: 10.
+2025-10-13 15:47:50,955 - INFO - HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent "HTTP/1.1 200 OK"
+2025-10-13 15:47:50,957 - INFO - ✅ Got response for Sarego (attempt 1)
+2025-10-13 15:47:50,986 - INFO - ✅ Updated agency 776 with: ['address', 'phone', '_raw_response']
+2025-10-13 15:47:53,987 - INFO - Processing agency: Taurus Property (ID: 779)
+2025-10-13 15:47:53,988 - INFO - Searching for more info on: Taurus Property
+2025-10-13 15:47:53,988 - INFO - Running Gemini prompt: Search the web for the real estate agency "Taurus Property" located at "Aleje Jerozolimskie 81, 02-0...
+2025-10-13 15:47:53,989 - INFO - AFC is enabled with max remote calls: 10.
+2025-10-13 15:48:25,255 - INFO - HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent "HTTP/1.1 200 OK"
+2025-10-13 15:48:25,265 - INFO - ✅ Got response for Taurus Property (attempt 1)
+2025-10-13 15:48:25,308 - INFO - ✅ Updated agency 779 with: ['address', '_raw_response']
+2025-10-13 15:48:28,310 - INFO - Processing agency: Unique Estate (ID: 780)
+2025-10-13 15:48:28,310 - INFO - Searching for more info on: Unique Estate
+2025-10-13 15:48:28,311 - INFO - Running Gemini prompt: Search the web for the real estate agency "Unique Estate" located at "Senatorska 2, 00-075 Warszawa"...
+2025-10-13 15:48:28,311 - INFO - AFC is enabled with max remote calls: 10.
+2025-10-13 15:49:04,067 - INFO - HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent "HTTP/1.1 200 OK"
+2025-10-13 15:49:04,079 - INFO - ✅ Got response for Unique Estate (attempt 1)
+2025-10-13 15:49:04,121 - INFO - ✅ Updated agency 780 with: ['address', '_raw_response']
+2025-10-13 15:49:07,121 - INFO - Processing agency: Estate International (ID: 784)
+2025-10-13 15:49:07,121 - INFO - Searching for more info on: Estate International
+2025-10-13 15:49:07,122 - INFO - Running Gemini prompt: Search the web for the real estate agency "Estate International" located at "Aleje Jerozolimskie 11/...
+2025-10-13 15:49:07,122 - INFO - AFC is enabled with max remote calls: 10.
+2025-10-13 15:49:35,808 - INFO - HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent "HTTP/1.1 200 OK"
+2025-10-13 15:49:35,821 - INFO - ✅ Got response for Estate International (attempt 1)
+2025-10-13 15:49:35,862 - INFO - ✅ Updated agency 784 with: ['address', '_raw_response']
+2025-10-13 15:49:38,863 - INFO - Processing agency: Royal Space Nieruchomości (ID: 785)
+2025-10-13 15:49:38,863 - INFO - Searching for more info on: Royal Space Nieruchomości
+2025-10-13 15:49:38,864 - INFO - Running Gemini prompt: Search the web for the real estate agency "Royal Space Nieruchomości" located at "Mokotowska 41, 00-...
+2025-10-13 15:49:38,864 - INFO - AFC is enabled with max remote calls: 10.
+2025-10-13 15:49:52,393 - INFO - HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent "HTTP/1.1 200 OK"
+2025-10-13 15:49:52,403 - INFO - ✅ Got response for Royal Space Nieruchomości (attempt 1)
+2025-10-13 15:49:52,441 - INFO - ✅ Updated agency 785 with: ['phone', 'address', '_raw_response']
+2025-10-13 15:49:55,442 - INFO - Processing agency: Gold Partners Nieruchomości (ID: 786)
+2025-10-13 15:49:55,443 - INFO - Searching for more info on: Gold Partners Nieruchomości
+2025-10-13 15:49:55,443 - INFO - Running Gemini prompt: Search the web for the real estate agency "Gold Partners Nieruchomości" located at "ul. Złota 59, 00...
+2025-10-13 15:49:55,444 - INFO - AFC is enabled with max remote calls: 10.
+2025-10-13 15:50:16,624 - INFO - HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent "HTTP/1.1 200 OK"
+2025-10-13 15:50:16,647 - INFO - ✅ Got response for Gold Partners Nieruchomości (attempt 1)
+2025-10-13 15:50:16,689 - INFO - ✅ Updated agency 786 with: ['address', 'phone', '_raw_response']
+2025-10-13 15:50:19,689 - INFO - Processing agency: Dream House Nieruchomości (ID: 787)
+2025-10-13 15:50:19,690 - INFO - Searching for more info on: Dream House Nieruchomości
+2025-10-13 15:50:19,690 - INFO - Running Gemini prompt: Search the web for the real estate agency "Dream House Nieruchomości" located at "ul. Puławska 10, 0...
+2025-10-13 15:50:19,691 - INFO - AFC is enabled with max remote calls: 10.
+2025-10-13 15:51:05,405 - INFO - HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent "HTTP/1.1 200 OK"
+2025-10-13 15:51:05,414 - INFO - ✅ Got response for Dream House Nieruchomości (attempt 1)
+2025-10-13 15:51:05,456 - INFO - ✅ Updated agency 787 with: ['address', '_raw_response']
+2025-10-13 15:51:08,458 - INFO - Processing agency: Broker House Elbląg (ID: 789)
+2025-10-13 15:51:08,459 - INFO - Searching for more info on: Broker House Elbląg
+2025-10-13 15:51:08,459 - INFO - Running Gemini prompt: Search the web for the real estate agency "Broker House Elbląg" located at "Generała Grota-Roweckieg...
+2025-10-13 15:51:08,460 - INFO - AFC is enabled with max remote calls: 10.
+2025-10-13 15:51:30,396 - INFO - HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent "HTTP/1.1 200 OK"
+2025-10-13 15:51:30,401 - INFO - ✅ Got response for Broker House Elbląg (attempt 1)
+2025-10-13 15:51:30,435 - INFO - ✅ Updated agency 789 with: ['address', '_raw_response']
+2025-10-13 15:51:33,436 - INFO - Processing agency: RE/MAX Gold Wałbrzych (ID: 790)
+2025-10-13 15:51:33,437 - INFO - Searching for more info on: RE/MAX Gold Wałbrzych
+2025-10-13 15:51:33,437 - INFO - Running Gemini prompt: Search the web for the real estate agency "RE/MAX Gold Wałbrzych" located at "ul. Słowackiego 31, 58...
+2025-10-13 15:51:33,438 - INFO - AFC is enabled with max remote calls: 10.
+2025-10-13 15:51:56,405 - INFO - HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent "HTTP/1.1 200 OK"
+2025-10-13 15:51:56,410 - INFO - ✅ Got response for RE/MAX Gold Wałbrzych (attempt 1)
+2025-10-13 15:51:56,451 - INFO - ✅ Updated agency 790 with: ['address', '_raw_response']
+2025-10-13 15:51:59,452 - INFO - Processing agency: Maxon Nieruchomości Tarnów (ID: 793)
+2025-10-13 15:51:59,452 - INFO - Searching for more info on: Maxon Nieruchomości Tarnów
+2025-10-13 15:51:59,453 - INFO - Running Gemini prompt: Search the web for the real estate agency "Maxon Nieruchomości Tarnów" located at "Krakowska 17, 33-...
+2025-10-13 15:51:59,453 - INFO - AFC is enabled with max remote calls: 10.
+2025-10-13 15:52:16,578 - INFO - HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent "HTTP/1.1 200 OK"
+2025-10-13 15:52:16,589 - INFO - ✅ Got response for Maxon Nieruchomości Tarnów (attempt 1)
+2025-10-13 15:52:16,632 - INFO - ✅ Updated agency 793 with: ['address', 'phone', '_raw_response']
+2025-10-13 15:52:19,634 - INFO - Processing agency: Północ Nieruchomości Koszalin (ID: 796)
+2025-10-13 15:52:19,634 - INFO - Searching for more info on: Północ Nieruchomości Koszalin
+2025-10-13 15:52:19,635 - INFO - Running Gemini prompt: Search the web for the real estate agency "Północ Nieruchomości Koszalin" located at "ul. Zwycięstwa...
+2025-10-13 15:52:19,635 - INFO - AFC is enabled with max remote calls: 10.
+2025-10-13 15:52:32,959 - INFO - HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent "HTTP/1.1 200 OK"
+2025-10-13 15:52:32,976 - INFO - ✅ Got response for Północ Nieruchomości Koszalin (attempt 1)
+2025-10-13 15:52:33,018 - INFO - ✅ Updated agency 796 with: ['address', 'phone', '_raw_response']
+2025-10-13 15:52:36,021 - INFO - Processing agency: RE/MAX Capital Koszalin (ID: 798)
+2025-10-13 15:52:36,021 - INFO - Searching for more info on: RE/MAX Capital Koszalin
+2025-10-13 15:52:36,022 - INFO - Running Gemini prompt: Search the web for the real estate agency "RE/MAX Capital Koszalin" located at "ul. Zwycięstwa 134-1...
+2025-10-13 15:52:36,022 - INFO - AFC is enabled with max remote calls: 10.
+2025-10-13 15:52:53,697 - INFO - HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent "HTTP/1.1 200 OK"
+2025-10-13 15:52:53,709 - INFO - ✅ Got response for RE/MAX Capital Koszalin (attempt 1)
+2025-10-13 15:52:53,758 - INFO - ✅ Updated agency 798 with: ['address', '_raw_response']
+2025-10-13 15:52:56,758 - INFO - Processing agency: RE/MAX Home Koszalin (ID: 799)
+2025-10-13 15:52:56,759 - INFO - Searching for more info on: RE/MAX Home Koszalin
+2025-10-13 15:52:56,759 - INFO - Running Gemini prompt: Search the web for the real estate agency "RE/MAX Home Koszalin" located at "Zwycięstwa 135/10, 75-0...
+2025-10-13 15:52:56,760 - INFO - AFC is enabled with max remote calls: 10.
+2025-10-13 15:53:19,141 - INFO - HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent "HTTP/1.1 200 OK"
+2025-10-13 15:53:19,151 - INFO - ✅ Got response for RE/MAX Home Koszalin (attempt 1)
+2025-10-13 15:53:19,191 - INFO - ✅ Updated agency 799 with: ['address', 'website', '_raw_response']
+2025-10-13 15:53:22,191 - INFO - Processing agency: WGN Nieruchomości Kalisz (ID: 800)
+2025-10-13 15:53:22,192 - INFO - Searching for more info on: WGN Nieruchomości Kalisz
+2025-10-13 15:53:22,192 - INFO - Running Gemini prompt: Search the web for the real estate agency "WGN Nieruchomości Kalisz" located at "Górnośląska 11, 62-...
+2025-10-13 15:53:22,192 - INFO - AFC is enabled with max remote calls: 10.
+2025-10-13 15:53:40,544 - INFO - HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent "HTTP/1.1 200 OK"
+2025-10-13 15:53:40,554 - INFO - ✅ Got response for WGN Nieruchomości Kalisz (attempt 1)
+2025-10-13 15:53:40,599 - INFO - ✅ Updated agency 800 with: ['address', 'phone', '_raw_response']
+2025-10-13 15:53:43,601 - INFO - Processing agency: PÓŁNOC Nieruchomości Grudziądz (ID: 816)
+2025-10-13 15:53:43,601 - INFO - Searching for more info on: PÓŁNOC Nieruchomości Grudziądz
+2025-10-13 15:53:43,602 - INFO - Running Gemini prompt: Search the web for the real estate agency "PÓŁNOC Nieruchomości Grudziądz" located at "Legionów 12, ...
+2025-10-13 15:53:43,602 - INFO - AFC is enabled with max remote calls: 10.
+2025-10-13 15:54:04,505 - INFO - HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent "HTTP/1.1 200 OK"
+2025-10-13 15:54:04,517 - INFO - ✅ Got response for PÓŁNOC Nieruchomości Grudziądz (attempt 1)
+2025-10-13 15:54:04,564 - INFO - ✅ Updated agency 816 with: ['address', 'phone', '_raw_response']
+2025-10-13 15:54:07,566 - INFO - Processing agency: Tyszkiewicz Nieruchomości Grudziądz (ID: 817)
+2025-10-13 15:54:07,566 - INFO - Searching for more info on: Tyszkiewicz Nieruchomości Grudziądz
+2025-10-13 15:54:07,567 - INFO - Running Gemini prompt: Search the web for the real estate agency "Tyszkiewicz Nieruchomości Grudziądz" located at "Chełmińs...
+2025-10-13 15:54:07,568 - INFO - AFC is enabled with max remote calls: 10.
+2025-10-13 15:54:29,643 - INFO - HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent "HTTP/1.1 200 OK"
+2025-10-13 15:54:29,654 - INFO - ✅ Got response for Tyszkiewicz Nieruchomości Grudziądz (attempt 1)
+2025-10-13 15:54:29,690 - INFO - ✅ Updated agency 817 with: ['address', '_raw_response']
+2025-10-13 15:54:32,691 - INFO - Processing agency: KRN-Nieruchomości (ID: 818)
+2025-10-13 15:54:32,691 - INFO - Searching for more info on: KRN-Nieruchomości
+2025-10-13 15:54:32,692 - INFO - Running Gemini prompt: Search the web for the real estate agency "KRN-Nieruchomości" located at "ul. 1 Maja 32A, 44-330 Jas...
+2025-10-13 15:54:32,692 - INFO - AFC is enabled with max remote calls: 10.
+2025-10-13 15:54:51,817 - INFO - HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent "HTTP/1.1 200 OK"
+2025-10-13 15:54:51,828 - INFO - ✅ Got response for KRN-Nieruchomości (attempt 1)
+2025-10-13 15:54:51,861 - INFO - ✅ Updated agency 818 with: ['address', 'website', 'phone', '_raw_response']
+2025-10-13 15:54:54,863 - INFO - Processing agency: Północ Nieruchomości Jelenia Góra (ID: 837)
+2025-10-13 15:54:54,863 - INFO - Searching for more info on: Północ Nieruchomości Jelenia Góra
+2025-10-13 15:54:54,863 - INFO - Running Gemini prompt: Search the web for the real estate agency "Północ Nieruchomości Jelenia Góra" located at "Ul. Bankow...
+2025-10-13 15:54:54,863 - INFO - AFC is enabled with max remote calls: 10.
+2025-10-13 15:55:21,406 - INFO - HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent "HTTP/1.1 200 OK"
+2025-10-13 15:55:21,415 - INFO - ✅ Got response for Północ Nieruchomości Jelenia Góra (attempt 1)
+2025-10-13 15:55:21,452 - INFO - ✅ Updated agency 837 with: ['address', '_raw_response']
+2025-10-13 15:55:24,453 - INFO - Processing agency: Tyszkiewicz Nieruchomości Jelenia Góra (ID: 838)
+2025-10-13 15:55:24,453 - INFO - Searching for more info on: Tyszkiewicz Nieruchomości Jelenia Góra
+2025-10-13 15:55:24,454 - INFO - Running Gemini prompt: Search the web for the real estate agency "Tyszkiewicz Nieruchomości Jelenia Góra" located at "ul. B...
+2025-10-13 15:55:24,455 - INFO - AFC is enabled with max remote calls: 10.
+2025-10-13 15:55:42,706 - INFO - HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent "HTTP/1.1 200 OK"
+2025-10-13 15:55:42,713 - INFO - ✅ Got response for Tyszkiewicz Nieruchomości Jelenia Góra (attempt 1)
+2025-10-13 15:55:42,751 - INFO - ✅ Updated agency 838 with: ['address', 'phone', '_raw_response']
+2025-10-13 15:55:45,751 - INFO - Processing agency: Golden House Nieruchomości Jelenia Góra (ID: 840)
+2025-10-13 15:55:45,752 - INFO - Searching for more info on: Golden House Nieruchomości Jelenia Góra
+2025-10-13 15:55:45,752 - INFO - Running Gemini prompt: Search the web for the real estate agency "Golden House Nieruchomości Jelenia Góra" located at "ul. ...
+2025-10-13 15:55:45,753 - INFO - AFC is enabled with max remote calls: 10.
+2025-10-13 15:56:11,172 - INFO - HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent "HTTP/1.1 200 OK"
+2025-10-13 15:56:11,183 - INFO - ✅ Got response for Golden House Nieruchomości Jelenia Góra (attempt 1)
+2025-10-13 15:56:11,226 - INFO - ✅ Updated agency 840 with: ['address', '_raw_response']
+2025-10-13 15:56:14,227 - INFO - Processing agency: WGN Nieruchomości Ostrów Mazowiecka (ID: 841)
+2025-10-13 15:56:14,227 - INFO - Searching for more info on: WGN Nieruchomości Ostrów Mazowiecka
+2025-10-13 15:56:14,228 - INFO - Running Gemini prompt: Search the web for the real estate agency "WGN Nieruchomości Ostrów Mazowiecka" located at "ul. 11 L...
+2025-10-13 15:56:14,228 - INFO - AFC is enabled with max remote calls: 10.
+2025-10-13 15:56:40,151 - INFO - HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent "HTTP/1.1 200 OK"
+2025-10-13 15:56:40,161 - INFO - ✅ Got response for WGN Nieruchomości Ostrów Mazowiecka (attempt 1)
+2025-10-13 15:56:40,196 - INFO - ✅ Updated agency 841 with: ['address', 'phone', '_raw_response']
+2025-10-13 15:56:43,197 - INFO - Processing agency: Świat Nieruchomości - Świdnica (ID: 842)
+2025-10-13 15:56:43,199 - INFO - Searching for more info on: Świat Nieruchomości - Świdnica
+2025-10-13 15:56:43,201 - INFO - Running Gemini prompt: Search the web for the real estate agency "Świat Nieruchomości - Świdnica" located at "ul. Pułaskieg...
+2025-10-13 15:56:43,204 - INFO - AFC is enabled with max remote calls: 10.
+2025-10-13 15:57:32,632 - INFO - HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent "HTTP/1.1 200 OK"
+2025-10-13 15:57:32,646 - INFO - ✅ Got response for Świat Nieruchomości - Świdnica (attempt 1)
+2025-10-13 15:57:32,684 - INFO - ✅ Updated agency 842 with: ['address', 'phone', '_raw_response']
+2025-10-13 15:57:35,685 - INFO - Processing agency: Freedom Nieruchomości Lubin (ID: 869)
+2025-10-13 15:57:35,686 - INFO - Searching for more info on: Freedom Nieruchomości Lubin
+2025-10-13 15:57:35,686 - INFO - Running Gemini prompt: Search the web for the real estate agency "Freedom Nieruchomości Lubin" located at "ul. Odrodzenia 1...
+2025-10-13 15:57:35,687 - INFO - AFC is enabled with max remote calls: 10.
+2025-10-13 15:57:51,219 - INFO - HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent "HTTP/1.1 200 OK"
+2025-10-13 15:57:51,223 - INFO - ✅ Got response for Freedom Nieruchomości Lubin (attempt 1)
+2025-10-13 15:57:51,264 - INFO - ✅ Updated agency 869 with: ['address', 'phone', '_raw_response']
+2025-10-13 15:57:54,264 - INFO - Processing agency: RE/MAX Future Lubin (ID: 870)
+2025-10-13 15:57:54,265 - INFO - Searching for more info on: RE/MAX Future Lubin
+2025-10-13 15:57:54,265 - INFO - Running Gemini prompt: Search the web for the real estate agency "RE/MAX Future Lubin" located at "ul. Słoneczna 1F, 59-300...
+2025-10-13 15:57:54,266 - INFO - AFC is enabled with max remote calls: 10.
+2025-10-13 15:58:08,417 - INFO - HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent "HTTP/1.1 200 OK"
+2025-10-13 15:58:08,425 - INFO - ✅ Got response for RE/MAX Future Lubin (attempt 1)
+2025-10-13 15:58:08,471 - INFO - ✅ Updated agency 870 with: ['address', '_raw_response']
+2025-10-13 15:58:11,472 - INFO - Processing agency: Expander Nieruchomości Lubin (ID: 871)
+2025-10-13 15:58:11,472 - INFO - Searching for more info on: Expander Nieruchomości Lubin
+2025-10-13 15:58:11,473 - INFO - Running Gemini prompt: Search the web for the real estate agency "Expander Nieruchomości Lubin" located at "Rynek 15, 59-30...
+2025-10-13 15:58:11,473 - INFO - AFC is enabled with max remote calls: 10.
+2025-10-13 15:58:27,771 - INFO - HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent "HTTP/1.1 200 OK"
+2025-10-13 15:58:27,777 - INFO - ✅ Got response for Expander Nieruchomości Lubin (attempt 1)
+2025-10-13 15:58:27,815 - INFO - ✅ Updated agency 871 with: ['address', 'phone', '_raw_response']
+2025-10-13 15:58:30,815 - INFO - Processing agency: RE/MAX Home Professional (ID: 872)
+2025-10-13 15:58:30,816 - INFO - Searching for more info on: RE/MAX Home Professional
+2025-10-13 15:58:30,816 - INFO - Running Gemini prompt: Search the web for the real estate agency "RE/MAX Home Professional" located at "ul. Konarskiego 3 l...
+2025-10-13 15:58:30,816 - INFO - AFC is enabled with max remote calls: 10.
+2025-10-13 15:58:38,318 - INFO - HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent "HTTP/1.1 200 OK"
+2025-10-13 15:58:38,324 - INFO - ✅ Got response for RE/MAX Home Professional (attempt 1)
+2025-10-13 15:58:38,366 - INFO - ✅ Updated agency 872 with: ['address', '_raw_response']
+2025-10-13 15:58:41,367 - INFO - Processing agency: Freedom Nieruchomości (ID: 873)
+2025-10-13 15:58:41,368 - INFO - Searching for more info on: Freedom Nieruchomości
+2025-10-13 15:58:41,368 - INFO - Running Gemini prompt: Search the web for the real estate agency "Freedom Nieruchomości" located at "ul. Mickiewicza 2, 59-...
+2025-10-13 15:58:41,369 - INFO - AFC is enabled with max remote calls: 10.
+2025-10-13 15:58:57,587 - INFO - HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent "HTTP/1.1 200 OK"
+2025-10-13 15:58:57,590 - INFO - ✅ Got response for Freedom Nieruchomości (attempt 1)
+2025-10-13 15:58:57,623 - INFO - ✅ Updated agency 873 with: ['address', 'phone', '_raw_response']
+2025-10-13 15:59:00,625 - INFO - Processing agency: KNC Nieruchomości (ID: 875)
+2025-10-13 15:59:00,626 - INFO - Searching for more info on: KNC Nieruchomości
+2025-10-13 15:59:00,626 - INFO - Running Gemini prompt: Search the web for the real estate agency "KNC Nieruchomości" located at "ul. Bolesława Chrobrego 15...
+2025-10-13 15:59:00,627 - INFO - AFC is enabled with max remote calls: 10.
+2025-10-13 15:59:29,942 - INFO - HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent "HTTP/1.1 200 OK"
+2025-10-13 15:59:29,973 - INFO - ✅ Got response for KNC Nieruchomości (attempt 1)
+2025-10-13 15:59:30,006 - INFO - ✅ Updated agency 875 with: ['address', '_raw_response']
+2025-10-13 15:59:33,007 - INFO - Processing agency: RE/MAX Central Tarnów (ID: 912)
+2025-10-13 15:59:33,008 - INFO - Searching for more info on: RE/MAX Central Tarnów
+2025-10-13 15:59:33,008 - INFO - Running Gemini prompt: Search the web for the real estate agency "RE/MAX Central Tarnów" located at "Wałowa 24, 33-100 Tarn...
+2025-10-13 15:59:33,008 - INFO - AFC is enabled with max remote calls: 10.
+2025-10-13 16:00:21,291 - INFO - HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent "HTTP/1.1 200 OK"
+2025-10-13 16:00:21,307 - INFO - ✅ Got response for RE/MAX Central Tarnów (attempt 1)
+2025-10-13 16:00:21,344 - INFO - ✅ Updated agency 912 with: ['address', 'phone', '_raw_response']
+2025-10-13 16:00:24,344 - INFO - Processing agency: PÓŁNOC Nieruchomości Chorzów (ID: 914)
+2025-10-13 16:00:24,344 - INFO - Searching for more info on: PÓŁNOC Nieruchomości Chorzów
+2025-10-13 16:00:24,344 - INFO - Running Gemini prompt: Search the web for the real estate agency "PÓŁNOC Nieruchomości Chorzów" located at "Stefana Batoreg...
+2025-10-13 16:00:24,345 - INFO - AFC is enabled with max remote calls: 10.
+2025-10-13 16:00:39,643 - INFO - HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent "HTTP/1.1 200 OK"
+2025-10-13 16:00:39,652 - INFO - ✅ Got response for PÓŁNOC Nieruchomości Chorzów (attempt 1)
+2025-10-13 16:00:39,704 - INFO - ✅ Updated agency 914 with: ['address', '_raw_response']
+2025-10-13 16:00:42,704 - INFO - Processing agency: Olga Piórecka Nieruchomości (ID: 915)
+2025-10-13 16:00:42,704 - INFO - Searching for more info on: Olga Piórecka Nieruchomości
+2025-10-13 16:00:42,704 - INFO - Running Gemini prompt: Search the web for the real estate agency "Olga Piórecka Nieruchomości" located at "Rynek 11, 41-500...
+2025-10-13 16:00:42,705 - INFO - AFC is enabled with max remote calls: 10.
+2025-10-13 16:00:58,011 - INFO - HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent "HTTP/1.1 200 OK"
+2025-10-13 16:00:58,014 - INFO - ✅ Got response for Olga Piórecka Nieruchomości (attempt 1)
+2025-10-13 16:00:58,059 - INFO - ✅ Updated agency 915 with: ['address', '_raw_response']
+2025-10-13 16:01:01,060 - INFO - Processing agency: KNC Nieruchomości Koszalin (ID: 917)
+2025-10-13 16:01:01,060 - INFO - Searching for more info on: KNC Nieruchomości Koszalin
+2025-10-13 16:01:01,060 - INFO - Running Gemini prompt: Search the web for the real estate agency "KNC Nieruchomości Koszalin" located at "Piłsudskiego 13, ...
+2025-10-13 16:01:01,061 - INFO - AFC is enabled with max remote calls: 10.
+2025-10-13 16:01:24,098 - INFO - HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent "HTTP/1.1 200 OK"
+2025-10-13 16:01:24,102 - INFO - ✅ Got response for KNC Nieruchomości Koszalin (attempt 1)
+2025-10-13 16:01:24,140 - INFO - ✅ Updated agency 917 with: ['address', 'phone', '_raw_response']
+2025-10-13 16:01:27,141 - INFO - Processing agency: KNC Nieruchomości Legnica (ID: 918)
+2025-10-13 16:01:27,141 - INFO - Searching for more info on: KNC Nieruchomości Legnica
+2025-10-13 16:01:27,142 - INFO - Running Gemini prompt: Search the web for the real estate agency "KNC Nieruchomości Legnica" located at "ul. Rynek 26/3, 59...
+2025-10-13 16:01:27,143 - INFO - AFC is enabled with max remote calls: 10.
+2025-10-13 16:01:54,613 - INFO - HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent "HTTP/1.1 200 OK"
+2025-10-13 16:01:54,627 - INFO - ✅ Got response for KNC Nieruchomości Legnica (attempt 1)
+2025-10-13 16:01:54,657 - INFO - ✅ Updated agency 918 with: ['address', 'phone', '_raw_response']
+2025-10-13 16:01:57,658 - INFO - Processing agency: M-Property (ID: 921)
+2025-10-13 16:01:57,658 - INFO - Searching for more info on: M-Property
+2025-10-13 16:01:57,659 - INFO - Running Gemini prompt: Search the web for the real estate agency "M-Property" located at "ul. Wolności 170, 41-507 Chorzów"...
+2025-10-13 16:01:57,659 - INFO - AFC is enabled with max remote calls: 10.
+2025-10-13 16:02:15,915 - INFO - HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent "HTTP/1.1 200 OK"
+2025-10-13 16:02:15,919 - INFO - ✅ Got response for M-Property (attempt 1)
+2025-10-13 16:02:15,956 - INFO - ✅ Updated agency 921 with: ['address', '_raw_response']
+2025-10-13 16:02:18,958 - INFO - Processing agency: Investor Nieruchomości Legnica (ID: 922)
+2025-10-13 16:02:18,959 - INFO - Searching for more info on: Investor Nieruchomości Legnica
+2025-10-13 16:02:18,959 - INFO - Running Gemini prompt: Search the web for the real estate agency "Investor Nieruchomości Legnica" located at "ul. Fabryczna...
+2025-10-13 16:02:18,959 - INFO - AFC is enabled with max remote calls: 10.
+2025-10-13 16:02:47,458 - INFO - HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent "HTTP/1.1 200 OK"
+2025-10-13 16:02:47,467 - ERROR - No response from Gemini API
+2025-10-13 16:02:47,467 - WARNING - ❌ No response for Investor Nieruchomości Legnica (attempt 1)
+2025-10-13 16:02:49,468 - INFO - Running Gemini prompt: Search the web for the real estate agency "Investor Nieruchomości Legnica" located at "ul. Fabryczna...
+2025-10-13 16:02:49,471 - INFO - AFC is enabled with max remote calls: 10.
+2025-10-13 16:03:15,200 - INFO - HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent "HTTP/1.1 200 OK"
+2025-10-13 16:03:15,218 - INFO - ✅ Got response for Investor Nieruchomości Legnica (attempt 2)
+2025-10-13 16:03:15,260 - INFO - ✅ Updated agency 922 with: ['address', 'phone', '_raw_response']
+2025-10-13 16:03:18,263 - INFO - Processing agency: RE/MAX Duo Jastrzębie-Zdrój (ID: 927)
+2025-10-13 16:03:18,263 - INFO - Searching for more info on: RE/MAX Duo Jastrzębie-Zdrój
+2025-10-13 16:03:18,264 - INFO - Running Gemini prompt: Search the web for the real estate agency "RE/MAX Duo Jastrzębie-Zdrój" located at "Aleja Piłsudskie...
+2025-10-13 16:03:18,264 - INFO - AFC is enabled with max remote calls: 10.
+2025-10-13 16:03:33,323 - INFO - HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent "HTTP/1.1 200 OK"
+2025-10-13 16:03:33,338 - INFO - ✅ Got response for RE/MAX Duo Jastrzębie-Zdrój (attempt 1)
+2025-10-13 16:03:33,382 - INFO - ✅ Updated agency 927 with: ['address', 'phone', '_raw_response']
+2025-10-13 16:03:36,383 - INFO - Processing agency: Metropolia Nieruchomości Jastrzębie-Zdrój (ID: 928)
+2025-10-13 16:03:36,383 - INFO - Searching for more info on: Metropolia Nieruchomości Jastrzębie-Zdrój
+2025-10-13 16:03:36,383 - INFO - Running Gemini prompt: Search the web for the real estate agency "Metropolia Nieruchomości Jastrzębie-Zdrój" located at "Ps...
+2025-10-13 16:03:36,384 - INFO - AFC is enabled with max remote calls: 10.
+2025-10-13 16:03:58,573 - INFO - HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent "HTTP/1.1 200 OK"
+2025-10-13 16:03:58,586 - INFO - ✅ Got response for Metropolia Nieruchomości Jastrzębie-Zdrój (attempt 1)
+2025-10-13 16:03:58,631 - INFO - ✅ Updated agency 928 with: ['address', 'phone', '_raw_response']
+2025-10-13 16:04:01,633 - INFO - Processing agency: KNC Nieruchomości Jastrzębie-Zdrój (ID: 929)
+2025-10-13 16:04:01,634 - INFO - Searching for more info on: KNC Nieruchomości Jastrzębie-Zdrój
+2025-10-13 16:04:01,634 - INFO - Running Gemini prompt: Search the web for the real estate agency "KNC Nieruchomości Jastrzębie-Zdrój" located at "ul. Pszcz...
+2025-10-13 16:04:01,635 - INFO - AFC is enabled with max remote calls: 10.
+2025-10-13 16:04:24,570 - INFO - HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent "HTTP/1.1 200 OK"
+2025-10-13 16:04:24,576 - INFO - ✅ Got response for KNC Nieruchomości Jastrzębie-Zdrój (attempt 1)
+2025-10-13 16:04:24,620 - INFO - ✅ Updated agency 929 with: ['address', 'phone', '_raw_response']
+2025-10-13 16:04:27,621 - INFO - Processing agency: Investor Nieruchomości Jastrzębie-Zdrój (ID: 930)
+2025-10-13 16:04:27,621 - INFO - Searching for more info on: Investor Nieruchomości Jastrzębie-Zdrój
+2025-10-13 16:04:27,622 - INFO - Running Gemini prompt: Search the web for the real estate agency "Investor Nieruchomości Jastrzębie-Zdrój" located at "ul. ...
+2025-10-13 16:04:27,622 - INFO - AFC is enabled with max remote calls: 10.
+2025-10-13 16:04:51,461 - INFO - HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent "HTTP/1.1 200 OK"
+2025-10-13 16:04:51,485 - INFO - ✅ Got response for Investor Nieruchomości Jastrzębie-Zdrój (attempt 1)
+2025-10-13 16:04:51,524 - INFO - ✅ Updated agency 930 with: ['address', '_raw_response']
+2025-10-13 16:04:54,525 - INFO - Processing agency: RE/MAX CAPITAL Jaworzno (ID: 931)
+2025-10-13 16:04:54,526 - INFO - Searching for more info on: RE/MAX CAPITAL Jaworzno
+2025-10-13 16:04:54,526 - INFO - Running Gemini prompt: Search the web for the real estate agency "RE/MAX CAPITAL Jaworzno" located at "Rynek 17, 43-600 Jaw...
+2025-10-13 16:04:54,526 - INFO - AFC is enabled with max remote calls: 10.
+2025-10-13 16:05:21,872 - INFO - HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent "HTTP/1.1 200 OK"
+2025-10-13 16:05:21,889 - INFO - ✅ Got response for RE/MAX CAPITAL Jaworzno (attempt 1)
+2025-10-13 16:05:21,923 - INFO - ✅ Updated agency 931 with: ['address', 'phone', '_raw_response']
+2025-10-13 16:05:24,926 - INFO - Processing agency: Północ Nieruchomości Tarnów (ID: 933)
+2025-10-13 16:05:24,926 - INFO - Searching for more info on: Północ Nieruchomości Tarnów
+2025-10-13 16:05:24,926 - INFO - Running Gemini prompt: Search the web for the real estate agency "Północ Nieruchomości Tarnów" located at "ul. Krakowska 19...
+2025-10-13 16:05:24,927 - INFO - AFC is enabled with max remote calls: 10.
+2025-10-13 16:05:42,715 - INFO - HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent "HTTP/1.1 200 OK"
+2025-10-13 16:05:42,723 - INFO - ✅ Got response for Północ Nieruchomości Tarnów (attempt 1)
+2025-10-13 16:05:42,765 - INFO - ✅ Updated agency 933 with: ['address', 'phone', '_raw_response']
+2025-10-13 16:05:45,766 - INFO - Processing agency: Północ Nieruchomości (ID: 935)
+2025-10-13 16:05:45,767 - INFO - Searching for more info on: Północ Nieruchomości
+2025-10-13 16:05:45,767 - INFO - Running Gemini prompt: Search the web for the real estate agency "Północ Nieruchomości" located at "Pocztowa 12/2, 41-500 C...
+2025-10-13 16:05:45,767 - INFO - AFC is enabled with max remote calls: 10.
+2025-10-13 16:06:07,622 - INFO - HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent "HTTP/1.1 200 OK"
+2025-10-13 16:06:07,643 - INFO - ✅ Got response for Północ Nieruchomości (attempt 1)
+2025-10-13 16:06:07,683 - INFO - ✅ Updated agency 935 with: ['address', '_raw_response']
+2025-10-13 16:06:10,684 - INFO - Processing agency: Inwestor Nieruchomości (ID: 936)
+2025-10-13 16:06:10,685 - INFO - Searching for more info on: Inwestor Nieruchomości
+2025-10-13 16:06:10,685 - INFO - Running Gemini prompt: Search the web for the real estate agency "Inwestor Nieruchomości" located at "Dąbrowskiego 18B, 41-...
+2025-10-13 16:06:10,686 - INFO - AFC is enabled with max remote calls: 10.
+2025-10-13 16:06:34,156 - INFO - HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent "HTTP/1.1 200 OK"
+2025-10-13 16:06:34,170 - INFO - ✅ Got response for Inwestor Nieruchomości (attempt 1)
+2025-10-13 16:06:34,209 - INFO - ✅ Updated agency 936 with: ['address', '_raw_response']
+2025-10-13 16:06:37,210 - INFO - Processing agency: RE/MAX Property Invest Chorzów (ID: 937)
+2025-10-13 16:06:37,210 - INFO - Searching for more info on: RE/MAX Property Invest Chorzów
+2025-10-13 16:06:37,211 - INFO - Running Gemini prompt: Search the web for the real estate agency "RE/MAX Property Invest Chorzów" located at "Jagiellońska ...
+2025-10-13 16:06:37,212 - INFO - AFC is enabled with max remote calls: 10.
+2025-10-13 16:06:54,840 - INFO - HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent "HTTP/1.1 200 OK"
+2025-10-13 16:06:54,862 - INFO - ✅ Got response for RE/MAX Property Invest Chorzów (attempt 1)
+2025-10-13 16:06:54,907 - INFO - ✅ Updated agency 937 with: ['address', '_raw_response']
+2025-10-13 16:06:57,908 - INFO - Processing agency: Koloseum Nieruchomości (ID: 939)
+2025-10-13 16:06:57,908 - INFO - Searching for more info on: Koloseum Nieruchomości
+2025-10-13 16:06:57,909 - INFO - Running Gemini prompt: Search the web for the real estate agency "Koloseum Nieruchomości" located at "ul. Wolności 211, Cho...
+2025-10-13 16:06:57,910 - INFO - AFC is enabled with max remote calls: 10.
+2025-10-13 16:07:14,296 - INFO - HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent "HTTP/1.1 200 OK"
+2025-10-13 16:07:14,311 - INFO - ✅ Got response for Koloseum Nieruchomości (attempt 1)
+2025-10-13 16:07:14,354 - INFO - ✅ Updated agency 939 with: ['address', '_raw_response']
+2025-10-13 16:07:17,355 - INFO - Processing agency: House Invest Nieruchomości (ID: 940)
+2025-10-13 16:07:17,355 - INFO - Searching for more info on: House Invest Nieruchomości
+2025-10-13 16:07:17,356 - INFO - Running Gemini prompt: Search the web for the real estate agency "House Invest Nieruchomości" located at "ul. Wolności 264/...
+2025-10-13 16:07:17,356 - INFO - AFC is enabled with max remote calls: 10.
+2025-10-13 16:07:29,452 - INFO - HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent "HTTP/1.1 200 OK"
+2025-10-13 16:07:29,468 - INFO - ✅ Got response for House Invest Nieruchomości (attempt 1)
+2025-10-13 16:07:29,504 - INFO - ✅ Updated agency 940 with: ['address', 'phone', '_raw_response']
+2025-10-13 16:07:32,505 - INFO - Processing agency: KW Chorzów (Keller Williams Silesia) (ID: 941)
+2025-10-13 16:07:32,505 - INFO - Searching for more info on: KW Chorzów (Keller Williams Silesia)
+2025-10-13 16:07:32,506 - INFO - Running Gemini prompt: Search the web for the real estate agency "KW Chorzów (Keller Williams Silesia)" located at "ul. Kat...
+2025-10-13 16:07:32,506 - INFO - AFC is enabled with max remote calls: 10.
+2025-10-13 16:07:53,303 - INFO - HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent "HTTP/1.1 200 OK"
+2025-10-13 16:07:53,317 - INFO - ✅ Got response for KW Chorzów (Keller Williams Silesia) (attempt 1)
+2025-10-13 16:07:53,356 - INFO - ✅ Updated agency 941 with: ['address', '_raw_response']
+2025-10-13 16:07:56,356 - INFO - Processing agency: Nieruchomości Korfanty (ID: 942)
+2025-10-13 16:07:56,357 - INFO - Searching for more info on: Nieruchomości Korfanty
+2025-10-13 16:07:56,357 - INFO - Running Gemini prompt: Search the web for the real estate agency "Nieruchomości Korfanty" located at "ul. Wolności 29, Chor...
+2025-10-13 16:07:56,358 - INFO - AFC is enabled with max remote calls: 10.
+2025-10-13 16:08:19,591 - INFO - HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent "HTTP/1.1 200 OK"
+2025-10-13 16:08:19,598 - INFO - ✅ Got response for Nieruchomości Korfanty (attempt 1)
+2025-10-13 16:08:19,643 - INFO - ✅ Updated agency 942 with: ['address', '_raw_response']
+2025-10-13 16:08:22,643 - INFO - Processing agency: Biuro Nieruchomości "Partner" (ID: 943)
+2025-10-13 16:08:22,644 - INFO - Searching for more info on: Biuro Nieruchomości "Partner"
+2025-10-13 16:08:22,644 - INFO - Running Gemini prompt: Search the web for the real estate agency "Biuro Nieruchomości "Partner"" located at "ul. Wolności 1...
+2025-10-13 16:08:22,645 - INFO - AFC is enabled with max remote calls: 10.
+2025-10-13 16:08:48,038 - INFO - HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent "HTTP/1.1 200 OK"
+2025-10-13 16:08:48,046 - INFO - ✅ Got response for Biuro Nieruchomości "Partner" (attempt 1)
+2025-10-13 16:08:48,082 - INFO - ✅ Updated agency 943 with: ['address', 'phone', '_raw_response']
+2025-10-13 16:08:51,083 - INFO - Processing agency: M-Nieruchomości (ID: 944)
+2025-10-13 16:08:51,085 - INFO - Searching for more info on: M-Nieruchomości
+2025-10-13 16:08:51,085 - INFO - Running Gemini prompt: Search the web for the real estate agency "M-Nieruchomości" located at "ul. Dąbrowskiego 16, Chorzów...
+2025-10-13 16:08:51,085 - INFO - AFC is enabled with max remote calls: 10.
+2025-10-13 16:09:02,250 - INFO - HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent "HTTP/1.1 200 OK"
+2025-10-13 16:09:02,257 - INFO - ✅ Got response for M-Nieruchomości (attempt 1)
+2025-10-13 16:09:02,298 - INFO - ✅ Updated agency 944 with: ['address', '_raw_response']
+2025-10-13 16:09:05,299 - INFO - Processing agency: Koloseum Nieruchomości Chorzów (ID: 945)
+2025-10-13 16:09:05,299 - INFO - Searching for more info on: Koloseum Nieruchomości Chorzów
+2025-10-13 16:09:05,299 - INFO - Running Gemini prompt: Search the web for the real estate agency "Koloseum Nieruchomości Chorzów" located at "ul. Rynek 8, ...
+2025-10-13 16:09:05,300 - INFO - AFC is enabled with max remote calls: 10.
+2025-10-13 16:09:26,292 - INFO - HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent "HTTP/1.1 200 OK"
+2025-10-13 16:09:26,296 - INFO - ✅ Got response for Koloseum Nieruchomości Chorzów (attempt 1)
+2025-10-13 16:09:26,336 - INFO - ✅ Updated agency 945 with: ['address', '_raw_response']
+2025-10-13 16:09:29,337 - INFO - Processing agency: RE/MAX Classic Kalisz (ID: 949)
+2025-10-13 16:09:29,338 - INFO - Searching for more info on: RE/MAX Classic Kalisz
+2025-10-13 16:09:29,338 - INFO - Running Gemini prompt: Search the web for the real estate agency "RE/MAX Classic Kalisz" located at "ul. Górnośląska 82, 62...
+2025-10-13 16:09:29,338 - INFO - AFC is enabled with max remote calls: 10.
+2025-10-13 16:09:50,501 - INFO - HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent "HTTP/1.1 200 OK"
+2025-10-13 16:09:50,523 - INFO - ✅ Got response for RE/MAX Classic Kalisz (attempt 1)
+2025-10-13 16:09:50,578 - INFO - ✅ Updated agency 949 with: ['address', '_raw_response']
+2025-10-13 16:09:53,579 - INFO - Processing agency: Aspect Nieruchomości Kalisz (ID: 950)
+2025-10-13 16:09:53,579 - INFO - Searching for more info on: Aspect Nieruchomości Kalisz
+2025-10-13 16:09:53,579 - INFO - Running Gemini prompt: Search the web for the real estate agency "Aspect Nieruchomości Kalisz" located at "ul. Wrocławska 1...
+2025-10-13 16:09:53,579 - INFO - AFC is enabled with max remote calls: 10.
+2025-10-13 16:10:14,108 - INFO - HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent "HTTP/1.1 200 OK"
+2025-10-13 16:10:14,119 - INFO - ✅ Got response for Aspect Nieruchomości Kalisz (attempt 1)
+2025-10-13 16:10:14,162 - INFO - ✅ Updated agency 950 with: ['address', '_raw_response']
+2025-10-13 16:10:17,164 - INFO - Processing agency: RE/MAX Expert Tarnów (ID: 995)
+2025-10-13 16:10:17,165 - INFO - Searching for more info on: RE/MAX Expert Tarnów
+2025-10-13 16:10:17,165 - INFO - Running Gemini prompt: Search the web for the real estate agency "RE/MAX Expert Tarnów" located at "ul. Słoneczna 19, 33-10...
+2025-10-13 16:10:17,166 - INFO - AFC is enabled with max remote calls: 10.
+2025-10-13 16:10:36,335 - INFO - HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent "HTTP/1.1 200 OK"
+2025-10-13 16:10:36,344 - INFO - ✅ Got response for RE/MAX Expert Tarnów (attempt 1)
+2025-10-13 16:10:36,385 - INFO - ✅ Updated agency 995 with: ['address', 'phone', '_raw_response']
+2025-10-13 16:10:39,388 - INFO - Processing agency: Freedom Nieruchomości Jaworzno (ID: 996)
+2025-10-13 16:10:39,388 - INFO - Searching for more info on: Freedom Nieruchomości Jaworzno
+2025-10-13 16:10:39,388 - INFO - Running Gemini prompt: Search the web for the real estate agency "Freedom Nieruchomości Jaworzno" located at "ul. Grunwaldz...
+2025-10-13 16:10:39,389 - INFO - AFC is enabled with max remote calls: 10.
+2025-10-13 16:11:06,708 - INFO - HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent "HTTP/1.1 200 OK"
+2025-10-13 16:11:06,721 - INFO - ✅ Got response for Freedom Nieruchomości Jaworzno (attempt 1)
+2025-10-13 16:11:06,758 - INFO - ✅ Updated agency 996 with: ['address', 'phone', '_raw_response']
+2025-10-13 16:11:09,759 - INFO - Processing agency: WGN Nieruchomości Jaworzno (ID: 997)
+2025-10-13 16:11:09,760 - INFO - Searching for more info on: WGN Nieruchomości Jaworzno
+2025-10-13 16:11:09,760 - INFO - Running Gemini prompt: Search the web for the real estate agency "WGN Nieruchomości Jaworzno" located at "ul. Pocztowa 13, ...
+2025-10-13 16:11:09,761 - INFO - AFC is enabled with max remote calls: 10.
+2025-10-13 16:11:26,335 - INFO - HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent "HTTP/1.1 200 OK"
+2025-10-13 16:11:26,353 - INFO - ✅ Got response for WGN Nieruchomości Jaworzno (attempt 1)
+2025-10-13 16:11:26,389 - INFO - ✅ Updated agency 997 with: ['address', '_raw_response']
+2025-10-13 16:11:29,389 - INFO - Processing agency: KNC Nieruchomości Jaworzno (ID: 998)
+2025-10-13 16:11:29,390 - INFO - Searching for more info on: KNC Nieruchomości Jaworzno
+2025-10-13 16:11:29,390 - INFO - Running Gemini prompt: Search the web for the real estate agency "KNC Nieruchomości Jaworzno" located at "ul. Kolejarzy 16,...
+2025-10-13 16:11:29,391 - INFO - AFC is enabled with max remote calls: 10.
+2025-10-13 16:11:47,096 - INFO - HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent "HTTP/1.1 200 OK"
+2025-10-13 16:11:47,107 - INFO - ✅ Got response for KNC Nieruchomości Jaworzno (attempt 1)
+2025-10-13 16:11:47,152 - INFO - ✅ Updated agency 998 with: ['address', 'phone', '_raw_response']
+2025-10-13 16:11:50,153 - INFO - Processing agency: PGN Nieruchomości (ID: 999)
+2025-10-13 16:11:50,153 - INFO - Searching for more info on: PGN Nieruchomości
+2025-10-13 16:11:50,154 - INFO - Running Gemini prompt: Search the web for the real estate agency "PGN Nieruchomości" located at "Podwale 23, 58-500 Jelenia...
+2025-10-13 16:11:50,154 - INFO - AFC is enabled with max remote calls: 10.
+2025-10-13 16:12:21,264 - INFO - HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent "HTTP/1.1 200 OK"
+2025-10-13 16:12:21,282 - INFO - ✅ Got response for PGN Nieruchomości (attempt 1)
+2025-10-13 16:12:21,337 - INFO - ✅ Updated agency 999 with: ['address', 'phone', '_raw_response']
+2025-10-13 16:12:24,340 - INFO - Processing agency: RE/MAX Dream Jelenia Góra (ID: 1000)
+2025-10-13 16:12:24,340 - INFO - Searching for more info on: RE/MAX Dream Jelenia Góra
+2025-10-13 16:12:24,341 - INFO - Running Gemini prompt: Search the web for the real estate agency "RE/MAX Dream Jelenia Góra" located at "ul. Długa 32/1, 58...
+2025-10-13 16:12:24,342 - INFO - AFC is enabled with max remote calls: 10.
+2025-10-13 16:12:44,348 - INFO - HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent "HTTP/1.1 200 OK"
+2025-10-13 16:12:44,356 - INFO - ✅ Got response for RE/MAX Dream Jelenia Góra (attempt 1)
+2025-10-13 16:12:44,390 - INFO - ✅ Updated agency 1000 with: ['address', 'phone', '_raw_response']
+2025-10-13 16:12:47,391 - INFO - Processing agency: Locum Nieruchomości (ID: 1001)
+2025-10-13 16:12:47,391 - INFO - Searching for more info on: Locum Nieruchomości
+2025-10-13 16:12:47,391 - INFO - Running Gemini prompt: Search the web for the real estate agency "Locum Nieruchomości" located at "ul. Marii Konopnickiej 1...
+2025-10-13 16:12:47,392 - INFO - AFC is enabled with max remote calls: 10.
+2025-10-13 16:13:09,836 - INFO - HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent "HTTP/1.1 200 OK"
+2025-10-13 16:13:09,853 - INFO - ✅ Got response for Locum Nieruchomości (attempt 1)
+2025-10-13 16:13:09,891 - INFO - ✅ Updated agency 1001 with: ['address', 'phone', '_raw_response']
+2025-10-13 16:13:12,893 - INFO - Processing agency: Global Estate Nieruchomości (ID: 1002)
+2025-10-13 16:13:12,893 - INFO - Searching for more info on: Global Estate Nieruchomości
+2025-10-13 16:13:12,894 - INFO - Running Gemini prompt: Search the web for the real estate agency "Global Estate Nieruchomości" located at "Gen. Leopolda Ok...
+2025-10-13 16:13:12,895 - INFO - AFC is enabled with max remote calls: 10.
+2025-10-13 16:14:11,945 - INFO - HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent "HTTP/1.1 200 OK"
+2025-10-13 16:14:11,953 - INFO - ✅ Got response for Global Estate Nieruchomości (attempt 1)
+2025-10-13 16:14:11,986 - INFO - ✅ Updated agency 1002 with: ['address', '_raw_response']
+2025-10-13 16:14:14,987 - INFO - Processing agency: HOME-EXPERT Agencja Nieruchomości (ID: 1003)
+2025-10-13 16:14:14,988 - INFO - Searching for more info on: HOME-EXPERT Agencja Nieruchomości
+2025-10-13 16:14:14,988 - INFO - Running Gemini prompt: Search the web for the real estate agency "HOME-EXPERT Agencja Nieruchomości" located at "ul. Bytoms...
+2025-10-13 16:14:14,989 - INFO - AFC is enabled with max remote calls: 10.
+2025-10-13 16:14:46,548 - INFO - HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent "HTTP/1.1 200 OK"
+2025-10-13 16:14:46,565 - INFO - ✅ Got response for HOME-EXPERT Agencja Nieruchomości (attempt 1)
+2025-10-13 16:14:46,600 - INFO - ✅ Updated agency 1003 with: ['address', '_raw_response']
+2025-10-13 16:14:49,601 - INFO - Processing agency: WGN Nieruchomości Piekary Śląskie (ID: 1004)
+2025-10-13 16:14:49,602 - INFO - Searching for more info on: WGN Nieruchomości Piekary Śląskie
+2025-10-13 16:14:49,602 - INFO - Running Gemini prompt: Search the web for the real estate agency "WGN Nieruchomości Piekary Śląskie" located at "ul. Konsty...
+2025-10-13 16:14:49,603 - INFO - AFC is enabled with max remote calls: 10.
+2025-10-13 16:15:33,630 - INFO - HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent "HTTP/1.1 200 OK"
+2025-10-13 16:15:33,647 - INFO - ✅ Got response for WGN Nieruchomości Piekary Śląskie (attempt 1)
+2025-10-13 16:15:33,686 - INFO - ✅ Updated agency 1004 with: ['address', 'phone', '_raw_response']
+2025-10-13 16:15:36,691 - INFO - Processing agency: M & M Nieruchomości Piekary Śląskie (ID: 1005)
+2025-10-13 16:15:36,692 - INFO - Searching for more info on: M & M Nieruchomości Piekary Śląskie
+2025-10-13 16:15:36,693 - INFO - Running Gemini prompt: Search the web for the real estate agency "M & M Nieruchomości Piekary Śląskie" located at "ul. Kons...
+2025-10-13 16:15:36,693 - INFO - AFC is enabled with max remote calls: 10.
+2025-10-13 16:15:57,165 - INFO - HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent "HTTP/1.1 200 OK"
+2025-10-13 16:15:57,177 - INFO - ✅ Got response for M & M Nieruchomości Piekary Śląskie (attempt 1)
+2025-10-13 16:15:57,234 - INFO - ✅ Updated agency 1005 with: ['address', '_raw_response']
+2025-10-13 16:16:00,239 - INFO - Processing agency: Prestige Nieruchomości Lubin (ID: 1006)
+2025-10-13 16:16:00,240 - INFO - Searching for more info on: Prestige Nieruchomości Lubin
+2025-10-13 16:16:00,240 - INFO - Running Gemini prompt: Search the web for the real estate agency "Prestige Nieruchomości Lubin" located at "Gen. Władysława...
+2025-10-13 16:16:00,241 - INFO - AFC is enabled with max remote calls: 10.
+2025-10-13 16:45:41,290 - INFO - Found 10 inactive agencies to enrich
+2025-10-13 16:45:41,290 - INFO - Processing agency: Sotheby's International Realty (ID: 6)
+2025-10-13 16:45:41,290 - INFO - Searching for more info on: Sotheby's International Realty
+2025-10-13 16:45:41,291 - INFO - Running Gemini prompt: Search the web for the real estate agency "Sotheby's International Realty" located at "** La Poveda,...
+2025-10-13 16:45:41,291 - INFO - AFC is enabled with max remote calls: 10.
+2025-10-13 16:45:49,239 - INFO - HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent "HTTP/1.1 200 OK"
+2025-10-13 16:45:49,255 - INFO - ✅ Got response for Sotheby's International Realty (attempt 1)
+2025-10-13 16:45:49,303 - INFO - ✅ Updated agency 6 with: ['address', 'phone', '_raw_response']
+2025-10-13 16:45:52,304 - INFO - Processing agency: Strand Properties (ID: 10)
+2025-10-13 16:45:52,304 - INFO - Searching for more info on: Strand Properties
+2025-10-13 16:45:52,305 - INFO - Running Gemini prompt: Search the web for the real estate agency "Strand Properties" located at "Strand Properties is an ac...
+2025-10-13 16:45:52,305 - INFO - AFC is enabled with max remote calls: 10.
+2025-10-13 16:46:08,131 - INFO - HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent "HTTP/1.1 200 OK"
+2025-10-13 16:46:08,154 - INFO - ✅ Got response for Strand Properties (attempt 1)
+2025-10-13 16:46:08,194 - INFO - ✅ Updated agency 10 with: ['phone', '_raw_response']
+2025-10-13 16:46:11,197 - INFO - Processing agency: The Agency Marbella (ID: 11)
+2025-10-13 16:46:11,197 - INFO - Searching for more info on: The Agency Marbella
+2025-10-13 16:46:11,197 - INFO - Running Gemini prompt: Search the web for the real estate agency "The Agency Marbella" located at "** Avenida Jaime de Mora...
+2025-10-13 16:46:11,198 - INFO - AFC is enabled with max remote calls: 10.
+2025-10-13 16:46:29,022 - INFO - HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent "HTTP/1.1 200 OK"
+2025-10-13 16:46:29,035 - INFO - ✅ Got response for The Agency Marbella (attempt 1)
+2025-10-13 16:46:29,067 - INFO - ✅ Updated agency 11 with: ['phone', '_raw_response']
+2025-10-13 16:46:32,068 - INFO - Processing agency: Bjurfors Real Estate (ID: 16)
+2025-10-13 16:46:32,068 - INFO - Searching for more info on: Bjurfors Real Estate
+2025-10-13 16:46:32,068 - INFO - Running Gemini prompt: Search the web for the real estate agency "Bjurfors Real Estate" located at "** The office is situat...
+2025-10-13 16:46:32,069 - INFO - AFC is enabled with max remote calls: 10.
+2025-10-13 16:46:41,826 - INFO - HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent "HTTP/1.1 200 OK"
+2025-10-13 16:46:41,830 - INFO - ✅ Got response for Bjurfors Real Estate (attempt 1)
+2025-10-13 16:46:41,869 - INFO - ✅ Updated agency 16 with: ['address', 'website', 'phone', '_raw_response']
+2025-10-13 16:46:44,870 - INFO - Processing agency: Marbella Dream Living (ID: 23)
+2025-10-13 16:46:44,870 - INFO - Searching for more info on: Marbella Dream Living
+2025-10-13 16:46:44,870 - INFO - Running Gemini prompt: Search the web for the real estate agency "Marbella Dream Living" located at "** Av de Manolete, 20,...
+2025-10-13 16:46:44,871 - INFO - AFC is enabled with max remote calls: 10.
+2025-10-13 16:47:00,458 - INFO - HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent "HTTP/1.1 200 OK"
+2025-10-13 16:47:00,471 - INFO - ✅ Got response for Marbella Dream Living (attempt 1)
+2025-10-13 16:47:00,511 - INFO - ✅ Updated agency 23 with: ['address', '_raw_response']
+2025-10-13 16:47:03,511 - INFO - Processing agency: Right Casa Estates (ID: 26)
+2025-10-13 16:47:03,512 - INFO - Searching for more info on: Right Casa Estates
+2025-10-13 16:47:03,512 - INFO - Running Gemini prompt: Search the web for the real estate agency "Right Casa Estates" located at "Right Casa Estates is cur...
+2025-10-13 16:47:03,513 - INFO - AFC is enabled with max remote calls: 10.
+2025-10-13 16:47:13,368 - INFO - HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent "HTTP/1.1 200 OK"
+2025-10-13 16:47:13,378 - INFO - ✅ Got response for Right Casa Estates (attempt 1)
+2025-10-13 16:47:16,380 - INFO - Processing agency: Roccabox Property Group (ID: 27)
+2025-10-13 16:47:16,380 - INFO - Searching for more info on: Roccabox Property Group
+2025-10-13 16:47:16,381 - INFO - Running Gemini prompt: Search the web for the real estate agency "Roccabox Property Group" located at "There is no indicati...
+2025-10-13 16:47:16,381 - INFO - AFC is enabled with max remote calls: 10.
+2025-10-13 16:47:29,141 - INFO - HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent "HTTP/1.1 200 OK"
+2025-10-13 16:47:29,145 - INFO - ✅ Got response for Roccabox Property Group (attempt 1)
+2025-10-13 16:47:29,186 - INFO - ✅ Updated agency 27 with: ['phone', 'address', '_raw_response']
+2025-10-13 16:47:32,187 - INFO - Processing agency: Nordica (ID: 31)
+2025-10-13 16:47:32,187 - INFO - Searching for more info on: Nordica
+2025-10-13 16:47:32,188 - INFO - Running Gemini prompt: Search the web for the real estate agency "Nordica" located at "** Active. Nordica Marbella has been...
+2025-10-13 16:47:32,188 - INFO - AFC is enabled with max remote calls: 10.
+2025-10-13 16:47:48,088 - INFO - HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent "HTTP/1.1 200 OK"
+2025-10-13 16:47:48,091 - INFO - ✅ Got response for Nordica (attempt 1)
+2025-10-13 16:47:48,123 - INFO - ✅ Updated agency 31 with: ['address', '_raw_response']
+2025-10-13 16:47:51,123 - INFO - Processing agency: Hamptons International (ID: 38)
+2025-10-13 16:47:51,124 - INFO - Searching for more info on: Hamptons International
+2025-10-13 16:47:51,124 - INFO - Running Gemini prompt: Search the web for the real estate agency "Hamptons International" located at "Marbella Club Centro ...
+2025-10-13 16:47:51,125 - INFO - AFC is enabled with max remote calls: 10.
+2025-10-13 16:48:03,350 - INFO - HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent "HTTP/1.1 200 OK"
+2025-10-13 16:48:03,360 - INFO - ✅ Got response for Hamptons International (attempt 1)
+2025-10-13 16:48:03,385 - INFO - ✅ Updated agency 38 with: ['address', '_raw_response']
+2025-10-13 16:48:06,387 - INFO - Processing agency: Colliers International Spain (ID: 49)
+2025-10-13 16:48:06,388 - INFO - Searching for more info on: Colliers International Spain
+2025-10-13 16:48:06,388 - INFO - Running Gemini prompt: Search the web for the real estate agency "Colliers International Spain" located at "** Colliers has...
+2025-10-13 16:48:06,389 - INFO - AFC is enabled with max remote calls: 10.
+2025-10-13 16:48:21,782 - INFO - HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent "HTTP/1.1 200 OK"
+2025-10-13 16:48:21,789 - INFO - ✅ Got response for Colliers International Spain (attempt 1)
+2025-10-13 16:48:21,828 - INFO - ✅ Updated agency 49 with: ['address', 'phone', '_raw_response']
+2025-10-13 16:48:21,829 - INFO - Enrichment complete. Processed: 10, Enriched: 9

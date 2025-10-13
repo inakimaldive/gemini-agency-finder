@@ -11,8 +11,7 @@ A static web interface for exploring the Gemini Agency Finder database of real e
 This interface displays **515 real estate agencies** (491 active high-quality entries after cleanup) across multiple categories:
 - **Polish Agencies** (221): Polish agencies specializing in Costa del Sol properties
 - **Marbella Agencies** (156): Spain-based agencies with Marbella focus
-- **Dual Operations** (92): Agencies serving both Spanish and Polish markets
-- **Spain&Poland Specialists** (41): Strong international connections
+- **Spain&Poland Agencies** (134): Agencies serving both Spanish and Polish markets (unified from 'both' and 'spain&poland' types)
 - **AI Discovered** (4): Agencies found through AI-powered web searches
 - **Inactive Agencies**: Agencies with broken main URLs and no working alternatives
 - **Enhanced Classification**: Advanced multi-indicator type classification
@@ -21,6 +20,7 @@ This interface displays **515 real estate agencies** (491 active high-quality en
 - **Security Monitoring**: SSL validation and security warning detection
 - **Data Quality**: 217 undefined entries archived to separate table
 - **Cleanup Tracking**: Robust `cleanup_status` system prevents redundant processing
+- **AI Data Enrichment**: Inactive agencies with name/address data enriched via Gemini AI search
 
 ## ✨ Features
 
@@ -160,7 +160,9 @@ gemini-agency-finder/
 │   ├── move_undefined.py      # Archive empty agency records
 │   ├── validate_websites.py   # Check website accessibility
 │   ├── update_website_status.py # Mark inactive agencies
-│   └── enhanced_type_classification.py # Advanced multi-indicator classification
+│   ├── enhanced_type_classification.py # Advanced multi-indicator classification
+│   ├── enrich_inactive_agencies.py # 🤖 AI ENRICHMENT FOR INACTIVE AGENCIES
+│   └── unify_agency_types.py  # 🏷️ TYPE UNIFICATION & STATUS UPDATES
 └── .venv/                 # Python virtual environment
 ```
 
@@ -346,6 +348,8 @@ The system now uses a `cleanup_status` column to track processing state:
 - **Website Validation**: Comprehensive URL validation and fixing
 - **URL Fixing**: Automatically adds missing "https://" prefixes and extracts URLs from text
 - **Duplicate Detection**: Intelligent deduplication with completeness scoring
+- **AI Data Enrichment**: Uses Gemini AI to enrich inactive agencies with name/address data
+- **Type Unification**: Consolidates redundant type tags ('both'/'spain&poland' → 'Spain&Poland')
 - **Data Quality**: Maintains 491 high-quality active entries from 708 total discovered
 
 ### Export and Deploy
