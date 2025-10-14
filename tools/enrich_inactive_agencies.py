@@ -42,7 +42,7 @@ class InactiveAgencyEnricher:
                 SELECT id, name, website, phone, address, description, website_status, alternative_urls
                 FROM agencies
                 WHERE website IS NOT NULL AND website != ''
-                AND (website_status IS NULL OR website_status NOT IN ('active', 'corrected'))
+                AND website_status IN ('inactive', 'connection_error', 'timeout', 'ssl_error', 'http_405', 'http_403', 'http_400', 'upgraded_to_https')
                 AND name IS NOT NULL AND name != ''
                 AND address IS NOT NULL AND address != ''
                 ORDER BY id

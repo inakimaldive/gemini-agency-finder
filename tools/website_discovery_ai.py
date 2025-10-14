@@ -237,7 +237,7 @@ def main():
         conn = sqlite3.connect('agencies.db')
         cursor = conn.cursor()
 
-        # Get agencies with missing websites
+        # Get agencies with missing websites (including those without polish_city)
         cursor.execute('''
             SELECT id, name, polish_city
             FROM agencies

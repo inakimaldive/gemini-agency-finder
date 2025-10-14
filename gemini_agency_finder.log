@@ -7327,3 +7327,36 @@ Please pr...
 2025-10-13 16:48:21,789 - INFO - ✅ Got response for Colliers International Spain (attempt 1)
 2025-10-13 16:48:21,828 - INFO - ✅ Updated agency 49 with: ['address', 'phone', '_raw_response']
 2025-10-13 16:48:21,829 - INFO - Enrichment complete. Processed: 10, Enriched: 9
+2025-10-14 10:57:15,822 - INFO - Starting Gemini agency discovery...
+2025-10-14 10:57:15,824 - INFO - Processing prompt 1/8
+2025-10-14 10:57:15,824 - INFO - Running Gemini prompt: List 5 real estate agencies in Marbella, Spain with their websites and phone numbers....
+2025-10-14 10:57:15,824 - INFO - AFC is enabled with max remote calls: 10.
+2025-10-14 10:57:29,120 - INFO - HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent "HTTP/1.1 200 OK"
+2025-10-14 10:57:29,132 - INFO - Found 5 potential agencies from this prompt
+2025-10-14 10:57:29,132 - INFO -    🚫 Duplicate name found: engel & völkers marbella
+2025-10-14 10:57:29,132 - INFO -    🚫 Duplicate domain found: dmproperties.com
+2025-10-14 10:57:29,132 - INFO -    🚫 Duplicate name found: drumelia real estate
+2025-10-14 10:57:29,132 - INFO -    🚫 Duplicate name found: the agency marbella
+2025-10-14 10:57:29,132 - INFO -    🚫 Duplicate name found: marbella estates
+2025-10-14 10:57:29,133 - INFO - Added 0 new agencies (filtered duplicates)
+2025-10-14 10:57:31,133 - INFO - Processing prompt 2/8
+2025-10-14 10:57:31,133 - INFO - Running Gemini prompt: Find luxury real estate agencies in Marbella that specialize in high-end properties. Include contact...
+2025-10-14 10:57:31,133 - INFO - AFC is enabled with max remote calls: 10.
+2025-10-14 10:57:42,269 - INFO - HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent "HTTP/1.1 200 OK"
+2025-10-14 10:57:42,284 - INFO - Found 0 potential agencies from this prompt
+2025-10-14 10:57:42,284 - INFO - Added 0 new agencies (filtered duplicates)
+2025-10-14 10:57:44,285 - INFO - Processing prompt 3/8
+2025-10-14 10:57:44,285 - INFO - Running Gemini prompt: Find property management companies in Marbella that handle rentals and sales. List their contact det...
+2025-10-14 10:57:44,286 - INFO - AFC is enabled with max remote calls: 10.
+2025-10-14 10:57:54,690 - INFO - HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent "HTTP/1.1 200 OK"
+2025-10-14 10:57:54,711 - INFO - Found 0 potential agencies from this prompt
+2025-10-14 10:57:54,711 - INFO - Added 0 new agencies (filtered duplicates)
+2025-10-14 10:57:56,712 - INFO - Processing prompt 4/8
+2025-10-14 10:57:56,712 - INFO - Running Gemini prompt: Find inmobiliarias in Marbella, Spain. List their names, websites, addresses, and phone numbers....
+2025-10-14 10:57:56,712 - INFO - AFC is enabled with max remote calls: 10.
+2025-10-14 10:58:09,199 - INFO - HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent "HTTP/1.1 200 OK"
+2025-10-14 10:58:09,225 - INFO - Found 0 potential agencies from this prompt
+2025-10-14 10:58:09,225 - INFO - Added 0 new agencies (filtered duplicates)
+2025-10-14 10:58:11,225 - INFO - Processing prompt 5/8
+2025-10-14 10:58:11,226 - INFO - Running Gemini prompt: Find commercial real estate agencies in Marbella that handle business properties and investments....
+2025-10-14 10:58:11,226 - INFO - AFC is enabled with max remote calls: 10.

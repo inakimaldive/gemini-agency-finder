@@ -9,7 +9,7 @@ import os
 from datetime import datetime
 
 def unify_agency_types():
-    """Unify 'both' and 'spain&poland' types to 'Spain&Poland'"""
+    """Unify 'both' and 'Spain&Poland' types to 'Spain and Poland'"""
     print("🔄 Starting type unification process...")
     print("=" * 50)
 
@@ -24,7 +24,7 @@ def unify_agency_types():
             print(f"   {row[0]}: {row[1]}")
 
         # Count agencies that need updating
-        cursor.execute("SELECT COUNT(*) FROM agencies WHERE type IN ('both', 'spain&poland')")
+        cursor.execute("SELECT COUNT(*) FROM agencies WHERE type IN ('both', 'Spain&Poland')")
         count_to_update = cursor.fetchone()[0]
 
         if count_to_update == 0:
@@ -32,21 +32,21 @@ def unify_agency_types():
             conn.close()
             return 0
 
-        print(f"\n🔄 Updating {count_to_update} agencies from 'both'/'spain&poland' to 'Spain&Poland'...")
+        print(f"\n🔄 Updating {count_to_update} agencies from 'both'/'Spain&Poland' to 'Spain and Poland'...")
 
         # Update the types
         cursor.execute("""
             UPDATE agencies
-            SET type = 'Spain&Poland'
-            WHERE type IN ('both', 'spain&poland')
+            SET type = 'Spain and Poland'
+            WHERE type IN ('both', 'Spain&Poland')
         """)
 
         # Add update note to additional_info
-        update_note = f" | Type unified to 'Spain&Poland' on {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}"
+        update_note = f" | Type unified to 'Spain and Poland' on {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}"
         cursor.execute("""
             UPDATE agencies
             SET additional_info = COALESCE(additional_info, '') || ?
-            WHERE type = 'Spain&Poland'
+            WHERE type = 'Spain and Poland'
         """, (update_note,))
 
         conn.commit()
@@ -81,7 +81,8 @@ def update_website_statuses():
             WHERE additional_info LIKE '%Enriched inactive agency data via Gemini search%'
             AND website IS NOT NULL AND website != ''
             AND (website_status IS NULL OR website_status NOT IN ('active', 'corrected'))
-        """)
+        """
+        )
 
         agencies_to_check = cursor.fetchall()
 
@@ -131,7 +132,7 @@ def main():
     if unified_count > 0 or status_updated_count > 0:
         print("\n💡 Next steps:")
         print("   1. Run website validation: python tools/enhanced_website_validator.py")
-        print("   2. Update the agencies.json export: python -c \"import json; import sqlite3; conn=sqlite3.connect('agencies.db'); cursor=conn.cursor(); cursor.execute('SELECT * FROM agencies'); data=[dict(zip([col[0] for col in cursor.description], row)) for row in cursor.fetchall()]; conn.close(); json.dump(data, open('agencies.json', 'w'), indent=2, default=str)\"")
+        print("   2. Update the agencies.json export: python -c \"import json; import sqlite3; conn=sqlite3.connect('agencies.db'); cursor=conn.cursor(); cursor.execute('SELECT * FROM agencies'); data=[dict(zip([col[0] for col in cursor.description], row)) for row in cursor.fetchall()]; conn.close(); json.dump(data, open('agencies.json', 'w'), indent=2, default=str)")
         print("   3. Refresh the web interface to see the changes")
 
 if __name__ == '__main__':

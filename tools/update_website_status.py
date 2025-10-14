@@ -39,7 +39,7 @@ def update_types_based_on_website_status():
             new_type = current_type
 
             # Mark agencies with inactive/broken websites as 'inactive'
-            if website_status.startswith(('inactive', 'connection_error', 'timeout', 'http_5', 'http_4')):
+            if website_status in ('inactive', 'connection_error', 'timeout', 'ssl_error', 'http_405', 'http_403', 'http_400', 'upgraded_to_https'):
                 if current_type != 'inactive':
                     new_type = 'inactive'
                     inactive_count += 1

@@ -160,7 +160,7 @@
                     <div class="col-6">
                         <div class="card stats-card h-100">
                             <div class="card-body text-center">
-                                <h5 class="card-title text-secondary">Spain & Poland</h5>
+                                <h5 class="card-title text-secondary">Spain and Poland</h5>
                                 <h2 class="card-text" id="spain-poland-count">0</h2>
                                 <p class="text-muted small">Dual market focus</p>
                             </div>
@@ -265,7 +265,8 @@
                 .replace(/_(.*?)_/g, '$1')        // Remove _italic_
                 .replace(/~~(.*?)~~/g, '$1')      // Remove ~~strikethrough~~
                 .replace(/`(.*?)`/g, '$1')        // Remove `code`
-                .replace(/\[([^\]]+)\]\([^\)]+\)/g, '$1')  // Remove [link](url) to just link text
+                .replace(/\<a href=\"([^\"]+)\" target=\"_blank\" class=\"website-link text-truncate d-inline-block\" style=\"max-width: 180px;\" title=\"(.*?)\">(.*?)<\/a>/g, '$2') // Extract title from website links
+                .replace(/<a href=\"([^\"]+)\" target=\"_blank\" class=\"text-decoration-none\">([^<]+)<\/a>/g, '$2') // Extract text from other links
                 .replace(/^#+\s*/gm, '')          // Remove headers
                 .replace(/^\*+\s*/gm, '')         // Remove list markers
                 .replace(/^\d+\.\s*/gm, '')       // Remove numbered list markers
@@ -308,6 +309,15 @@
                 agenciesData = await response.json();
                 initializeDashboard();
                 initializeTable();
+
+                // Make statistics cards clickable (added after table initialization)
+                document.getElementById('total-agencies').closest('.stats-card').addEventListener('click', () => {
+                    agenciesTable.search('').columns().search('').draw();
+                    updateActiveFilter(null);
+                });
+                document.getElementById('marbella-count').closest('.stats-card').addEventListener('click', () => filterTableByType('marbella'));
+                document.getElementById('polish-count').closest('.stats-card').addEventListener('click', () => filterTableByType('polish'));
+                document.getElementById('spain-poland-count').closest('.stats-card').addEventListener('click', () => filterTableByType('Spain and Poland'));
             } catch (error) {
                 console.error('Error loading agencies data:', error);
                 document.getElementById('agencies-body').innerHTML =
@@ -320,7 +330,7 @@
             const totalAgencies = agenciesData.length;
             const marbellaCount = agenciesData.filter(a => a.type === 'marbella').length;
             const polishCount = agenciesData.filter(a => a.type === 'polish').length;
-            const spainPolandCount = agenciesData.filter(a => a.type === 'both').length;
+            const spainPolandCount = agenciesData.filter(a => a.type === 'Spain and Poland').length;
             const inactiveCount = agenciesData.filter(a => a.type === 'inactive').length;
             const geminiCount = agenciesData.filter(a => a.type === 'gemini_discovered').length;
 
@@ -341,7 +351,7 @@
             const chart = new Chart(ctx, {
                 type: 'doughnut',
                 data: {
-                    labels: ['Marbella Based', 'Polish Agencies', 'Spain & Poland'],
+                    labels: ['Marbella Based', 'Polish Agencies', 'Spain and Poland'],
                     datasets: [{
                         data: [marbellaCount, polishCount, spainPolandCount],
                         backgroundColor: ['#28a745', '#007bff', '#17a2b8'],
@@ -358,7 +368,7 @@
                     onClick: (event, elements) => {
                         if (elements.length > 0) {
                             const index = elements[0].index;
-                            const typeMap = ['marbella', 'polish', 'both'];
+                            const typeMap = ['marbella', 'polish', 'Spain and Poland'];
                             const selectedType = typeMap[index];
                             filterTableByType(selectedType);
                         }
@@ -402,7 +412,7 @@
                             const badges = {
                                 'marbella': '<span class="badge bg-success badge-sm">Marbella</span>',
                                 'polish': '<span class="badge bg-primary badge-sm">Polish</span>',
-                                'both': '<span class="badge bg-info badge-sm">Both</span>',
+                                'Spain and Poland': '<span class="badge bg-info badge-sm">Spain & Poland</span>',
                                 'inactive': '<span class="badge bg-danger badge-sm">Inactive</span>',
                                 'gemini_discovered': '<span class="badge bg-warning badge-sm">AI</span>'
                             };
@@ -534,7 +544,7 @@
                                 $(row).addClass('table-success');
                             } else if (data.type === 'polish') {
                                 $(row).addClass('table-primary');
-                            } else if (data.type === 'both') {
+                            } else if (data.type === 'Spain and Poland') {
                                 $(row).addClass('table-info');
                             } else if (data.type === 'gemini_discovered') {
                                 $(row).addClass('table-warning');
@@ -603,12 +613,12 @@
             const typeBadgeClass = shouldBeInactive ? 'bg-danger' : (
                 agency.type === 'marbella' ? 'bg-success' :
                 agency.type === 'polish' ? 'bg-primary' :
-                agency.type === 'both' ? 'bg-info' : 'bg-warning'
+                agency.type === 'Spain and Poland' ? 'bg-info' : 'bg-warning'
             );
             const typeText = shouldBeInactive ? 'Inactive' : (
                 agency.type === 'marbella' ? 'Marbella Based' :
                 agency.type === 'polish' ? 'Polish Agency' :
-                agency.type === 'both' ? 'Spain & Poland' : 'AI Discovered'
+                agency.type === 'Spain and Poland' ? 'Spain and Poland' : 'AI Discovered'
             );
 
             detailContent.innerHTML = `
@@ -838,13 +848,17 @@
 
         // Filter table by agency type
         function filterTableByType(type) {
-            if (!agenciesTable) return;
+            console.log('filterTableByType called with type:', type);
+            if (!agenciesTable) {
+                console.log('agenciesTable not initialized');
+                return;
+            }
 
             // Clear existing search
             agenciesTable.search('').columns().search('');
 
-            // Apply type filter - use regex for exact match to handle special characters
-            agenciesTable.column(1).search('^' + type + '$', true, false).draw();
+            // Apply type filter
+            agenciesTable.column(1).search(type).draw();
 
             // Update UI to show active filter
             updateActiveFilter(type);
@@ -861,7 +875,7 @@
             const cardMap = {
                 'marbella': 'marbella-count',
                 'polish': 'polish-count',
-                'spain&poland': 'spain-poland-count'
+                'Spain and Poland': 'spain-poland-count'
             };
 
             if (cardMap[activeType]) {
@@ -894,7 +908,7 @@
             });
             document.getElementById('marbella-count').closest('.stats-card').addEventListener('click', () => filterTableByType('marbella'));
             document.getElementById('polish-count').closest('.stats-card').addEventListener('click', () => filterTableByType('polish'));
-            document.getElementById('spain-poland-count').closest('.stats-card').addEventListener('click', () => filterTableByType('both'));
+            document.getElementById('spain-poland-count').closest('.stats-card').addEventListener('click', () => filterTableByType('Spain and Poland'));
 
             // Make cards appear clickable
             document.querySelectorAll('.stats-card').forEach(card => {
