@@ -9,8 +9,25 @@ import sqlite3
 import re
 import time
 import os
+import sys
 from datetime import datetime
 import logging
+
+# Load environment variables from .env file
+try:
+    from dotenv import load_dotenv
+    load_dotenv()
+except ImportError:
+    # If python-dotenv is not available, try to load .env manually
+    try:
+        with open('.env', 'r') as f:
+            for line in f:
+                line = line.strip()
+                if line and not line.startswith('#'):
+                    key, value = line.split('=', 1)
+                    os.environ[key.strip()] = value.strip()
+    except FileNotFoundError:
+        pass
 
 # Google Gen AI imports
 from google import genai
@@ -25,20 +42,21 @@ logging.basicConfig(
     ]
 )
 
-class GeminiAgencyFinder:
-    def __init__(self, db_path='agencies.db', api_key=None):
+
+class DatabaseManager:
+    """Handles all database operations for the agency finder"""
+
+    def __init__(self, db_path='agencies.db'):
         self.db_path = db_path
-        self.api_key = api_key or os.getenv('GOOGLE_API_KEY')
-        if not self.api_key:
-            raise ValueError("Google API key not found. Please set the GOOGLE_API_KEY environment variable.")
-        self.client = genai.Client(api_key=self.api_key)
-        self.existing_domains = self.get_existing_domains()
-        self.existing_names = self.get_existing_names()
+
+    def get_connection(self):
+        """Get database connection"""
+        return sqlite3.connect(self.db_path)
 
     def get_existing_domains(self):
         """Get all existing website domains to avoid duplicates"""
         try:
-            conn = sqlite3.connect(self.db_path)
+            conn = self.get_connection()
             cursor = conn.cursor()
             cursor.execute('SELECT website FROM agencies WHERE website IS NOT NULL AND website != ""')
             domains = set()
@@ -58,7 +76,7 @@ class GeminiAgencyFinder:
     def get_existing_names(self):
         """Get all existing agency names to avoid duplicates"""
         try:
-            conn = sqlite3.connect(self.db_path)
+            conn = self.get_connection()
             cursor = conn.cursor()
             cursor.execute('SELECT name FROM agencies WHERE name IS NOT NULL AND name != ""')
             names = set()
@@ -71,6 +89,221 @@ class GeminiAgencyFinder:
         except Exception as e:
             logging.error(f"Error getting existing names: {e}")
             return set()
+
+    def save_agencies(self, agencies):
+        """Save new agencies to database"""
+        if not agencies:
+            return 0
+
+        try:
+            conn = self.get_connection()
+            cursor = conn.cursor()
+
+            saved_count = 0
+            for agency in agencies:
+                cursor.execute('''
+                    INSERT INTO agencies (name, type, website, phone, address, description, additional_info, polish_city)
+                    VALUES (?, ?, ?, ?, ?, ?, ?, ?)
+                ''', (
+                    agency['name'],
+                    agency['type'],
+                    agency.get('website', ''),
+                    agency.get('phone', ''),
+                    agency.get('address', ''),
+                    agency.get('description', ''),
+                    agency.get('additional_info', ''),
+                    agency.get('polish_city', '')
+                ))
+                saved_count += 1
+                logging.info(f"Added new agency: {agency['name']}")
+
+            conn.commit()
+            conn.close()
+            return saved_count
+
+        except Exception as e:
+            logging.error(f"Error saving agencies: {e}")
+            return 0
+
+    def get_existing_agencies_by_city(self):
+        """Get existing agencies grouped by their city/location"""
+        try:
+            conn = self.get_connection()
+            cursor = conn.cursor()
+
+            # Get agencies with Polish focus or from Polish cities
+            cursor.execute('''
+                SELECT name, address, description, additional_info
+                FROM agencies
+                WHERE type = 'polish' OR additional_info LIKE '%Poland%'
+                ORDER BY name
+            ''')
+
+            agencies_by_city = {}
+            for row in cursor.fetchall():
+                name, address, description, additional_info = row
+
+                # Try to extract city from address or additional_info
+                city = self.extract_city_from_text(address + " " + description + " " + additional_info)
+
+                if city:
+                    if city not in agencies_by_city:
+                        agencies_by_city[city] = []
+                    agencies_by_city[city].append(name)
+
+            conn.close()
+            return agencies_by_city
+
+        except Exception as e:
+            logging.error(f"Error getting existing agencies by city: {e}")
+            return {}
+
+    def extract_city_from_text(self, text):
+        """Extract Polish city name from text"""
+        polish_cities = [
+            "Warsaw", "Krakow", "Lodz", "Wroclaw", "Poznan", "Gdansk", "Szczecin",
+            "Bydgoszcz", "Lublin", "Katowice", "Bialystok", "Gdynia", "Czestochowa",
+            "Radom", "Sosnowiec", "Torun", "Kielce", "Rzeszow", "Gliwice", "Zabrze",
+            "Olsztyn", "Bielsko-Biala", "Bytom", "Zielona Gora", "Rybnik", "Ruda Slaska",
+            "Opole", "Tychy", "Gorzow Wielkopolski", "Dabrowa Gornicza",
+            "Plock", "Elblag", "Walbrzych", "Tarnow", "Chorzow", "Koszalin", "Kalisz",
+            "Legnica", "Grudziadz", "Slupsk", "Jastrzebie-Zdroj", "Nowy Sacz", "Jaworzno",
+            "Jelenia Gora", "Ostrow Mazowiecka", "Swidnica", "Stalowa Wola", "Piekary Slaskie",
+            "Lubin", "Zamosc"
+        ]
+        text_lower = text.lower()
+
+        for city in polish_cities:
+            if city.lower() in text_lower:
+                return city
+
+        return None
+
+    def get_agencies_with_missing_data(self, agency_type='gemini_discovered'):
+        """Get agencies with missing contact information"""
+        try:
+            conn = self.get_connection()
+            cursor = conn.cursor()
+
+            cursor.execute('''
+                SELECT id, name, website, phone, address, description
+                FROM agencies
+                WHERE type = ?
+                AND (website IS NULL OR website = '' OR phone IS NULL OR phone = '' OR address IS NULL OR address = '')
+                ORDER BY id
+            ''', (agency_type,))
+
+            agencies = cursor.fetchall()
+            conn.close()
+            return agencies
+
+        except Exception as e:
+            logging.error(f"Error getting agencies with missing data: {e}")
+            return []
+
+    def update_agency_data(self, agency_id, updates):
+        """Update agency data in database"""
+        try:
+            conn = self.get_connection()
+            cursor = conn.cursor()
+
+            # Build update query dynamically
+            set_parts = []
+            values = []
+            for field, value in updates.items():
+                if value and value != 'Not found':
+                    set_parts.append(f"{field} = ?")
+                    values.append(value)
+
+            if set_parts:
+                query = f"UPDATE agencies SET {', '.join(set_parts)} WHERE id = ?"
+                values.append(agency_id)
+
+                cursor.execute(query, values)
+                conn.commit()
+
+                # Update additional_info to note the data enrichment
+                cursor.execute('''
+                    UPDATE agencies
+                    SET additional_info = additional_info || ?
+                    WHERE id = ?
+                ''', (
+                    f" | Data enriched via web search on {datetime.now().strftime('%Y-%m-%d %H:%M:%S')} (added: {', '.join(updates.keys())})",
+                    agency_id
+                ))
+                conn.commit()
+
+            conn.close()
+            return True
+
+        except Exception as e:
+            logging.error(f"Error updating agency data: {e}")
+            return False
+
+    def get_agencies_needing_description_updates(self, agency_type='gemini_discovered', target_cities=None):
+        """Get agencies that need description updates"""
+        try:
+            conn = self.get_connection()
+            cursor = conn.cursor()
+
+            query = '''
+                SELECT id, name, website, phone, address, description, polish_city
+                FROM agencies
+                WHERE (description IS NULL OR description = '' OR
+                       description NOT LIKE '%Marbella%' OR
+                       description NOT LIKE '%Costa del Sol%' OR
+                       LENGTH(description) < 50)
+                AND type = ?
+            '''
+
+            if target_cities:
+                placeholders = ','.join(['?'] * len(target_cities))
+                query += f' AND polish_city IN ({placeholders})'
+                cursor.execute(query, [agency_type] + target_cities)
+            else:
+                cursor.execute(query, (agency_type,))
+
+            agencies = cursor.fetchall()
+            conn.close()
+            return agencies
+
+        except Exception as e:
+            logging.error(f"Error getting agencies needing description updates: {e}")
+            return []
+
+    def update_agency_description(self, agency_id, new_description):
+        """Update agency description in database"""
+        try:
+            conn = self.get_connection()
+            cursor = conn.cursor()
+
+            cursor.execute('''
+                UPDATE agencies
+                SET description = ?, additional_info = additional_info || ?
+                WHERE id = ?
+            ''', (
+                new_description,
+                f" | Description enhanced via detailed research on {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}",
+                agency_id
+            ))
+
+            conn.commit()
+            conn.close()
+            return True
+
+        except Exception as e:
+            logging.error(f"Error updating agency description: {e}")
+            return False
+
+
+class GeminiClient:
+    """Handles all interactions with Google Gemini AI"""
+
+    def __init__(self, api_key=None):
+        self.api_key = api_key or os.getenv('GOOGLE_API_KEY')
+        if not self.api_key:
+            raise ValueError("Google API key not found. Please set the GOOGLE_API_KEY environment variable.")
+        self.client = genai.Client(api_key=self.api_key)
 
     def run_gemini_prompt(self, prompt, use_web_search=False):
         """Run a prompt through Google Gen AI library"""
@@ -106,6 +339,158 @@ class GeminiAgencyFinder:
             print(f"💥 Error running Gemini: {str(e)[:100]}...")
             logging.error(f"Error running Gemini: {e}")
             return None
+
+
+class AgencyParser:
+    """Handles parsing and validation of agency data from various sources"""
+
+    def __init__(self):
+        self.invalid_name_patterns = [
+            'agencies with', 'other international', 'find real estate', 'search for', 'look for',
+            'list of', 'here are', 'the following', 'some examples', 'additional agencies',
+            'more agencies', 'other agencies', 'furthermore', 'additionally', 'also includes',
+            'including', 'such as', 'for example', 'examples include', 'among others', 'etc.',
+            'and more', 'various agencies', 'several agencies', 'many agencies', 'multiple agencies',
+            'different agencies', 'various companies', 'property companies', 'real estate companies',
+            'international agencies', 'spanish agencies', 'polish agencies', 'local agencies',
+            'specialized agencies', 'professional agencies', 'experienced agencies', 'reputable agencies',
+            'well-known agencies', 'established agencies', 'leading agencies', 'top agencies',
+            'best agencies', 'recommended agencies', 'popular agencies', 'famous agencies',
+            'renowned agencies', 'prestigious agencies', 'high-end agencies', 'luxury agencies',
+            'premium agencies', 'exclusive agencies', 'elite agencies', 'top-tier agencies',
+            'first-class agencies', 'five-star agencies', 'award-winning agencies', 'certified agencies',
+            'licensed agencies', 'registered agencies', 'authorized agencies', 'official agencies',
+            'recognized agencies', 'accredited agencies', 'qualified agencies', 'experienced agencies',
+            'professional agencies', 'skilled agencies', 'expert agencies', 'specialist agencies',
+            'focused agencies', 'specialized agencies', 'dedicated agencies', 'committed agencies',
+            'devoted agencies', 'passionate agencies', 'enthusiastic agencies', 'motivated agencies',
+            'driven agencies', 'ambitious agencies', 'innovative agencies', 'creative agencies',
+            'modern agencies', 'contemporary agencies', 'advanced agencies', 'progressive agencies',
+            'forward-thinking agencies', 'cutting-edge agencies', 'state-of-the-art agencies',
+            'high-tech agencies', 'digital agencies', 'online agencies', 'virtual agencies',
+            'remote agencies', 'global agencies', 'international agencies', 'worldwide agencies',
+            'universal agencies', 'cosmopolitan agencies', 'multinational agencies', 'transnational agencies',
+            'cross-border agencies', 'borderless agencies', 'universal agencies', 'globalized agencies',
+            'world-class agencies', 'international-standard agencies', 'globally-recognized agencies',
+            'internationally-acclaimed agencies', 'world-renowned agencies', 'globally-famous agencies',
+            'internationally-popular agencies', 'worldwide-popular agencies', 'universally-popular agencies',
+            'globally-appreciated agencies', 'internationally-appreciated agencies', 'worldwide-appreciated agencies',
+            'universally-appreciated agencies', 'globally-respected agencies', 'internationally-respected agencies',
+            'worldwide-respected agencies', 'universally-respected agencies', 'globally-trusted agencies',
+            'internationally-trusted agencies', 'worldwide-trusted agencies', 'universally-trusted agencies',
+            'globally-reliable agencies', 'internationally-reliable agencies', 'worldwide-reliable agencies',
+            'universally-reliable agencies', 'globally-dependable agencies', 'internationally-dependable agencies',
+            'worldwide-dependable agencies', 'universally-dependable agencies', 'globally-credible agencies',
+            'internationally-credible agencies', 'worldwide-credible agencies', 'universally-credible agencies',
+            'globally-honest agencies', 'internationally-honest agencies', 'worldwide-honest agencies',
+            'universally-honest agencies', 'globally-transparent agencies', 'internationally-transparent agencies',
+            'worldwide-transparent agencies', 'universally-transparent agencies', 'globally-accountable agencies',
+            'internationally-accountable agencies', 'worldwide-accountable agencies', 'universally-accountable agencies',
+            'globally-responsible agencies', 'internationally-responsible agencies', 'worldwide-responsible agencies',
+            'universally-responsible agencies', 'globally-ethical agencies', 'internationally-ethical agencies',
+            'worldwide-ethical agencies', 'universally-ethical agencies', 'globally-professional agencies',
+            'internationally-professional agencies', 'worldwide-professional agencies', 'universally-professional agencies',
+            'globally-competent agencies', 'internationally-competent agencies', 'worldwide-competent agencies',
+            'universally-competent agencies', 'globally-skilled agencies', 'internationally-skilled agencies',
+            'worldwide-skilled agencies', 'universally-skilled agencies', 'globally-talented agencies',
+            'internationally-talented agencies', 'worldwide-talented agencies', 'universally-talented agencies',
+            'globally-capable agencies', 'internationally-capable agencies', 'worldwide-capable agencies',
+            'universally-capable agencies', 'globally-able agencies', 'internationally-able agencies',
+            'worldwide-able agencies', 'universally-able agencies', 'globally-effective agencies',
+            'internationally-effective agencies', 'worldwide-effective agencies', 'universally-effective agencies',
+            'globally-efficient agencies', 'internationally-efficient agencies', 'worldwide-efficient agencies',
+            'universally-efficient agencies', 'globally-productive agencies', 'internationally-productive agencies',
+            'worldwide-productive agencies', 'universally-productive agencies', 'globally-successful agencies',
+            'internationally-successful agencies', 'worldwide-successful agencies', 'universally-successful agencies',
+            'globally-accomplished agencies', 'internationally-accomplished agencies', 'worldwide-accomplished agencies',
+            'universally-accomplished agencies', 'globally-achieving agencies', 'internationally-achieving agencies',
+            'worldwide-achieving agencies', 'universally-achieving agencies', 'globally-thriving agencies',
+            'internationally-thriving agencies', 'worldwide-thriving agencies', 'universally-thriving agencies',
+            'globally-flourishing agencies', 'internationally-flourishing agencies', 'worldwide-flourishing agencies',
+            'universally-flourishing agencies', 'globally-growing agencies', 'internationally-growing agencies',
+            'worldwide-growing agencies', 'universally-growing agencies', 'globally-expanding agencies',
+            'internationally-expanding agencies', 'worldwide-expanding agencies', 'universally-expanding agencies',
+            'globally-developing agencies', 'internationally-developing agencies', 'worldwide-developing agencies',
+            'universally-developing agencies', 'globally-improving agencies', 'internationally-improving agencies',
+            'worldwide-improving agencies', 'universally-improving agencies', 'globally-advancing agencies',
+            'internationally-advancing agencies', 'worldwide-advancing agencies', 'universally-advancing agencies',
+            'globally-progressing agencies', 'internationally-progressing agencies', 'worldwide-progressing agencies',
+            'universally-progressing agencies', 'globally-evolving agencies', 'internationally-evolving agencies',
+            'worldwide-evolving agencies', 'universally-evolving agencies', 'globally-changing agencies',
+            'internationally-changing agencies', 'worldwide-changing agencies', 'universally-changing agencies',
+            'globally-transforming agencies', 'internationally-transforming agencies', 'worldwide-transforming agencies',
+            'universally-transforming agencies', 'globally-innovating agencies', 'internationally-innovating agencies',
+            'worldwide-innovating agencies', 'universally-innovating agencies', 'globally-creating agencies',
+            'internationally-creating agencies', 'worldwide-creating agencies', 'universally-creating agencies',
+            'globally-building agencies', 'internationally-building agencies', 'worldwide-building agencies',
+            'universally-buildinging agencies', 'globally-constructing agencies', 'internationally-constructing agencies',
+            'worldwide-constructing agencies', 'universally-constructing agencies', 'globally-designing agencies',
+            'internationally-designing agencies', 'worldwide-designing agencies', 'universally-designing agencies',
+            'globally-planning agencies', 'internationally-planning agencies', 'worldwide-planning agencies',
+            'universally-planning agencies', 'globally-organizing agencies', 'internationally-organizing agencies',
+            'worldwide-organizing agencies', 'universally-organizing agencies', 'globally-managing agencies',
+            'internationally-managing agencies', 'worldwide-managing agencies', 'universally-managing agencies',
+            'globally-administering agencies', 'internationally-administering agencies', 'worldwide-administering agencies',
+            'universally-administering agencies', 'globally-governing agencies', 'internationally-governing agencies',
+            'worldwide-governing agencies', 'universally-governing agencies', 'globally-leading agencies',
+            'internationally-leading agencies', 'worldwide-leading agencies', 'universally-leading agencies',
+            'globally-directing agencies', 'internationally-directing agencies', 'worldwide-directing agencies',
+            'universally-directing agencies', 'globally-guiding agencies', 'internationally-guiding agencies',
+            'worldwide-guiding agencies', 'universally-guiding agencies', 'globally-steering agencies',
+            'internationally-steering agencies', 'worldwide-steering agencies', 'universally-steering agencies',
+            'globally-controlling agencies', 'internationally-controlling agencies', 'worldwide-controlling agencies',
+            'universally-controlling agencies', 'globally-coordinating agencies', 'internationally-coordinating agencies',
+            'worldwide-coordinating agencies', 'universally-coordinating agencies', 'globally-supervising agencies',
+            'internationally-supervising agencies', 'worldwide-supervising agencies', 'universally-supervising agencies',
+            'globally-overseeing agencies', 'internationally-overseeing agencies', 'worldwide-overseeing agencies',
+            'universally-overseeing agencies', 'globally-monitoring agencies', 'internationally-monitoring agencies',
+            'worldwide-monitoring agencies', 'universally-monitoring agencies', 'globally-watching agencies',
+            'internationally-watching agencies', 'worldwide-watching agencies', 'universally-watching agencies',
+            'globally-observing agencies', 'internationally-observing agencies', 'worldwide-observing agencies',
+            'universally-observing agencies', 'globally-checking agencies', 'internationally-checking agencies',
+            'worldwide-checking agencies', 'universally-checking agencies', 'globally-verifying agencies',
+            'internationally-verifying agencies', 'worldwide-verifying agencies', 'universally-verifying agencies',
+            'globally-validating agencies', 'internationally-validating agencies', 'worldwide-validating agencies',
+            'universally-validating agencies', 'globally-confirming agencies', 'internationally-confirming agencies',
+            'worldwide-confirming agencies', 'universally-confirming agencies', 'globally-authenticating agencies',
+            'internationally-authenticating agencies', 'worldwide-authenticating agencies', 'universally-authenticating agencies',
+            'globally-certifying agencies', 'internationally-certifying agencies', 'worldwide-certifying agencies',
+            'universally-certifying agencies', 'globally-endorsing agencies', 'internationally-endorsing agencies',
+            'worldwide-endorsing agencies', 'universally-endorsing agencies'
+        ]
+
+    def is_valid_agency_name(self, name):
+        """Check if a parsed name is actually a valid agency name, not a header or description"""
+        if not name or len(name.strip()) < 3:
+            return False
+
+        name_lower = name.lower().strip()
+
+        # Reject common headers and descriptions
+        for pattern in self.invalid_name_patterns:
+            if pattern in name_lower:
+                return False
+
+        return True
+
+    def normalize_agency_data(self, agency_data, polish_city=None):
+        """Normalize agency data to match database schema"""
+        normalized = {
+            'name': agency_data.get('name', '').strip(),
+            'type': 'gemini_discovered',
+            'website': agency_data.get('website', '').strip(),
+            'phone': agency_data.get('phone', '').strip(),
+            'address': agency_data.get('address', '').strip(),
+            'description': agency_data.get('description', '').strip(),
+            'additional_info': f"Discovered via Gemini AI on {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}",
+            'polish_city': polish_city or agency_data.get('polish_city', '').strip()
+        }
+
+        # Clean up website URL
+        if normalized['website']:
+            normalized['website'] = re.sub(r'[.,;]$', '', normalized['website'])
+
+        return normalized
 
     def parse_agency_data(self, gemini_output, polish_city=None):
         """Parse Gemini output to extract agency information"""
@@ -197,1106 +582,20 @@ class GeminiAgencyFinder:
 
         return agencies
 
-    def is_valid_agency_name(self, name):
-        """Check if a parsed name is actually a valid agency name, not a header or description"""
-        if not name or len(name.strip()) < 3:
-            return False
 
-        name_lower = name.lower().strip()
+class DuplicateChecker:
+    """Handles duplicate detection for agencies"""
 
-        # Reject common headers and descriptions
-        invalid_patterns = [
-            'agencies with',
-            'other international',
-            'find real estate',
-            'search for',
-            'look for',
-            'list of',
-            'here are',
-            'the following',
-            'some examples',
-            'additional agencies',
-            'more agencies',
-            'other agencies',
-            'furthermore',
-            'additionally',
-            'also includes',
-            'including',
-            'such as',
-            'for example',
-            'examples include',
-            'among others',
-            'etc.',
-            'and more',
-            'various agencies',
-            'several agencies',
-            'many agencies',
-            'multiple agencies',
-            'different agencies',
-            'various companies',
-            'property companies',
-            'real estate companies',
-            'international agencies',
-            'spanish agencies',
-            'polish agencies',
-            'local agencies',
-            'specialized agencies',
-            'professional agencies',
-            'experienced agencies',
-            'reputable agencies',
-            'well-known agencies',
-            'established agencies',
-            'leading agencies',
-            'top agencies',
-            'best agencies',
-            'recommended agencies',
-            'popular agencies',
-            'famous agencies',
-            'renowned agencies',
-            'prestigious agencies',
-            'high-end agencies',
-            'luxury agencies',
-            'premium agencies',
-            'exclusive agencies',
-            'elite agencies',
-            'top-tier agencies',
-            'first-class agencies',
-            'five-star agencies',
-            'award-winning agencies',
-            'certified agencies',
-            'licensed agencies',
-            'registered agencies',
-            'authorized agencies',
-            'official agencies',
-            'recognized agencies',
-            'accredited agencies',
-            'qualified agencies',
-            'experienced agencies',
-            'professional agencies',
-            'skilled agencies',
-            'expert agencies',
-            'specialist agencies',
-            'focused agencies',
-            'specialized agencies',
-            'dedicated agencies',
-            'committed agencies',
-            'devoted agencies',
-            'passionate agencies',
-            'enthusiastic agencies',
-            'motivated agencies',
-            'driven agencies',
-            'ambitious agencies',
-            'innovative agencies',
-            'creative agencies',
-            'modern agencies',
-            'contemporary agencies',
-            'advanced agencies',
-            'progressive agencies',
-            'forward-thinking agencies',
-            'cutting-edge agencies',
-            'state-of-the-art agencies',
-            'high-tech agencies',
-            'digital agencies',
-            'online agencies',
-            'virtual agencies',
-            'remote agencies',
-            'global agencies',
-            'international agencies',
-            'worldwide agencies',
-            'universal agencies',
-            'cosmopolitan agencies',
-            'multinational agencies',
-            'transnational agencies',
-            'cross-border agencies',
-            'borderless agencies',
-            'universal agencies',
-            'globalized agencies',
-            'world-class agencies',
-            'international-standard agencies',
-            'globally-recognized agencies',
-            'internationally-acclaimed agencies',
-            'world-renowned agencies',
-            'globally-famous agencies',
-            'internationally-popular agencies',
-            'worldwide-popular agencies',
-            'universally-popular agencies',
-            'globally-appreciated agencies',
-            'internationally-appreciated agencies',
-            'worldwide-appreciated agencies',
-            'universally-appreciated agencies',
-            'globally-respected agencies',
-            'internationally-respected agencies',
-            'worldwide-respected agencies',
-            'universally-respected agencies',
-            'globally-trusted agencies',
-            'internationally-trusted agencies',
-            'worldwide-trusted agencies',
-            'universally-trusted agencies',
-            'globally-reliable agencies',
-            'internationally-reliable agencies',
-            'worldwide-reliable agencies',
-            'universally-reliable agencies',
-            'globally-dependable agencies',
-            'internationally-dependable agencies',
-            'worldwide-dependable agencies',
-            'universally-dependable agencies',
-            'globally-credible agencies',
-            'internationally-credible agencies',
-            'worldwide-credible agencies',
-            'universally-credible agencies',
-            'globally-honest agencies',
-            'internationally-honest agencies',
-            'worldwide-honest agencies',
-            'universally-honest agencies',
-            'globally-transparent agencies',
-            'internationally-transparent agencies',
-            'worldwide-transparent agencies',
-            'universally-transparent agencies',
-            'globally-accountable agencies',
-            'internationally-accountable agencies',
-            'worldwide-accountable agencies',
-            'universally-accountable agencies',
-            'globally-responsible agencies',
-            'internationally-responsible agencies',
-            'worldwide-responsible agencies',
-            'universally-responsible agencies',
-            'globally-ethical agencies',
-            'internationally-ethical agencies',
-            'worldwide-ethical agencies',
-            'universally-ethical agencies',
-            'globally-professional agencies',
-            'internationally-professional agencies',
-            'worldwide-professional agencies',
-            'universally-professional agencies',
-            'globally-competent agencies',
-            'internationally-competent agencies',
-            'worldwide-competent agencies',
-            'universally-competent agencies',
-            'globally-skilled agencies',
-            'internationally-skilled agencies',
-            'worldwide-skilled agencies',
-            'universally-skilled agencies',
-            'globally-talented agencies',
-            'internationally-talented agencies',
-            'worldwide-talented agencies',
-            'universally-talented agencies',
-            'globally-capable agencies',
-            'internationally-capable agencies',
-            'worldwide-capable agencies',
-            'universally-capable agencies',
-            'globally-able agencies',
-            'internationally-able agencies',
-            'worldwide-able agencies',
-            'universally-able agencies',
-            'globally-effective agencies',
-            'internationally-effective agencies',
-            'worldwide-effective agencies',
-            'universally-effective agencies',
-            'globally-efficient agencies',
-            'internationally-efficient agencies',
-            'worldwide-efficient agencies',
-            'universally-efficient agencies',
-            'globally-productive agencies',
-            'internationally-productive agencies',
-            'worldwide-productive agencies',
-            'universally-productive agencies',
-            'globally-successful agencies',
-            'internationally-successful agencies',
-            'worldwide-successful agencies',
-            'universally-successful agencies',
-            'globally-accomplished agencies',
-            'internationally-accomplished agencies',
-            'worldwide-accomplished agencies',
-            'universally-accomplished agencies',
-            'globally-achieving agencies',
-            'internationally-achieving agencies',
-            'worldwide-achieving agencies',
-            'universally-achieving agencies',
-            'globally-thriving agencies',
-            'internationally-thriving agencies',
-            'worldwide-thriving agencies',
-            'universally-thriving agencies',
-            'globally-flourishing agencies',
-            'internationally-flourishing agencies',
-            'worldwide-flourishing agencies',
-            'universally-flourishing agencies',
-            'globally-growing agencies',
-            'internationally-growing agencies',
-            'worldwide-growing agencies',
-            'universally-growing agencies',
-            'globally-expanding agencies',
-            'internationally-expanding agencies',
-            'worldwide-expanding agencies',
-            'universally-expanding agencies',
-            'globally-developing agencies',
-            'internationally-developing agencies',
-            'worldwide-developing agencies',
-            'universally-developing agencies',
-            'globally-improving agencies',
-            'internationally-improving agencies',
-            'worldwide-improving agencies',
-            'universally-improving agencies',
-            'globally-advancing agencies',
-            'internationally-advancing agencies',
-            'worldwide-advancing agencies',
-            'universally-advancing agencies',
-            'globally-progressing agencies',
-            'internationally-progressing agencies',
-            'worldwide-progressing agencies',
-            'universally-progressing agencies',
-            'globally-evolving agencies',
-            'internationally-evolving agencies',
-            'worldwide-evolving agencies',
-            'universally-evolving agencies',
-            'globally-changing agencies',
-            'internationally-changing agencies',
-            'worldwide-changing agencies',
-            'universally-changing agencies',
-            'globally-transforming agencies',
-            'internationally-transforming agencies',
-            'worldwide-transforming agencies',
-            'universally-transforming agencies',
-            'globally-innovating agencies',
-            'internationally-innovating agencies',
-            'worldwide-innovating agencies',
-            'universally-innovating agencies',
-            'globally-creating agencies',
-            'internationally-creating agencies',
-            'worldwide-creating agencies',
-            'universally-creating agencies',
-            'globally-building agencies',
-            'internationally-building agencies',
-            'worldwide-building agencies',
-            'universally-building agencies',
-            'globally-constructing agencies',
-            'internationally-constructing agencies',
-            'worldwide-constructing agencies',
-            'universally-constructing agencies',
-            'globally-designing agencies',
-            'internationally-designing agencies',
-            'worldwide-designing agencies',
-            'universally-designing agencies',
-            'globally-planning agencies',
-            'internationally-planning agencies',
-            'worldwide-planning agencies',
-            'universally-planning agencies',
-            'globally-organizing agencies',
-            'internationally-organizing agencies',
-            'worldwide-organizing agencies',
-            'universally-organizing agencies',
-            'globally-managing agencies',
-            'internationally-managing agencies',
-            'worldwide-managing agencies',
-            'universally-managing agencies',
-            'globally-administering agencies',
-            'internationally-administering agencies',
-            'worldwide-administering agencies',
-            'universally-administering agencies',
-            'globally-governing agencies',
-            'internationally-governing agencies',
-            'worldwide-governing agencies',
-            'universally-governing agencies',
-            'globally-leading agencies',
-            'internationally-leading agencies',
-            'worldwide-leading agencies',
-            'universally-leading agencies',
-            'globally-directing agencies',
-            'internationally-directing agencies',
-            'worldwide-directing agencies',
-            'universally-directing agencies',
-            'globally-guiding agencies',
-            'internationally-guiding agencies',
-            'worldwide-guiding agencies',
-            'universally-guiding agencies',
-            'globally-steering agencies',
-            'internationally-steering agencies',
-            'worldwide-steering agencies',
-            'universally-steering agencies',
-            'globally-controlling agencies',
-            'internationally-controlling agencies',
-            'worldwide-controlling agencies',
-            'universally-controlling agencies',
-            'globally-coordinating agencies',
-            'internationally-coordinating agencies',
-            'worldwide-coordinating agencies',
-            'universally-coordinating agencies',
-            'globally-supervising agencies',
-            'internationally-supervising agencies',
-            'worldwide-supervising agencies',
-            'universally-supervising agencies',
-            'globally-overseeing agencies',
-            'internationally-overseeing agencies',
-            'worldwide-overseeing agencies',
-            'universally-overseeing agencies',
-            'globally-monitoring agencies',
-            'internationally-monitoring agencies',
-            'worldwide-monitoring agencies',
-            'universally-monitoring agencies',
-            'globally-watching agencies',
-            'internationally-watching agencies',
-            'worldwide-watching agencies',
-            'universally-watching agencies',
-            'globally-observing agencies',
-            'internationally-observing agencies',
-            'worldwide-observing agencies',
-            'universally-observing agencies',
-            'globally-checking agencies',
-            'internationally-checking agencies',
-            'worldwide-checking agencies',
-            'universally-checking agencies',
-            'globally-verifying agencies',
-            'internationally-verifying agencies',
-            'worldwide-verifying agencies',
-            'universally-verifying agencies',
-            'globally-validating agencies',
-            'internationally-validating agencies',
-            'worldwide-validating agencies',
-            'universally-validating agencies',
-            'globally-confirming agencies',
-            'internationally-confirming agencies',
-            'worldwide-confirming agencies',
-            'universally-confirming agencies',
-            'globally-authenticating agencies',
-            'internationally-authenticating agencies',
-            'worldwide-authenticating agencies',
-            'universally-authenticating agencies',
-            'globally-certifying agencies',
-            'internationally-certifying agencies',
-            'worldwide-certifying agencies',
-            'universally-certifying agencies',
-            'globally-endorsing agencies',
-            'internationally-endorsing agencies',
-            'worldwide-endorsing agencies',
-            'universally-endorsing agencies',
-            'globally-approving agencies',
-            'internationally-approving agencies',
-            'worldwide-approving agencies',
-            'universally-approving agencies',
-            'globally-sanctioning agencies',
-            'internationally-sanctioning agencies',
-            'worldwide-sanctioning agencies',
-            'universally-sanctioning agencies',
-            'globally-authorizing agencies',
-            'internationally-authorizing agencies',
-            'worldwide-authorizing agencies',
-            'universally-authorizing agencies',
-            'globally-permitting agencies',
-            'internationally-permitting agencies',
-            'worldwide-permitting agencies',
-            'universally-permitting agencies',
-            'globally-allowing agencies',
-            'internationally-allowing agencies',
-            'worldwide-allowing agencies',
-            'universally-allowing agencies',
-            'globally-enabling agencies',
-            'internationally-enabling agencies',
-            'worldwide-enabling agencies',
-            'universally-enabling agencies',
-            'globally-facilitating agencies',
-            'internationally-facilitating agencies',
-            'worldwide-facilitating agencies',
-            'universally-facilitating agencies',
-            'globally-supporting agencies',
-            'internationally-supporting agencies',
-            'worldwide-supporting agencies',
-            'universally-supporting agencies',
-            'globally-assisting agencies',
-            'internationally-assisting agencies',
-            'worldwide-assisting agencies',
-            'universally-assisting agencies',
-            'globally-helping agencies',
-            'internationally-helping agencies',
-            'worldwide-helping agencies',
-            'universally-helping agencies',
-            'globally-aiding agencies',
-            'internationally-aiding agencies',
-            'worldwide-aiding agencies',
-            'universally-aiding agencies',
-            'globally-benefiting agencies',
-            'internationally-benefiting agencies',
-            'worldwide-benefiting agencies',
-            'universally-benefiting agencies',
-            'globally-advantaging agencies',
-            'internationally-advantaging agencies',
-            'worldwide-advantaging agencies',
-            'universally-advantaging agencies',
-            'globally-profiting agencies',
-            'internationally-profiting agencies',
-            'worldwide-profiting agencies',
-            'universally-profiting agencies',
-            'globally-gaining agencies',
-            'internationally-gaining agencies',
-            'worldwide-gaining agencies',
-            'universally-gaining agencies',
-            'globally-winning agencies',
-            'internationally-winning agencies',
-            'worldwide-winning agencies',
-            'universally-winning agencies',
-            'globally-succeeding agencies',
-            'internationally-succeeding agencies',
-            'worldwide-succeeding agencies',
-            'universally-succeeding agencies',
-            'globally-prevailing agencies',
-            'internationally-prevailing agencies',
-            'worldwide-prevailing agencies',
-            'universally-prevailing agencies',
-            'globally-triumphing agencies',
-            'internationally-triumphing agencies',
-            'worldwide-triumphing agencies',
-            'universally-triumphing agencies',
-            'globally-conquering agencies',
-            'internationally-conquering agencies',
-            'worldwide-conquering agencies',
-            'universally-conquering agencies',
-            'globally-overcoming agencies',
-            'internationally-overcoming agencies',
-            'worldwide-overcoming agencies',
-            'universally-overcoming agencies',
-            'globally-surmounting agencies',
-            'internationally-surmounting agencies',
-            'worldwide-surmounting agencies',
-            'universally-surmounting agencies',
-            'globally-mastering agencies',
-            'internationally-mastering agencies',
-            'worldwide-mastering agencies',
-            'universally-mastering agencies',
-            'globally-dominating agencies',
-            'internationally-dominating agencies',
-            'worldwide-dominating agencies',
-            'universally-dominating agencies',
-            'globally-leading agencies',
-            'internationally-leading agencies',
-            'worldwide-leading agencies',
-            'universally-leading agencies',
-            'globally-commanding agencies',
-            'internationally-commanding agencies',
-            'worldwide-commanding agencies',
-            'universally-commanding agencies',
-            'globally-ruling agencies',
-            'internationally-ruling agencies',
-            'worldwide-ruling agencies',
-            'universally-ruling agencies',
-            'globally-governing agencies',
-            'internationally-governing agencies',
-            'worldwide-governing agencies',
-            'universally-governing agencies',
-            'globally-administering agencies',
-            'internationally-administering agencies',
-            'worldwide-administering agencies',
-            'universally-administering agencies',
-            'globally-managing agencies',
-            'internationally-managing agencies',
-            'worldwide-managing agencies',
-            'universally-managing agencies',
-            'globally-directing agencies',
-            'internationally-directing agencies',
-            'worldwide-directing agencies',
-            'universally-directing agencies',
-            'globally-guiding agencies',
-            'internationally-guiding agencies',
-            'worldwide-guiding agencies',
-            'universally-guiding agencies',
-            'globally-steering agencies',
-            'internationally-steering agencies',
-            'worldwide-steering agencies',
-            'universally-steering agencies',
-            'globally-controlling agencies',
-            'internationally-controlling agencies',
-            'worldwide-controlling agencies',
-            'universally-controlling agencies',
-            'globally-coordinating agencies',
-            'internationally-coordinating agencies',
-            'worldwide-coordinating agencies',
-            'universally-coordinating agencies',
-            'globally-supervising agencies',
-            'internationally-supervising agencies',
-            'worldwide-supervising agencies',
-            'universally-supervising agencies',
-            'globally-overseeing agencies',
-            'internationally-overseeing agencies',
-            'worldwide-overseeing agencies',
-            'universally-overseeing agencies',
-            'globally-monitoring agencies',
-            'internationally-monitoring agencies',
-            'worldwide-monitoring agencies',
-            'universally-monitoring agencies',
-            'globally-watching agencies',
-            'internationally-watching agencies',
-            'worldwide-watching agencies',
-            'universally-watching agencies',
-            'globally-observing agencies',
-            'internationally-observing agencies',
-            'worldwide-observing agencies',
-            'universally-observing agencies',
-            'globally-checking agencies',
-            'internationally-checking agencies',
-            'worldwide-checking agencies',
-            'universally-checkinging agencies',
-            'globally-verifying agencies',
-            'internationally-verifying agencies',
-            'worldwide-verifying agencies',
-            'universally-verifying agencies',
-            'globally-validating agencies',
-            'internationally-validating agencies',
-            'worldwide-validating agencies',
-            'universally-validating agencies',
-            'globally-confirming agencies',
-            'internationally-confirming agencies',
-            'worldwide-confirming agencies',
-            'universally-confirming agencies',
-            'globally-authenticating agencies',
-            'internationally-authenticating agencies',
-            'worldwide-authenticating agencies',
-            'universally-authenticating agencies',
-            'globally-certifying agencies',
-            'internationally-certifying agencies',
-            'worldwide-certifying agencies',
-            'universally-certifying agencies',
-            'globally-endorsing agencies',
-            'internationally-endorsing agencies',
-            'worldwide-endorsing agencies',
-            'universally-endorsing agencies',
-            'globally-approving agencies',
-            'internationally-approving agencies',
-            'worldwide-approving agencies',
-            'universally-approving agencies',
-            'globally-sanctioning agencies',
-            'internationally-sanctioning agencies',
-            'worldwide-sanctioning agencies',
-            'universally-sanctioning agencies',
-            'globally-authorizing agencies',
-            'internationally-authorizing agencies',
-            'worldwide-authorizing agencies',
-            'universally-authorizing agencies',
-            'globally-permitting agencies',
-            'internationally-permitting agencies',
-            'worldwide-permitting agencies',
-            'universally-permitting agencies',
-            'globally-allowing agencies',
-            'internationally-allowing agencies',
-            'worldwide-allowing agencies',
-            'universally-allowing agencies',
-            'globally-enabling agencies',
-            'internationally-enabling agencies',
-            'worldwide-enabling agencies',
-            'universally-enabling agencies',
-            'globally-facilitating agencies',
-            'internationally-facilitating agencies',
-            'worldwide-facilitating agencies',
-            'universally-facilitating agencies',
-            'globally-supporting agencies',
-            'internationally-supporting agencies',
-            'worldwide-supporting agencies',
-            'universally-supporting agencies',
-            'globally-assisting agencies',
-            'internationally-assisting agencies',
-            'worldwide-assisting agencies',
-            'universally-assisting agencies',
-            'globally-helping agencies',
-            'internationally-helping agencies',
-            'worldwide-helping agencies',
-            'universally-helping agencies',
-            'globally-aiding agencies',
-            'internationally-aiding agencies',
-            'worldwide-aiding agencies',
-            'universally-aiding agencies',
-            'globally-benefiting agencies',
-            'internationally-benefiting agencies',
-            'worldwide-benefiting agencies',
-            'universally-benefiting agencies',
-            'globally-advantaging agencies',
-            'internationally-advantaging agencies',
-            'worldwide-advantaging agencies',
-            'universally-advantaging agencies',
-            'globally-profiting agencies',
-            'internationally-profiting agencies',
-            'worldwide-profiting agencies',
-            'universally-profiting agencies',
-            'globally-gaining agencies',
-            'internationally-gaining agencies',
-            'worldwide-gaining agencies',
-            'universally-gaining agencies',
-            'globally-winning agencies',
-            'internationally-winning agencies',
-            'worldwide-winning agencies',
-            'universally-winning agencies',
-            'globally-succeeding agencies',
-            'internationally-succeeding agencies',
-            'worldwide-succeeding agencies',
-            'universally-succeeding agencies',
-            'globally-prevailing agencies',
-            'internationally-prevailing agencies',
-            'worldwide-prevailing agencies',
-            'universally-prevailing agencies',
-            'globally-triumphing agencies',
-            'internationally-triumphing agencies',
-            'worldwide-triumphing agencies',
-            'universally-triumphing agencies',
-            'globally-conquering agencies',
-            'internationally-conquering agencies',
-            'worldwide-conquering agencies',
-            'universally-conquering agencies',
-            'globally-overcoming agencies',
-            'internationally-overcoming agencies',
-            'worldwide-overcoming agencies',
-            'universally-overcoming agencies',
-            'globally-surmounting agencies',
-            'internationally-surmounting agencies',
-            'worldwide-surmounting agencies',
-            'universally-surmounting agencies',
-            'globally-mastering agencies',
-            'internationally-mastering agencies',
-            'worldwide-mastering agencies',
-            'universally-mastering agencies',
-            'globally-dominating agencies',
-            'internationally-dominating agencies',
-            'worldwide-dominating agencies',
-            'universally-dominating agencies',
-            'globally-leading agencies',
-            'internationally-leading agencies',
-            'worldwide-leading agencies',
-            'universally-leading agencies',
-            'globally-commanding agencies',
-            'internationally-commanding agencies',
-            'worldwide-commanding agencies',
-            'universally-commanding agencies',
-            'globally-ruling agencies',
-            'internationally-ruling agencies',
-            'worldwide-ruling agencies',
-            'universally-ruling agencies',
-            'globally-governing agencies',
-            'internationally-governing agencies',
-            'worldwide-governing agencies',
-            'universally-governing agencies',
-            'globally-administering agencies',
-            'internationally-administering agencies',
-            'worldwide-administering agencies',
-            'universally-administering agencies',
-            'globally-managing agencies',
-            'internationally-managing agencies',
-            'worldwide-managing agencies',
-            'universally-managing agencies',
-            'globally-directing agencies',
-            'internationally-directing agencies',
-            'worldwide-directing agencies',
-            'universally-directing agencies',
-            'globally-guiding agencies',
-            'internationally-guiding agencies',
-            'worldwide-guiding agencies',
-            'universally-guiding agencies',
-            'globally-steering agencies',
-            'internationally-steering agencies',
-            'worldwide-steering agencies',
-            'universally-steering agencies',
-            'globally-controlling agencies',
-            'internationally-controlling agencies',
-            'worldwide-controlling agencies',
-            'universally-controlling agencies',
-            'globally-coordinating agencies',
-            'internationally-coordinating agencies',
-            'worldwide-coordinating agencies',
-            'universally-coordinating agencies',
-            'globally-supervising agencies',
-            'internationally-supervising agencies',
-            'worldwide-supervising agencies',
-            'universally-supervising agencies',
-            'globally-overseeing agencies',
-            'internationally-overseeing agencies',
-            'worldwide-overseeing agencies',
-            'universally-overseeing agencies',
-            'globally-monitoring agencies',
-            'internationally-monitoring agencies',
-            'worldwide-monitoring agencies',
-            'universally-monitoring agencies',
-            'globally-watching agencies',
-            'internationally-watching agencies',
-            'worldwide-watching agencies',
-            'universally-watching agencies',
-            'globally-observing agencies',
-            'internationally-observing agencies',
-            'worldwide-observing agencies',
-            'universally-observing agencies',
-            'globally-checking agencies',
-            'internationally-checking agencies',
-            'worldwide-checking agencies',
-            'universally-checking agencies',
-            'globally-verifying agencies',
-            'internationally-verifying agencies',
-            'worldwide-verifying agencies',
-            'universally-verifying agencies',
-            'globally-validating agencies',
-            'internationally-validating agencies',
-            'worldwide-validating agencies',
-            'universally-validating agencies',
-            'globally-confirming agencies',
-            'internationally-confirming agencies',
-            'worldwide-confirming agencies',
-            'universally-confirming agencies',
-            'globally-authenticating agencies',
-            'internationally-authenticating agencies',
-            'worldwide-authenticating agencies',
-            'universally-authenticating agencies',
-            'globally-certifying agencies',
-            'internationally-certifying agencies',
-            'worldwide-certifying agencies',
-            'universally-certifying agencies',
-            'globally-endorsing agencies',
-            'internationally-endorsing agencies',
-            'worldwide-endorsing agencies',
-            'universally-endorsing agencies',
-            'globally-approving agencies',
-            'internationally-approving agencies',
-            'worldwide-approving agencies',
-            'universally-approving agencies',
-            'globally-sanctioning agencies',
-            'internationally-sanctioning agencies',
-            'worldwide-sanctioning agencies',
-            'universally-sanctioning agencies',
-            'globally-authorizing agencies',
-            'internationally-authorizing agencies',
-            'worldwide-authorizing agencies',
-            'universally-authorizing agencies',
-            'globally-permitting agencies',
-            'internationally-permitting agencies',
-            'worldwide-permitting agencies',
-            'universally-permitting agencies',
-            'globally-allowing agencies',
-            'internationally-allowing agencies',
-            'worldwide-allowing agencies',
-            'universally-allowing agencies',
-            'globally-enabling agencies',
-            'internationally-enabling agencies',
-            'worldwide-enabling agencies',
-            'universally-enabling agencies',
-            'globally-facilitating agencies',
-            'internationally-facilitating agencies',
-            'worldwide-facilitating agencies',
-            'universally-facilitating agencies',
-            'globally-supporting agencies',
-            'internationally-supporting agencies',
-            'worldwide-supporting agencies',
-            'universally-supporting agencies',
-            'globally-assisting agencies',
-            'internationally-assisting agencies',
-            'worldwide-assisting agencies',
-            'universally-assisting agencies',
-            'globally-helping agencies',
-            'internationally-helping agencies',
-            'worldwide-helping agencies',
-            'universally-helping agencies',
-            'globally-aiding agencies',
-            'internationally-aiding agencies',
-            'worldwide-aiding agencies',
-            'universally-aiding agencies',
-            'globally-benefiting agencies',
-            'internationally-benefiting agencies',
-            'worldwide-benefiting agencies',
-            'universally-benefiting agencies',
-            'globally-advantaging agencies',
-            'internationally-advantaging agencies',
-            'worldwide-advantaging agencies',
-            'universally-advantaging agencies',
-            'globally-profiting agencies',
-            'internationally-profiting agencies',
-            'worldwide-profiting agencies',
-            'universally-profiting agencies',
-            'globally-gaining agencies',
-            'internationally-gaining agencies',
-            'worldwide-gaining agencies',
-            'universally-gaining agencies',
-            'globally-winning agencies',
-            'internationally-winning agencies',
-            'worldwide-winning agencies',
-            'universally-winning agencies',
-            'globally-succeeding agencies',
-            'internationally-succeeding agencies',
-            'worldwide-succeeding agencies',
-            'universally-succeeding agencies',
-            'globally-prevailing agencies',
-            'internationally-prevailing agencies',
-            'worldwide-prevailing agencies',
-            'universally-prevailing agencies',
-            'globally-triumphing agencies',
-            'internationally-triumphing agencies',
-            'worldwide-triumphing agencies',
-            'universally-triumphing agencies',
-            'globally-conquering agencies',
-            'internationally-conquering agencies',
-            'worldwide-conquering agencies',
-            'universally-conquering agencies',
-            'globally-overcoming agencies',
-            'internationally-overcoming agencies',
-            'worldwide-overcoming agencies',
-            'universally-overcoming agencies',
-            'globally-surmounting agencies',
-            'internationally-surmounting agencies',
-            'worldwide-surmounting agencies',
-            'universally-surmounting agencies',
-            'globally-mastering agencies',
-            'internationally-mastering agencies',
-            'worldwide-mastering agencies',
-            'universally-mastering agencies',
-            'globally-dominating agencies',
-            'internationally-dominating agencies',
-            'worldwide-dominating agencies',
-            'universally-dominating agencies',
-            'globally-leading agencies',
-            'internationally-leading agencies',
-            'worldwide-leading agencies',
-            'universally-leading agencies',
-            'globally-commanding agencies',
-            'internationally-commanding agencies',
-            'worldwide-commanding agencies',
-            'universally-commanding agencies',
-            'globally-ruling agencies',
-            'internationally-ruling agencies',
-            'worldwide-ruling agencies',
-            'universally-ruling agencies',
-            'globally-governing agencies',
-            'internationally-governing agencies',
-            'worldwide-governing agencies',
-            'universally-governing agencies',
-            'globally-administering agencies',
-            'internationally-administering agencies',
-            'worldwide-administering agencies',
-            'universally-administering agencies',
-            'globally-managing agencies',
-            'internationally-managing agencies',
-            'worldwide-managing agencies',
-            'universally-managing agencies',
-            'globally-directing agencies',
-            'internationally-directing agencies',
-            'worldwide-directing agencies',
-            'universally-directing agencies',
-            'globally-guiding agencies',
-            'internationally-guiding agencies',
-            'worldwide-guiding agencies',
-            'universally-guiding agencies',
-            'globally-steering agencies',
-            'internationally-steering agencies',
-            'worldwide-steering agencies',
-            'universally-steering agencies',
-            'globally-controlling agencies',
-            'internationally-controlling agencies',
-            'worldwide-controlling agencies',
-            'universally-controlling agencies',
-            'globally-coordinating agencies',
-            'internationally-coordinating agencies',
-            'worldwide-coordinating agencies',
-            'universally-coordinating agencies',
-            'globally-supervising agencies',
-            'internationally-supervising agencies',
-            'worldwide-supervising agencies',
-            'universally-supervising agencies',
-            'globally-overseeing agencies',
-            'internationally-overseeing agencies',
-            'worldwide-overseeing agencies',
-            'universally-overseeing agencies',
-            'globally-monitoring agencies',
-            'internationally-monitoring agencies',
-            'worldwide-monitoring agencies',
-            'universally-monitoring agencies',
-            'globally-watching agencies',
-            'internationally-watching agencies',
-            'worldwide-watching agencies',
-            'universally-watching agencies',
-            'globally-observing agencies',
-            'internationally-observing agencies',
-            'worldwide-observing agencies',
-            'universally-observing agencies',
-            'globally-checking agencies',
-            'internationally-checking agencies',
-            'worldwide-checking agencies',
-            'universally-checking agencies',
-            'globally-verifying agencies',
-            'internationally-verifying agencies',
-            'worldwide-verifying agencies',
-            'universally-verifying agencies',
-            'globally-validating agencies',
-            'internationally-validating agencies',
-            'worldwide-validating agencies',
-            'universally-validating agencies',
-            'globally-confirming agencies',
-            'internationally-confirming agencies',
-            'worldwide-confirming agencies',
-            'universally-confirming agencies',
-            'globally-authenticating agencies',
-            'internationally-authenticating agencies',
-            'worldwide-authenticating agencies',
-            'universally-authenticating agencies',
-            'globally-certifying agencies',
-            'internationally-certifying agencies',
-            'worldwide-certifying agencies',
-            'universally-certifying agencies',
-            'globally-endorsing agencies',
-            'internationally-endorsing agencies',
-            'worldwide-endorsing agencies',
-            'universally-endorsing agencies',
-            'globally-approving agencies',
-            'internationally-approving agencies',
-            'worldwide-approving agencies',
-            'universally-approving agencies',
-            'globally-sanctioning agencies',
-            'internationally-sanctioning agencies',
-            'worldwide-sanctioning agencies',
-            'universally-sanctioning agencies',
-            'globally-authorizing agencies',
-            'internationally-authorizing agencies',
-            'worldwide-authorizing agencies',
-            'universally-authorizing agencies',
-            'globally-permitting agencies',
-            'internationally-permitting agencies',
-            'worldwide-permitting agencies',
-            'universally-permitting agencies',
-            'globally-allowing agencies',
-            'internationally-allowing agencies',
-            'worldwide-allowing agencies',
-            'universally-allowing agencies',
-            'globally-enabling agencies',
-            'internationally-enabling agencies',
-            'worldwide-enabling agencies',
-            'universally-enabling agencies',
-            'globally-facilitating agencies',
-            'internationally-facilitating agencies',
-            'worldwide-facilitating agencies',
-            'universally-facilitating agencies',
-            'globally-supporting agencies',
-            'internationally-supporting agencies',
-            'worldwide-supporting agencies',
-            'universally-supporting agencies',
-            'globally-assisting agencies',
-            'internationally-assisting agencies',
-            'worldwide-assisting agencies',
-            'universally-assisting agencies',
-            'globally-helping agencies',
-            'internationally-helping agencies',
-            'worldwide-helping agencies',
-            'universally-helping agencies',
-            'globally-aiding agencies',
-            'internationally-aiding agencies',
-            'worldwide-aiding agencies',
-            'universally-aiding agencies',
-            'globally-benefiting agencies',
-            'internationally-benefiting agencies',
-            'worldwide-benefiting agencies',
-            'universally-benefiting agencies',
-            'globally-advantaging agencies',
-            'internationally-advantaging agencies',
-            'worldwide-advantaging agencies',
-            'universally-advantaging agencies',
-            'globally-profiting agencies',
-            'internationally-profiting agencies',
-            'worldwide-profiting agencies',
-            'universally-profiting agencies',
-            'globally-gaining agencies',
-            'internationally-gaining agencies',
-            'worldwide-gaining agencies',
-            'universally-gaining agencies',
-            'globally-winning agencies',
-            'internationally-winning agencies',
-            'worldwide-winning agencies',
-            'universally-winning agencies',
-            'globally-succeeding agencies',
-            'internationally-succeeding agencies',
-            'worldwide-succeeding agencies',
-            'universally-succeeding agencies',
-            'globally-prevailing agencies',
-            'internationally-prevailing agencies',
-            'worldwide-prevailing agencies',
-            'universally-prevailing agencies',
-            'globally-triumphing agencies',
-            'internationally-triumphing agencies',
-            'worldwide-triumphing agencies',
-            'universally-triumphing agencies',
-            'globally-conquering agencies',
-            'internationally-conquering agencies',
-            'worldwide-conquering agencies',
-            'universally-conquering agencies',
-            'globally-overcoming agencies',
-            'internationally-overcoming agencies',
-            'worldwide-overcoming agencies',
-            'universally-overcoming agencies',
-            'globally-surmounting agencies',
-            'internationally-surmounting agencies',
-            'worldwide-surmounting agencies',
-            'universally-surmounting agencies',
-            'globally-mastering agencies',
-            'internationally-mastering agencies',
-            'worldwide-mastering agencies',
-            'universally-mastering agencies',
-            'globally-dominating agencies',
-            'internationally-dominating agencies',
-            'worldwide-dominating agencies',
-            'universally-dominating agencies',
-            'globally-leading agencies',
-            'internationally-leading agencies',
-            'worldwide-leading agencies',
-            'universally-leading agencies',
-            'globally-commanding agencies',
-            'internationally-commanding agencies',
-            'worldwide-commanding agencies',
-            'universally-commanding agencies',
-            'globally-ruling agencies',
-            'internationally-ruling agencies',
-            'worldwide-ruling agencies',
-            'universally-ruling agencies',
-            'globally-governing agencies',
-            'internationally-governing agencies',
-            'worldwide-governing agencies',
-            'universally-governing agencies',
-            'globally-administering agencies',
-            'internationally-administering agencies',
-            'worldwide-administering agencies',
-            'universally-administering agencies',
-            'globally-managing agencies',
-            'internationally-managing agencies',
-            'worldwide-managing agencies',
-            'universally-managing agencies',
-            'globally-directing agencies',
-            'internationally-directing agencies',
-            'worldwide-directing agencies',
-            'universally-directing agencies',
-            'globally-guiding agencies',
-            'internationally-guiding agencies',
-            'worldwide-guiding agencies',
-            'universally-guiding agencies',
-            'globally-steering agencies',
-            'internationally-steering agencies',
-            'worldwide-steering agencies',
-            'universally-steering agencies',
-            'globally-controlling agencies',
-            'internationally-controlling agencies',
-            'worldwide-controlling agencies',
-            'universally-controlling agencies',
-            'globally-coordinating agencies',
-            'internationally-coordinating agencies',
-            'worldwide-coordinating agencies',
-        ]
+    def __init__(self, db_manager):
+        self.db_manager = db_manager
+        self.existing_domains = set()
+        self.existing_names = set()
+        self.refresh_existing_data()
 
-        for pattern in invalid_patterns:
-            if pattern in name_lower:
-                return False
-
-        return True
-
-    def normalize_agency_data(self, agency_data, polish_city=None):
-        """Normalize agency data to match database schema"""
-        normalized = {
-            'name': agency_data.get('name', '').strip(),
-            'type': 'gemini_discovered',
-            'website': agency_data.get('website', '').strip(),
-            'phone': agency_data.get('phone', '').strip(),
-            'address': agency_data.get('address', '').strip(),
-            'description': agency_data.get('description', '').strip(),
-            'additional_info': f"Discovered via Gemini AI on {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}",
-            'polish_city': polish_city or agency_data.get('polish_city', '').strip()
-        }
-
-        # Clean up website URL
-        if normalized['website']:
-            normalized['website'] = re.sub(r'[.,;]$', '', normalized['website'])
-
-        return normalized
+    def refresh_existing_data(self):
+        """Refresh existing domains and names from database"""
+        self.existing_domains = self.db_manager.get_existing_domains()
+        self.existing_names = self.db_manager.get_existing_names()
 
     def is_duplicate(self, agency):
         """Check if agency is a duplicate based on domain and name"""
@@ -1352,207 +651,229 @@ class GeminiAgencyFinder:
 
         return False
 
-    def save_agencies(self, agencies, run_cleanup=False):
-        """Save new agencies to database and optionally run cleanup tools"""
-        if not agencies:
+
+class DataEnricher:
+    """Handles web search and data enrichment for agencies"""
+
+    def __init__(self, gemini_client, db_manager):
+        self.gemini_client = gemini_client
+        self.db_manager = db_manager
+
+    def fill_missing_data_web_search(self, max_agencies=None):
+        """Use Gemini AI to search for missing contact information for gemini_discovered agencies"""
+        print("🔍 Starting web search to fill missing data for gemini_discovered agencies...")
+        logging.info("Starting web search to fill missing data for gemini_discovered agencies")
+
+        try:
+            agencies_to_update = self.db_manager.get_agencies_with_missing_data()
+            if not agencies_to_update:
+                print("✅ No agencies found with missing data")
+                return 0
+
+            if max_agencies:
+                agencies_to_update = agencies_to_update[:max_agencies]
+
+            print(f"📋 Found {len(agencies_to_update)} agencies with missing data")
+            logging.info(f"Found {len(agencies_to_update)} agencies with missing data")
+
+            updated_count = 0
+
+            for agency_id, name, website, phone, address, description in agencies_to_update:
+                print(f"\n🔎 Searching for: {name}")
+
+                # Determine what data is missing
+                missing_fields = []
+                if not website or website.strip() == '':
+                    missing_fields.append('website')
+                if not phone or phone.strip() == '':
+                    missing_fields.append('phone number')
+                if not address or address.strip() == '':
+                    missing_fields.append('address')
+
+                if not missing_fields:
+                    continue
+
+                missing_text = ', '.join(missing_fields)
+
+                # Create search prompt
+                prompt = f"""Search the web for the real estate agency "{name}" in Marbella, Spain.
+Find their {missing_text}. Provide the information in this exact format:
+Website: [URL or "Not found"]
+Phone: [phone number or "Not found"]
+Address: [full address or "Not found"]
+
+Only include factual information from reliable sources."""
+
+                print(f"   🤖 Searching for: {missing_text}")
+                logging.info(f"Searching for missing data for agency: {name}")
+
+                response = self.gemini_client.run_gemini_prompt(prompt)
+                if response:
+                    # Parse the response
+                    updates = self.parse_web_search_response(response)
+
+                    if updates:
+                        # Update database
+                        if self.db_manager.update_agency_data(agency_id, updates):
+                            updated_count += 1
+                            print(f"   ✅ Updated: {', '.join([f'{k}: {v}' for k, v in updates.items() if v and v != 'Not found'])}")
+                            logging.info(f"Updated agency {name} with: {updates}")
+                        else:
+                            print("   ❌ Failed to update database")
+                    else:
+                        print("   ⚠️ No useful information found")
+                else:
+                    print("   ❌ No response from AI")
+
+                # Rate limiting
+                time.sleep(2)
+
+            print(f"\n🎉 Completed! Updated {updated_count} agencies with missing data")
+            logging.info(f"Web search data filling complete. Updated {updated_count} agencies")
+            return updated_count
+
+        except Exception as e:
+            print(f"💥 Error during web search: {e}")
+            logging.error(f"Error during web search data filling: {e}")
             return 0
 
+    def parse_web_search_response(self, response):
+        """Parse Gemini response for web search results"""
+        updates = {}
+
+        lines = response.split('\n')
+        for line in lines:
+            line = line.strip()
+            if line.startswith('Website:'):
+                website = line.replace('Website:', '').strip()
+                if website and website != 'Not found' and 'http' in website:
+                    updates['website'] = website
+            elif line.startswith('Phone:'):
+                phone = line.replace('Phone:', '').strip()
+                if phone and phone != 'Not found':
+                    updates['phone'] = phone
+            elif line.startswith('Address:'):
+                address = line.replace('Address:', '').strip()
+                if address and address != 'Not found':
+                    updates['address'] = address
+
+        return updates
+
+    def update_existing_agency_descriptions(self, max_agencies=None, target_cities=None):
+        """Update descriptions for existing agencies using improved detailed prompts"""
+        print("🔄 Starting update of existing agency descriptions...")
+        print("🎯 Using improved prompts to get detailed Marbella connection information")
+        print("=" * 70)
+
         try:
-            conn = sqlite3.connect(self.db_path)
-            cursor = conn.cursor()
+            agencies_to_update = self.db_manager.get_agencies_needing_description_updates(target_cities=target_cities)
+            if not agencies_to_update:
+                print("✅ No agencies found that need description updates")
+                return 0
 
-            saved_count = 0
-            for agency in agencies:
-                if not self.is_duplicate(agency):
-                    cursor.execute('''
-                        INSERT INTO agencies (name, type, website, phone, address, description, additional_info, polish_city)
-                        VALUES (?, ?, ?, ?, ?, ?, ?, ?)
-                    ''', (
-                        agency['name'],
-                        agency['type'],
-                        agency['website'],
-                        agency['phone'],
-                        agency['address'],
-                        agency['description'],
-                        agency['additional_info'],
-                        agency.get('polish_city', '')
-                    ))
-                    saved_count += 1
-                    logging.info(f"Added new agency: {agency['name']} from {agency.get('polish_city', 'unknown city')}")
+            if max_agencies:
+                agencies_to_update = agencies_to_update[:max_agencies]
 
-            conn.commit()
-            conn.close()
+            print(f"📋 Found {len(agencies_to_update)} agencies needing description updates")
+            logging.info(f"Found {len(agencies_to_update)} agencies needing description updates")
 
-            # Run cleanup tools optionally if agencies were saved and explicitly requested
-            if saved_count > 0 and run_cleanup:
-                print(f"🧹 Running cleanup tools on {saved_count} new agencies...")
-                self.run_cleanup_tools()
-                print("✅ Cleanup tools completed")
+            updated_count = 0
 
-            return saved_count
+            for agency_id, name, website, phone, address, old_description, polish_city in agencies_to_update:
+                print(f"\n🔍 Updating: {name} (from {polish_city or 'unknown city'})")
+
+                # Create a targeted prompt to get detailed information about this specific agency
+                prompt = f"""Research the real estate agency "{name}" in {polish_city or 'Poland'} and provide detailed information about their Marbella/Costa del Sol connections.
+
+Focus on:
+- Their specific office location or partnerships in Marbella/Costa del Sol
+- Years of experience with Spanish property market
+- Services offered to Polish clients (language support, legal help, financing, visas)
+- Property types they specialize in (apartments, villas, commercial)
+- Any Polish-speaking staff or expatriate focus
+- Price ranges they handle
+- Success stories or specializations
+
+Return ONLY a JSON object with this exact format:
+{{"description": "Detailed description: Marbella office: [location/partnership]. Experience: [X years]. Polish services: [legal/financing/translation]. Property types: [apartments/villas]. Price ranges: [€X-€Y]. Languages: [Polish/English/Spanish]. Specialization: [luxury/beachfront/golf]."}}
+
+Do not include explanations or additional text."""
+
+                print(f"   🤖 Researching detailed Marbella connections...")
+                logging.info(f"Researching detailed description for agency: {name}")
+
+                response = self.gemini_client.run_gemini_prompt(prompt)
+                if response:
+                    # Parse the response to extract the new description
+                    new_description = self.extract_description_from_response(response)
+
+                    if new_description and new_description != old_description:
+                        # Update the database
+                        if self.db_manager.update_agency_description(agency_id, new_description):
+                            updated_count += 1
+                            print(f"   ✅ Updated description ({len(new_description)} chars)")
+                            print(f"      📝 New: {new_description[:100]}{'...' if len(new_description) > 100 else ''}")
+                            logging.info(f"Updated description for {name}: {new_description[:100]}...")
+                        else:
+                            print("   ❌ Failed to update database")
+                    else:
+                        print("   ⚠️ No improved description found or description unchanged")
+                else:
+                    print("   ❌ No response from AI")
+
+                # Rate limiting between updates
+                time.sleep(2)
+
+            print(f"\n🎉 Completed! Updated descriptions for {updated_count} agencies")
+            logging.info(f"Description update complete. Updated {updated_count} agencies")
+            return updated_count
 
         except Exception as e:
-            logging.error(f"Error saving agencies: {e}")
+            print(f"💥 Error during description updates: {e}")
+            logging.error(f"Error during description updates: {e}")
             return 0
 
-    def run_cleanup_tools(self):
-        """Run all cleanup tools automatically"""
+    def extract_description_from_response(self, response):
+        """Extract description from Gemini response"""
         try:
-            # Run name cleaning
-            print("   🔧 Running name cleaning...")
-            result = subprocess.run([sys.executable, 'tools/clean_names.py'],
-                                  capture_output=True, text=True, cwd=os.getcwd())
-            if result.returncode == 0:
-                print("   ✅ Name cleaning completed")
-            else:
-                print(f"   ⚠️ Name cleaning had issues: {result.stderr[:100]}")
+            # Try to parse as JSON first
+            data = json.loads(response.strip())
+            if isinstance(data, dict) and 'description' in data:
+                return data['description'].strip()
+        except:
+            pass
 
-            # Run website fixing
-            print("   🔧 Running website extraction...")
-            result = subprocess.run([sys.executable, 'tools/fix_websites.py'],
-                                  capture_output=True, text=True, cwd=os.getcwd())
-            if result.returncode == 0:
-                print("   ✅ Website extraction completed")
-            else:
-                print(f"   ⚠️ Website extraction had issues: {result.stderr[:100]}")
+        # Fallback: Look for description in text
+        lines = response.split('\n')
+        for line in lines:
+            line = line.strip()
+            if line.startswith('"description":') or line.startswith('description:'):
+                # Extract the description value
+                desc_match = re.search(r'"description":\s*"([^"]*)"', line, re.IGNORECASE)
+                if desc_match:
+                    return desc_match.group(1).strip()
 
-            # Run duplicate removal
-            print("   🔧 Running duplicate removal...")
-            result = subprocess.run([sys.executable, 'tools/remove_duplicates.py'],
-                                  capture_output=True, text=True, cwd=os.getcwd())
-            if result.returncode == 0:
-                print("   ✅ Duplicate removal completed")
-            else:
-                print(f"   ⚠️ Duplicate removal had issues: {result.stderr[:100]}")
+                # Try without quotes
+                desc_match = re.search(r'description:\s*(.+)', line, re.IGNORECASE)
+                if desc_match:
+                    return desc_match.group(1).strip()
 
-            # Run type classification
-            print("   🔧 Running type classification...")
-            result = subprocess.run([sys.executable, 'tools/update_types.py'],
-                                  capture_output=True, text=True, cwd=os.getcwd())
-            if result.returncode == 0:
-                print("   ✅ Type classification completed")
-            else:
-                print(f"   ⚠️ Type classification had issues: {result.stderr[:100]}")
-
-        except Exception as e:
-            print(f"   💥 Error running cleanup tools: {e}")
-            logging.error(f"Error running cleanup tools: {e}")
-
-    def get_polish_towns(self):
-        """Get list of major Polish towns/cities for targeted searches, prioritized by population"""
-        # Major cities by population (most important first) - expanded to 50 cities
-        return [
-            # Top 30 cities (current list)
-            "Warsaw", "Krakow", "Lodz", "Wroclaw", "Poznan", "Gdansk", "Szczecin",
-            "Bydgoszcz", "Lublin", "Katowice", "Bialystok", "Gdynia", "Czestochowa",
-            "Radom", "Sosnowiec", "Torun", "Kielce", "Rzeszow", "Gliwice", "Zabrze",
-            "Olsztyn", "Bielsko-Biala", "Bytom", "Zielona Gora", "Rybnik", "Ruda Slaska",
-            "Opole", "Tychy", "Gorzow Wielkopolski", "Dabrowa Gornicza",
-            # Additional cities (31-50) for expanded coverage
-            "Plock", "Elblag", "Walbrzych", "Tarnow", "Chorzow", "Koszalin", "Kalisz",
-            "Legnica", "Grudziadz", "Slupsk", "Jastrzebie-Zdroj", "Nowy Sacz", "Jaworzno",
-            "Jelenia Gora", "Ostrow Mazowiecka", "Swidnica", "Stalowa Wola", "Piekary Slaskie",
-            "Lubin", "Zamosc"
-        ]
-
-    def get_polish_keywords(self):
-        """Get Polish real estate keywords and phrases"""
-        return {
-            'agencies': ['biuro nieruchomości', 'agencja nieruchomości', 'firma nieruchomościowa'],
-            'properties': ['nieruchomości', 'własność', 'mieszkanie', 'dom', 'apartament'],
-            'locations': ['Costa del Sol', 'Marbella', 'Hiszpania', 'Hiszpania nieruchomości'],
-            'services': ['sprzedaż', 'kupno', 'inwestycja', 'wynajem'],
-            'combinations': [
-                'nieruchomości Costa del Sol',
-                'Marbella nieruchomości',
-                'Hiszpania nieruchomości',
-                'Costa del Sol inwestycja',
-                'Marbella sprzedaż'
-            ]
-        }
-
-    def get_existing_agencies_by_city(self):
-        """Get existing agencies grouped by their city/location"""
-        try:
-            conn = sqlite3.connect(self.db_path)
-            cursor = conn.cursor()
-
-            # Get agencies with Polish focus or from Polish cities
-            cursor.execute('''
-                SELECT name, address, description, additional_info
-                FROM agencies
-                WHERE type = 'polish' OR additional_info LIKE '%Poland%'
-                ORDER BY name
-            ''')
-
-            agencies_by_city = {}
-            for row in cursor.fetchall():
-                name, address, description, additional_info = row
-
-                # Try to extract city from address or additional_info
-                city = self.extract_city_from_text(address + " " + description + " " + additional_info)
-
-                if city:
-                    if city not in agencies_by_city:
-                        agencies_by_city[city] = []
-                    agencies_by_city[city].append(name)
-
-            conn.close()
-            return agencies_by_city
-
-        except Exception as e:
-            logging.error(f"Error getting existing agencies by city: {e}")
-            return {}
-
-    def extract_city_from_text(self, text):
-        """Extract Polish city name from text"""
-        polish_cities = self.get_polish_towns()
-        text_lower = text.lower()
-
-        for city in polish_cities:
-            if city.lower() in text_lower:
-                return city
+        # If no structured format found, return the whole response if it looks like a description
+        if len(response.strip()) > 50 and not response.strip().startswith('```'):
+            return response.strip()
 
         return None
 
-    def generate_search_prompts(self):
-        """Generate a series of targeted prompts for finding agencies"""
-        prompts = []
-        polish_towns = self.get_polish_towns()
 
-        # Basic searches
-        prompts.extend([
-            "List 5 real estate agencies in Marbella, Spain with their websites and phone numbers.",
-            "Find luxury real estate agencies in Marbella that specialize in high-end properties. Include contact information and websites.",
-            "Find property management companies in Marbella that handle rentals and sales. List their contact details.",
-            "Find inmobiliarias in Marbella, Spain. List their names, websites, addresses, and phone numbers.",
-            "Find commercial real estate agencies in Marbella that handle business properties and investments.",
-            "Find real estate agencies in Marbella that specialize in new developments and off-plan properties."
-        ])
+class GeminiAgencyFinder:
+    """Main class for discovering and managing real estate agencies using Gemini AI"""
 
-        # Polish-focused general searches
-        prompts.extend([
-            "Find real estate agencies in Marbella that work with Polish buyers or have Polish-speaking staff. Include their websites and contact information.",
-            "Search for real estate agencies in Marbella that cater specifically to Polish clients or expatriates.",
-            "Find agencies in Marbella that help Polish investors purchase property in Spain."
-        ])
-
-        # Targeted searches for Polish agencies offering Costa del Sol properties
-        for town in polish_towns[:10]:  # Use first 10 towns for manageable prompt count
-            prompts.extend([
-                f"Find real estate agencies in {town}, Poland that specialize in Costa del Sol properties. Include their websites and contact information.",
-                f"Search for property agencies in {town}, Poland that offer Marbella real estate for sale. List their contact details.",
-                f"Find Polish real estate companies in {town} that help clients buy property in Marbella, Spain."
-            ])
-
-        # Additional specialized searches
-        prompts.extend([
-            "Search Google for 'real estate agencies Marbella Polish clients' and list the top results with contact information.",
-            "Find agencies in Marbella that advertise property services to Polish markets or have Polish language websites.",
-            "Search for real estate consultants in Marbella who specialize in the Polish property market."
-        ])
-
-        return prompts
+    def __init__(self, db_path='agencies.db', api_key=None):
+        self.db_manager = DatabaseManager(db_path)
+        self.gemini_client = GeminiClient(api_key)
+        self.agency_parser = AgencyParser()
+        self.duplicate_checker = DuplicateChecker(self.db_manager)
+        self.data_enricher = DataEnricher(self.gemini_client, self.db_manager)
 
     def run_discovery(self, max_prompts=5, use_web_search=True):
         """Run the agency discovery process"""
@@ -1565,13 +886,13 @@ class GeminiAgencyFinder:
         for prompt in prompts[:max_prompts]:
             logging.info(f"Processing prompt {processed_prompts + 1}/{min(max_prompts, len(prompts))}")
 
-            response = self.run_gemini_prompt(prompt, use_web_search)
+            response = self.gemini_client.run_gemini_prompt(prompt, use_web_search)
             if response:
-                agencies = self.parse_agency_data(response)
+                agencies = self.agency_parser.parse_agency_data(response)
                 logging.info(f"Found {len(agencies)} potential agencies from this prompt")
 
                 # Filter out duplicates
-                new_agencies = [a for a in agencies if not self.is_duplicate(a)]
+                new_agencies = [a for a in agencies if not self.duplicate_checker.is_duplicate(a)]
                 all_agencies.extend(new_agencies)
                 logging.info(f"Added {len(new_agencies)} new agencies (filtered duplicates)")
 
@@ -1591,7 +912,7 @@ class GeminiAgencyFinder:
                 unique_agencies.append(agency)
 
         # Save to database
-        saved_count = self.save_agencies(unique_agencies)
+        saved_count = self.db_manager.save_agencies(unique_agencies)
 
         logging.info(f"Discovery complete. Found {len(unique_agencies)} unique agencies, saved {saved_count} to database.")
         return saved_count
@@ -1631,7 +952,7 @@ class GeminiAgencyFinder:
             logging.info(f"=== Iteration {iteration} === Total agencies found so far: {total_saved}")
 
             # Refresh existing agencies context for each iteration
-            existing_agencies_by_city = self.get_existing_agencies_by_city() if use_context else {}
+            existing_agencies_by_city = self.db_manager.get_existing_agencies_by_city() if use_context else {}
 
             # Process towns in batches from unscanned cities
             towns_batch = unscanned_cities[processed_towns:processed_towns + 5]  # Process 5 towns per iteration
@@ -1698,9 +1019,9 @@ If no agencies are found, return an empty array []. Do not include explanations 
                     try:
                         print(f"   🤖 [{i}/5] Querying AI...")
                         logging.info(f"   🤖 Prompt {i}/5: {prompt[:80]}...")
-                        response = self.run_gemini_prompt(prompt)
+                        response = self.gemini_client.run_gemini_prompt(prompt)
                         if response:
-                            agencies = self.parse_agency_data(response, town)
+                            agencies = self.agency_parser.parse_agency_data(response, town)
                             print(f"   📄 Found {len(agencies)} potential agencies")
                             logging.info(f"   📄 Response received ({len(response)} chars)")
                             logging.info(f"   🔍 Parsed {len(agencies)} potential agencies from response")
@@ -1716,7 +1037,7 @@ If no agencies are found, return an empty array []. Do not include explanations 
                     time.sleep(1)  # Rate limiting between prompts
 
                 # Filter duplicates for this town
-                new_agencies = [a for a in town_agencies if not self.is_duplicate(a)]
+                new_agencies = [a for a in town_agencies if not self.duplicate_checker.is_duplicate(a)]
                 all_agencies.extend(new_agencies)
                 print(f"   ✅ {len(new_agencies)} new agencies found for {town}")
                 logging.info(f"   ✅ Found {len(new_agencies)} new agencies for {town}")
@@ -1740,7 +1061,7 @@ If no agencies are found, return an empty array []. Do not include explanations 
 
             # Save to database
             print(f"\n💾 Saving {len(unique_agencies)} agencies to database...")
-            batch_saved = self.save_agencies(unique_agencies)
+            batch_saved = self.db_manager.save_agencies(unique_agencies)
             total_saved += batch_saved
 
             print(f"✅ Batch complete: {batch_saved} agencies saved")
@@ -1767,117 +1088,190 @@ If no agencies are found, return an empty array []. Do not include explanations 
         logging.info(f"🏁 Targeted search complete. Total agencies found: {total_saved}")
         return total_saved
 
-    def run_single_city_scan(self, city_name=None, target_agencies=10):
-        """Run targeted search for a single Polish city"""
-        logging.info(f"Starting single city scan for {city_name or 'next unscanned city'}... Target: {target_agencies} agencies")
+    def run_single_city_scan(self, city_name=None, target_agencies=10, max_iterations=None, scan_all_pending=False):
+        """Run targeted search across multiple cities until target agencies found or all pending cities scanned"""
+        if scan_all_pending:
+            logging.info("Starting comprehensive scan of ALL pending cities...")
+            print("🏙️ Scanning ALL pending cities with no agency limit")
+        else:
+            logging.info(f"Starting multi-city scan... Target: {target_agencies} agencies total")
+            print(f"🏙️ Will scan cities continuously until {target_agencies} agencies found")
 
         polish_towns = self.get_polish_towns()
-        keywords = self.get_polish_keywords()
+        total_found = 0
+        cities_scanned = 0
+        iteration = 0
 
-        # If no city specified, find the next unscanned city
-        if not city_name:
-            # Get cities that haven't been scanned yet (based on tracking file or database)
+        print(f"📋 Total cities available: {len(polish_towns)}")
+        print("=" * 60)
+
+        # If specific city requested, prioritize it
+        if city_name and not scan_all_pending:
+            if city_name in polish_towns:
+                polish_towns.remove(city_name)
+                polish_towns.insert(0, city_name)
+            else:
+                print(f"⚠️ City '{city_name}' not found in cities list, starting with first city")
+
+        while (not scan_all_pending and total_found < target_agencies) or (scan_all_pending and True):
+            iteration += 1
+            if scan_all_pending:
+                print(f"\n📊 Iteration {iteration} - Total agencies found so far: {total_found}")
+                logging.info(f"=== Iteration {iteration} === Total agencies found so far: {total_found}")
+            else:
+                print(f"\n📊 Iteration {iteration} - Progress: {total_found}/{target_agencies} agencies")
+                logging.info(f"=== Iteration {iteration} === Total agencies found so far: {total_found}")
+
+            # Get unscanned cities for this iteration
             scanned_cities = self.get_scanned_cities()
             unscanned_cities = [city for city in polish_towns if city not in scanned_cities]
-            if unscanned_cities:
-                city_name = unscanned_cities[0]
-                logging.info(f"Selected next unscanned city: {city_name}")
-            else:
-                logging.info("All cities have been scanned, restarting from beginning...")
-                city_name = polish_towns[0]
 
-        if city_name not in polish_towns:
-            logging.error(f"City '{city_name}' not found in Polish cities list")
-            return 0
+            if not unscanned_cities:
+                print("✅ All cities have been scanned! No pending cities to process.")
+                logging.info("All cities have been scanned, no pending cities to process")
+                break
 
-        logging.info(f"🔍 Scanning single city: {city_name}, Poland...")
+            # Process cities one by one until we find enough agencies or exhaust the list
+            for city in unscanned_cities:
+                if not scan_all_pending and total_found >= target_agencies:
+                    break
 
-        # Get existing agencies for this city to exclude them
-        existing_agencies_by_city = self.get_existing_agencies_by_city()
-        existing_agencies = existing_agencies_by_city.get(city_name, [])
-        exclude_text = ""
-        if existing_agencies:
-            exclude_text = f" Exclude these agencies we already know about: {', '.join(existing_agencies[:5])}. "
-            logging.info(f"   📋 Excluding {len(existing_agencies)} known agencies from {city_name}")
+                cities_scanned += 1
+                if scan_all_pending:
+                    print(f"\n🏙️ [{cities_scanned}] Scanning {city}, Poland... (Total agencies: {total_found})")
+                else:
+                    print(f"\n🏙️ [{cities_scanned}] Scanning {city}, Poland... (Progress: {total_found}/{target_agencies})")
+                logging.info(f"🔍 Scanning city {cities_scanned}: {city}, Poland...")
 
-        # Create targeted prompts with structured JSON output - optimized for efficiency
-        prompts = [
-            f"""Find up to 15 real estate agencies in {city_name}, Poland that specialize in Costa del Sol, Marbella, or international properties.{exclude_text}
+                # Get existing agencies for this city to exclude them
+                existing_agencies_by_city = self.db_manager.get_existing_agencies_by_city()
+                existing_agencies = existing_agencies_by_city.get(city, [])
+                exclude_text = ""
+                if existing_agencies:
+                    exclude_text = f" Exclude these agencies we already know about: {', '.join(existing_agencies[:5])}. "
+                    print(f"   📋 Excluding {len(existing_agencies)} known agencies")
+                    logging.info(f"   📋 Excluding {len(existing_agencies)} known agencies from {city}")
+
+                # Create targeted prompts with structured JSON output - optimized for efficiency
+                prompts = [
+                    f"""Find up to 15 real estate agencies in {city}, Poland that specialize in Costa del Sol, Marbella, or international properties.{exclude_text}
 
 Focus on agencies with Polish connections to Marbella/Costa del Sol area. Include details about their Polish-Marbella connections in descriptions.
 
 Return ONLY a JSON array with this exact format:
-[{{"name": "Agency Name", "website": "https://example.com", "phone": "+48 XXX XXX XXX", "address": "Address in {city_name}", "description": "Polish agency specializing in Marbella properties"}}]
+[{{"name": "Agency Name", "website": "https://example.com", "phone": "+48 XXX XXX XXX", "address": "Address in {city}", "description": "Polish agency specializing in Marbella properties"}}]
 
 If no agencies are found, return an empty array []. Do not include explanations or additional text.""",
 
-            f"""Search for up to 15 property agencies in {city_name}, Poland that help Polish clients buy properties in Spain, especially Marbella and Costa del Sol.{exclude_text}
+                    f"""Search for up to 15 property agencies in {city}, Poland that help Polish clients buy properties in Spain, especially Marbella and Costa del Sol.{exclude_text}
 
 Include agencies that have Polish-speaking staff, Polish websites, or specialize in Polish expatriate property purchases in Marbella area.
 
 Return ONLY a JSON array with this exact format:
-[{{"name": "Agency Name", "website": "https://example.com", "phone": "+48 XXX XXX XXX", "address": "Address in {city_name}", "description": "Polish-Marbella property specialists"}}]
+[{{"name": "Agency Name", "website": "https://example.com", "phone": "+48 XXX XXX XXX", "address": "Address in {city}", "description": "Polish-Marbella property specialists"}}]
 
 If no agencies are found, return an empty array []. Do not include explanations or additional text.""",
 
-            f"""Find up to 15 Polish real estate companies in {city_name} that offer international property services, particularly for Marbella and Costa del Sol investments.{exclude_text}
+                    f"""Find up to 15 Polish real estate companies in {city} that offer international property services, particularly for Marbella and Costa del Sol investments.{exclude_text}
 
 Look for agencies with established connections to Marbella real estate market and experience with Polish buyers.
 
 Return ONLY a JSON array with this exact format:
-[{{"name": "Agency Name", "website": "https://example.com", "phone": "+48 XXX XXX XXX", "address": "Address in {city_name}", "description": "Marbella property experts for Polish clients"}}]
+[{{"name": "Agency Name", "website": "https://example.com", "phone": "+48 XXX XXX XXX", "address": "Address in {city}", "description": "Marbella property experts for Polish clients"}}]
 
 If no agencies are found, return an empty array []. Do not include explanations or additional text.""",
 
-            f"""Search for up to 15 'biuro nieruchomości' in {city_name}, Poland that handle international property transactions, especially Marbella and Costa del Sol.{exclude_text}
+                    f"""Search for up to 15 'biuro nieruchomości' in {city}, Poland that handle international property transactions, especially Marbella and Costa del Sol.{exclude_text}
 
 Include agencies that advertise Polish client services for Spanish property market or have Marbella office connections.
 
 Return ONLY a JSON array with this exact format:
-[{{"name": "Agency Name", "website": "https://example.com", "phone": "+48 XXX XXX XXX", "address": "Address in {city_name}", "description": "Costa del Sol property agency with Polish connections"}}]
+[{{"name": "Agency Name", "website": "https://example.com", "phone": "+48 XXX XXX XXX", "address": "Address in {city}", "description": "Costa del Sol property agency with Polish connections"}}]
 
 If no agencies are found, return an empty array []. Do not include explanations or additional text.""",
 
-            f"""Find up to 15 real estate agencies in {city_name}, Poland that could assist Polish investors with Marbella property purchases.{exclude_text}
+                    f"""Find up to 15 real estate agencies in {city}, Poland that could assist Polish investors with Marbella property purchases.{exclude_text}
 
 Focus on agencies with experience in Spanish property market and Polish expatriate communities in Costa del Sol.
 
 Return ONLY a JSON array with this exact format:
-[{{"name": "Agency Name", "website": "https://example.com", "phone": "+48 XXX XXX XXX", "address": "Address in {city_name}", "description": "Polish agency serving Marbella property market"}}]
+[{{"name": "Agency Name", "website": "https://example.com", "phone": "+48 XXX XXX XXX", "address": "Address in {city}", "description": "Polish agency serving Marbella property market"}}]
 
 If no agencies are found, return an empty array []. Do not include explanations or additional text."""
-        ]
+                ]
 
-        city_agencies = []
-        for i, prompt in enumerate(prompts, 1):
-            logging.info(f"   🤖 Prompt {i}/5: {prompt[:80]}...")
-            response = self.run_gemini_prompt(prompt)
-            if response:
-                logging.info(f"   📄 Response received ({len(response)} chars)")
-                agencies = self.parse_agency_data(response, city_name)
-                logging.info(f"   🔍 Parsed {len(agencies)} potential agencies from response")
-                city_agencies.extend(agencies)
-            else:
-                logging.warning(f"   ❌ No response received for prompt {i}")
+                city_agencies = []
+                for i, prompt in enumerate(prompts, 1):
+                    print(f"   🤖 [{i}/5] Querying AI...")
+                    logging.info(f"   🤖 Prompt {i}/5: {prompt[:80]}...")
+                    response = self.gemini_client.run_gemini_prompt(prompt)
+                    if response:
+                        agencies = self.agency_parser.parse_agency_data(response, city)
+                        print(f"   📄 Found {len(agencies)} potential agencies")
+                        logging.info(f"   📄 Response received ({len(response)} chars)")
+                        logging.info(f"   🔍 Parsed {len(agencies)} potential agencies from response")
+                        city_agencies.extend(agencies)
+                    else:
+                        print(f"   ❌ No response for prompt {i}")
+                        logging.warning(f"   ❌ No response received for prompt {i}")
 
-            time.sleep(1)  # Rate limiting between prompts
+                    time.sleep(1)  # Rate limiting between prompts
 
-        # Filter duplicates for this city
-        new_agencies = [a for a in city_agencies if not self.is_duplicate(a)]
-        logging.info(f"   ✅ Found {len(new_agencies)} new agencies for {city_name}")
+                # Filter duplicates for this city
+                new_agencies = [a for a in city_agencies if not self.duplicate_checker.is_duplicate(a)]
+                city_found = len(new_agencies)
 
-        # Log details of new agencies found
-        for agency in new_agencies:
-            logging.info(f"      ➕ NEW: {agency['name']} - {agency.get('website', 'No website')}")
+                print(f"   ✅ {city_found} new agencies found in {city}")
+                logging.info(f"   ✅ Found {city_found} new agencies for {city}")
 
-        # Save to database
-        saved_count = self.save_agencies(new_agencies)
+                # Log details of new agencies found
+                for agency in new_agencies[:3]:  # Show first 3
+                    print(f"      ➕ {agency['name']}")
+                    logging.info(f"      ➕ NEW: {agency['name']} - {agency.get('website', 'No website')}")
 
-        # Update tracking file
-        self.update_city_tracking(city_name, len(new_agencies))
+                if city_found > 3:
+                    print(f"      ... and {city_found - 3} more")
 
-        logging.info(f"🏁 Single city scan complete for {city_name}. Found {len(new_agencies)} agencies, saved {saved_count} to database")
-        return saved_count
+                # Save to database
+                saved_count = self.db_manager.save_agencies(new_agencies)
+                total_found += saved_count
+
+                # Update tracking file
+                self.update_city_tracking(city, city_found)
+
+                if scan_all_pending:
+                    print(f"   💾 Saved {saved_count} agencies (Total: {total_found})")
+                else:
+                    print(f"   💾 Saved {saved_count} agencies (Total: {total_found}/{target_agencies})")
+
+                # Check if we've reached the target (only for non-scan_all_pending mode)
+                if not scan_all_pending and total_found >= target_agencies:
+                    print(f"\n🎉 TARGET REACHED! Found {total_found} agencies across {cities_scanned} cities")
+                    break
+
+                # Rate limiting between cities
+                print("⏳ Moving to next city...")
+                time.sleep(2)
+
+            # Check if we've reached the target after this iteration (only for non-scan_all_pending mode)
+            if not scan_all_pending and total_found >= target_agencies:
+                break
+
+            # Prevent infinite loops - if we've done too many iterations without progress, stop
+            if iteration >= 10 and total_found == 0:
+                print("⚠️ No agencies found after 10 iterations, stopping to prevent infinite loop")
+                logging.warning("No agencies found after 10 iterations, stopping")
+                break
+
+        if scan_all_pending:
+            print(f"\n🏁 Comprehensive scan complete!")
+            print(f"📊 Results: {total_found} agencies found across {cities_scanned} cities in {iteration} iterations")
+            logging.info(f"🏁 Comprehensive scan complete. Found {total_found} agencies across {cities_scanned} cities in {iteration} iterations")
+        else:
+            print(f"\n🏁 Multi-city scan complete!")
+            print(f"📊 Results: {total_found} agencies found across {cities_scanned} cities in {iteration} iterations")
+            logging.info(f"🏁 Multi-city scan complete. Found {total_found} agencies across {cities_scanned} cities in {iteration} iterations")
+        return total_found
 
     def get_scanned_cities(self):
         """Get list of cities that have been scanned based on tracking file"""
@@ -1965,309 +1359,11 @@ If no agencies are found, return an empty array []. Do not include explanations 
 
     def fill_missing_data_web_search(self, max_agencies=None):
         """Use Gemini AI to search for missing contact information for gemini_discovered agencies"""
-        print("🔍 Starting web search to fill missing data for gemini_discovered agencies...")
-        logging.info("Starting web search to fill missing data for gemini_discovered agencies")
-
-        try:
-            conn = sqlite3.connect(self.db_path)
-            cursor = conn.cursor()
-
-            # Get agencies with missing data
-            cursor.execute('''
-                SELECT id, name, website, phone, address, description
-                FROM agencies
-                WHERE type = 'gemini_discovered'
-                AND (website IS NULL OR website = '' OR phone IS NULL OR phone = '' OR address IS NULL OR address = '')
-                ORDER BY id
-            ''')
-
-            agencies_to_update = cursor.fetchall()
-            conn.close()
-
-            if not agencies_to_update:
-                print("✅ No agencies found with missing data")
-                return 0
-
-            if max_agencies:
-                agencies_to_update = agencies_to_update[:max_agencies]
-
-            print(f"📋 Found {len(agencies_to_update)} agencies with missing data")
-            logging.info(f"Found {len(agencies_to_update)} agencies with missing data")
-
-            updated_count = 0
-
-            for agency_id, name, website, phone, address, description in agencies_to_update:
-                print(f"\n🔎 Searching for: {name}")
-
-                # Determine what data is missing
-                missing_fields = []
-                if not website or website.strip() == '':
-                    missing_fields.append('website')
-                if not phone or phone.strip() == '':
-                    missing_fields.append('phone number')
-                if not address or address.strip() == '':
-                    missing_fields.append('address')
-
-                if not missing_fields:
-                    continue
-
-                missing_text = ', '.join(missing_fields)
-
-                # Create search prompt
-                prompt = f"""Search the web for the real estate agency "{name}" in Marbella, Spain.
-Find their {missing_text}. Provide the information in this exact format:
-Website: [URL or "Not found"]
-Phone: [phone number or "Not found"]
-Address: [full address or "Not found"]
-
-Only include factual information from reliable sources."""
-
-                print(f"   🤖 Searching for: {missing_text}")
-                logging.info(f"Searching for missing data for agency: {name}")
-
-                response = self.run_gemini_prompt(prompt)
-                if response:
-                    # Parse the response
-                    updates = self.parse_web_search_response(response)
-
-                    if updates:
-                        # Update database
-                        if self.update_agency_data(agency_id, updates):
-                            updated_count += 1
-                            print(f"   ✅ Updated: {', '.join([f'{k}: {v}' for k, v in updates.items() if v and v != 'Not found'])}")
-                            logging.info(f"Updated agency {name} with: {updates}")
-                        else:
-                            print("   ❌ Failed to update database")
-                    else:
-                        print("   ⚠️ No useful information found")
-                else:
-                    print("   ❌ No response from AI")
-
-                # Rate limiting
-                time.sleep(2)
-
-            print(f"\n🎉 Completed! Updated {updated_count} agencies with missing data")
-            logging.info(f"Web search data filling complete. Updated {updated_count} agencies")
-            return updated_count
-
-        except Exception as e:
-            print(f"💥 Error during web search: {e}")
-            logging.error(f"Error during web search data filling: {e}")
-            return 0
-
-    def parse_web_search_response(self, response):
-        """Parse Gemini response for web search results"""
-        updates = {}
-
-        lines = response.split('\n')
-        for line in lines:
-            line = line.strip()
-            if line.startswith('Website:'):
-                website = line.replace('Website:', '').strip()
-                if website and website != 'Not found' and 'http' in website:
-                    updates['website'] = website
-            elif line.startswith('Phone:'):
-                phone = line.replace('Phone:', '').strip()
-                if phone and phone != 'Not found':
-                    updates['phone'] = phone
-            elif line.startswith('Address:'):
-                address = line.replace('Address:', '').strip()
-                if address and address != 'Not found':
-                    updates['address'] = address
-
-        return updates
-
-    def update_agency_data(self, agency_id, updates):
-        """Update agency data in database"""
-        try:
-            conn = sqlite3.connect(self.db_path)
-            cursor = conn.cursor()
-
-            # Build update query dynamically
-            set_parts = []
-            values = []
-            for field, value in updates.items():
-                if value and value != 'Not found':
-                    set_parts.append(f"{field} = ?")
-                    values.append(value)
-
-            if set_parts:
-                query = f"UPDATE agencies SET {', '.join(set_parts)} WHERE id = ?"
-                values.append(agency_id)
-
-                cursor.execute(query, values)
-                conn.commit()
-
-                # Update additional_info to note the data enrichment
-                cursor.execute('''
-                    UPDATE agencies
-                    SET additional_info = additional_info || ? || ?
-                    WHERE id = ?
-                ''', (
-                    f" | Data enriched via web search on {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}",
-                    f" (added: {', '.join(updates.keys())})",
-                    agency_id
-                ))
-                conn.commit()
-
-            conn.close()
-            return True
-
-        except Exception as e:
-            logging.error(f"Error updating agency data: {e}")
-            return False
+        return self.data_enricher.fill_missing_data_web_search(max_agencies)
 
     def update_existing_agency_descriptions(self, max_agencies=None, target_cities=None):
         """Update descriptions for existing agencies using improved detailed prompts"""
-        print("🔄 Starting update of existing agency descriptions...")
-        print("🎯 Using improved prompts to get detailed Marbella connection information")
-        print("=" * 70)
-
-        try:
-            conn = sqlite3.connect(self.db_path)
-            cursor = conn.cursor()
-
-            # Get agencies that need description updates
-            query = '''
-                SELECT id, name, website, phone, address, description, polish_city
-                FROM agencies
-                WHERE (description IS NULL OR description = '' OR
-                       description NOT LIKE '%Marbella%' OR
-                       description NOT LIKE '%Costa del Sol%' OR
-                       LENGTH(description) < 50)
-                AND type = 'gemini_discovered'
-            '''
-
-            if target_cities:
-                placeholders = ','.join(['?'] * len(target_cities))
-                query += f' AND polish_city IN ({placeholders})'
-                cursor.execute(query, target_cities)
-            else:
-                cursor.execute(query)
-
-            agencies_to_update = cursor.fetchall()
-            conn.close()
-
-            if not agencies_to_update:
-                print("✅ No agencies found that need description updates")
-                return 0
-
-            if max_agencies:
-                agencies_to_update = agencies_to_update[:max_agencies]
-
-            print(f"📋 Found {len(agencies_to_update)} agencies needing description updates")
-            logging.info(f"Found {len(agencies_to_update)} agencies needing description updates")
-
-            updated_count = 0
-
-            for agency_id, name, website, phone, address, old_description, polish_city in agencies_to_update:
-                print(f"\n🔍 Updating: {name} (from {polish_city or 'unknown city'})")
-
-                # Create a targeted prompt to get detailed information about this specific agency
-                prompt = f"""Research the real estate agency "{name}" in {polish_city or 'Poland'} and provide detailed information about their Marbella/Costa del Sol connections.
-
-Focus on:
-- Their specific office location or partnerships in Marbella/Costa del Sol
-- Years of experience with Spanish property market
-- Services offered to Polish clients (language support, legal help, financing, visas)
-- Property types they specialize in (apartments, villas, commercial)
-- Any Polish-speaking staff or expatriate focus
-- Price ranges they handle
-- Success stories or specializations
-
-Return ONLY a JSON object with this exact format:
-{{"description": "Detailed description: Marbella office: [location/partnership]. Experience: [X years]. Polish services: [legal/financing/translation]. Property types: [apartments/villas]. Price ranges: [€X-€Y]. Languages: [Polish/English/Spanish]. Specialization: [luxury/beachfront/golf]."}}
-
-Do not include explanations or additional text."""
-
-                print(f"   🤖 Researching detailed Marbella connections...")
-                logging.info(f"Researching detailed description for agency: {name}")
-
-                response = self.run_gemini_prompt(prompt)
-                if response:
-                    # Parse the response to extract the new description
-                    new_description = self.extract_description_from_response(response)
-
-                    if new_description and new_description != old_description:
-                        # Update the database
-                        if self.update_agency_description(agency_id, new_description):
-                            updated_count += 1
-                            print(f"   ✅ Updated description ({len(new_description)} chars)")
-                            print(f"      📝 New: {new_description[:100]}{'...' if len(new_description) > 100 else ''}")
-                            logging.info(f"Updated description for {name}: {new_description[:100]}...")
-                        else:
-                            print("   ❌ Failed to update database")
-                    else:
-                        print("   ⚠️ No improved description found or description unchanged")
-                else:
-                    print("   ❌ No response from AI")
-
-                # Rate limiting between updates
-                time.sleep(2)
-
-            print(f"\n🎉 Completed! Updated descriptions for {updated_count} agencies")
-            logging.info(f"Description update complete. Updated {updated_count} agencies")
-            return updated_count
-
-        except Exception as e:
-            print(f"💥 Error during description updates: {e}")
-            logging.error(f"Error during description updates: {e}")
-            return 0
-
-    def extract_description_from_response(self, response):
-        """Extract description from Gemini response"""
-        try:
-            # Try to parse as JSON first
-            data = json.loads(response.strip())
-            if isinstance(data, dict) and 'description' in data:
-                return data['description'].strip()
-        except:
-            pass
-
-        # Fallback: Look for description in text
-        lines = response.split('\n')
-        for line in lines:
-            line = line.strip()
-            if line.startswith('"description":') or line.startswith('description:'):
-                # Extract the description value
-                desc_match = re.search(r'"description":\s*"([^"]*)"', line, re.IGNORECASE)
-                if desc_match:
-                    return desc_match.group(1).strip()
-
-                # Try without quotes
-                desc_match = re.search(r'description:\s*(.+)', line, re.IGNORECASE)
-                if desc_match:
-                    return desc_match.group(1).strip()
-
-        # If no structured format found, return the whole response if it looks like a description
-        if len(response.strip()) > 50 and not response.strip().startswith('```'):
-            return response.strip()
-
-        return None
-
-    def update_agency_description(self, agency_id, new_description):
-        """Update agency description in database"""
-        try:
-            conn = sqlite3.connect(self.db_path)
-            cursor = conn.cursor()
-
-            cursor.execute('''
-                UPDATE agencies
-                SET description = ?, additional_info = additional_info || ?
-                WHERE id = ?
-            ''', (
-                new_description,
-                f" | Description enhanced via detailed research on {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}",
-                agency_id
-            ))
-
-            conn.commit()
-            conn.close()
-            return True
-
-        except Exception as e:
-            logging.error(f"Error updating agency description: {e}")
-            return False
+        return self.data_enricher.update_existing_agency_descriptions(max_agencies, target_cities)
 
     def calculate_agencies_per_call(self, sample_city="Warsaw"):
         """Calculate estimated agencies per API call based on current prompt optimization"""
@@ -2286,10 +1382,10 @@ Return ONLY a JSON array with this exact format:
 If no agencies are found, return an empty array []. Do not include explanations or additional text."""
 
         print(f"🤖 Testing prompt ({len(test_prompt)} chars)...")
-        response = self.run_gemini_prompt(test_prompt)
+        response = self.gemini_client.run_gemini_prompt(test_prompt)
 
         if response:
-            agencies = self.parse_agency_data(response, sample_city)
+            agencies = self.agency_parser.parse_agency_data(response, sample_city)
             print(f"✅ Response received ({len(response)} chars)")
             print(f"📊 Agencies parsed: {len(agencies)}")
 
@@ -2321,6 +1417,122 @@ If no agencies are found, return an empty array []. Do not include explanations 
         else:
             print("❌ No response received")
             return None
+
+    def get_polish_towns(self):
+        """Get list of major Polish towns/cities for targeted searches, prioritized by population"""
+        # Major cities by population (most important first) - expanded to 50 cities
+        return [
+            # Top 30 cities (current list)
+            "Warsaw", "Krakow", "Lodz", "Wroclaw", "Poznan", "Gdansk", "Szczecin",
+            "Bydgoszcz", "Lublin", "Katowice", "Bialystok", "Gdynia", "Czestochowa",
+            "Radom", "Sosnowiec", "Torun", "Kielce", "Rzeszow", "Gliwice", "Zabrze",
+            "Olsztyn", "Bielsko-Biala", "Bytom", "Zielona Gora", "Rybnik", "Ruda Slaska",
+            "Opole", "Tychy", "Gorzow Wielkopolski", "Dabrowa Gornicza",
+            # Additional cities (31-50) for expanded coverage
+            "Plock", "Elblag", "Walbrzych", "Tarnow", "Chorzow", "Koszalin", "Kalisz",
+            "Legnica", "Grudziadz", "Slupsk", "Jastrzebie-Zdroj", "Nowy Sacz", "Jaworzno",
+            "Jelenia Gora", "Ostrow Mazowiecka", "Swidnica", "Stalowa Wola", "Piekary Slaskie",
+            "Lubin", "Zamosc"
+        ]
+
+    def get_polish_keywords(self):
+        """Get Polish real estate keywords and phrases"""
+        return {
+            'agencies': ['biuro nieruchomości', 'agencja nieruchomości', 'firma nieruchomościowa'],
+            'properties': ['nieruchomości', 'własność', 'mieszkanie', 'dom', 'apartament'],
+            'locations': ['Costa del Sol', 'Marbella', 'Hiszpania', 'Hiszpania nieruchomości'],
+            'services': ['sprzedaż', 'kupno', 'inwestycja', 'wynajem'],
+            'combinations': [
+                'nieruchomości Costa del Sol',
+                'Marbella nieruchomości',
+                'Hiszpania nieruchomości',
+                'Costa del Sol inwestycja',
+                'Marbella sprzedaż'
+            ]
+        }
+
+    def generate_search_prompts(self):
+        """Generate a series of targeted prompts for finding agencies"""
+        prompts = []
+        polish_towns = self.get_polish_towns()
+
+        # Basic searches
+        prompts.extend([
+            "List 5 real estate agencies in Marbella, Spain with their websites and phone numbers.",
+            "Find luxury real estate agencies in Marbella that specialize in high-end properties. Include contact information and websites.",
+            "Find property management companies in Marbella that handle rentals and sales. List their contact details.",
+            "Find inmobiliarias in Marbella, Spain. List their names, websites, addresses, and phone numbers.",
+            "Find commercial real estate agencies in Marbella that handle business properties and investments.",
+            "Find real estate agencies in Marbella that specialize in new developments and off-plan properties."
+        ])
+
+        # Polish-focused general searches
+        prompts.extend([
+            "Find real estate agencies in Marbella that work with Polish buyers or have Polish-speaking staff. Include their websites and contact information.",
+            "Search for real estate agencies in Marbella that cater specifically to Polish clients or expatriates.",
+            "Find agencies in Marbella that help Polish investors purchase property in Spain."
+        ])
+
+        # Targeted searches for Polish agencies offering Costa del Sol properties
+        for town in polish_towns[:10]:  # Use first 10 towns for manageable prompt count
+            prompts.extend([
+                f"Find real estate agencies in {town}, Poland that specialize in Costa del Sol properties. Include their websites and contact information.",
+                f"Search for property agencies in {town}, Poland that offer Marbella real estate for sale. List their contact details.",
+                f"Find Polish real estate companies in {town} that help clients buy property in Marbella, Spain."
+            ])
+
+        # Additional specialized searches
+        prompts.extend([
+            "Search Google for 'real estate agencies Marbella Polish clients' and list the top results with contact information.",
+            "Find agencies in Marbella that advertise property services to Polish markets or have Polish language websites.",
+            "Search for real estate consultants in Marbella who specialize in the Polish property market."
+        ])
+
+        return prompts
+
+    def run_cleanup_tools(self):
+        """Run all cleanup tools automatically"""
+        try:
+            # Run name cleaning
+            print("   🔧 Running name cleaning...")
+            result = subprocess.run([sys.executable, 'tools/clean_names.py'],
+                                  capture_output=True, text=True, cwd=os.getcwd())
+            if result.returncode == 0:
+                print("   ✅ Name cleaning completed")
+            else:
+                print(f"   ⚠️ Name cleaning had issues: {result.stderr[:100]}")
+
+            # Run website fixing
+            print("   🔧 Running website extraction...")
+            result = subprocess.run([sys.executable, 'tools/fix_websites.py'],
+                                  capture_output=True, text=True, cwd=os.getcwd())
+            if result.returncode == 0:
+                print("   ✅ Website extraction completed")
+            else:
+                print(f"   ⚠️ Website extraction had issues: {result.stderr[:100]}")
+
+            # Run duplicate removal
+            print("   🔧 Running duplicate removal...")
+            result = subprocess.run([sys.executable, 'tools/remove_duplicates.py'],
+                                  capture_output=True, text=True, cwd=os.getcwd())
+            if result.returncode == 0:
+                print("   ✅ Duplicate removal completed")
+            else:
+                print(f"   ⚠️ Duplicate removal had issues: {result.stderr[:100]}")
+
+            # Run type classification
+            print("   🔧 Running type classification...")
+            result = subprocess.run([sys.executable, 'tools/update_types.py'],
+                                  capture_output=True, text=True, cwd=os.getcwd())
+            if result.returncode == 0:
+                print("   ✅ Type classification completed")
+            else:
+                print(f"   ⚠️ Type classification had issues: {result.stderr[:100]}")
+
+        except Exception as e:
+            print(f"   💥 Error running cleanup tools: {e}")
+            logging.error(f"Error running cleanup tools: {e}")
+
 
 def main():
     finder = GeminiAgencyFinder()
@@ -2357,24 +1569,33 @@ if __name__ == '__main__':
         # Run single city scan
         city_name = None
         target_agencies = 10  # Default target for single city
+        scan_all_pending = False
 
         if len(sys.argv) > 2:
-            city_name = sys.argv[2]
+            # Check if it's a special flag for scanning all pending cities
+            if sys.argv[2] == '--all':
+                scan_all_pending = True
+            else:
+                city_name = sys.argv[2]
         if len(sys.argv) > 3:
             try:
                 target_agencies = int(sys.argv[3])
             except ValueError:
                 print("Invalid target number, using default of 10")
 
-        print(f"🏙️ Running single city scan...")
-        if city_name:
-            print(f"🎯 Target City: {city_name}")
+        if scan_all_pending:
+            print("🏙️ Scanning ALL pending cities with no agency limit")
+            print("=" * 60)
+            saved_count = finder.run_single_city_scan(scan_all_pending=True)
         else:
-            print("🎯 Target: Next unscanned city")
-        print(f"🎯 Target Agencies: {target_agencies}")
-        print("=" * 60)
-
-        saved_count = finder.run_single_city_scan(city_name=city_name, target_agencies=target_agencies)
+            print(f"🏙️ Running single city scan...")
+            if city_name:
+                print(f"🎯 Target City: {city_name}")
+            else:
+                print("🎯 Target: Next unscanned city")
+            print(f"🎯 Target Agencies: {target_agencies}")
+            print("=" * 60)
+            saved_count = finder.run_single_city_scan(city_name=city_name, target_agencies=target_agencies)
 
         print("=" * 60)
         print(f"🎉 COMPLETED: Successfully added {saved_count} new agencies to the database!")

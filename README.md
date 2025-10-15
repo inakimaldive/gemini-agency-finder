@@ -8,18 +8,14 @@ A static web interface for exploring the Gemini Agency Finder database of real e
 
 ## 📊 Database Overview
 
-This interface displays **732 real estate agencies** (428 active high-quality entries after cleanup) across multiple categories:
-- **Polish Agencies**: Polish agencies specializing in Costa del Sol properties
-- **Marbella Agencies**: Spain-based agencies with Marbella focus
-- **Spain&Poland Agencies**: Agencies serving both Spanish and Polish markets
-- **AI Discovered**: Agencies found through AI-powered web searches
-- **Inactive Agencies**: Agencies with broken main URLs and no working alternatives
-- **Unknown Status**: Agencies with unclear website status
-- **No Website Found**: Agencies with name/address but no discoverable website
-- **Enhanced Classification**: Advanced multi-indicator type classification
+This interface displays **515 real estate agencies** (511 active high-quality entries after cleanup) across multiple categories:
+- **Marbella Based**: 154 Spain-based agencies with Marbella focus
+- **Polish Agencies**: 206 Polish agencies specializing in Costa del Sol properties
+- **Spain and Poland**: 151 agencies serving both Spanish and Polish markets
+- **AI Discovered**: 4 agencies found through AI-powered web searches
+- **Enhanced Classification**: Advanced multi-indicator type classification using phone codes (+48/+34), domains (.pl/.es), addresses, and descriptions
 - **Website Validation**: Comprehensive URL validation, fixing, and enhancement system
-- **Data Quality**: Merged undefined entries back to main table
-- **Cleanup Tracking**: Robust `cleanup_status` system prevents redundant processing
+- **Data Quality**: Robust cleanup system with `cleanup_status` tracking
 - **AI Data Enrichment**: Inactive agencies with name/address data enriched via Gemini AI search
 
 ## ✨ Features
@@ -411,5 +407,5 @@ For questions or issues:
 
 This database is maintained by the Gemini Agency Finder project, which uses AI-powered search to discover real estate agencies working with Costa del Sol properties. The data includes agencies physically located in Marbella, Polish agencies specializing in Spanish properties, and agencies discovered through automated AI searches.
 
-**Last Updated**: October 13, 2025
-**Total Agencies**: 732 (428 active high-quality entries)
+**Last Updated**: October 14, 2025
+**Total Agencies**: 515 (511 active high-quality entries)

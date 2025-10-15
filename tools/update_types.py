@@ -63,7 +63,7 @@ def determine_agency_type(name, website, phone, address, description):
     marbella_score = indicators['marbella']
 
     if polish_score > 0 and marbella_score > 0:
-        return 'spain&poland'
+        return 'Spain and Poland'
     elif polish_score > 0:
         return 'polish'
     elif marbella_score > 0:
@@ -84,7 +84,7 @@ def main():
         cursor.execute('''
             UPDATE agencies
             SET type = 'gemini_discovered'
-            WHERE type IN ('polish', 'marbella', 'spain&poland')
+            WHERE type IN ('polish', 'marbella', 'spain&poland', 'Spain and Poland')
         ''')
         reset_count = cursor.rowcount
         logging.info(f"Reset {reset_count} agencies back to 'gemini_discovered' for reclassification")

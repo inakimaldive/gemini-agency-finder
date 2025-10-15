@@ -6,16 +6,16 @@ This file tracks which Polish cities have been scanned for real estate agencies 
 
 | City | Population Rank | Scanned | Agencies Found | Date Scanned | Notes |
 |------|----------------|---------|----------------|--------------|-------|
-| Warsaw | 1 | ✅ | 14 | 2025-10-09 | Initial scan - 14 agencies found |
-| Krakow | 2 | ✅ | 5 | 2025-10-09 | Batch scan - 5 agencies found |
-| Lodz | 3 | ✅ | 4 | 2025-10-09 | Batch scan - 4 agencies found |
-| Wroclaw | 4 | ✅ | 5 | 2025-10-09 | Batch scan - 5 agencies found |
-| Poznan | 5 | ✅ | 5 | 2025-10-09 | Batch scan - 5 agencies found |
-| Gdansk | 6 | ✅ | 2 | 2025-10-09 | Batch scan - 2 agencies found |
-| Szczecin | 7 | ✅ | 9 | 2025-10-09 | Batch scan - 6 agencies found |
-| Bydgoszcz | 8 | ✅ | 7 | 2025-10-09 | Batch scan - 3 agencies found |
-| Lublin | 9 | ✅ | 2 | 2025-10-09 | Batch scan - 2 agencies found |
-| Katowice | 10 | ✅ | 3 | 2025-10-09 | Batch scan - 1 agency found |
+| Warsaw | 1 | ✅ | 40 | 2025-10-15 | Scanned - 40 agencies found |
+| Krakow | 2 | ✅ | 19 | 2025-10-15 | Scanned - 19 agencies found |
+| Lodz | 3 | ✅ | 12 | 2025-10-15 | Scanned - 12 agencies found |
+| Wroclaw | 4 | ✅ | 24 | 2025-10-15 | Scanned - 24 agencies found |
+| Poznan | 5 | ✅ | 12 | 2025-10-15 | Scanned - 12 agencies found |
+| Gdansk | 6 | ✅ | 6 | 2025-10-15 | Scanned - 6 agencies found |
+| Szczecin | 7 | ✅ | 12 | 2025-10-15 | Scanned - 12 agencies found |
+| Bydgoszcz | 8 | ✅ | 3 | 2025-10-15 | Scanned - 3 agencies found |
+| Lublin | 9 | ✅ | 11 | 2025-10-15 | Scanned - 11 agencies found |
+| Katowice | 10 | ✅ | 14 | 2025-10-15 | Scanned - 14 agencies found |
 | Bialystok | 11 | ✅ | 6 | 2025-10-10 | Latest scan - 6 agencies found |
 | Gdynia | 12 | ✅ | 6 | 2025-10-10 | Latest scan - 6 agencies found |
 | Czestochowa | 13 | ✅ | 4 | 2025-10-10 | Latest scan - 4 agencies found |
@@ -39,23 +39,23 @@ This file tracks which Polish cities have been scanned for real estate agencies 
 | Plock | 31 | ✅ | 7 | 2025-10-10 | Scanned - 7 agencies found |
 | Elblag | 32 | ✅ | 1 | 2025-10-10 | Scanned - 1 agencies found |
 | Walbrzych | 33 | ✅ | 1 | 2025-10-10 | Scanned - 1 agencies found |
-| Tarnow | 34 | ❌ | 0 | - | Not yet scanned |
+| Tarnow | 34 | ✅ | 2 | 2025-10-14 | Scanned - 2 agencies found |
 | Chorzow | 35 | ✅ | 6 | 2025-10-12 | Latest scan - 6 agencies found |
 | Koszalin | 36 | ✅ | 3 | 2025-10-12 | Latest scan - 3 agencies found |
 | Kalisz | 37 | ✅ | 4 | 2025-10-12 | Latest scan - 4 agencies found |
 | Legnica | 38 | ✅ | 1 | 2025-10-12 | Latest scan - 1 agency found |
-| Grudziadz | 39 | ❌ | 0 | - | Not yet scanned |
-| Slupsk | 40 | ❌ | 0 | - | Not yet scanned |
-| Jastrzebie-Zdroj | 41 | ❌ | 0 | - | Not yet scanned |
-| Nowy Sacz | 42 | ❌ | 0 | - | Not yet scanned |
-| Jaworzno | 43 | ❌ | 0 | - | Not yet scanned |
-| Jelenia Gora | 44 | ❌ | 0 | - | Not yet scanned |
-| Ostrow Mazowiecka | 45 | ❌ | 0 | - | Not yet scanned |
-| Swidnica | 46 | ❌ | 0 | - | Not yet scanned |
-| Stalowa Wola | 47 | ❌ | 0 | - | Not yet scanned |
-| Piekary Slaskie | 48 | ❌ | 0 | - | Not yet scanned |
-| Lubin | 49 | ❌ | 0 | - | Not yet scanned |
-| Zamosc | 50 | ❌ | 0 | - | Not yet scanned |
+| Grudziadz | 39 | ✅ | 0 | 2025-10-14 | Scanned - 0 agencies found |
+| Slupsk | 40 | ✅ | 1 | 2025-10-14 | Scanned - 1 agencies found |
+| Jastrzebie-Zdroj | 41 | ✅ | 0 | 2025-10-14 | Scanned - 0 agencies found |
+| Nowy Sacz | 42 | ✅ | 1 | 2025-10-14 | Scanned - 1 agencies found |
+| Jaworzno | 43 | ✅ | 0 | 2025-10-14 | Scanned - 0 agencies found |
+| Jelenia Gora | 44 | ✅ | 1 | 2025-10-14 | Scanned - 1 agencies found |
+| Ostrow Mazowiecka | 45 | ✅ | 0 | 2025-10-14 | Scanned - 0 agencies found |
+| Swidnica | 46 | ✅ | 0 | 2025-10-14 | Scanned - 0 agencies found |
+| Stalowa Wola | 47 | ✅ | 0 | 2025-10-14 | Scanned - 0 agencies found |
+| Piekary Slaskie | 48 | ✅ | 1 | 2025-10-14 | Scanned - 1 agencies found |
+| Lubin | 49 | ✅ | 0 | 2025-10-14 | Scanned - 0 agencies found |
+| Zamosc | 50 | ✅ | 0 | 2025-10-14 | Scanned - 0 agencies found |
 
 ## Additional Smaller Polish Cities (for future expansion)
 
@@ -233,5 +233,5 @@ python gemini_agency_finder.py --targeted 50
 
 ---
 
-*****Last Updated: 2025-10-12*****
+****************************Last Updated: 2025-10-15****************************
 *Next Scan Target: Tarnow*
