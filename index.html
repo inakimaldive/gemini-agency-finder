@@ -330,7 +330,12 @@
             const totalAgencies = agenciesData.length;
             const marbellaCount = agenciesData.filter(a => a.type === 'marbella').length;
             const polishCount = agenciesData.filter(a => a.type === 'polish').length;
-            const spainPolandCount = agenciesData.filter(a => a.type === 'Spain and Poland').length;
+            const spainPolandCount = agenciesData.filter(a =>
+                (a.type || '').toLowerCase() === 'spain and poland' ||
+                (a.type || '').toLowerCase() === 'spain&poland' ||
+                (a.type || '').toLowerCase() === 'both' ||
+                ((a.type || '').toLowerCase().includes('spain') && (a.type || '').toLowerCase().includes('poland'))
+            ).length;
             const inactiveCount = agenciesData.filter(a => a.type === 'inactive').length;
             const geminiCount = agenciesData.filter(a => a.type === 'gemini_discovered').length;
 
@@ -407,12 +412,17 @@
                             const mainUrlNotWorking = hasMainUrl && row.website_status && !['active', 'corrected'].includes(row.website_status);
                             const noWorkingAlternatives = !row.alternative_urls || !Array.isArray(row.alternative_urls) || !row.alternative_urls.some(alt => ['active', 'corrected'].includes(alt.status));
 
-                            const displayType = (hasMainUrl && mainUrlNotWorking && noWorkingAlternatives) ? 'inactive' : data;
+                            let displayType = (hasMainUrl && mainUrlNotWorking && noWorkingAlternatives) ? 'inactive' : data;
+
+                            // Unify 'both' and 'spain&poland' to display as 'Spain & Poland'
+                            if (displayType && (displayType.toLowerCase() === 'both' || displayType.toLowerCase() === 'spain&poland' || displayType.toLowerCase() === 'spain and poland')) {
+                                displayType = 'Spain & Poland';
+                            }
 
                             const badges = {
                                 'marbella': '<span class="badge bg-success badge-sm">Marbella</span>',
                                 'polish': '<span class="badge bg-primary badge-sm">Polish</span>',
-                                'Spain and Poland': '<span class="badge bg-info badge-sm">Spain & Poland</span>',
+                                'Spain & Poland': '<span class="badge bg-info badge-sm">Spain & Poland</span>',
                                 'inactive': '<span class="badge bg-danger badge-sm">Inactive</span>',
                                 'gemini_discovered': '<span class="badge bg-warning badge-sm">AI</span>'
                             };
